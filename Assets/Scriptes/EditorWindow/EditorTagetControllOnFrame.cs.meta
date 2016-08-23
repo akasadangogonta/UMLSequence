@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: fb8fc0b0c8466a8479fbead81de26e07
+timeCreated: 1469324544
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - PartsButton: {fileID: 148076, guid: 92fa567b21d78574a8e06a103ede9948, type: 2}
+  - PartsNewLine: {fileID: 101326, guid: 62b47207fa274c14c99b1292162cf5aa, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

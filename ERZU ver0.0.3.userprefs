@@ -1,0 +1,31 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scriptes\Objects\BaseObj.cs">
+    <Files>
+      <File FileName="Assets\Scriptes\Create\BaseCreate.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scriptes\Create\CreateObj.cs" Line="33" Column="3" />
+      <File FileName="Assets\Scriptes\Objects\BaseObj.cs" Line="326" Column="3" />
+      <File FileName="Assets\Scriptes\Objects\FrameObj.cs" Line="22" Column="16" />
+      <File FileName="Assets\Scriptes\Objects\TextObj.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scriptes\Objects\TriangleObj.cs" Line="33" Column="11" />
+      <File FileName="Assets\Scriptes\GeneralController.cs" Line="28" Column="1" />
+      <File FileName="Assets\Scriptes\Create\CreateFrame.cs" Line="10" Column="2" />
+      <File FileName="Assets\Scriptes\Button\SaveButton.cs" Line="12" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="D:\Create\ER\ERZU ver0.0.3\Assets\Scriptes\MouseWheel.cs" line="107" />
+      <Breakpoint file="D:\Create\ER\ERZU ver0.0.3\Assets\Scriptes\Objects\TriangleObj.cs" line="31" />
+      <Breakpoint file="D:\Create\ER\ERZU ver0.0.3\Assets\Scriptes\Create\CreateObj.cs" line="81" />
+      <Breakpoint file="D:\Create\ER\ERZU ver0.0.3\Assets\Scriptes\Create\CreateObj.cs" line="83" />
+      <Breakpoint file="D:\Create\ER\ERZU ver0.0.3\Assets\Scriptes\Create\CreateObj.cs" line="53" />
+      <Breakpoint file="D:\Create\ER\ERZU ver0.0.3\Assets\Scriptes\Create\CreateObj.cs" line="103" />
+      <Breakpoint file="D:\Create\ER\ERZU ver0.0.3\Assets\Scriptes\Objects\BaseObj.cs" line="74" />
+      <Breakpoint file="D:\Create\ER\ERZU ver0.0.3\Assets\Scriptes\GeneralController.cs" line="28" />
+      <Breakpoint file="D:\Create\ER\ERZU ver0.0.3\Assets\Scriptes\Objects\BaseObj.cs" line="340" />
+      <Breakpoint file="D:\Create\ER\ERZU ver0.0.3\Assets\Scriptes\Button\SaveButton.cs" line="12" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -1,0 +1,24 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scriptes\Common\AnimationSupport.cs">
+    <Files>
+      <File FileName="Assets\Scriptes\EditorWindow\Button\ModifyLineButton.cs" Line="106" Column="5" />
+      <File FileName="Assets\Scriptes\Common\AnimationSupport.cs" Line="37" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="D:\Create\ER\ERZU ver0.0.7\Assets\Scriptes\EditorWindow\Button\NewLineButton.cs" line="29" />
+      <Breakpoint file="D:\Create\ER\ERZU ver0.0.7\Assets\Scriptes\EditorWindow\Button\NewLineButton.cs" line="27" />
+      <Breakpoint file="D:\Create\ER\ERZU ver0.0.7\Assets\Scriptes\Mainwindow\General\CreateEditorWindow.cs" line="55" />
+      <Breakpoint file="D:\Create\ER\ERZU ver0.0.7\Assets\Scriptes\EditorWindow\BeEditedObjBase.cs" line="35" />
+      <Breakpoint file="D:\Create\ER\ERZU ver0.0.8\Assets\Scriptes\EditorWindow\Button\TouchObj.cs" line="34" />
+      <Breakpoint file="D:\Create\ER\ERZU ver0.0.8\Assets\Scriptes\Mainwindow\Objects\BaseObj.cs" line="257" />
+      <Breakpoint file="D:\Create\ER\ERZU ver0.0.8\Assets\Scriptes\Mainwindow\Objects\BaseObj.cs" line="189" />
+      <Breakpoint file="D:\Create\ER\ERZU ver0.0.8\Assets\Scriptes\Mainwindow\Objects\BaseObj.cs" line="195" />
+      <Breakpoint file="D:\Create\ER\ERZU ver0.0.8\Assets\Scriptes\Mainwindow\Objects\BaseObj.cs" line="238" />
+      <Breakpoint file="D:\Create\ER\ERZU ver0.0.8\Assets\Scriptes\Mainwindow\Objects\BaseObj.cs" line="241" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
