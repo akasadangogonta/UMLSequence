@@ -6,8 +6,6 @@ using System.Collections.Generic;
 
 public class EditorTagetControllOnFrame : EditorTargetControllBase
 {
-	private int lineNum;
-	public int LineNum { get { return lineNum;} }
 	//[System.NonSerialized]
 	public RectTransform editFrameTransform;
 	public RectTransform baseFrameTransform;
@@ -43,6 +41,8 @@ public class EditorTagetControllOnFrame : EditorTargetControllBase
 		SetAddListener ();
 
 		lineNum = editButton.Length;
+
+		ChangeColorAllowPos ();
 	}
 
 	public void SetAddListener()
@@ -124,6 +124,7 @@ public class EditorTagetControllOnFrame : EditorTargetControllBase
 			SetSiblingBaseObj ();
 
 			lineNum++;
+			ChangeColorAllowPos ();
 		} 
 		else if (action == EditorAct.Remove)
 		{
@@ -140,6 +141,7 @@ public class EditorTagetControllOnFrame : EditorTargetControllBase
 			SetSiblingBaseObj ();
 
 			lineNum--;
+			ChangeColorAllowPos ();
 		}
 	}
 
@@ -392,5 +394,48 @@ public class EditorTagetControllOnFrame : EditorTargetControllBase
 		SetSibling (baseInputField);
 		SetSibling (baseButton);
 		SetSibling (baseText);
+	}
+
+	override protected void  ChangeColorAllowPos()
+	{
+		while (curEditData.id > lineNum - 1)
+		{
+			curEditData.id--;
+			curEditData.editType = EditType.Button;
+			if (curEditData.id < 0) 
+			{
+				Debug.LogWarning("curEditData.id is minus");
+				break;
+			}
+		}
+
+		base.collorArrowPosCallback (_GetColorAllowPos (lineNum, curEditData, true),
+		                             _GetColorAllowPos (lineNum, curEditData, false));
+	}
+
+	protected Vector2 _GetColorAllowPos(int lineNum, CurEditData editData, bool isLeft)
+	{
+		Vector2 returnVector = Vector2.zero;
+
+		switch (editData.editType) 
+		{
+		case EditType.Button:
+		case EditType.Text:
+			//ColorArrowは90°傾ています。ｘとｙが逆に見える。
+			float baseX = 0;
+			float oneLineDistance = 31;
+			float lineNumAdjust = -1 * ((lineNum - 1) * (oneLineDistance / 2));
+			float curSelectPosAdjust = (oneLineDistance * editData.id);
+
+			float resultX = baseX + lineNumAdjust + curSelectPosAdjust;
+
+			Vector2 leftPos = new Vector2(resultX, -247);
+			Vector2 rightPos = new Vector2(resultX, 247);
+
+			returnVector = (isLeft == true)? leftPos : rightPos;
+			break;
+		}
+
+		return returnVector;
 	}
 }

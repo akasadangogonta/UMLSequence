@@ -9,9 +9,9 @@ public struct CurEditData
 }
 
 public class EditorTargetControllBase : MonoBehaviour {
+	protected int lineNum;
+	public int LineNum { get { return lineNum; } }
 
-
-	//protected ObjType type;
 	protected BaseObj baseObj;
 
 	public ObjType type;
@@ -24,10 +24,18 @@ public class EditorTargetControllBase : MonoBehaviour {
 
 	protected AddParts addParts;
 
+	public delegate void ColorArrowPosCallback(Vector2 leftPos, Vector2 rightPos);
+	protected ColorArrowPosCallback collorArrowPosCallback;
+	
 	public void SetData(BaseObj obj, AddParts addParts)
 	{
 		this.baseObj = obj;
 		this.addParts = addParts;
+	}
+
+	public void SetCallback(ColorArrowPosCallback callback)
+	{
+		this.collorArrowPosCallback = callback;
 	}
 
 	virtual protected void Start ()
@@ -45,7 +53,7 @@ public class EditorTargetControllBase : MonoBehaviour {
 			//type = GetComponent<ButtonTranspoter> ().type;
 		}
 
-		curEditData.editType = EditType.None;
+		curEditData.editType = EditType.Text;
 		curEditData.id = 0;
 		type = baseObj.type;
 	}
@@ -66,9 +74,16 @@ public class EditorTargetControllBase : MonoBehaviour {
 	{
 		curEditData.id = touchId;
 		curEditData.editType = editType;
+
+		ChangeColorAllowPos ();
 	}
 
 	virtual public void GetColorCallback(Color32[] color32)
 	{
+	}
+
+	virtual protected void  ChangeColorAllowPos()
+	{
+
 	}
 }

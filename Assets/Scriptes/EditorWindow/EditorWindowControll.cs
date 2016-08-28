@@ -21,6 +21,7 @@ public class EditorWindowControll : MonoBehaviour {
 	public ModifyLineButton[] delLineButton;
 
 	public ColorButton[] colorButton;
+	public GameObject[] colorArrowIcon;
 
 	private BaseObj originObj;
 	private EditorTargetControllBase targetObj;
@@ -43,6 +44,7 @@ public class EditorWindowControll : MonoBehaviour {
 	{
 		this.targetObj = targetObj;
 		targetObj.SetData (originObj, addParts);
+		targetObj.SetCallback (CollorArrowPointerChangePos);
 
 		foreach (var item in colorButton)
 		{
@@ -80,5 +82,12 @@ public class EditorWindowControll : MonoBehaviour {
 			DelBtnTrans(1).localPosition = new Vector2(DelBtnTrans(1).localPosition.x,
 			                                           DelBtnTrans(1).localPosition.y - (sign * oneLineDistance / 2));
 		}
+	}
+
+	private void CollorArrowPointerChangePos(Vector2 leftPos, Vector2 rightPos)
+	{
+		colorArrowIcon [0].transform.localPosition = leftPos;
+		colorArrowIcon [1].transform.localPosition = rightPos;
+
 	}
 }

@@ -2,8 +2,15 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class AnimationSupport : MonoBehaviour 
+public class AnimSupport : MonoBehaviour
 {
+	public static AnimSupport instance;
+
+	void Start()
+	{
+		instance = new AnimSupport ();
+	}
+
 	public Color GetColor(Color color, float targetColorR = -1, float targetColorG = -1, float targetColorB = -1, float targetColorA = -1)
 	{
 		if (targetColorR == -1) targetColorR = color.r;

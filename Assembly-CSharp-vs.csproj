@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{18A7B5E2-5D23-98A6-6CC0-94348C8025B4}</ProjectGuid>
+	<ProjectGuid>{17C521BF-A1F3-648B-52DD-39BA6096A947}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -46,7 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scriptes\Common\AnimationSupport.cs" />
+     <Compile Include="Assets\Scriptes\Common\AnimSupport.cs" />
      <Compile Include="Assets\Scriptes\Common\AutoAddEventTrigger.cs" />
      <Compile Include="Assets\Scriptes\EditorWindow\Button\ColorButton.cs" />
      <Compile Include="Assets\Scriptes\EditorWindow\Button\HideEditor.cs" />

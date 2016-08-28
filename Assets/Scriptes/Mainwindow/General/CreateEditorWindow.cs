@@ -63,8 +63,7 @@ public class CreateEditorWindow : MonoBehaviour
 			instanceTargetObj.AddComponent<EditorTagetControllOnFrame>();
 
 			instanceEditorWindow.GetComponent<EditorWindowControll>().SetData
-				(data,
-				 instanceTargetObj.GetComponent<EditorTagetControllOnFrame>());
+				(data, instanceTargetObj.GetComponent<EditorTagetControllOnFrame>());
 			break;
 		}
 	}
