@@ -56,8 +56,6 @@ public class ButtonSupport : AutoAddEventTrigger
 			defaultColor = button.colors;
 			newColor = defaultColor;
 			newColor.highlightedColor = this.highlightedColor;
-
-			print ("いがああ" + this.highlightedColor.a);
 		}
 	}
 

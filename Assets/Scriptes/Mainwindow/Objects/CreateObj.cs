@@ -19,9 +19,11 @@ public class CreateObj : MonoBehaviour  {
 	public GameObject[] createPartsType;
 	private GameObject[] instanceCreateObjects;
 	
-	public GameObject targetObjType;
+	public GameObject targetObjOriginal;
 	private GameObject createArea;
 	private GameObject instanceTargetObj;
+
+	private ObjType targetObjType;
 
 
 	protected long GetCurId { get { return GeneralController.GetCurId; } }
@@ -57,17 +59,17 @@ public class CreateObj : MonoBehaviour  {
 	{
 		foreach (var item in GeneralController.instance.GetComponent<CreateObj>().instanceCreateObjects)
 		{
-			ObjType tmpType =  item.GetComponent<ButtonTranspoter>().type;
-			Debug.Log ("searching object type == " + tmpType);
-			if(tmpType == (ObjType)data.type)
+			targetObjType =  item.GetComponent<ButtonTranspoter>().type;
+			Debug.Log ("searching object type == " + targetObjType);
+			if(targetObjType == (ObjType)data.type)
 			{
-				Debug.Log ("hit object type == " + tmpType);
-				targetObjType = item;
+				Debug.Log ("hit object type == " + targetObjType);
+				targetObjOriginal = item;
 				break;
 			}
 		}
 
-		if (targetObjType == null)
+		if (targetObjOriginal == null)
 		{
 			Debug.LogWarning("not found this argument type");
 			return ;
@@ -78,7 +80,7 @@ public class CreateObj : MonoBehaviour  {
 
 	public void InstantiateObj()
 	{
-		instanceTargetObj = Instantiate (targetObjType) as GameObject;
+		instanceTargetObj = Instantiate (targetObjOriginal) as GameObject;
 		instanceTargetObj.transform.parent = GameObject.Find ("/MainCanvas/CreateArea").transform;
 		instanceTargetObj.transform.localPosition = new Vector3 (0, 0, 0);
 		instanceTargetObj.transform.localScale = new Vector2 (1, 1);
@@ -87,6 +89,7 @@ public class CreateObj : MonoBehaviour  {
 	public GameObject Create(ObjectsData data)
 	{
 		_GetInstanceGameObjectFromObjectData (data);
+
 		instanceTargetObj.GetComponent<ButtonTranspoter>().LoadSaveDataTrans(data);
 
 		return instanceTargetObj;
@@ -116,8 +119,6 @@ public class CreateObj : MonoBehaviour  {
 
 		foreach (var item in GeneralController.m_savedata.m_obj)
 		{
-
-
 			createObj.Create (item);
 
 			instantiatedObj.Add(instanceTargetObj.GetComponent<ButtonTranspoter>().script);

@@ -52,7 +52,7 @@ public class EditFrameMethods : MonoBehaviour
 	{
 		GameObject newObj = Instantiate (initData) as GameObject;
 		newObj.transform.parent = parentObj.transform;
-		//SetSibling (newObj);
+
 		newObj.transform.localScale = new Vector3 (1, 1, 1);
 		
 		ObjArrayControll (ref targetObj, direction, EditorAct.Add, newObj);
@@ -175,4 +175,19 @@ public class EditFrameMethods : MonoBehaviour
 		SetSibling (targetObj);
 	}
 
+	public void _ChangeTextDetailNewObj(ref GameObject[] target, EditType editType, EditorDirect direction)
+	{
+		int oneStepBack = 1;
+		int samplingNum = (direction == EditorDirect.Up) ? 0 + oneStepBack  : target.Length - 1 - oneStepBack;
+		int targetNum = (direction == EditorDirect.Up) ? 0 : target.Length - 1;
+		
+		switch (editType)
+		{
+		case EditType.Text:
+			string str = target[samplingNum].GetComponent<Text>().text;
+			
+			target[targetNum].GetComponent<Text>().text = str;// + "_Add";
+			break;
+		}
+	}
 }
