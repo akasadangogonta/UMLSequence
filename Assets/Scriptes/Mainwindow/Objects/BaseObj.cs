@@ -25,6 +25,9 @@ public class ObjectsData
 
 	public long id;
 	public int type;
+	public int lineNum;
+	public float angle;
+	public float scaling;
 	public float posX;
 	public float posY;
 	public string[] text;
@@ -36,6 +39,9 @@ public class BaseObj : AutoAddEventTrigger
 	protected long id;
 	public long ID { get { return id; } set { id = value; } }
 	public ObjType type { get; protected set; }
+
+	[System.NonSerialized]
+	public int lineNum;
 
 	//private Vector3 beforePos;
 	//private Vector3 afterPos;
@@ -78,11 +84,14 @@ public class BaseObj : AutoAddEventTrigger
 		InitializeSetParam ();
 
 		this.id = data.id;
+		this.lineNum = data.lineNum;
 		Vector3 position = new Vector3 (data.posX, data.posY, 1);
 		this.gameObject.transform.localPosition = position;
+
+		//UpdateObj ();
 	}
 
-	virtual protected void AddObj(ObjectsData data = null)
+	virtual protected void AddNewObj(ObjectsData data = null)
 	{
 		if (data == null)
 		{
@@ -92,6 +101,7 @@ public class BaseObj : AutoAddEventTrigger
 		InitializeSetParam ();
 		
 		data.id = GetCurId;
+		data.lineNum = 0;
 		data.posX= this.transform.localPosition.x;
 		data.posY= this.transform.localPosition.y;
 		
@@ -116,7 +126,7 @@ public class BaseObj : AutoAddEventTrigger
 	public void SetData()
 	{
 		this.id = GetCurId;
-		AddObj ();
+		AddNewObj ();
 	}
 		
 	void Update () 

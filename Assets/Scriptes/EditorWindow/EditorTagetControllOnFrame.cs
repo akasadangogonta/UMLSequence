@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Collections;
@@ -10,33 +10,36 @@ public class EditorTagetControllOnFrame : EditorTargetControllBase
 	public RectTransform editFrameTransform;
 	public RectTransform baseFrameTransform;
 
+	FrameObj baseFrameObj;
+
 	public GameObject[] editText;
 	public GameObject[] editButton;
-	//public GameObject[] editImage;
 	
 	public GameObject[] baseText;
 	public GameObject[] baseButton;
-	//public GameObject[] baseImage;
 
 	public GameObject[] baseInputField;
 
+	EditFrameMethods editMethods = new EditFrameMethods ();
 
-	private readonly float oneLineDistance = 33.0F;
+	private readonly float oneLineDistance = GlobalConfig.oneLineDistanceOfFrame;
 
 	override protected void Start () 
 	{
 		base.Start ();
+
+		baseFrameObj = (FrameObj)baseObj;
 		
 		editFrameTransform = this.gameObject.GetComponent<RectTransform> ();
 		baseFrameTransform = baseObj.gameObject.GetComponent<RectTransform> ();
 		
-		editButton = GetButtonObj (this.gameObject);
-		baseButton = GetButtonObj (baseObj.gameObject);
+		editButton = editMethods.GetButtonObj (this.gameObject);
+		baseButton = editMethods.GetButtonObj (baseObj.gameObject);
 		
-		editText = GetTextObj (this.gameObject);
-		baseText = GetTextObj (baseObj.gameObject);
+		editText = editMethods.GetTextObj (this.gameObject);
+		baseText = editMethods.GetTextObj (baseObj.gameObject);
 
-		baseInputField = GetInputObj (baseObj.gameObject);
+		baseInputField = editMethods.GetInputObj (baseObj.gameObject);
 		
 		SetAddListener ();
 
@@ -51,47 +54,6 @@ public class EditorTagetControllOnFrame : EditorTargetControllBase
 		base.SetAddListener (editText, EditType.Text);
 	}
 
-	private GameObject[] GetTextObj(GameObject target)
-	{
-		Text[] tmpText = target.GetComponentsInChildren<Text>();
-		var tmpTextList = new List<GameObject>();
-		foreach (var item in tmpText)
-		{
-			if (item.gameObject.name.Contains("NameLine"))
-			{
-				tmpTextList.Add (item.gameObject);
-			}
-		}
-		return tmpTextList.ToArray();
-	}
-	private GameObject[] GetButtonObj(GameObject target)
-	{
-		Button[] tmpButton = target.GetComponentsInChildren<Button>();
-		var tmpButtonList = new List<GameObject>();
-		foreach (var item in tmpButton)
-		{
-			if (item.gameObject.name.Contains("Button"))
-			{
-				tmpButtonList.Add (item.gameObject);
-			}
-		}
-		return tmpButtonList.ToArray();
-	}
-	private GameObject[] GetInputObj(GameObject target)
-	{
-		InputField[] tmpInput = target.GetComponentsInChildren<InputField>();
-		var tmpInputList = new List<GameObject>();
-		foreach (var item in tmpInput)
-		{
-			if (item.gameObject.name.Contains("InputField"))
-			{
-				tmpInputList.Add (item.gameObject);
-			}
-		}
-		return tmpInputList.ToArray();
-	}
-
-	
 	override public void GetColorCallback(Color32[] color32)
 	{
 		switch (curEditData.editType) {
@@ -106,14 +68,14 @@ public class EditorTagetControllOnFrame : EditorTargetControllBase
 	{
 		if (action == EditorAct.Add) 
 		{
-			CreateLineObj (ref editButton, ref baseButton, direction, addParts.parts [(int)PartsIndex.button]);
+			CreateLineObj (ref editButton, ref baseButton, direction, addPartsOfFrameObj[(int)PartsOfFrame.Button]);
 			ChangeColorNewObj (ref editButton, ref baseButton, EditType.Button, direction);
 
-			CreateLineObj (ref editText, ref baseText, direction, addParts.parts [(int)PartsIndex.line]);
+			CreateLineObj (ref editText, ref baseText, direction, addPartsOfFrameObj[(int)PartsOfFrame.LineText]);
 			ChangeColorNewObj (ref editText, ref baseText, EditType.Text, direction);
 			ChangeTextDetailNewObj (ref editText, ref baseText, EditType.Text, direction);
 
-			CreateLineObj (ref baseInputField, direction, baseObj.gameObject, addParts.parts [(int)PartsIndex.input]);
+			editMethods.CreateLineObj (ref baseInputField, direction, baseObj.gameObject, addPartsOfFrameObj[(int)PartsOfFrame.InputField]);
 
 			ModifyFrame (true);
 
@@ -123,7 +85,7 @@ public class EditorTagetControllOnFrame : EditorTargetControllBase
 			SetBaseRenameButton ();
 			SetSiblingBaseObj ();
 
-			lineNum++;
+			ModifyLineNum(true);
 			ChangeColorAllowPos ();
 		} 
 		else if (action == EditorAct.Remove)
@@ -132,7 +94,7 @@ public class EditorTagetControllOnFrame : EditorTargetControllBase
 			
 			DeleteLineObj (ref editText, ref baseText, direction);
 
-			DeleteLineObj (ref baseInputField, direction, baseObj.gameObject);
+			editMethods.DeleteLineObj (ref baseInputField, direction, baseObj.gameObject);
 			
 			ModifyFrame (false);
 
@@ -140,7 +102,7 @@ public class EditorTagetControllOnFrame : EditorTargetControllBase
 
 			SetSiblingBaseObj ();
 
-			lineNum--;
+			ModifyLineNum(false);
 			ChangeColorAllowPos ();
 		}
 	}
@@ -148,91 +110,17 @@ public class EditorTagetControllOnFrame : EditorTargetControllBase
 	private void CreateLineObj(ref GameObject[] editTargetArray, ref GameObject[] baseTargetArray,
 	                           EditorDirect direction, GameObject initData)
 	{
-		CreateLineObj (ref editTargetArray, direction, this.gameObject, initData);
-		CreateLineObj (ref baseTargetArray, direction, baseObj.gameObject, initData);
-	}
-	private void CreateLineObj(ref GameObject[] targetObj, EditorDirect direction, GameObject parentObj,
-	                           GameObject initData)
-	{
-		GameObject newObj = Instantiate (initData) as GameObject;
-		newObj.transform.parent = parentObj.transform;
-		//SetSibling (newObj);
-		newObj.transform.localScale = new Vector3 (1, 1, 1);
-
-		ObjArrayControll (ref targetObj, direction, EditorAct.Add, newObj);
-
-		AdjustPositionObj(ref targetObj, direction, EditorAct.Add, newObj);	
-		
-		RenameGameobjectName (ref targetObj, direction);
+		editMethods.CreateLineObj (ref editTargetArray, direction, this.gameObject, initData);
+		editMethods.CreateLineObj (ref baseTargetArray, direction, baseObj.gameObject, initData);
 	}
 
 	private void DeleteLineObj(ref GameObject[] editTargetArray, ref GameObject[] baseTargetArray,
 	                           EditorDirect direction)
 	{
-		DeleteLineObj (ref editTargetArray, direction, this.gameObject);
-		DeleteLineObj (ref baseTargetArray, direction, baseObj.gameObject);
-	}
-	private void DeleteLineObj(ref GameObject[] targetObj, EditorDirect direction, GameObject parentObj)
-	{
-		int index = (direction == EditorDirect.Up) ? 0 : targetObj.Length - 1;
-
-		Destroy (targetObj [index]);
-		
-		ObjArrayControll (ref targetObj, direction, EditorAct.Remove);
-		
-		AdjustPositionObj(ref targetObj, direction, EditorAct.Remove);
-
-		RenameGameobjectName (ref targetObj, direction);
+		editMethods.DeleteLineObj (ref editTargetArray, direction, this.gameObject);
+		editMethods.DeleteLineObj (ref baseTargetArray, direction, baseObj.gameObject);
 	}
 
-	private void AdjustPositionObj(ref GameObject[] editTarget, EditorDirect direction, EditorAct editorAct,
-	                               GameObject newObj = null)
-	{
-		if (editorAct == EditorAct.Add)
-		{
-			int oneStepBack = 1;
-			int samplingNum = (direction == EditorDirect.Up) ? 0 + oneStepBack : editTarget.Length - 1 - oneStepBack;
-
-			Vector2 vec = editTarget [samplingNum].transform.localPosition;
-			vec = new Vector2 (vec.x, vec.y + (oneLineDistance * (int)direction));
-			newObj.transform.localPosition = vec;
-
-			float adjust = (direction == EditorDirect.Up) ? -1 * (oneLineDistance / 2) : 1 * oneLineDistance / 2;
-			foreach (var item in editTarget)
-			{
-				item.transform.localPosition = new Vector3 (item.transform.localPosition.x,
-				                                            item.transform.localPosition.y + adjust,
-				                                            item.transform.localPosition.z);
-			}
-		} 
-		else if (editorAct == EditorAct.Remove)
-		{
-			float adjust = (direction == EditorDirect.Up) ? 1 * (oneLineDistance / 2) : -1 * oneLineDistance / 2;
-			foreach (var item in editTarget) 
-			{
-				item.transform.localPosition = new Vector3 (item.transform.localPosition.x,
-				                                            item.transform.localPosition.y + adjust,
-				                                            item.transform.localPosition.z);
-			}
-		}
-	}
-	private void RenameGameobjectName(ref GameObject[] editTarget, EditorDirect direction)
-	{
-		string[] objName = editTarget [0].name.Split('_');
-		if (objName [0].Contains ("(Clone)") == true) 
-		{
-			objName[0] = objName[0].Replace ("(Clone)", "");
-		}
-
-		int num = 1;
-		foreach (var item in editTarget)
-		{
-			item.name = objName[0] + "_" + num;
-			num++;
-		}
-	}
-
-	
 	private void ChangeColor(Color32[] color32)
 	{
 		int thin = 0;
@@ -255,7 +143,7 @@ public class EditorTagetControllOnFrame : EditorTargetControllBase
 		GetButton(baseButton).colors = colorBlock;
 		GetText(baseText).color = color32[middle];
 		
-		baseObj.UpdateObjectsDataToSaveData ();
+		//baseObj.UpdateObjectsDataToSaveData ();
 	}
 	
 	private void ChangeColorNewObj(ref GameObject[] editTarget, ref GameObject[] baseTarget, 
@@ -337,15 +225,9 @@ public class EditorTagetControllOnFrame : EditorTargetControllBase
 
 	private void ModifyFrame(bool isPlus)
 	{
-		_ModifyFrame(editFrameTransform, isPlus);
-		_ModifyFrame(baseFrameTransform, isPlus);
+		editMethods.ModifyFrame(editFrameTransform, isPlus);
+		editMethods.ModifyFrame(baseFrameTransform, isPlus);
 	}
-	private void _ModifyFrame(RectTransform target, bool isPlus)
-	{
-		int sign = (isPlus == true) ? 1 : -1;
-		target.sizeDelta = new Vector2 (target.sizeDelta.x, target.sizeDelta.y + (oneLineDistance * sign));
-	}
-
 
 	private void ObjArrayControll(ref GameObject[] targetArray,  EditorDirect direction, EditorAct action, 
 	                               GameObject newObj = null)
@@ -380,20 +262,10 @@ public class EditorTagetControllOnFrame : EditorTargetControllBase
 
 	private void SetSiblingBaseObj()
 	{
-		int siblingCount = 0;
-
-		System.Action<GameObject[]> SetSibling = (target) =>
-		{
-			foreach (var item in target) 
-			{
-				item.transform.SetSiblingIndex(siblingCount);
-				siblingCount++;
-			}
-		};
-
-		SetSibling (baseInputField);
-		SetSibling (baseButton);
-		SetSibling (baseText);
+		//baseInputFieldを一番上に配置する必要がある
+		editMethods.SetSibling (baseText);
+		editMethods.SetSibling (baseButton);
+		editMethods.SetSibling (baseInputField);
 	}
 
 	override protected void  ChangeColorAllowPos()
@@ -437,5 +309,12 @@ public class EditorTagetControllOnFrame : EditorTargetControllBase
 		}
 
 		return returnVector;
+	}
+
+	private void ModifyLineNum(bool isPlus)
+	{
+		int value = (isPlus)? 1: -1;
+		lineNum += value;
+		baseObj.lineNum +=  value;
 	}
 }

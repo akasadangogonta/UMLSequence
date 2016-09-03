@@ -16,6 +16,7 @@ public enum ObjType
 
 public class CreateObj : MonoBehaviour  {
 	public GameObject[] createObjectsType;
+	public GameObject[] createPartsType;
 	private GameObject[] instanceCreateObjects;
 	
 	public GameObject targetObjType;

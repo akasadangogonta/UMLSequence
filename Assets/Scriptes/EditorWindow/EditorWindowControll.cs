@@ -2,13 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public enum PartsIndex
-{
-	button = 0,
-	line = 1,
-	input = 2,
-}
-
 public class AddParts
 {
 	public List<GameObject> parts = new List<GameObject> ();
@@ -27,23 +20,18 @@ public class EditorWindowControll : MonoBehaviour {
 	private EditorTargetControllBase targetObj;
 
 	//instantiateParts
-	public GameObject partsButton;//0
-	public GameObject partsNewLine;//1
-	public GameObject partsInputField;//2
-	private AddParts addParts;
+	public GameObject[] PartsOfFrameObj;
+
 
 	void Start()
 	{
-		addParts = new AddParts ();
-		addParts.parts.Add (partsButton); //0
-		addParts.parts.Add (partsNewLine); //1
-		addParts.parts.Add (partsInputField); //2
+
 	}
 
 	public void SetData(BaseObj originObj, EditorTargetControllBase targetObj)
 	{
 		this.targetObj = targetObj;
-		targetObj.SetData (originObj, addParts);
+		targetObj.SetData (originObj, PartsOfFrameObj);
 		targetObj.SetCallback (CollorArrowPointerChangePos);
 
 		foreach (var item in colorButton)

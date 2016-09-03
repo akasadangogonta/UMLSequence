@@ -22,15 +22,15 @@ public class EditorTargetControllBase : MonoBehaviour {
 	protected GameObject partsButton;
 	protected GameObject partsNewLine;
 
-	protected AddParts addParts;
+	protected GameObject[] addPartsOfFrameObj;
 
 	public delegate void ColorArrowPosCallback(Vector2 leftPos, Vector2 rightPos);
 	protected ColorArrowPosCallback collorArrowPosCallback;
 	
-	public void SetData(BaseObj obj, AddParts addParts)
+	public void SetData(BaseObj obj, GameObject[] addPartsOfFrameObj)
 	{
 		this.baseObj = obj;
-		this.addParts = addParts;
+		this.addPartsOfFrameObj = addPartsOfFrameObj;
 	}
 
 	public void SetCallback(ColorArrowPosCallback callback)

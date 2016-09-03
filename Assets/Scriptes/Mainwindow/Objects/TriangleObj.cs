@@ -25,7 +25,7 @@ public class TriangleObj : BaseObj
 		base.LoadSaveData (data);
 	}
 	
-	override protected void AddObj (ObjectsData data = null)
+	override protected void AddNewObj (ObjectsData data = null)
 	{
 		if (data != null)
 		{
@@ -36,7 +36,7 @@ public class TriangleObj : BaseObj
 		data = new ObjectsData ();
 		data.type = (int)thisObjType;
 		
-		base.AddObj(data);
+		base.AddNewObj(data);
 	}
 	
 	override protected void UpdateObj (ObjectsData data = null)

@@ -29,7 +29,7 @@ public class TextObj : BaseObj
 		base.LoadSaveData (data);
 	}
 	
-	override protected void AddObj (ObjectsData data = null)
+	override protected void AddNewObj (ObjectsData data = null)
 	{
 		if (data != null)
 		{
@@ -43,7 +43,7 @@ public class TextObj : BaseObj
 		data.text = new string[1];
 		data.text[0] = line.text;
 		
-		base.AddObj(data);
+		base.AddNewObj(data);
 	}
 	
 	override protected void UpdateObj (ObjectsData data = null)

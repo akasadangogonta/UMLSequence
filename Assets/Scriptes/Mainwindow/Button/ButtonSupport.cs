@@ -4,12 +4,37 @@ using System.Collections;
 
 public class ButtonSupport : AutoAddEventTrigger
 {
+	public byte alphaPointColor32 = 255;
+
 	Button button;
 	ColorBlock defaultColor;
 	ColorBlock newColor;
 	bool switchOK = true;
 
-	Color highlightedColor = new Color32(255, 253, 253, 255);
+	//Color highlightedColor;
+	Color highlightedColor;
+	//Color highlightedColor = new Color32(220, 255, 255, 255);
+	//Color highlightedColor = new Color32(255, 255, 235, 255);
+
+	override protected void Awake()
+	{
+		base.Awake ();
+		
+		button = GetComponent<Button> ();
+
+
+		if (alphaPointColor32 > 255)
+		{
+			alphaPointColor32 = 255;
+		}
+		if (alphaPointColor32 < 0)
+		{
+			alphaPointColor32 = 0;
+		}
+		highlightedColor = new Color32(255, 255, 250, alphaPointColor32);
+
+		SetColor ();
+	}
 
 	protected float GetScale { get { return GeneralController.GetScale; } }
 
@@ -31,17 +56,11 @@ public class ButtonSupport : AutoAddEventTrigger
 			defaultColor = button.colors;
 			newColor = defaultColor;
 			newColor.highlightedColor = this.highlightedColor;
+
+			print ("いがああ" + this.highlightedColor.a);
 		}
 	}
 
-	override protected void Awake()
-	{
-		base.Awake ();
-
-		button = GetComponent<Button> ();
-		SetColor ();
-	}
-	
 
 	override public void OnMouseDown()
 	{
