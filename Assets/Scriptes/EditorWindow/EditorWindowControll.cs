@@ -11,7 +11,9 @@ public class EditorWindowControll : MonoBehaviour {
 	private readonly float oneLineDistance = 33.0F;
 
 	public ModifyLineButton[] newLineButton;
+	private Vector2[] defaultNewLineButtonPos;
 	public ModifyLineButton[] delLineButton;
+	private Vector2[] defaultDelLineButtonPos;
 
 	public ColorButton[] colorButton;
 	public GameObject[] colorArrowIcon;
@@ -22,10 +24,16 @@ public class EditorWindowControll : MonoBehaviour {
 	//instantiateParts
 	public GameObject[] PartsOfFrameObj;
 
-
+	private int defaultLineNum = GlobalConfig.defaultFrameLineNum;
+	
 	void Start()
 	{
-
+		defaultNewLineButtonPos = new Vector2[2];
+		defaultNewLineButtonPos [0] = newLineButton [0].transform.localPosition;
+		defaultNewLineButtonPos [1] = newLineButton [1].transform.localPosition;
+		defaultDelLineButtonPos = new Vector2[2];
+		defaultDelLineButtonPos [0] = delLineButton [0].transform.localPosition;
+		defaultDelLineButtonPos [1] = delLineButton [1].transform.localPosition;
 	}
 
 	public void SetData(BaseObj originObj, EditorTargetControllBase targetObj)
@@ -47,6 +55,42 @@ public class EditorWindowControll : MonoBehaviour {
 		{
 			item.SetData(targetObj, LineEditButtonChangePos);
 		}
+
+		ReseLineEditButtonPos ();
+
+		print ("いがああああ linNum = " + originObj.lineNum);
+
+		if (originObj.type == ObjType.Frame && originObj.lineNum != defaultLineNum)
+		{
+			int difference = originObj.lineNum - defaultLineNum;
+
+			if (difference > 0)
+			{
+				for(int count = 0; count < difference; count++)
+				{
+					LineEditButtonChangePos(true);
+				}
+			}
+			else if (difference < 0)
+			{
+				difference = Mathf.FloorToInt( Mathf.Abs((float)difference) );
+				for(int count = 0; count < difference; count++)
+				{
+					LineEditButtonChangePos(false);
+				}
+			}
+		}
+	}
+
+	private void ReseLineEditButtonPos()
+	{
+		System.Func<int, Transform> NewBtnTrans = (index) => { return newLineButton [index].transform; };
+		System.Func<int, Transform> DelBtnTrans = (index) => { return delLineButton [index].transform; };
+
+		NewBtnTrans (0).localPosition = defaultNewLineButtonPos [0];
+		NewBtnTrans (1).localPosition = defaultNewLineButtonPos [1];
+		DelBtnTrans (0).localPosition = defaultDelLineButtonPos [0];
+		DelBtnTrans (1).localPosition = defaultDelLineButtonPos [1];
 	}
 
 	private void LineEditButtonChangePos(bool isLineIncreace)
@@ -76,6 +120,5 @@ public class EditorWindowControll : MonoBehaviour {
 	{
 		colorArrowIcon [0].transform.localPosition = leftPos;
 		colorArrowIcon [1].transform.localPosition = rightPos;
-
 	}
 }

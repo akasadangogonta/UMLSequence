@@ -18,7 +18,7 @@ public class FrameObj : BaseObj
 	
 	private EditFrameMethods editMethods = new EditFrameMethods ();
 
-	private int defaultFrameLineNum = 2;
+	private int defaultLineNum = GlobalConfig.defaultFrameLineNum;
 
 	[System.NonSerialized]
 	public ObjType thisObjType = ObjType.Frame;
@@ -48,18 +48,29 @@ public class FrameObj : BaseObj
 
 		type = thisObjType;
 
-		lineNum = defaultFrameLineNum;
+		//lineNum = defaultLineNum;
 	}
 
 	override public void LoadSaveData(ObjectsData data)
 	{
 		base.LoadSaveData (data);
 
-		int difference = data.lineNum - defaultFrameLineNum;
+		int difference = data.lineNum - defaultLineNum;
 
-		for (int count = 0; count < difference; count++)
+		if (difference > 0)
 		{
-			LineEdit(EditorDirect.Up, EditorAct.Add);
+			for (int count = 0; count < difference; count++) 
+			{
+				LineEdit (EditorDirect.Up, EditorAct.Add);
+			}
+		} 
+		else if (difference < 0)
+		{
+			difference = Mathf.FloorToInt( Mathf.Abs((float)difference) );
+			for (int count = 0; count < difference; count++) 
+			{
+				LineEdit (EditorDirect.Down, EditorAct.Remove);
+			}
 		}
 
 		for (int count = 0; count < data.lineNum; count++)
@@ -80,25 +91,24 @@ public class FrameObj : BaseObj
 	{
 		if (action == EditorAct.Add) 
 		{
-			/*
-			CreateLineObj (ref editButton, ref baseFrameObj.button, direction, addPartsOfFrameObj[(int)PartsOfFrame.Button]);
-			ChangeColorNewObj (ref editButton, ref baseFrameObj.button, EditType.Button, direction);
-			
-			CreateLineObj (ref editText, ref baseFrameObj.text, direction, addPartsOfFrameObj[(int)PartsOfFrame.LineText]);
-			ChangeColorNewObj (ref editText, ref baseFrameObj.text, EditType.Text, direction);
-			ChangeTextDetailNewObj (ref editText, ref baseFrameObj.text, EditType.Text, direction);
-*/
 			editMethods.CreateLineObj(ref button, direction, this.gameObject, PartsOfFrameObj[(int)PartsOfFrame.Button]);
 			editMethods.CreateLineObj(ref text, direction, this.gameObject, PartsOfFrameObj[(int)PartsOfFrame.LineText]);
 			editMethods.CreateLineObj (ref inputField, direction,this.gameObject, PartsOfFrameObj[(int)PartsOfFrame.InputField]);
 			
-			editMethods.ModifyFrame (this.gameObject.GetComponent<RectTransform> (), true);
+			editMethods.ModifyFrame (this.gameObject.GetComponent<RectTransform> (), isPlus:true);
 			
 			SetBaseRenameButton ();
 			SetSiblingBaseObj ();
 		} 
 		else if (action == EditorAct.Remove)
 		{
+			editMethods.DeleteLineObj(ref button, direction, this.gameObject);
+			editMethods.DeleteLineObj(ref text, direction, this.gameObject);
+			editMethods.DeleteLineObj (ref inputField, direction,this.gameObject);
+			
+			editMethods.ModifyFrame (this.gameObject.GetComponent<RectTransform> (), isPlus:false);
+
+			SetSiblingBaseObj ();
 			/*
 			DeleteLineObj (ref editButton, ref baseFrameObj.button, direction);
 			

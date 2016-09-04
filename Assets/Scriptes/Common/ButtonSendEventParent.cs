@@ -8,6 +8,7 @@ public class ButtonSendEventParent : AutoAddEventTrigger
 	{
 		OnMouseDown,
 		OnMouseUp,
+		OnEnter,
 	}
 
 	public ButtonEvent[] buttonEvent;
@@ -19,6 +20,18 @@ public class ButtonSendEventParent : AutoAddEventTrigger
 			if(item == ButtonEvent.OnMouseDown)
 			{
 				this.transform.parent.SendMessage("OnMouseDown");
+				return;
+			}
+		}
+	}
+
+	override public void OnEnter()
+	{
+		foreach (var item in buttonEvent)
+		{
+			if(item == ButtonEvent.OnEnter)
+			{
+				this.transform.parent.SendMessage("OnEnter");
 				return;
 			}
 		}

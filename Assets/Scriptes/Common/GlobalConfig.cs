@@ -12,4 +12,6 @@ public class GlobalConfig : MonoBehaviour
 {
 	public static readonly float oneLineDistanceOfFrame = 33.0F;
 
+	public static readonly int defaultFrameLineNum = 2;
+
 }

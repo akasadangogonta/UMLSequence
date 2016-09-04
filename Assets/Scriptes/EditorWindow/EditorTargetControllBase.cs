@@ -27,7 +27,7 @@ public class EditorTargetControllBase : MonoBehaviour {
 	public delegate void ColorArrowPosCallback(Vector2 leftPos, Vector2 rightPos);
 	protected ColorArrowPosCallback collorArrowPosCallback;
 	
-	public void SetData(BaseObj obj, GameObject[] addPartsOfFrameObj)
+	public void SetData(BaseObj obj, GameObject[] addPartsOfFrameObj = null)
 	{
 		this.baseObj = obj;
 		this.addPartsOfFrameObj = addPartsOfFrameObj;
