@@ -8,7 +8,7 @@ public class AnimSupport : MonoBehaviour
 
 	void Start()
 	{
-		instance = new AnimSupport ();
+		instance = this;
 	}
 
 	public Color GetColor(Color color, float targetColorR = -1, float targetColorG = -1, float targetColorB = -1, float targetColorA = -1)

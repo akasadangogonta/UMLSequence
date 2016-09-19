@@ -22,7 +22,7 @@ public class ModifyLineButton : AutoAddEventTrigger
 
 	public Text nomoreText;
 	private Color defaultColor;
-	public AnimSupport animSupport;
+	//public AnimSupport animSupport;
 	private IEnumerator runingCoroutine;
 
 	private LineEditButtonModify ChangePos;
@@ -93,7 +93,7 @@ public class ModifyLineButton : AutoAddEventTrigger
 			StopCoroutine (runingCoroutine);
 		}
 		StopCoroutine ("NomoreAnimation");
-		animSupport.SetColor (nomoreText, defaultColor);
+		AnimSupport.instance.SetColor (nomoreText, defaultColor);
 	}
 
 	private IEnumerator NomoreAnimation()
@@ -101,7 +101,7 @@ public class ModifyLineButton : AutoAddEventTrigger
 		System.Func<Color> nomoreColor = () => { return nomoreText.color; };
 		Color defaultColor = nomoreColor ();
 
-		animSupport.SetColor (nomoreText, 0.9F, 0.15F, 0.15F, 1);
+		AnimSupport.instance.SetColor (nomoreText, 0.9F, 0.15F, 0.15F, 1);
 
 		yield return new WaitForSeconds(0.3F);
 
@@ -111,10 +111,10 @@ public class ModifyLineButton : AutoAddEventTrigger
 
 		loopCount = 3;
 		waitSeconds = 0.05F;
-		newColor =  animSupport.GetColor (defaultColor, targetColorA: 0);
-		runingCoroutine = animSupport.SetColorAnim (nomoreText, loopCount, waitSeconds, newColor);
+		newColor =  AnimSupport.instance.GetColor (defaultColor, targetColorA: 0);
+		runingCoroutine = AnimSupport.instance.SetColorAnim (nomoreText, loopCount, waitSeconds, newColor);
 		yield return StartCoroutine(runingCoroutine);
 
-		animSupport.SetColor (nomoreText, defaultColor);
+		AnimSupport.instance.SetColor (nomoreText, defaultColor);
 	}
 }
