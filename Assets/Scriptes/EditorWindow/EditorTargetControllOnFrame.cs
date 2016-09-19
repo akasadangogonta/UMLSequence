@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class EditorTagetControllOnFrame : EditorTargetControllBase
+public class EditorTargetControllOnFrame : EditorTargetControllBase
 {
 	//[System.NonSerialized]
 	public RectTransform editFrameTransform;
@@ -241,15 +241,15 @@ public class EditorTagetControllOnFrame : EditorTargetControllBase
 		case EditType.Button:
 		case EditType.Text:
 			//ColorArrowは90°傾ています。ｘとｙが逆に見える。
-			float baseX = 0;
+			float baseY = 0;
 			float oneLineDistance = 31;
-			float lineNumAdjust = -1 * ((lineNum - 1) * (oneLineDistance / 2));
-			float curSelectPosAdjust = (oneLineDistance * editData.id);
+			float lineNumAdjust = 1 * ((lineNum - 1) * (oneLineDistance / 2));
+			float curSelectPosAdjust = -1 * (oneLineDistance * editData.id);
 
-			float resultX = baseX + lineNumAdjust + curSelectPosAdjust;
+			float resultY = baseY + lineNumAdjust + curSelectPosAdjust;
 
-			Vector2 leftPos = new Vector2(resultX, -247);
-			Vector2 rightPos = new Vector2(resultX, 247);
+			Vector2 leftPos = new Vector2(-247, resultY);
+			Vector2 rightPos = new Vector2(247, resultY);
 
 			returnVector = (isLeft == true)? leftPos : rightPos;
 			break;

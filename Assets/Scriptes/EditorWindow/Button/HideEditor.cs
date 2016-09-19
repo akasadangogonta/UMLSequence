@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class HideEditor : MonoBehaviour {
 	public void OnClick()
 	{
-		GeneralController.instance.GetComponent<CreateEditorWindow> ().HideEditorWindow ();
-		GeneralController.instance.GetComponent<CreateEditorWindow> ().linkBaseObj.UpdateObjectsDataToSaveData ();
+		GeneralController.instanceThisGameObject.GetComponent<CreateEditorWindow> ().HideEditorWindow ();
+		GeneralController.instanceThisGameObject.GetComponent<CreateEditorWindow> ().linkBaseObj.UpdateObjectsDataToSaveData ();
 	}
 }

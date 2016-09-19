@@ -266,7 +266,7 @@ public class BaseObj : AutoAddEventTrigger
 	{
 		print ("DoubleClickLeft");
 		
-		GeneralController.instance.GetComponent<CreateEditorWindow> ().ShowEditorWindow (this);
+		GeneralController.instanceThisGameObject.GetComponent<CreateEditorWindow> ().ShowEditorWindow (this);
 	}
 
 	private void OnDoubleClickRight()

@@ -11,7 +11,8 @@ public class GeneralData
 }
 
 public class GeneralController : MonoBehaviour {
-	static public GameObject instance;
+	static public GeneralController instance;
+	static public GameObject instanceThisGameObject;
 
 	static public savedata m_savedata;
 	static private long curId;
@@ -20,6 +21,8 @@ public class GeneralController : MonoBehaviour {
 	private bool isChange = false;
 
 	static public List<BaseObj> instatiatedObj;
+
+	public GameObject curtain;
 
 	void Awake()
 	{
@@ -51,7 +54,8 @@ public class GeneralController : MonoBehaviour {
 			}
 		}
 
-		instance = this.gameObject;
+		instance = this;
+		instanceThisGameObject = this.gameObject;
 	}
 	
 	void Start()
@@ -77,10 +81,14 @@ public class GeneralController : MonoBehaviour {
 	{
 		if (isChange)
 		{
-
 			isChange = false;
 		}
+	}
 
+    public void SetCurtain(bool flag)
+	{
+		curtain.SetActive (flag);
+		GetComponent<MouseWheel>().enabled = !flag;
 	}
 
 	static public long GetCurId
