@@ -1,0 +1,16 @@
+[Unity] マウスホイールの回転を取得する
+マウスホイールの回転を取得したいなぁと思ったとき用にメモ。
+
+(1)Inputの要素に「Mouse ScrollWheels」があるか確認する
+・Edit > Project Settings > Input を選択。
+・「Mouse ScrollWheels」がデフォルトで入っているのを確認↓
+
+20120724input001.png
+
+(2)プログラムでマウスホイールの動きを取得
+GetAxis()を使って「Mouse ScrollWheels」からマウスホイールの動きを取得する。
+----------------------------------------------------
+var scroll : float = Input.GetAxis("Mouse ScrollWheel");
+if (scroll > 0) print("oku");
+if (scroll < 0) print("temae");
+----------------------------------------------------

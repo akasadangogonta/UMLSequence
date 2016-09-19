@@ -1,0 +1,12 @@
+scene_shop
+
+  Line385
+　ｺｲﾝやアイテム情報をセットしてからセーブしている
+　このセーブはscene_shopだけじゃなく一括でやるのかな？
+　scenemanager.writerecord().m_stockitem.setValue(stockitemid.coin,val);
+　scenemanager.writerecord().m_stockitem.addValue((stockitemid)data.item,data.num);
+　record.save( scenemanager.m_savedata );
+
+　Line436
+　ここでもセーブ
+　record.save( scenemanager.m_savedata );

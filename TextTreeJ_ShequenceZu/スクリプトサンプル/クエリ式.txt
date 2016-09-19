@@ -1,0 +1,23 @@
+		edit.GetComponent<InputField> ().onEndEdit.AddListener (delegate(string Text)
+		{
+
+			renameTarget.text = edit.GetComponent<InputField> ().text;
+			
+			if (renameTarget.text == "" || renameTarget.text == null) 
+			{
+				renameTarget.text = inputedText;
+			} 
+			else
+			{
+				inputedText = renameTarget.text;
+			}
+			edit.GetComponent<InputField> ().DeactivateInputField ();
+			isChange = true;
+			//edit.SetActive (false);
+
+		});
+
+		edit.GetComponent<InputField> ().onEndEdit.AddListener ((SetCallback) =>
+		{
+			OnEndEdit ();
+		});

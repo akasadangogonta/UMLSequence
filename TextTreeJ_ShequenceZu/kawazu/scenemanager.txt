@@ -1,0 +1,19 @@
+scenemanager
+
+  Line55
+  savedataの宣言
+　public static savedata m_savedata=null; 
+
+　Line381
+　セーブしてますな
+　record.save( m_savedata );
+
+　Line646
+　セーブの前段階処理。必ずここを通る
+　public static savedata writerecord()
+　{
+
+	_needsave=true;
+	return m_savedata;
+　}
+　例：scenemanager.writerecord().m_stockitem.setValue(stockitemid.coin,val);

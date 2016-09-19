@@ -1,0 +1,5 @@
+BaseObj
+
+  Line70
+　セーブデータから読み込んでポジションをｾｯﾄするところ
+　virtual public void LoadSaveData(ObjectsData data)

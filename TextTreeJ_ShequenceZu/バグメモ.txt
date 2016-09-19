@@ -1,0 +1,158 @@
+はああくだらない、nullの原因はプレハブをapplyしてないことだった、componentが足りなかった
+てっきり今自分が見てるオブジェクトでnullが出てると思ったけど、血がかったわ
+
+不自然に二階呼ばれてたけど、base.Start二階やってたわ。。
+不自然に二階呼ばれるときは、componentを二個装着している可能性もある
+。
+EventTrigger.Entry entry = new EventTrigger.Entry ();はイベントごとにつくらなあかんで
+
+
+-216.6664  -250 correct
+
+
+｛
+scale 11
+254.5457  -290.9091
+               -297 correcet
+｝
+理想的にはこの値を
+｛
+               -300 correcet
+｝
+にしたいよなあ
+
+
+scale12
+-250	-62.5
+	-60 correct
+
+ちょっとまず6固定に戻してみてみるか
+本体は6固定でも以上は起きないはずなんだよなあ
+んんんんｎ・・・・・
+		Vｔector3 ceilPos = new Vector3 (Mathf.Round(screenPos.x * gridSizeInner) / gridSizeInner,
+		                               Mathf.Round(screenPos.y * gridSizeInner) / gridSizeInner,
+		                               Mathf.Round(screenPos.z * gridSizeInner) / gridSizeInner);
+
+つまるところこのscereenPosXの値が変わるかｒ
+計算の座標軸もぶれるってことだよなあ
+
+
+
+	protected EventTrigger 		trigger;
+	protected EventTrigger.Entry  entry;
+
+	virtual protected void Awake()
+	{
+		this.gameObject.AddComponent<EventTrigger>();
+		trigger = GetComponent<EventTrigger> ();
+		trigger.delegates = new List<EventTrigger.Entry> ();
+	}
+	
+	
+	virtual protected void Start () 
+	{
+		entry = new EventTrigger.Entry ();
+		
+		AddListener (EventTriggerType.PointerDown, OnMouseDown);
+		AddListener (EventTriggerType.PointerUp, OnMouseUp);
+		AddListener (EventTriggerType.Drag, OnDrag);
+	}
+
+	private void AddListener(EventTriggerType type, Action action)
+	{
+		EventTrigger.Entry entry = new EventTrigger.Entry ();
+		entry.eventID = type;
+		
+		entry.callback.AddListener ((callback) =>
+	    {
+			action();
+		});
+		trigger.delegates.Add (entry);
+	}
+
+	//
+	//SetEvent
+	//
+	virtual protected void OnMouseDown()
+	{
+
+	}
+
+	virtual protected void OnMouseUp()
+	{
+
+	}
+
+	virtual protected void OnDrag()
+	{
+
+	}
+
+
+
+
+public class AutoAddEventTrigger : MonoBehaviour {
+	protected EventTrigger 		trigger;
+	protected EventTrigger.Entry  entry;
+
+	virtual protected void Awake()
+	{
+		//if (GetComponent<EventTrigger> () == null)
+		//{
+			this.gameObject.AddComponent<EventTrigger> ();
+			trigger.delegates = new List<EventTrigger.Entry> ();
+		//}
+		trigger = GetComponent<EventTrigger> ();
+	}
+	
+	
+	virtual protected void Start () 
+	{
+		entry = new EventTrigger.Entry ();
+		
+		AddListener (EventTriggerType.PointerDown, OnMouseDown);
+		AddListener (EventTriggerType.PointerUp, OnMouseUp);
+		AddListener (EventTriggerType.Drag, OnDrag);
+		//AddListener (EventTriggerType.PointerEnter, OnEnter);
+		//AddListener (EventTriggerType.PointerExit, OnExit);
+	}
+
+	private void AddListener(EventTriggerType type, Action action)
+	{
+		EventTrigger.Entry entry = new EventTrigger.Entry ();
+		entry.eventID = type;
+		
+		entry.callback.AddListener ((callback) =>
+	    {
+			action();
+		});
+		trigger.delegates.Add (entry);
+	}
+
+	//
+	//SetEvent
+	//
+	virtual protected void OnMouseDown()
+	{
+
+	}
+
+	virtual protected void OnMouseUp()
+	{
+
+	}
+
+	virtual protected void OnDrag()
+	{
+
+	}
+
+	virtual protected void OnEnter()
+	{
+		
+	}
+
+	virtual protected void OnExit()
+	{
+		
+	}

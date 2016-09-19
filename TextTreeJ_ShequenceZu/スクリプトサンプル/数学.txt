@@ -1,0 +1,43 @@
+
+覚えておくと便利なMathf関数 
+
+script-基本 
+
+
+UnityのMathf関数には、通常のMath関数以外に３Dインタラクティブ用に特化された関数がある。次は知っておくと効率化できそう。
+
+
+
+関数名（引数） 機能 
+Clamp(,min,max) 最大・最小値でカット 
+Pow(x,y) xのy乗 
+Ceil(x) 小数点切り上げ（floatのまま） 
+CeilToInt(x) 小数点切り上げ＆整数化 
+Floor(x) 小数点切捨て（floatのまま） 
+FloorToInt(x) 小数点切捨て＆整数化 
+RoundToInt(x) 小数点四捨五入＆整数化 
+Sign(x) 符号（1または-1(float)) 
+Lerp(from,to,t) 補間 
+LerpAngle(from,to,t) 角度補間（360度を考慮） 
+InverseLerp(from,to,value) Lerpの逆関数 
+MoveTowards(current,target,maxDelta) maxDeltaでターゲット値へ 
+MoveTowardsAngle(current,target,maxDelta) moveTowardsの角度版 
+Approximately(a,b) float変数が等しいか？ 
+SmoothDamp(cur,tar,vel,t,s,dt) t秒でcurからtarにスムージング 
+SmoothDampAngle(cur,tar,vel,t,s,dt) SmoothDampの角度版 
+Repeat(t,length) length周期で繰り返し 
+ClosestPowerOfTwo(x) もっとも近い２のｎ乗の数値を返す 
+DeltaAngle(a,b) a,bの差（360度を考慮) 
+PerlinNoise(a,b) ２次元Perlinノイズ 
+PingPong(float t, float length) 周期lengthで0-tの範囲内の数値を返す 
+
+※Mathfの角度はすべてRadian単位
+
+
+
+
+定数名 値 
+Deg2Rad degreeからradianへの変換乗数 
+Epsilon 浮動小数点型の最小値（大小比較で使う） 
+PI π 
+Rad2Deg radianからdegreeへの変換乗数 

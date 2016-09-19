@@ -1,0 +1,11 @@
+mouseAxis = Input.GetAxis ("Mouse ScrollWheel");
+
+Vector3 curMousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+Vector3 screenPos = Camera.main.ScreenToWorldPoint(vecMouse);
+this.transform.localPosition = movingImage.transform.localPosition;
+
+		instanceTargetObj = Instantiate (data.gameObject) as GameObject;
+		Vector3 screenPos = Camera.main.ScreenToWorldPoint(InnerCircle.transform.localPosition );
+		instanceTargetObj.transform.position = screenPos;
+		instanceTargetObj.transform.localScale = new Vector2 (1, 1);
+		instanceTargetObj.transform.parent = instanceEditorWindow.transform;

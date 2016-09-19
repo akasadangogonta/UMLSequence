@@ -1,0 +1,36 @@
+しかしねえ、ｸﾗｽごと文字列に変換してセーブしているけど、関数の情報とか果たして必要なのかねええ。。。。
+と思ったけどよく見たら、scene_shop.csの中にある、scene_shopクラスではない、別個のstockitemというクラスが宣言されていて、それを保存しているね。
+んでこれらの中には申し訳程度の関数はある。ただこれほとんどｹﾞｯﾀｰセッターだね。。。
+
+とりあえずsavedataクラスでは全部で５つのクラスがセーブ対象データとして扱われてて、それぞれ、
+letterstatus
+{
+	public const int lettermax=120;
+	public int[] status;
+}
+stockitem
+{
+	public int[] itemnun;
+}
+bookkeepingdata 
+{
+	public long[] value;
+｝
+public class gamesetting
+ {
+	public int characterid=0;
+	public float bgmvolume=1f;
+	public float sevolume=1f;
+	public long nextlogintime=0;
+	public int level=0;
+	public settingflag flag;
+	public int startinfo=0;
+	public int gameovercount=0;
+｝
+lithhographdata
+{
+	public int partsnum=0;
+	public int completenum=0;
+}
+
+という感じですな、これがセーブデータの全て

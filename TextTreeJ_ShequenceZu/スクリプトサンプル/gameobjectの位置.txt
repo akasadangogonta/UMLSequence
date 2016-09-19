@@ -1,0 +1,2 @@
+newObj.transform.SetAsFirstSibling ();
+newObj.transform.SetAsLastSibling();

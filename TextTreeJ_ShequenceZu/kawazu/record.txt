@@ -1,0 +1,13 @@
+record
+
+  Line6
+  savedataの型宣言
+　[System.Serializable]
+　　public class savedata
+　　 {
+	public letterstatus	m_letter;
+	public stockitem	m_stockitem;
+	public bookkeepingdata	m_bookkeeping;
+	public gamesetting m_gamesetting;
+	public lithhographdata m_lithograph;
+　　}

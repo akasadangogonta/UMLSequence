@@ -1,0 +1,84 @@
+	public void OnTweet() 
+2 	{ 
+3 		StartCoroutine(Share()); 
+4 	} 
+5 
+ 
+6 	IEnumerator Share() 
+7 	{ 
+8 		// スクリーンショットをとる 
+9 		Application.CaptureScreenshot("image.png"); 
+10 
+ 
+11 		// インジケーター表示 
+12 		#if UNITY_IPHONE 
+13 		Handheld.SetActivityIndicatorStyle(iOSActivityIndicatorStyle.White); 
+14 		#elif UNITY_ANDROID 
+15 		Handheld.SetActivityIndicatorStyle(AndroidActivityIndicatorStyle.Small); 
+16 		#endif 
+17 		Handheld.StartActivityIndicator(); 
+18 
+ 
+19 		// スクリーンショットが保存されるまで待機 
+20 		long filesize = 0; 
+21 		float time = 0f; 
+22 		while (filesize == 0)  
+23 		{ 
+24 			yield return null; 
+25 
+ 
+26             		//ファイルのサイズを取得 
+27 			System.IO.FileInfo fi = new System.IO.FileInfo(imagePath); 
+28 			if (fi != null) { 
+29 				filesize = fi.Length; 
+30 			} 
+31 		} 
+32 
+ 
+33 		// インジケーター非表示 
+34 		Handheld.StopActivityIndicator(); 
+35 
+ 
+36 		// shareのテキスト内容 
+37 		string tweet = "" + score + "100点を記録しました!!"; 
+38 
+ 
+39 		// 共有 
+40 		SocialConnector.Share(tweet, GameDefine.APP_UR, imagePath); 
+41 	} 
+
+
+
+
+1 // Screenshot を撮る 
+2 Application.CaptureScreenshot("screenshot.png"); 
+3 
+ 
+4 // プラットフォームごとに保存位置変わる？ 
+5 string path = ""; 
+6 switch (Application.platform) { 
+7 	case RuntimePlatform.IPhonePlayer: 
+8 		path = Application.persistentDataPath + "/screenshot.png"; 
+9 		break; 
+10 	case RuntimePlatform.Android: 
+11 		path = Application.persistentDataPath + "/screenshot.png"; 
+12 		break; 
+13 	default: 
+14 		path = "screenshot.png"; 
+15 		break; 
+16 } 
+17 Debug.Log("path:"+path); 
+18 
+ 
+19 // スクリーンショットの読み込み 
+20 byte[] image = File.ReadAllBytes(path); 
+21 
+ 
+22 // Texture2D を作成して読み込み 
+23 Texture2D tex = new Texture2D(0, 0); 
+24 tex.LoadImage(image); 
+25 
+ 
+26 // NGUI の UITexture に表示するとき 
+27 UITexture target = GameObject.Find("DebugTexture").GetComponent(); 
+28 target.mainTexture = tex; 

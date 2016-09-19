@@ -1,0 +1,2 @@
+Application.dataPath
+データパスをとってきてくれる

@@ -1,0 +1,13 @@
+https://github.com/akasadangogonta/UMLSequence.git
+
+
+[credential]
+[credential]
+	helper = !'C:\\Users\\cyclone-staff\\AppData\\Roaming\\GitCredStore\\git-credential-winstore.exe'
+
+5243826f0778da440b3a48a9367e495e115f1dd7
+
+Suneopapa7
+
+
+git-credential-winstore

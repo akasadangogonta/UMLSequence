@@ -1,0 +1,11 @@
+		EventTrigger trigger = GetComponent<EventTrigger> ();;//this.gameObject.GetComponent<EventTrigger> ();
+
+		EventTrigger.Entry entry = new EventTrigger.Entry ();
+		entry.eventID = EventTriggerType.PointerDown;
+
+
+		entry.callback.AddListener ((callback) =>
+		{
+			this.transform.parent.GetComponent<ButtonTranspoter> ().OnMouseDownTranspoter ();
+		});
+		trigger.delegates.Add (entry);

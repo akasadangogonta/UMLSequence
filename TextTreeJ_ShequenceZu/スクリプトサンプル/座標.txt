@@ -1,0 +1,109 @@
+■超便利なメソッド
+ スクリーン座標→ワールド座標へ変換してくれる便利なやつ。 Camera.main.ScreenToWorldPoint(Vector3 pos);
+
+スクリーン座標を引数に代入すれば、
+ワールド座標が返ってくる。
+
+■サンプルコード
+public class InputMouse : MonoBehaviour {
+　　//Update is called once per frame
+　　void Update ()
+　　{
+　　　　//マウスのx,y座標を取得
+ 　　　　Vector3 vecMouse = Input.mousePosition;
+　　　　//ワールド座標に変換じゃ！！
+ 　　　　Vector3 screenPos = Camera.main.ScreenToWorldPoint(vecMouse);
+　　　　//オブジェクトに代入じゃ！！
+ 　　　　transform.position = screenPos;
+　　}
+ }
+
+Unityバージョン：5.0.0f4 Personal (2015/4/23)
+
+f:id:hiyotama:20150423102016p:plain
+
+ 
+
+前回の続きを書いていきます〜
+
+今回は、プレイヤーを動かしましょう！
+
+ 
+
+【目標】プレイヤーを動かしゲームを継続させる！
+
+ 
+  
+
+  
+スポンサーリンク  
+
+
+ 
+
+f:id:hiyotama:20150423161501p:plain
+
+こいつを動かしましょ〜
+
+ 
+
+【課題１】プレイヤーを動かす
+
+プレイヤーを動かすscriptを作って、貼り付けましょう〜
+
+ 
+
+
+
+
+
+
+
+
+
+1 using UnityEngine; 
+2 using System.Collections; 
+3 
+ 
+4 public class PlayerController : MonoBehaviour { 
+5 	private Vector3 pos; 
+6 	private Vector3 WorldPointPos; 
+7 
+ 
+8 	void Update (){ 
+9 		//マウス位置座標をVector3で取得 
+10 		pos = Input.mousePosition; 
+11 		// マウス位置座標をスクリーン座標からワールド座標に変換する 
+12 		WorldPointPos = Camera.main.ScreenToWorldPoint (pos); 
+13 		 
+14 		// 壁を突き抜けないようにx軸の移動範囲を限定 
+15 		if (WorldPointPos.x <= -2.1f) { 
+16 			WorldPointPos.x = -2.1f; 
+17 		} else if (WorldPointPos.x >= 2.1f) { 
+18 			WorldPointPos.x = 2.1f; 
+19 		} 
+20 		//y軸とz軸は固定 
+21 		WorldPointPos.y = -3.0f; 
+22 		WorldPointPos.z = 0.0f; 
+23 		 
+24 		// ワールド座標をPlayer位置へ変換 
+25 		gameObject.transform.position = WorldPointPos; 
+26 	} 
+27 } 
+
+view raw PlayerController.cs hosted with ❤ by GitHub 
+
+
+ 
+
+Input.mousePositionによって、スクリーン座標（マウスが現在いる位置、スマホだったらタップした位置）を取得できます〜試しにInput.mousePositionの下の行に「Debug.Log(pos);」というコードを追加してデバッグしてみたところ、画面の左下が(x:0, y:0)で、右上が(x:最大値 y:最大値)となっているようです〜
+
+ 
+
+このスクリーン座標をワールド座標（Transform.Position等で今まで僕達が設定してきた位置情報）に変換するのが、 Camera.main.ScreenToWorldPoint()です〜
+
+かっこの中に引数としてスクリーン座標（pos）を入れることで、ワールド座標に変換してくれます〜
+
+ 
+
+変換したワールド座標を最後の行でプレーヤー位置に変換していますが、その前にx.y.zの位置を調整しています〜

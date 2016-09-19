@@ -1,0 +1,15 @@
+配列からList
+string[] stringArray = new strin[] {"test1", "test2"};
+
+List<string> stringList = new List<string> ();
+sringList.AddRange(stringArray);
+
+Listから配列
+List<string> stringList = new List<string>(){"test1", "test2"};
+
+string [] stringArray = stringList.ToArray();
+
+多次元配列の初期化
+static public int[,] Green = {{1, 1},{ 3, 1}};
+static public Color[,] Green = {{new Color(130, 208, 140)},
+			　{new Color(0, 154, 137)}};

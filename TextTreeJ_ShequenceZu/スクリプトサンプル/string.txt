@@ -1,0 +1,706 @@
+NET Framework (current version) その他のバージョン 
+ 
+テキストを一連の UTF-16 コード単位として表現します。
+この型の .NET Framework ソース コードを参照するを参照してください。、 Reference Sourceします。
+名前空間:   System
+アセンブリ:  mscorlib (mscorlib.dll 内)
+
+継承階層
+System.Object
+  System.String
+
+構文
+C#C++F#VB
+[SerializableAttribute]
+[ComVisibleAttribute(true)]
+public sealed class String : IComparable, ICloneable, IConvertible, 
+	IEnumerable, IComparable<string>, IEnumerable<char>, IEquatable<string>
+コンストラクター
+名前	説明
+System_CAPS_pubmethod	String(Char*)	
+String クラスの新しいインスタンスを初期化し、指定した Unicode 文字配列を指すポインターにより示される値に設定します。
+System_CAPS_pubmethod	String(Char*, Int32, Int32)	
+String クラスの新しいインスタンスを初期化し、Unicode 文字の配列を指す指定のポインター、配列内の開始文字位置、および長さにより示される値に設定します。
+System_CAPS_pubmethod	String(Char, Int32)	
+String クラスの新しいインスタンスを初期化し、指定した回数だけ繰り返した指定の Unicode 文字が示す値に設定します。
+System_CAPS_pubmethod	String(Char[])	
+String クラスの新しいインスタンスを初期化し、Unicode 文字の配列により示される値に設定します。
+System_CAPS_pubmethod	String(Char[], Int32, Int32)	
+String クラスの新しいインスタンスを初期化し、Unicode 文字の配列、配列内の開始文字位置、および長さにより示される値に設定します。
+System_CAPS_pubmethod	String(SByte*)	
+String クラスの新しいインスタンスを初期化し、8 ビット符号付き整数の配列を指すポインターにより示される値に設定します。
+System_CAPS_pubmethod	String(SByte*, Int32, Int32)	
+String クラスの新しいインスタンスを初期化し、8 ビット符号付き整数の配列を指す指定のポインター、配列内の開始位置、および長さにより示される値に設定します。
+System_CAPS_pubmethod	String(SByte*, Int32, Int32, Encoding)	
+String クラスの新しいインスタンスを初期化し、8 ビット符号付き整数の配列を指す指定のポインター、配列内の開始位置、長さ、および Encoding オブジェクトにより示される値に設定します。
+プロパティ
+名前	説明
+System_CAPS_pubproperty	Chars[Int32]	
+現在の String オブジェクト内の指定された位置にある Char オブジェクトを取得します。
+System_CAPS_pubproperty	Length	
+現在の String オブジェクト内の文字数を取得します。
+メソッド
+名前	説明
+System_CAPS_pubmethod	Clone()	
+この String インスタンスへの参照を返します。
+Compare(String, Int32, String, Int32, Int32)	
+指定した 2 つの String オブジェクトの部分文字列を比較し、それらの相対位置を並べ替え順序で示す整数を返します。
+
+Compare(String, Int32, String, Int32, Int32, Boolean)	
+指定した 2 つの String オブジェクトの部分文字列を比較し、並べ替え順序におけるそれらの相対位置を示す整数を返します。比較時に、大文字と小文字を区別するかどうかを設定できます。
+
+Compare(String, Int32, String, Int32, Int32, Boolean, CultureInfo)	
+指定した 2 つの String オブジェクトの部分文字列を比較し、並べ替え順序におけるそれらの相対位置を示す整数を返します。比較時に、大文字と小文字を区別するかどうかを指定し、比較に影響を及ぼすカルチャ固有の情報を使用します。
+
+Compare(String, Int32, String, Int32, Int32, CultureInfo, CompareOptions)	
+指定した 2 つの String オブジェクトの部分文字列を比較し、2 つの部分文字列の互いのリレーションシップを並べ替え順序で示す整数を返します。比較時に、指定した比較オプションと、比較に影響を及ぼすカルチャ固有の情報を使用します。
+
+Compare(String, Int32, String, Int32, Int32, StringComparison)	
+指定した規則を使用して、指定した 2 つの String オブジェクトの部分文字列を比較し、並べ替え順序におけるそれらの相対位置を示す整数を返します。
+Compare(String, String)	
+指定した 2 つの String オブジェクトを比較し、それらの相対位置を並べ替え順序で示す整数を返します。
+Compare(String, String, Boolean)	
+指定した 2 つの String オブジェクトを比較し、並べ替え順序におけるそれらの相対位置を示す整数を返します。比較時に、大文字と小文字を区別するかどうかを設定できます。
+System_CAPS_pubmethodSystem_CAPS_static	Compare(String, String, Boolean, CultureInfo)	
+指定した 2 つの String オブジェクトを比較し、並べ替え順序におけるそれらの相対位置を示す整数を返します。比較時に、大文字と小文字を区別するかどうかを指定し、比較に影響を及ぼすカルチャ固有の情報を使用します。
+System_CAPS_pubmethodSystem_CAPS_static	Compare(String, String, CultureInfo, CompareOptions)	
+指定した 2 つの String オブジェクトを比較し、2 つの文字列の互いのリレーションシップを並べ替え順序で示す整数を返します。比較時に、指定した比較オプションと、比較に影響を及ぼすカルチャ固有の情報を使用します。
+System_CAPS_pubmethodSystem_CAPS_static	Compare(String, String, StringComparison)	
+指定した規則を使用して、指定した 2 つの String オブジェクトを比較し、並べ替え順序におけるそれらの相対位置を示す整数を返します。
+System_CAPS_pubmethodSystem_CAPS_static	CompareOrdinal(String, Int32, String, Int32, Int32)	
+それぞれの部分文字列の対応する Char オブジェクトの数値を評価することにより、指定した 2 つの String オブジェクトの部分文字列を比較します。
+System_CAPS_pubmethodSystem_CAPS_static	CompareOrdinal(String, String)	
+それぞれの文字列の対応する String オブジェクトの数値を評価することで、指定した 2 つの Char を比較します。
+System_CAPS_pubmethod	CompareTo(Object)	
+このインスタンスと指定した Object とを比較し、並べ替え順序において、このインスタンスの位置が指定した Object の前、後ろ、または同じのいずれであるかを示します。
+System_CAPS_pubmethod	CompareTo(String)	
+このインスタンスと指定した String オブジェクトとを比較し、並べ替え順序において、このインスタンスの位置が指定した文字列の前、後ろ、または同じのいずれであるかを示します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Concat(IEnumerable<String>)	
+IEnumerable<T> 型の構築された String コレクションのメンバーを連結します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Concat(Object)	
+指定されたオブジェクトの文字列形式を作成します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Concat(Object, Object)	
+指定した 2 つのオブジェクトの文字列形式を連結します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Concat(Object, Object, Object)	
+指定した 3 つのオブジェクトの文字列形式を連結します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Concat(Object, Object, Object, Object)	
+4 つの指定したオブジェクトと、オプションの可変長パラメーター リストで指定した任意のオブジェクトの文字列表現を連結します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Concat(Object[])	
+指定された Object 配列の要素の文字列表記を連結します。
+System_CAPS_pubmethodSystem_CAPS_static	Concat(String, String)	
+指定した 2 つの String インスタンスを連結します。
+System_CAPS_pubmethodSystem_CAPS_static	Concat(String, String, String)	
+String の指定した 3 つのインスタンスを連結します。
+System_CAPS_pubmethodSystem_CAPS_static	Concat(String, String, String, String)	
+指定した 4 つの String インスタンスを連結します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Concat(String[])	
+指定した String 配列の要素を連結します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Concat<T>(IEnumerable<T>)	
+IEnumerable<T> 実装のメンバーを連結します。
+
+System_CAPS_pubmethod	Contains(String)	
+指定した部分文字列がこの文字列内に存在するかどうかを示す値を返します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Copy(String)	
+指定した String と同じ値を使用して、String の新しいインスタンスを作成します。
+
+CopyTo(Int32, Char[], Int32, Int32)	
+このインスタンスの指定位置から指定した数の文字を、Unicode 文字の配列内の指定位置へコピーします。
+
+EndsWith(String)	
+この文字列インスタンスの末尾が、指定した文字列と一致するかどうかを判断します。
+
+EndsWith(String, Boolean, CultureInfo)	
+指定されたカルチャを使って比較した場合に、この文字列インスタンスの末尾が、指定された文字列と一致するかどうかを判断します。
+
+EndsWith(String, StringComparison)	
+指定された比較オプションを使って比較した場合に、この文字列インスタンスの末尾が、指定された文字列と一致するかどうかを判断します。
+
+Equals(Object)	
+このインスタンスと、指定したオブジェクトの値が同一かどうかを判断します。String オブジェクトを指定する必要があります。(Object.Equals(Object) をオーバーライドする。)
+
+Equals(String)	
+このインスタンスと、指定した別の String の値が同一かどうかを判断します。
+
+Equals(String, String)	
+指定した 2 つの String オブジェクトの値が同一かどうかを判断します。
+
+Equals(String, String, StringComparison)	
+指定した 2 つの String オブジェクトの値が同一かどうかを判断します。 比較に使用するカルチャ、大文字と小文字の区別、および、並べ替え規則をパラメーターで指定します。
+
+Equals(String, StringComparison)	
+この文字列と、指定した String オブジェクトの値が同一かどうかを判断します。 比較に使用するカルチャ、大文字と小文字の区別、および、並べ替え規則をパラメーターで指定します。
+
+Format(IFormatProvider, String, Object)	
+指定した文字列の 1 つまたは複数の書式項目を、対応するオブジェクトの文字列形式に置換します。 パラメーターにより、カルチャに固有の書式情報が指定されます。
+
+Format(IFormatProvider, String, Object, Object)	
+指定した文字列の書式項目を、指定した 2 つのオブジェクトの文字列形式に置換します。 パラメーターは、カルチャ固有の書式情報を指定します。
+
+Format(IFormatProvider, String, Object, Object, Object)	
+指定した文字列の書式項目を、指定した 3 つのオブジェクトの文字列形式に置換します。 パラメーターにより、カルチャに固有の書式設定情報を指定します。
+
+Format(IFormatProvider, String, Object[])	
+指定した文字列の書式項目を、指定した配列内の対応するオブジェクトの文字列表記に置換します。 パラメーターにより、カルチャ固有の書式情報が指定されます。
+
+Format(String, Object)	
+指定された文字列の 1 つ以上の書式項目を、指定されたオブジェクトの文字列表記に置換します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Format(String, Object, Object)	
+指定した文字列の書式項目を、指定した 2 つのオブジェクトの文字列形式に置換します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Format(String, Object, Object, Object)	
+指定した文字列の書式項目を、指定した 3 つのオブジェクトの文字列形式に置換します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Format(String, Object[])	
+指定した文字列の書式項目を、指定した配列内の対応するオブジェクトの文字列形式に置換します。
+
+System_CAPS_pubmethod	GetEnumerator()	
+この文字列に含まれる個々の文字を反復処理するオブジェクトを取得します。
+
+System_CAPS_pubmethod	GetHashCode()	
+この文字列のハッシュ コードを返します。(Object.GetHashCode() をオーバーライドする。)
+
+System_CAPS_pubmethod	GetType()	
+現在のインスタンスの Type を取得します。(Object から継承されました。)
+
+System_CAPS_pubmethod	GetTypeCode()	
+TypeCode クラスには String を返します。
+
+System_CAPS_pubmethod	IndexOf(Char)	
+指定した Unicode 文字がこの文字列内で最初に見つかった位置の 0 から始まるインデックスをレポートします。
+
+System_CAPS_pubmethod	IndexOf(Char, Int32)	
+指定した Unicode 文字がこの文字列内で最初に見つかった位置の 0 から始まるインデックスをレポートします。 検索は、指定した文字位置から開始されます。
+
+System_CAPS_pubmethod	IndexOf(Char, Int32, Int32)	
+指定文字がこのインスタンス内で最初に見つかった位置の 0 から始まるインデックスをレポートします。 検索は指定した文字位置から開始され、指定した数の文字位置が検査されます。
+
+System_CAPS_pubmethod	IndexOf(String)	
+指定された文字列がこのインスタンス内で最初に見つかった位置の 0 から始まるインデックスをレポートします。
+
+System_CAPS_pubmethod	IndexOf(String, Int32)	
+指定された文字列がこのインスタンス内で最初に見つかった位置の 0 から始まるインデックスをレポートします。 検索は、指定した文字位置から開始されます。
+
+System_CAPS_pubmethod	IndexOf(String, Int32, Int32)	
+指定された文字列がこのインスタンス内で最初に見つかった位置の 0 から始まるインデックスをレポートします。 検索は指定した文字位置から開始され、指定した数の文字位置が検査されます。
+
+IndexOf(String, Int32, Int32, StringComparison)	
+指定した文字列が現在の String オブジェクト内で最初に見つかった位置の 0 から始まるインデックスをレポートします。 現在の文字列での検索開始位置、現在の文字列で検索する文字の数、および指定した文字列に使用する検索の種類をパラメーターで指定します。
+
+System_CAPS_pubmethod	IndexOf(String, Int32, StringComparison)	
+指定した文字列が現在の String オブジェクト内で最初に見つかった位置の 0 から始まるインデックスをレポートします。 現在の文字列内での検索の開始位置、および指定した文字列に使用する検索の種類をパラメーターで指定します。
+
+System_CAPS_pubmethod	IndexOf(String, StringComparison)	
+指定した文字列が現在の String オブジェクト内で最初に見つかった位置の 0 から始まるインデックスをレポートします。 指定した文字列に使用する検索の種類をパラメーターで指定します。
+
+System_CAPS_pubmethod	IndexOfAny(Char[])	
+Unicode 文字の指定した配列内にある文字がこのインスタンスで最初に見つかった位置の 0 から始まるインデックスをレポートします。
+
+System_CAPS_pubmethod	IndexOfAny(Char[], Int32)	
+Unicode 文字の指定した配列内にある文字がこのインスタンスで最初に見つかった位置の 0 から始まるインデックスをレポートします。 検索は、指定した文字位置から開始されます。
+
+System_CAPS_pubmethod	IndexOfAny(Char[], Int32, Int32)	
+Unicode 文字の指定した配列内にある文字がこのインスタンスで最初に見つかった位置の 0 から始まるインデックスをレポートします。 検索は指定した文字位置から開始され、指定した数の文字位置が検査されます。
+
+System_CAPS_pubmethod	Insert(Int32, String)	
+このインスタンス内の指定したインデックス位置に指定した文字列を挿入した、新しい文字列を返します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Intern(String)	
+指定した String へのシステム参照を取得します。
+
+System_CAPS_pubmethodSystem_CAPS_static	IsInterned(String)	
+指定した String への参照を取得します。
+
+System_CAPS_pubmethod	IsNormalized()	
+この文字列が、Unicode 正規形 C であるかどうかを示します。
+
+System_CAPS_pubmethod	IsNormalized(NormalizationForm)	
+この文字列が、指定された Unicode 正規形であるかどうかを示します。
+
+IsNullOrEmpty(String)	
+指定された文字列が null または Empty 文字列であるかどうかを示します。
+
+IsNullOrWhiteSpace(String)	
+指定された文字列が null または空であるか、空白文字だけで構成されているかどうかを示します。
+
+Join(String, IEnumerable<String>)	
+IEnumerable<T> 型の構築された String コレクションのメンバーを連結します。各メンバーの間には、指定した区切り記号が挿入されます。
+
+System_CAPS_pubmethodSystem_CAPS_static	Join(String, Object[])	
+オブジェクト配列の要素を連結します。各要素の間には、指定した区切り記号が挿入されます。
+
+System_CAPS_pubmethodSystem_CAPS_static	Join(String, String[])	
+文字列配列のすべての要素を連結します。各要素の間には、指定した区切り記号が挿入されます。
+
+System_CAPS_pubmethodSystem_CAPS_static	Join(String, String[], Int32, Int32)	
+文字列配列の指定した要素を連結します。各要素の間には、指定した区切り記号が挿入されます。
+
+System_CAPS_pubmethodSystem_CAPS_static	Join<T>(String, IEnumerable<T>)	
+コレクションのメンバーを連結します。各メンバーの間には、指定した区切り記号が挿入されます。
+
+System_CAPS_pubmethod	LastIndexOf(Char)	
+このインスタンス内で最後に出現する指定 Unicode 文字の 0 から始まるインデックス位置をレポートします。
+
+System_CAPS_pubmethod	LastIndexOf(Char, Int32)	
+このインスタンス内で最後に出現する指定 Unicode 文字の 0 から始まるインデックス位置をレポートします。 検索は、指定された文字位置から開始され、文字列の先頭に向かって逆方向に進みます。
+
+System_CAPS_pubmethod	LastIndexOf(Char, Int32, Int32)	
+このインスタンス内の部分文字列で最後に出現する指定 Unicode 文字の 0 から始まるインデックス位置をレポートします。 検索は指定された文字位置から開始し、文字列の開始に向かって後方に移動し、文字位置の指定された数だけ行われます。
+
+System_CAPS_pubmethod	LastIndexOf(String)	
+指定された文字列がこのインスタンス内で最後に見つかった 0 から始まるインデックス位置をレポートします。
+
+System_CAPS_pubmethod	LastIndexOf(String, Int32)	
+このインスタンス内で最後に出現する指定された文字列の 0 から始まるインデックス位置をレポートします。 検索は、指定された文字位置から開始され、文字列の先頭に向かって逆方向に進みます。
+
+System_CAPS_pubmethod	LastIndexOf(String, Int32, Int32)	
+指定された文字列がこのインスタンス内で最後に見つかった 0 から始まるインデックス位置をレポートします。 検索は指定された文字位置から開始され、指定した文字位置の数だけ文字列の先頭に向かって逆向きに移動して実行されます。
+
+System_CAPS_pubmethod	LastIndexOf(String, Int32, Int32, StringComparison)	
+指定された文字列がこのインスタンス内で最後に見つかった 0 から始まるインデックス位置をレポートします。 検索は指定された文字位置から開始し、文字列の開始に向かって後方に移動し、文字位置の指定された数だけ行われます。 指定した文字列を検索するときに実行する比較の種類をパラメーターで指定します。
+
+System_CAPS_pubmethod	LastIndexOf(String, Int32, StringComparison)	
+指定した文字列が現在の String オブジェクト内で最後に見つかった 0 から始まる位置のインデックスをレポートします。 検索は、指定された文字位置から開始され、文字列の先頭に向かって逆方向に進みます。 指定した文字列を検索するときに実行する比較の種類をパラメーターで指定します。
+
+System_CAPS_pubmethod	LastIndexOf(String, StringComparison)	
+指定した文字列が現在の String オブジェクト内で最後に見つかった 0 から始まる位置のインデックスをレポートします。 指定した文字列に使用する検索の種類をパラメーターで指定します。
+
+System_CAPS_pubmethod	LastIndexOfAny(Char[])	
+Unicode 配列内の指定した 1 つ以上の文字がこのインスタンスで最後に見つかった 0 から始まるインデックス位置をレポートします。
+
+System_CAPS_pubmethod	LastIndexOfAny(Char[], Int32)	
+Unicode 配列内の指定した 1 つ以上の文字がこのインスタンスで最後に見つかった 0 から始まるインデックス位置をレポートします。 検索は、指定された文字位置から開始され、文字列の先頭に向かって逆方向に進みます。
+
+System_CAPS_pubmethod	LastIndexOfAny(Char[], Int32, Int32)	
+Unicode 配列内の指定した 1 つ以上の文字がこのインスタンスで最後に見つかった 0 から始まるインデックス位置をレポートします。 検索は指定された文字位置から開始し、文字列の開始に向かって後方に移動し、文字位置の指定された数だけ行われます。
+
+Normalize()	
+この文字列と同じテキスト値を持ち、なおかつ、バイナリ表現が Unicode 正規形 C である新しい文字列を返します。
+
+Normalize(NormalizationForm)	
+この文字列と同じテキスト値を持ち、なおかつ、バイナリ表現が、指定された Unicode 正規形である新しい文字列を返します。
+
+PadLeft(Int32)	
+指定された文字数になるまで左側に空白を埋め込むことで、このインスタンス内の文字を右寄せした新しい文字列を返します。
+
+PadLeft(Int32, Char)	
+指定された文字数になるまで左側に指定された Unicode 文字を埋め込むことで、このインスタンス内の文字を右寄せした新しい文字列を返します。
+
+PadRight(Int32)	
+指定された文字数になるまで右側に空白を埋め込むことで、この文字列内の文字を左寄せした新しい文字列を返します。
+
+PadRight(Int32, Char)	
+指定された文字数になるまで右側に指定された Unicode 文字を埋め込むことで、この文字列内の文字を左寄せした新しい文字列を返します。
+
+Remove(Int32)	
+現在のインスタンスの指定した位置から指定した最後の位置までの全文字が削除された新しい文字列を返します。
+
+Remove(Int32, Int32)	
+現在のインスタンス内の指定した位置から指定した文字数が削除された新しい文字列を返します。
+
+Replace(Char, Char)	
+このインスタンスに出現する指定された Unicode 文字をすべて、別の指定された Unicode 文字に置換した新しい文字列を返します。
+
+しおり
+Replace(String, String)	
+現在のインスタンスに出現する指定した文字列をすべて、別に指定した文字列に置換した新しい文字列を返します。
+
+Split(Char[])	
+配列内の文字に基づいて文字列を部分文字列に分割します。
+
+Split(Char[], Int32)	
+配列内の文字に基づいて文字列を最大数の部分文字列に分割します。返される部分文字列の最大数も指定します。
+
+Split(Char[], Int32, StringSplitOptions)	
+配列内の文字に基づいて文字列を最大数の部分文字列に分割します。
+
+Split(Char[], StringSplitOptions)	
+配列内の文字に基づいて部分文字列に文字列を分割します。部分文字列に空の配列要素を含めるかどうかを指定することができます。
+
+Split(String[], Int32, StringSplitOptions)	
+配列内の文字列に基づいて最大数の部分文字列に文字列を分割します。部分文字列に空の配列要素を含めるかどうかを指定することができます。
+
+System_CAPS_pubmethod	Split(String[], StringSplitOptions)	
+配列内の文字列に基づいて部分文字列に文字列を分割します。部分文字列に空の配列要素を含めるかどうかを指定することができます。
+
+System_CAPS_pubmethod	StartsWith(String)	
+この文字列インスタンスの先頭が、指定した文字列と一致するかどうかを判断します。
+
+System_CAPS_pubmethod	StartsWith(String, Boolean, CultureInfo)	
+指定されたカルチャを使って比較した場合に、この文字列インスタンスの先頭が、指定された文字列と一致するかどうかを判断します。
+
+System_CAPS_pubmethod	StartsWith(String, StringComparison)	
+指定された比較オプションを使って比較した場合に、この文字列インスタンスの先頭が、指定された文字列と一致するかどうかを判断します。
+
+System_CAPS_pubmethod	Substring(Int32)	
+このインスタンスから部分文字列を取得します。 部分文字列は、文字列中の指定した文字の位置で開始し、文字列の末尾まで続きます。
+
+System_CAPS_pubmethod	Substring(Int32, Int32)	
+インスタンスから部分文字列を取得します。 この部分文字列は、指定した文字位置から開始し、指定した文字数の文字列です。
+
+System_CAPS_pubmethod	ToCharArray()	
+このインスタンスの文字を Unicode 文字配列へコピーします。
+
+System_CAPS_pubmethod	ToCharArray(Int32, Int32)	
+このインスタンスの指定した部分文字列の文字を Unicode 文字配列へコピーします。
+
+System_CAPS_pubmethod	ToLower()	
+この文字列のコピーを小文字に変換して返します。
+
+System_CAPS_pubmethod	ToLower(CultureInfo)	
+指定されたカルチャの大文字と小文字の規則を使用して、この文字列のコピーを小文字に変換して返します。
+
+System_CAPS_pubmethod	ToLowerInvariant()	
+インバリアント カルチャの大文字と小文字の規則を使用して、この String オブジェクトのコピーを小文字に変換して返します。
+
+System_CAPS_pubmethod	ToString()	
+String のこのインスタンスを返します。実際の変換処理は実行されません。(Object.ToString() をオーバーライドする。)
+
+System_CAPS_pubmethod	ToString(IFormatProvider)	
+String のこのインスタンスを返します。実際の変換処理は実行されません。
+
+System_CAPS_pubmethod	ToUpper()	
+この文字列のコピーを大文字に変換して返します。
+
+System_CAPS_pubmethod	ToUpper(CultureInfo)	
+指定されたカルチャの大文字と小文字の規則を使用して、この文字列のコピーを大文字に変換して返します。
+
+System_CAPS_pubmethod	ToUpperInvariant()	
+インバリアント カルチャの大文字と小文字の規則を使用して、この String オブジェクトのコピーを大文字に変換して返します。
+
+System_CAPS_pubmethod	Trim()	
+現在の String オブジェクトの先頭および末尾にある空白文字をすべて削除します。
+
+System_CAPS_pubmethod	Trim(Char[])	
+現在の String オブジェクトの先頭および末尾から、配列で指定された文字セットをすべて削除します。
+
+System_CAPS_pubmethod	TrimEnd(Char[])	
+現在の String オブジェクトの末尾から、配列で指定された文字セットをすべて削除します。
+
+System_CAPS_pubmethod	TrimStart(Char[])	
+現在の String オブジェクトの先頭から、配列で指定された文字セットをすべて削除します。
+
+Empty	
+空の文字列を表します。 このフィールドは読み取り専用です。
+
+Equality(String, String)	
+指定した 2 つの文字列の値が同一かどうかを判断します。
+
+Inequality(String, String)	
+指定した 2 つの文字列の値が異なるかどうかを判断します。
+
+IEnumerable<Char>.GetEnumerator()	
+現在の String オブジェクトを反復処理する列挙子を返します。
+
+IEnumerable.GetEnumerator()	
+現在の String オブジェクトを反復処理する列挙子を返します。
+
+IConvertible.ToBoolean(IFormatProvider)	
+この API は、製品 インフラストラクチャをサポートしており、コードから直接使用されることを想定していません。 このメンバーの詳細については、「ToBoolean」をご覧ください
+。
+
+IConvertible.ToByte(IFormatProvider)	
+この API は、製品 インフラストラクチャをサポートしており、コードから直接使用されることを想定していません。 このメンバーの詳細については、「ToByte」を参照してください。
+
+System_CAPS_pubinterfaceSystem_CAPS_privmethod	IConvertible.ToChar(IFormatProvider)	
+この API は、製品 インフラストラクチャをサポートしており、コードから直接使用されることを想定していません。 このメンバーの詳細については、「ToChar」をご覧ください。
+System_CAPS_pubinterfaceSystem_CAPS_privmethod	IConvertible.ToDateTime(IFormatProvider)	
+この API は、製品 インフラストラクチャをサポートしており、コードから直接使用されることを想定していません。 このメンバーの詳細については、「ToDateTime」を参照してください。
+System_CAPS_pubinterfaceSystem_CAPS_privmethod	IConvertible.ToDecimal(IFormatProvider)	
+この API は、製品 インフラストラクチャをサポートしており、コードから直接使用されることを想定していません。 このメンバーの詳細については、「ToDecimal」を参照してください。
+System_CAPS_pubinterfaceSystem_CAPS_privmethod	IConvertible.ToDouble(IFormatProvider)	
+この API は、製品 インフラストラクチャをサポートしており、コードから直接使用されることを想定していません。 このメンバーの詳細については、「ToDouble」を参照してください。
+System_CAPS_pubinterfaceSystem_CAPS_privmethod	IConvertible.ToInt16(IFormatProvider)	
+この API は、製品 インフラストラクチャをサポートしており、コードから直接使用されることを想定していません。 このメンバーの詳細については、「ToInt16」を参照してください。
+System_CAPS_pubinterfaceSystem_CAPS_privmethod	IConvertible.ToInt32(IFormatProvider)	
+この API は、製品 インフラストラクチャをサポートしており、コードから直接使用されることを想定していません。 このメンバーの詳細については、「ToInt32」を参照してください。
+System_CAPS_pubinterfaceSystem_CAPS_privmethod	IConvertible.ToInt64(IFormatProvider)	
+この API は、製品 インフラストラクチャをサポートしており、コードから直接使用されることを想定していません。 このメンバーの詳細については、「ToInt64」を参照してください。
+System_CAPS_pubinterfaceSystem_CAPS_privmethod	IConvertible.ToSByte(IFormatProvider)	
+この API は、製品 インフラストラクチャをサポートしており、コードから直接使用されることを想定していません。 このメンバーの詳細については、「ToSByte」を参照してください。
+System_CAPS_pubinterfaceSystem_CAPS_privmethod	IConvertible.ToSingle(IFormatProvider)	
+この API は、製品 インフラストラクチャをサポートしており、コードから直接使用されることを想定していません。 このメンバーの詳細については、「ToSingle」を参照してください。
+System_CAPS_pubinterfaceSystem_CAPS_privmethod	IConvertible.ToType(Type, IFormatProvider)	
+この API は、製品 インフラストラクチャをサポートしており、コードから直接使用されることを想定していません。 このメンバーの詳細については、「ToType」を参照してください。
+System_CAPS_pubinterfaceSystem_CAPS_privmethod	IConvertible.ToUInt16(IFormatProvider)	
+この API は、製品 インフラストラクチャをサポートしており、コードから直接使用されることを想定していません。 このメンバーの詳細については、「ToUInt16」を参照してください。
+System_CAPS_pubinterfaceSystem_CAPS_privmethod	IConvertible.ToUInt32(IFormatProvider)	
+この API は、製品 インフラストラクチャをサポートしており、コードから直接使用されることを想定していません。 このメンバーの詳細については、「ToUInt32」を参照してください。
+System_CAPS_pubinterfaceSystem_CAPS_privmethod	IConvertible.ToUInt64(IFormatProvider)	
+この API は、製品 インフラストラクチャをサポートしており、コードから直接使用されることを想定していません。 このメンバーの詳細については、「ToUInt64」を参照してください。
+拡張メソッド
+名前	説明
+System_CAPS_pubmethod	Aggregate<Char>(Func<Char, Char, Char>)	
+オーバーロードされます。シーケンスにアキュムレータ関数を適用します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Aggregate<Char, TAccumulate>(TAccumulate, Func<TAccumulate, Char, TAccumulate>)	
+オーバーロードされます。シーケンスにアキュムレータ関数を適用します。 指定されたシード値が最初のアキュムレータ値として使用されます。(Enumerable により定義される。)
+System_CAPS_pubmethod	Aggregate<Char, TAccumulate, TResult>(TAccumulate, Func<TAccumulate, Char, TAccumulate>, Func<TAccumulate, TResult>)	
+オーバーロードされます。シーケンスにアキュムレータ関数を適用します。指定したシード値は最初のアキュムレータ値として使用され、指定した関数は結果値の選択に使用されます。(Enumerable により定義される。)
+System_CAPS_pubmethod	All<Char>(Func<Char, Boolean>)	
+シーケンスのすべての要素が条件を満たすかどうかを決定します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Any<Char>()	
+オーバーロードされます。シーケンスがすべての要素を含めるかどうかを決定します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Any<Char>(Func<Char, Boolean>)	
+オーバーロードされます。シーケンスの任意の要素が条件を満たすかどうかを決定します。(Enumerable により定義される。)
+System_CAPS_pubmethod	AsEnumerable<Char>()	
+として型指定された入力返す IEnumerable<T>します。(Enumerable により定義される。)
+System_CAPS_pubmethod	AsParallel()	
+オーバーロードされます。クエリの並列化を有効にします。(ParallelEnumerable により定義される。)
+System_CAPS_pubmethod	AsParallel<Char>()	
+オーバーロードされます。クエリの並列化を有効にします。(ParallelEnumerable により定義される。)
+System_CAPS_pubmethod	AsQueryable()	
+オーバーロードされます。 IEnumerable を IQueryable に変換します。(Queryable により定義される。)
+System_CAPS_pubmethod	AsQueryable<Char>()	
+オーバーロードされます。ジェネリックの IEnumerable<T> をジェネリックの IQueryable<T> に変換します。(Queryable により定義される。)
+System_CAPS_pubmethod	Average<Char>(Func<Char, Decimal>)	
+オーバーロードされます。一連の平均値を計算 Decimal 入力シーケンスの各要素に対して変換関数を呼び出すことによって取得される値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Average<Char>(Func<Char, Double>)	
+オーバーロードされます。一連の平均値を計算 Double 入力シーケンスの各要素に対して変換関数を呼び出すことによって取得される値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Average<Char>(Func<Char, Int32>)	
+オーバーロードされます。一連の平均値を計算 Int32 入力シーケンスの各要素に対して変換関数を呼び出すことによって取得される値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Average<Char>(Func<Char, Int64>)	
+オーバーロードされます。入力シーケンスの各要素に対して変換関数を呼び出して取得する Int64 値のシーケンスの平均値を計算します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Average<Char>(Func<Char, Nullable<Decimal>>)	
+オーバーロードされます。入力シーケンスの各要素に対して変換関数を呼び出して取得する null 許容の Decimal 値のシーケンスの平均値を計算します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Average<Char>(Func<Char, Nullable<Double>>)	
+オーバーロードされます。入力シーケンスの各要素に対して変換関数を呼び出して取得する null 許容の Double 値のシーケンスの平均値を計算します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Average<Char>(Func<Char, Nullable<Int32>>)	
+オーバーロードされます。Null 許容型のシーケンスの平均を計算 Int32 入力シーケンスの各要素に対して変換関数を呼び出すことによって取得される値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Average<Char>(Func<Char, Nullable<Int64>>)	
+オーバーロードされます。入力シーケンスの各要素に対して変換関数を呼び出して取得する null 許容の Int64 値のシーケンスの平均値を計算します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Average<Char>(Func<Char, Nullable<Single>>)	
+オーバーロードされます。Null 許容型のシーケンスの平均を計算 Single 入力シーケンスの各要素に対して変換関数を呼び出すことによって取得される値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Average<Char>(Func<Char, Single>)	
+オーバーロードされます。入力シーケンスの各要素に対して変換関数を呼び出して取得する Single 値のシーケンスの平均値を計算します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Cast<TResult>()	
+要素をキャスト、 IEnumerable 指定した型にします。(Enumerable により定義される。)
+System_CAPS_pubmethod	Concat<Char>(IEnumerable<Char>)	
+2 つのシーケンスを連結します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Contains<Char>(Char)	
+オーバーロードされます。シーケンスが既定の等値比較子を使用して、指定した要素を含めるかどうかを決定します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Contains<Char>(Char, IEqualityComparer<Char>)	
+オーバーロードされます。指定したを使用して指定された要素がシーケンスに含まれているかどうか判断 IEqualityComparer<T>します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Count<Char>()	
+オーバーロードされます。シーケンス内の要素の数を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Count<Char>(Func<Char, Boolean>)	
+オーバーロードされます。条件を満たす、指定されたシーケンス内の要素の数を表す数値を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	DefaultIfEmpty<Char>()	
+オーバーロードされます。指定したシーケンスの要素を返します。シーケンスが空の場合はシングルトン コレクションにある型パラメーターの既定値を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	DefaultIfEmpty<Char>(Char)	
+オーバーロードされます。シーケンスが空の場合は、シングルトン コレクションに指定されたシーケンスまたは指定した値の要素を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Distinct<Char>()	
+オーバーロードされます。既定の等値比較子を使用して値を比較することにより、シーケンスから一意の要素を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Distinct<Char>(IEqualityComparer<Char>)	
+オーバーロードされます。指定したを使用してシーケンスから一意の要素を返します IEqualityComparer<T> 値を比較します。(Enumerable により定義される。)
+System_CAPS_pubmethod	ElementAt<Char>(Int32)	
+シーケンスの指定したインデックス位置にある要素を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	ElementAtOrDefault<Char>(Int32)	
+シーケンス内の指定されたインデックス位置にある要素を返します。インデックスが範囲外の場合は既定値を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Except<Char>(IEnumerable<Char>)	
+オーバーロードされます。既定の等値比較子を使用して値を比較することにより、2 つのシーケンスの差集合を生成します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Except<Char>(IEnumerable<Char>, IEqualityComparer<Char>)	
+オーバーロードされます。指定されたを使用して 2 つのシーケンスの差集合を生成 IEqualityComparer<T> 値を比較します。(Enumerable により定義される。)
+System_CAPS_pubmethod	First<Char>()	
+オーバーロードされます。シーケンスの最初の要素を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	First<Char>(Func<Char, Boolean>)	
+オーバーロードされます。指定された条件を満たす、シーケンスの最初の要素を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	FirstOrDefault<Char>()	
+オーバーロードされます。シーケンスの最初の要素を返します。シーケンスに要素が含まれていない場合は既定値を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	FirstOrDefault<Char>(Func<Char, Boolean>)	
+オーバーロードされます。条件を満たす、シーケンスの最初の要素を返します。このような要素が見つからない場合は既定値を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	GroupBy<Char, TKey>(Func<Char, TKey>)	
+オーバーロードされます。指定されたキー セレクター関数に従ってシーケンスの要素をグループ化します。(Enumerable により定義される。)
+System_CAPS_pubmethod	GroupBy<Char, TKey>(Func<Char, TKey>, IEqualityComparer<TKey>)	
+オーバーロードされます。指定されたキー セレクター関数に従ってシーケンスの要素をグループ化し、指定された比較子を使用してキーを比較します。(Enumerable により定義される。)
+System_CAPS_pubmethod	GroupBy<Char, TKey, TElement>(Func<Char, TKey>, Func<Char, TElement>)	
+オーバーロードされます。指定されたキー セレクター関数と、指定された関数を使用して各グループの要素を射影に従ってシーケンスの要素をグループ化します。(Enumerable により定義される。)
+System_CAPS_pubmethod	GroupBy<Char, TKey, TElement>(Func<Char, TKey>, Func<Char, TElement>, IEqualityComparer<TKey>)	
+オーバーロードされます。キー セレクター関数に従ってシーケンスの要素をグループ化します。 キーの比較には、比較子を使用し、各グループの要素の射影には、指定された関数を使用します。(Enumerable により定義される。)
+System_CAPS_pubmethod	GroupBy<Char, TKey, TResult>(Func<Char, TKey>, Func<TKey, IEnumerable<Char>, TResult>)	
+オーバーロードされます。指定されたキー セレクター関数に従ってシーケンスの要素をグループ化し、各グループとそのキーから結果値を作成します。(Enumerable により定義される。)
+System_CAPS_pubmethod	GroupBy<Char, TKey, TResult>(Func<Char, TKey>, Func<TKey, IEnumerable<Char>, TResult>, IEqualityComparer<TKey>)	
+オーバーロードされます。指定されたキー セレクター関数に従ってシーケンスの要素をグループ化し、各グループとそのキーから結果値を作成します。キーの比較には、指定された比較子を使用します。(Enumerable により定義される。)
+System_CAPS_pubmethod	GroupBy<Char, TKey, TElement, TResult>(Func<Char, TKey>, Func<Char, TElement>, Func<TKey, IEnumerable<TElement>, TResult>)	
+オーバーロードされます。指定されたキー セレクター関数に従ってシーケンスの要素をグループ化し、各グループとそのキーから結果値を作成します。各グループの要素は、指定された関数を使用して射影されます。(Enumerable により定義される。)
+System_CAPS_pubmethod	GroupBy<Char, TKey, TElement, TResult>(Func<Char, TKey>, Func<Char, TElement>, Func<TKey, IEnumerable<TElement>, TResult>, IEqualityComparer<TKey>)	
+オーバーロードされます。指定されたキー セレクター関数に従ってシーケンスの要素をグループ化し、各グループとそのキーから結果値を作成します。キー値の比較には、指定された比較子を使用し、各グループの要素の射影には、指定された関数を使用します。(Enumerable により定義される。)
+System_CAPS_pubmethod	GroupJoin<Char, TInner, TKey, TResult>(IEnumerable<TInner>, Func<Char, TKey>, Func<TInner, TKey>, Func<Char, IEnumerable<TInner>, TResult>)	
+オーバーロードされます。結果をグループ化キーが等しいかどうかに基づいて 2 つのシーケンスの要素相互に関連付けます。 キーの比較には既定の等値比較子が使用されます。(Enumerable により定義される。)
+System_CAPS_pubmethod	GroupJoin<Char, TInner, TKey, TResult>(IEnumerable<TInner>, Func<Char, TKey>, Func<TInner, TKey>, Func<Char, IEnumerable<TInner>, TResult>, IEqualityComparer<TKey>)	
+オーバーロードされます。結果をグループ化キーの等値に基づいて 2 つのシーケンスの要素相互に関連付けます。 指定した IEqualityComparer<T> キーを比較するために使用します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Intersect<Char>(IEnumerable<Char>)	
+オーバーロードされます。既定の等値比較子を使用して値を比較することにより、2 つのシーケンスの積集合を生成します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Intersect<Char>(IEnumerable<Char>, IEqualityComparer<Char>)	
+オーバーロードされます。指定された IEqualityComparer<T> を使用して値を比較することにより、2 つのシーケンスの積集合を生成します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Join<Char, TInner, TKey, TResult>(IEnumerable<TInner>, Func<Char, TKey>, Func<TInner, TKey>, Func<Char, TInner, TResult>)	
+オーバーロードされます。一致するキーに基づいて 2 つのシーケンスの要素を基準になります。 キーの比較には既定の等値比較子が使用されます。(Enumerable により定義される。)
+System_CAPS_pubmethod	Join<Char, TInner, TKey, TResult>(IEnumerable<TInner>, Func<Char, TKey>, Func<TInner, TKey>, Func<Char, TInner, TResult>, IEqualityComparer<TKey>)	
+オーバーロードされます。一致するキーに基づいて 2 つのシーケンスの要素を基準になります。 指定した IEqualityComparer<T> キーを比較するために使用します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Last<Char>()	
+オーバーロードされます。シーケンスの最後の要素を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Last<Char>(Func<Char, Boolean>)	
+オーバーロードされます。指定された条件を満たす、シーケンスの最後の要素を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	LastOrDefault<Char>()	
+オーバーロードされます。シーケンスの最後の要素を返します。シーケンスに要素が含まれていない場合は既定値を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	LastOrDefault<Char>(Func<Char, Boolean>)	
+オーバーロードされます。条件を満たす、シーケンスの最後の要素を返します。このような要素が見つからない場合は既定値を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	LongCount<Char>()	
+オーバーロードされます。シーケンス内の要素の合計数を表す Int64 を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	LongCount<Char>(Func<Char, Boolean>)	
+オーバーロードされます。返します。、 Int64 条件を満たすシーケンス内の要素の数を表します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Max<Char>()	
+オーバーロードされます。ジェネリック シーケンスの最大値を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Max<Char>(Func<Char, Decimal>)	
+オーバーロードされます。シーケンスの各要素に対して変換関数を呼び出し、Decimal の最大値を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Max<Char>(Func<Char, Double>)	
+オーバーロードされます。シーケンスの各要素に対して変換関数を呼び出し、Double の最大値を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Max<Char>(Func<Char, Int32>)	
+オーバーロードされます。シーケンスの各要素に対して変換関数を呼び出し、最大値を返します Int32 値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Max<Char>(Func<Char, Int64>)	
+オーバーロードされます。シーケンスの各要素に対して変換関数を呼び出し、最大値を返します Int64 値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Max<Char>(Func<Char, Nullable<Decimal>>)	
+オーバーロードされます。シーケンスの各要素に対して変換関数を呼び出し、null 許容最大値を返します Decimal 値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Max<Char>(Func<Char, Nullable<Double>>)	
+オーバーロードされます。シーケンスの各要素に対して変換関数を呼び出し、null 許容最大値を返します Double 値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Max<Char>(Func<Char, Nullable<Int32>>)	
+オーバーロードされます。シーケンスの各要素に対して変換関数を呼び出し、null 許容最大値を返します Int32 値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Max<Char>(Func<Char, Nullable<Int64>>)	
+オーバーロードされます。シーケンスの各要素に対して変換関数を呼び出し、null 許容最大値を返します Int64 値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Max<Char>(Func<Char, Nullable<Single>>)	
+オーバーロードされます。シーケンスの各要素に対して変換関数を呼び出し、null 許容最大値を返します Single 値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Max<Char>(Func<Char, Single>)	
+オーバーロードされます。シーケンスの各要素に対して変換関数を呼び出し、最大値を返します Single 値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Max<Char, TResult>(Func<Char, TResult>)	
+オーバーロードされます。ジェネリック シーケンスの各要素に対して変換関数の呼び出しを結果の最大値を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Min<Char>()	
+オーバーロードされます。ジェネリック シーケンスの最小値を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Min<Char>(Func<Char, Decimal>)	
+オーバーロードされます。シーケンスの各要素に対して変換関数を呼び出し、最小値を返します Decimal 値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Min<Char>(Func<Char, Double>)	
+オーバーロードされます。シーケンスの各要素に対して変換関数を呼び出し、最小値を返します Double 値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Min<Char>(Func<Char, Int32>)	
+オーバーロードされます。シーケンスの各要素に対して変換関数を呼び出し、Int32 の最小値を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Min<Char>(Func<Char, Int64>)	
+オーバーロードされます。シーケンスの各要素に対して変換関数を呼び出し、最小値を返します Int64 値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Min<Char>(Func<Char, Nullable<Decimal>>)	
+オーバーロードされます。シーケンスの各要素に対して変換関数を呼び出し、最小値を null 許容型を返します Decimal 値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Min<Char>(Func<Char, Nullable<Double>>)	
+オーバーロードされます。シーケンスの各要素に対して変換関数を呼び出し、最小値を null 許容型を返します Double 値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Min<Char>(Func<Char, Nullable<Int32>>)	
+オーバーロードされます。シーケンスの各要素に対して変換関数を呼び出し、最小値を null 許容型を返します Int32 値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Min<Char>(Func<Char, Nullable<Int64>>)	
+オーバーロードされます。シーケンスの各要素に対して変換関数を呼び出し、null 許容の Int64 の最小値を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Min<Char>(Func<Char, Nullable<Single>>)	
+オーバーロードされます。シーケンスの各要素に対して変換関数を呼び出し、null 許容の Single の最小値を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Min<Char>(Func<Char, Single>)	
+オーバーロードされます。シーケンスの各要素に対して変換関数を呼び出し、最小値を返します Single 値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Min<Char, TResult>(Func<Char, TResult>)	
+オーバーロードされます。ジェネリック シーケンスの各要素に対して変換関数の呼び出しを結果の最小値を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	OfType<TResult>()	
+指定された型に基づいて IEnumerable の要素をフィルター処理します。(Enumerable により定義される。)
+System_CAPS_pubmethod	OrderBy<Char, TKey>(Func<Char, TKey>)	
+オーバーロードされます。キーに従って昇順のシーケンスの要素を並べ替えます。(Enumerable により定義される。)
+System_CAPS_pubmethod	OrderBy<Char, TKey>(Func<Char, TKey>, IComparer<TKey>)	
+オーバーロードされます。指定された比較子を使用して、昇順のシーケンスの要素を並べ替えます。(Enumerable により定義される。)
+System_CAPS_pubmethod	OrderByDescending<Char, TKey>(Func<Char, TKey>)	
+オーバーロードされます。シーケンスの要素をキーに従って降順に並べ替えます。(Enumerable により定義される。)
+System_CAPS_pubmethod	OrderByDescending<Char, TKey>(Func<Char, TKey>, IComparer<TKey>)	
+オーバーロードされます。指定された比較子を使用してシーケンスの要素を降順に並べ替えます。(Enumerable により定義される。)
+System_CAPS_pubmethod	Reverse<Char>()	
+シーケンスの要素の順序を反転させます。(Enumerable により定義される。)
+System_CAPS_pubmethod	Select<Char, TResult>(Func<Char, TResult>)	
+オーバーロードされます。シーケンスの各要素を新しいフォームに射影します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Select<Char, TResult>(Func<Char, Int32, TResult>)	
+オーバーロードされます。要素のインデックスを組み込むことにより、シーケンスの各要素を新しいフォームに射影します。(Enumerable により定義される。)
+System_CAPS_pubmethod	SelectMany<Char, TResult>(Func<Char, IEnumerable<TResult>>)	
+オーバーロードされます。シーケンスの各要素、 IEnumerable<T> し、結果のシーケンスを 1 つのシーケンスに平坦化します。(Enumerable により定義される。)
+System_CAPS_pubmethod	SelectMany<Char, TResult>(Func<Char, Int32, IEnumerable<TResult>>)	
+オーバーロードされます。シーケンスの各要素、 IEnumerable<T>, 、結果のシーケンスを 1 つのシーケンスにフラット化します。 各ソース要素のインデックスは、その要素の射影されたフォームで使用されます。(Enumerable により定義される。)
+System_CAPS_pubmethod	SelectMany<Char, TCollection, TResult>(Func<Char, IEnumerable<TCollection>>, Func<Char, TCollection, TResult>)	
+オーバーロードされます。シーケンスの各要素、 IEnumerable<T>, 、結果のシーケンスを 1 つのシーケンスに平坦化し、そこにある各要素に対して結果のセレクター関数を呼び出します。(Enumerable により定義される。)
+System_CAPS_pubmethod	SelectMany<Char, TCollection, TResult>(Func<Char, Int32, IEnumerable<TCollection>>, Func<Char, TCollection, TResult>)	
+オーバーロードされます。シーケンスの各要素、 IEnumerable<T>, 、結果のシーケンスを 1 つのシーケンスに平坦化し、そこにある各要素に対して結果のセレクター関数を呼び出します。 各ソース要素のインデックスは、その要素の中間の射影されたフォームで使用されます。(Enumerable により定義される。)
+System_CAPS_pubmethod	SequenceEqual<Char>(IEnumerable<Char>)	
+オーバーロードされます。型に対して既定の等値比較子を使用して要素を比較することで、2 つのシーケンスが等しいかどうかを決定します。(Enumerable により定義される。)
+System_CAPS_pubmethod	SequenceEqual<Char>(IEnumerable<Char>, IEqualityComparer<Char>)	
+オーバーロードされます。指定された IEqualityComparer<T> を使用して要素を比較することで、2 つのシーケンスが等しいかどうかを判断します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Single<Char>()	
+オーバーロードされます。シーケンスの唯一の要素を返し、シーケンス内の要素が 1 つだけでない場合は例外をスローします。(Enumerable により定義される。)
+System_CAPS_pubmethod	Single<Char>(Func<Char, Boolean>)	
+オーバーロードされます。指定された条件を満たす、シーケンスの唯一の要素を返し、そのような要素が複数存在する場合は例外をスローします。(Enumerable により定義される。)
+System_CAPS_pubmethod	SingleOrDefault<Char>()	
+オーバーロードされます。シーケンスの唯一の要素を返します。シーケンスが空の場合、既定値を返します。シーケンス内に要素が複数ある場合、このメソッドは例外をスローします。(Enumerable により定義される。)
+System_CAPS_pubmethod	SingleOrDefault<Char>(Func<Char, Boolean>)	
+オーバーロードされます。指定された条件を満たす、シーケンスの唯一の要素を返します。そのような要素が存在しない場合、既定値を返します。複数の要素が条件を満たす場合、このメソッドは例外をスローします。(Enumerable により定義される。)
+System_CAPS_pubmethod	Skip<Char>(Int32)	
+指定された数のシーケンス内の要素をバイパスし、残りの要素を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	SkipWhile<Char>(Func<Char, Boolean>)	
+オーバーロードされます。指定された条件が満たされる限り、シーケンスの要素をバイパスした後、残りの要素を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	SkipWhile<Char>(Func<Char, Int32, Boolean>)	
+オーバーロードされます。指定した条件が true で、残りの要素を返す限りは、シーケンス内の要素をバイパスします。 要素のインデックスは、述語関数のロジックで使用されます。(Enumerable により定義される。)
+System_CAPS_pubmethod	Sum<Char>(Func<Char, Decimal>)	
+オーバーロードされます。入力シーケンスの各要素に対して変換関数を呼び出して取得する Decimal 値のシーケンスの合計を計算します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Sum<Char>(Func<Char, Double>)	
+オーバーロードされます。シーケンスの合計を計算 Double 入力シーケンスの各要素に対して変換関数を呼び出すことによって取得される値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Sum<Char>(Func<Char, Int32>)	
+オーバーロードされます。シーケンスの合計を計算 Int32 入力シーケンスの各要素に対して変換関数を呼び出すことによって取得される値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Sum<Char>(Func<Char, Int64>)	
+オーバーロードされます。入力シーケンスの各要素に対して変換関数を呼び出して取得する Int64 値のシーケンスの合計を計算します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Sum<Char>(Func<Char, Nullable<Decimal>>)	
+オーバーロードされます。Null 許容型のシーケンスの合計を計算 Decimal 入力シーケンスの各要素に対して変換関数を呼び出すことによって取得される値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Sum<Char>(Func<Char, Nullable<Double>>)	
+オーバーロードされます。入力シーケンスの各要素に対して変換関数を呼び出して取得する null 許容の Double 値のシーケンスの合計を計算します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Sum<Char>(Func<Char, Nullable<Int32>>)	
+オーバーロードされます。Null 許容型のシーケンスの合計を計算 Int32 入力シーケンスの各要素に対して変換関数を呼び出すことによって取得される値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Sum<Char>(Func<Char, Nullable<Int64>>)	
+オーバーロードされます。入力シーケンスの各要素に対して変換関数を呼び出して取得する null 許容の Int64 値のシーケンスの合計を計算します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Sum<Char>(Func<Char, Nullable<Single>>)	
+オーバーロードされます。Null 許容型のシーケンスの合計を計算 Single 入力シーケンスの各要素に対して変換関数を呼び出すことによって取得される値。(Enumerable により定義される。)
+System_CAPS_pubmethod	Sum<Char>(Func<Char, Single>)	
+オーバーロードされます。入力シーケンスの各要素に対して変換関数を呼び出して取得する Single 値のシーケンスの合計を計算します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Take<Char>(Int32)	
+シーケンスの先頭から、指定された数の連続する要素を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	TakeWhile<Char>(Func<Char, Boolean>)	
+オーバーロードされます。指定された条件が true の場合に限り、シーケンスから要素を返します。(Enumerable により定義される。)
+System_CAPS_pubmethod	TakeWhile<Char>(Func<Char, Int32, Boolean>)	
+オーバーロードされます。指定された条件が true の場合に限り、シーケンスから要素を返します。 要素のインデックスは、述語関数のロジックで使用されます。(Enumerable により定義される。)
+System_CAPS_pubmethod	ToArray<Char>()	
+配列を作成、 IEnumerable<T>です。(Enumerable により定義される。)
+System_CAPS_pubmethod	ToDictionary<Char, TKey>(Func<Char, TKey>)	
+オーバーロードされます。指定されたキー セレクター関数に従って、IEnumerable<T> から Dictionary<TKey, TValue> を作成します。(Enumerable により定義される。)
+System_CAPS_pubmethod	ToDictionary<Char, TKey>(Func<Char, TKey>, IEqualityComparer<TKey>)	
+オーバーロードされます。作成、 Dictionary<TKey, TValue> から、 IEnumerable<T> 指定されたキー セレクター関数およびキーの比較子に従ってします。(Enumerable により定義される。)
+System_CAPS_pubmethod	ToDictionary<Char, TKey, TElement>(Func<Char, TKey>, Func<Char, TElement>)	
+オーバーロードされます。作成、 Dictionary<TKey, TValue> から、 IEnumerable<T> 指定されたキー セレクター関数および要素セレクター関数に従ってします。(Enumerable により定義される。)
+System_CAPS_pubmethod	ToDictionary<Char, TKey, TElement>(Func<Char, TKey>, Func<Char, TElement>, IEqualityComparer<TKey>)	
+オーバーロードされます。作成、 Dictionary<TKey, TValue> から、 IEnumerable<T> 指定されたキー セレクター関数、比較演算子、および要素セレクター関数に従ってします。(Enumerable により定義される。)
+System_CAPS_pubmethod	ToList<Char>()	
+作成、 List<T> から、 IEnumerable<T>です。(Enumerable により定義される。)
+System_CAPS_pubmethod	ToLookup<Char, TKey>(Func<Char, TKey>)	
+オーバーロードされます。作成、 Lookup<TKey, TElement> から、 IEnumerable<T> 指定されたキー セレクター関数に従ってします。(Enumerable により定義される。)
+System_CAPS_pubmethod	ToLookup<Char, TKey>(Func<Char, TKey>, IEqualityComparer<TKey>)	
+オーバーロードされます。作成、 Lookup<TKey, TElement> から、 IEnumerable<T> 指定されたキー セレクター関数およびキーの比較子に従ってします。(Enumerable により定義される。)
+System_CAPS_pubmethod	ToLookup<Char, TKey, TElement>(Func<Char, TKey>, Func<Char, TElement>)	
+オーバーロードされます。指定されたキー セレクター関数および要素セレクター関数に従って、IEnumerable<T> から Lookup<TKey, TElement> を作成します。(Enumerable により定義される。)
+System_CAPS_pubmethod	ToLookup<Char, TKey, TElement>(Func<Char, TKey>, Func<Char, TElement>, IEqualityComparer<TKey>)	
+オーバーロードされます。作成、 Lookup<TKey, TElement> から、 IEnumerable<T> 指定されたキー セレクター関数、比較演算子、および要素セレクター関数に従ってします。(Enumerable により定義される。)
+System_CAPS_pubmethod	Union<Char>(IEnumerable<Char>)	
+オーバーロードされます。既定の等値比較子を使用して、2 つのシーケンスの和集合を生成します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Union<Char>(IEnumerable<Char>, IEqualityComparer<Char>)	
+オーバーロードされます。指定された IEqualityComparer<T> を使用して 2 つのシーケンスの和集合を生成します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Where<Char>(Func<Char, Boolean>)	
+オーバーロードされます。述語に基づいて値のシーケンスをフィルター処理します。(Enumerable により定義される。)
+System_CAPS_pubmethod	Where<Char>(Func<Char, Int32, Boolean>)	
+オーバーロードされます。述語に基づいて値のシーケンスをフィルター処理します。各要素のインデックスは、述語関数のロジックで使用されます。(Enumerable により定義される。)
+System_CAPS_pubmethod	Zip<Char, TSecond, TResult>(IEnumerable<TSecond>, Func<Char, TSecond, TResult>)	
+指定された関数を結果のシーケンスを生成する 2 つのシーケンスに対応する要素に適用します。(Enumerable により定義される。)
+解説

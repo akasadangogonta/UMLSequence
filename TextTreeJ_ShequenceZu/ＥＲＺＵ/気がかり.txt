@@ -1,0 +1,3 @@
+CreateObj内のｽｸﾘﾌﾟﾄがきたない
+CerateObjに色んな昨日入れすぎ、分割すべき
+AnimSupportを使いやすくしたい。

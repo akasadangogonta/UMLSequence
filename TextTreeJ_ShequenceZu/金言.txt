@@ -1,0 +1,8 @@
+gridSizeInnerValueを大きくすると動きが細かくなる
+gridSizeInnerValueを小さくすると動きがおおざっぱになる
+
+CanvasでRayはブロックできる、だけどブロックしたいCanvasに設定するじゃなくて、ブロックされるCanvasに設定する
+
+値が大きい　=　色が薄い
+
+public struct 中身の初期化代入はstaticじゃないとできない
