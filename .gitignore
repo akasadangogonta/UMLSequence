@@ -1,3 +1,4 @@
-/Library
-/*.csproj
-/ProjectSettings
+/SequenceZu/Assembly-CSharp-vs.csproj
+/SequenceZu/Assembly-CSharp.csproj
+/SequenceZu/ProjectSettings
+/SequenceZu/Library
