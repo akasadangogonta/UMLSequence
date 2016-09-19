@@ -77,11 +77,11 @@ public class MouseWheel : MonoBehaviour
 
 		if (mouseAxis > rollActAchieveValue) 
 		{
-			wheelDirect = WheelDirect.Back;
+			wheelDirect = WheelDirect.ThisSide;
 		}
 		else if (mouseAxis < -rollActAchieveValue)
 		{
-			wheelDirect = WheelDirect.ThisSide;
+			wheelDirect = WheelDirect.Back;
 		}
 
 		mouseAxis = preMouseAxis;
