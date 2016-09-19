@@ -8,6 +8,8 @@ public class CreateEditorWindow : MonoBehaviour
 {
 	public GameObject instanceEditorWindow;
 	public GameObject InnerCircle;
+
+	[System.NonSerialized]
 	public GameObject instanceTargetObj;
 
 	[System.NonSerialized]
@@ -41,7 +43,6 @@ public class CreateEditorWindow : MonoBehaviour
 				item.interactable = false;
 			}
 
-
 			var itemRenameButton = instanceTargetObj.GetComponentsInChildren<RenameButton>();
 			foreach (var item in itemRenameButton) 
 			{
@@ -52,20 +53,24 @@ public class CreateEditorWindow : MonoBehaviour
 			{
 				Destroy(item);
 			}
-			/*
-			var itemEventTrigger = instanceTargetObj.GetComponentsInChildren<EventTrigger>();
-			foreach (var item in itemEventTrigger) 
-			{
-				//Destroy(item);
-			}
-			*/
 
-			instanceTargetObj.AddComponent<EditorTagetControllOnFrame>();
+			instanceTargetObj.AddComponent<EditorTargetControllOnFrame>();
 
 			instanceEditorWindow.GetComponent<EditorWindowControll>().SetData
-				(data, instanceTargetObj.GetComponent<EditorTagetControllOnFrame>());
+				(data, instanceTargetObj.GetComponent<EditorTargetControllOnFrame>());
+			break;
+		case ObjType.Triangle:
+		case ObjType.TriangleWire:
+			Destroy(instanceTargetObj.GetComponent<TriangleObj>());
+
+			instanceTargetObj.AddComponent<EditorTargetControllOnTriangle>();
+			
+			instanceEditorWindow.GetComponent<EditorWindowControll>().SetData
+				(data, instanceTargetObj.GetComponent<EditorTargetControllOnTriangle>());
 			break;
 		}
+
+		GeneralController.instance.SetCurtain (true);
 	}
 
 	public void HideEditorWindow()
@@ -74,5 +79,7 @@ public class CreateEditorWindow : MonoBehaviour
 		Destroy (instanceTargetObj);
 
 		BaseObj.SetMouseEvent (MouseEvent.None);
+
+		GeneralController.instance.SetCurtain (false);
 	}
 }

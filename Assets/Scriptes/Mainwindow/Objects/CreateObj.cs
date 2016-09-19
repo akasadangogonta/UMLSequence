@@ -57,7 +57,7 @@ public class CreateObj : MonoBehaviour  {
 
 	public void _GetInstanceGameObjectFromObjectData(ObjectsData data)
 	{
-		foreach (var item in GeneralController.instance.GetComponent<CreateObj>().instanceCreateObjects)
+		foreach (var item in GeneralController.instanceThisGameObject.GetComponent<CreateObj>().instanceCreateObjects)
 		{
 			targetObjType =  item.GetComponent<ButtonTranspoter>().type;
 			Debug.Log ("searching object type == " + targetObjType);

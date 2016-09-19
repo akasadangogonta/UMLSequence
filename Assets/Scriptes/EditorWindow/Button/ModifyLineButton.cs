@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -42,9 +42,9 @@ public class ModifyLineButton : AutoAddEventTrigger
 		}
 	}
 
-	public void SetData(EditorTargetControllBase baseObj, LineEditButtonModify ChangePos)
+	public void SetData(EditorTargetControllBase targetObj, LineEditButtonModify ChangePos = null)
 	{
-		this.targetObj = baseObj;
+		this.targetObj = targetObj;
 		this.ChangePos = ChangePos;
 	}
 	
@@ -53,7 +53,7 @@ public class ModifyLineButton : AutoAddEventTrigger
 		Debug.Log ("linbaBaseObj.type = " + targetObj.type);
 		if (targetObj.type == ObjType.Frame) 
 		{
-			EditorTagetControllOnFrame obj = targetObj.gameObject.GetComponent<EditorTagetControllOnFrame>();
+			EditorTargetControllOnFrame obj = targetObj.gameObject.GetComponent<EditorTargetControllOnFrame>();
 
 			if(action == EditorAct.Add)
 			{

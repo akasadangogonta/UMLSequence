@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -17,6 +18,11 @@ public class EditorWindowControll : MonoBehaviour {
 
 	public ColorButton[] colorButton;
 	public GameObject[] colorArrowIcon;
+
+	public AngleButton[] angleButton;
+	public Text angleText;
+	public GameObject colorPointersForAngle;
+	public GameObject fluctButtonsForAngle;
 
 	private BaseObj originObj;
 	private EditorTargetControllBase targetObj;
@@ -39,6 +45,7 @@ public class EditorWindowControll : MonoBehaviour {
 	public void SetData(BaseObj originObj, EditorTargetControllBase targetObj)
 	{
 		this.targetObj = targetObj;
+		this.originObj = originObj;
 		targetObj.SetData (originObj, PartsOfFrameObj);
 		targetObj.SetCallback (CollorArrowPointerChangePos);
 
@@ -56,9 +63,13 @@ public class EditorWindowControll : MonoBehaviour {
 			item.SetData(targetObj, LineEditButtonChangePos);
 		}
 
-		ReseLineEditButtonPos ();
+		foreach (var item in angleButton) 
+		{
+			item.SetData(targetObj, AngleChange);
+		}
 
-		print ("いがああああ linNum = " + originObj.lineNum);
+		ReseLineEditButtonPos ();
+		InitializeAngle ();
 
 		if (originObj.type == ObjType.Frame && originObj.lineNum != defaultLineNum)
 		{
@@ -120,5 +131,62 @@ public class EditorWindowControll : MonoBehaviour {
 	{
 		colorArrowIcon [0].transform.localPosition = leftPos;
 		colorArrowIcon [1].transform.localPosition = rightPos;
+	}
+
+	private void InitializeAngle()
+	{
+		System.Action<GameObject> InitializeRotateZ = (target) =>
+		{
+			var angle = target.transform.rotation.eulerAngles;
+			angle.z = 0;
+			target.transform.rotation = Quaternion.Euler(angle);
+		};
+
+		InitializeRotateZ (colorPointersForAngle);
+		InitializeRotateZ (fluctButtonsForAngle);
+
+		var angles = targetObj.transform.rotation.eulerAngles;
+		float adjustAngleZ = Mathf.Floor (angles.z * 10) / 10;
+
+		AngleChange (adjustAngleZ);
+	}
+
+	private void AngleChange(float value)
+	{
+		System.Action<GameObject> ActRotateZ = (target) =>
+		{
+            var angles = target.transform.rotation.eulerAngles;
+		
+			angles.z = value;
+			target.transform.rotation = Quaternion.Euler(angles);
+		};
+
+		switch(originObj.type)
+		{
+		case ObjType.Frame:
+
+			ActRotateZ(colorPointersForAngle);
+			ActRotateZ(fluctButtonsForAngle);
+			ActRotateZ(originObj.gameObject);
+			ActRotateZ(targetObj.gameObject);
+
+			break;
+		case ObjType.Triangle:
+		case ObjType.TriangleWire:
+		case ObjType.Text:
+			ActRotateZ(originObj.gameObject);
+			ActRotateZ(targetObj.gameObject);
+
+			break;
+		}
+
+		if (value >= 360) 
+		{
+			value -= 360;
+		} else if (value < 0) 
+		{
+			value += 360;
+		}
+		angleText.text = value.ToString() + "°";
 	}
 }
