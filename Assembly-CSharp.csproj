@@ -48,6 +48,9 @@
   <ItemGroup>
      <Compile Include="Assets\Scriptes\Common\AnimSupport.cs" />
      <Compile Include="Assets\Scriptes\Common\AutoAddEventTrigger.cs" />
+     <Compile Include="Assets\Scriptes\Common\ButtonSendEventParent.cs" />
+     <Compile Include="Assets\Scriptes\Common\EditMethods\EditFrameMethods.cs" />
+     <Compile Include="Assets\Scriptes\Common\GlobalConfig.cs" />
      <Compile Include="Assets\Scriptes\EditorWindow\Button\ColorButton.cs" />
      <Compile Include="Assets\Scriptes\EditorWindow\Button\HideEditor.cs" />
      <Compile Include="Assets\Scriptes\EditorWindow\Button\ModifyLineButton.cs" />
