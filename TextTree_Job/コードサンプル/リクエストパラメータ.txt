@@ -1,0 +1,7 @@
+  public void ExecCmd(int addHorseNum)
+  {
+    base.Init ();
+    base.SetIntParam( "add_horse_num", addHorseNum);
+    base.Exec ();
+  }
+  

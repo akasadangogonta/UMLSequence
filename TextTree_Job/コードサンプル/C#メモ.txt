@@ -1,0 +1,24 @@
+配列の長さを求めるにはLength
+
+int num = new int[5];
+print(num.Length);
+
+  出力　5
+
+
+error CS1656
+foreachじゃなくてforを使ってみなさい.]。。。。
+
+//igarashi
+RaceData.ConditionCategory = 8;
+RaceData.ConditionType = 2;
+RaceData.ConditionValue = new int[1]{1833};
+
+108行目　MultiConfirm
+
+0.9640719
+
+Assets/GameScenes/Farm/Scripts/OverallList.cs(831,25): error CS1525: Unexpected symbol `<internal>'
+全角
+
+evolution

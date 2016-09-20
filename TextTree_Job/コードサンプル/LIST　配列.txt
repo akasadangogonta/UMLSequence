@@ -1,0 +1,42 @@
+//配列→List
+string[] stringArray = new string[] {"test1", "test2"};
+
+List<string> stringList = new List<string>();
+stringList.AddRange(stringArray);
+
+//List→配列
+List<string> stringList = new List<string>(){"test1", "test2"};
+
+string[] stringArray = stringList.ToArray();
+
+配列の長さを求めるにはLength
+int num = new int[5];
+print(num.Length);
+  出力　5
+
+error CS1656
+foreachじゃなくてforを使ってみなさい.]。。。。
+
+
+SortWindow.OK()
+HorseListManageBase.SortList(index = 0)
+SortWIndowPlayCloseAnime
+
+
+
+    for (int i = 0; i < flags.Count; ++i) {
+      flags[i] = true;
+      buttons[i].btn.GetComponent<UIButtonSupport>().normalColor = Color.gray;
+    }
+
+        TurnOnAllButtons(horseFilterFlags[3], skillBtns);
+
+
+
+isRunnableHorse = Array.ConvertAll(teamHorses, inData => true);
+
+
+
+
+TreasureAnim.cs
+50行目StartAnim

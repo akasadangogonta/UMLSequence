@@ -1,0 +1,9 @@
+MonoDevelopを起動する
+[Tools]メニュー>[Options]を選択
+Optionsウィンドウの左から[Text Editor]>[General]を選択
+[Coding]欄の[Line ending conversion:]欄を[Always convert line endings]に変更
+[OK]で閉じる
+
+
+
+

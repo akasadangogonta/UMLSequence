@@ -1,0 +1,124 @@
+StartUpの登録の仕方
+＞%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+
+
+・apkの端末へのインストール
+
+AndroidSudioが入っているフォルダのtools
+(AppData/Local/Android/sdk/tools）に飛んで
+instal.batをクリック
+すると同フォルダにあるUntitled.apkが端末にインストールされる
+
+install.batの中
+adb install -r Untitled.apk
+pause
+
+
+・SKDマネージャーの起動
+toolsフォルダのandroid.batをダブルクリック
+
+
+・Google　USB　Driverのｲﾝｽﾄｰﾙ
+SDKマネージャーでダウンロード
+Google USB Driverは、SDK Managerを利用してインストールすることができますが、
+この方法の場合、”Android Support Library”をアップデートしないと、SDK Managerの一覧から”Google USB Driver”がリストアップされないことがあります。
+
+・Google USB Driverを使ってドライバの更新
+USBデバッグをオンにしてある*1Nexus 5をPCにつないだ状態で、スタート>コンピューターを右クリック>プロパティ>デバイスマネージャをクリック。
+対象のドライバの上で「右クリック>ドライバーソフトウェアの更新」をクリック。
+「コンピューターを参照してドライバー ソフトウェアを検索します」をクリック。
+C:\Users\cyclone-staff\AppData\Local\Android\android-sdk\extras\google\usb_driverを選択
+
+
+
+デバイスマネージャから確認する方法
+
+デバイスマネージャからデバイスのプロパティを開く
+「詳細」タブ→プロパティ「ハードウェアID」を選択
+値の「～VID_XXXX&PID_XXXX～」部分がベンダ ID とプロダクト ID
+
+USB\VID_04DD&PID_9849&REV_0232&MI_01
+USB\VID_04DD&PID_9849&MI_01
+
+Android SDK インストール先の
+
+.\extras\google\usb_driver\android_winusb.inf
+
+をテキストエディタで開き、[Google.NTx86] と [Google.NTamd64] のうち適切なセクションに以下の形式で追記します。
+
+
+
+android_winusb.inf編集
+
+PCと端末をUSBで接続した際、USBが認識されない場合に、android\winusb.infファイルを編集し、ドライバを更新する方法を解説します。 ここではXperia SO-01Bのドライバを例に。
+
+※HTC Desire HD（001HT）は、HTC Syncを使うとよいみたい。
+
+デバイスマネージャーを開き、「！マーク」がついている不明なデバイスを右クリックし、プロパティを選択します。
+
+デバイスマネージャー
+デバイスマネージャー
+ハードウェアIDを調べる
+プロパティの「詳細」タブを開き、プロパティの「ハードウェアID」を[Ctrl]+Cでコピーします。
+
+Xperiaの場合
+Xperiaの場合
+android_winusb.infに追加
+Android SDKインストールディレクトリ/extras/google/usb_driver内にある「android_winusb.inf」をテキストエディタなどで開きます。
+
+例）C:\android-sdk-windows\extras\google\usb_driver
+
+android_winusb.inf
+android_winusb.inf
+[Google.NTx86]と[Google.NTamd64]のところに、先ほどコピーしたハードウェアIDを下記のように追加します。
+
+android_winusb.inf
+[Google.NTx86]
+; HTC Dream
+%SingleAdbInterface%        = USB_Install, USB\VID_0BB4&PID_0C01
+%CompositeAdbInterface%     = USB_Install, USB\VID_0BB4&PID_0C02&MI_01
+%SingleBootLoaderInterface% = USB_Install, USB\VID_0BB4&PID_0FFF
+;
+・・・略・・・
+;
+;Xperia 
+%SingleAdbInterface%        = USB_Install, USB\VID_0FCE&PID_212E&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_0FCE&PID_212E&REV_0224&MI_01
+;
+
+[Google.NTamd64]
+; HTC Dream
+%SingleAdbInterface%        = USB_Install, USB\VID_0BB4&PID_0C01
+%CompositeAdbInterface%     = USB_Install, USB\VID_0BB4&PID_0C02&MI_01
+%SingleBootLoaderInterface% = USB_Install, USB\VID_0BB4&PID_0FFF
+;
+・・・略・・・
+;
+;Xperia 
+%SingleAdbInterface%        = USB_Install, USB\VID_0FCE&PID_212E&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_0FCE&PID_212E&REV_0224&MI_01
+;
+USB\VID_04DD&PID_9849&REV_0232&MI_01
+USB\VID_04DD&PID_9849&MI_01
+
+
+
+
+
+・Grepの使い方
+サクラエディタを開く
+metaデータをドラッグアンドドロップする
+GUIDをコピーしGrepで検索する
+
+
+MultiLobby
+parent -296
+
+280
+
+-254
+reserachButton
+-133
+
+scroll
+220

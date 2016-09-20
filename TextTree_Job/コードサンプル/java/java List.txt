@@ -1,0 +1,16 @@
+LinkedList<String> array = new LinkedList<String>();
+
+array.add("日本");
+array.add("ブラジル");
+array.add("イングランド");
+
+array.add(1, "ポルトガル");
+
+String country = array.get(2);
+
+intはintegerね
+
+list.count じゃなく　list.Size()        if(notificatinList == null) 
+        {
+            initNotificationList();
+        }

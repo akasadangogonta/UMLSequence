@@ -1,0 +1,11 @@
+t
+
+ask jarTare(type: Jar) {
+    baseName = 'Tare'
+    from sourceSets.main.output
+    exclude('jp/ne/hatena/d/samples/shell/**')
+}
+
+
+
+

@@ -1,0 +1,26 @@
+public void TouchTicketRaceShop()
+{
+LoadingManager.Instance.Pause();
+LoadingManager.Instance.Play(true);
+NwCmdTicketRaceShop cmdTicketRaceShop = NetworkManager.Instance.GetCmd<NwCmdTicketRaceShop>();
+
+cmdTicketRaceShop.SetCallBack
+( 
+()=> 
+{
+	InTicketRaceShop(); 
+},
+(err) =>
+{
+	LoadingManager.Instance.Pause();
+	switch( err )
+	{
+	default :
+		AssertManager.Instance.SetConnectFailed( cmdTicketRaceShop );
+		break;
+	}
+}
+);
+
+cmdTicketRaceShop.ExecCmd();
+}

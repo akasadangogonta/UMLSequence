@@ -1,0 +1,29 @@
+TitleBoardManager.Instance.AddCallback( BackToMultiSelect );
+
+    TitleBoardManager.Instance.AddCallback( () => StartCoroutine( this.ChangePhase( NotifyPhase.List )));
+
+    TitleBoardManager.Instance.AddCallback( this.ReturnSelectMultiHorses );      TitleBoardManager.Instance.AddCallback( ()=>{ StartCoroutine( ChangePhase(EnhancePhase.Confirm) ); } );
+
+
+
+      TitleBoardManager.Instance.AddCallback( BackToHostSelect );
+  public void BackToHostSelect()
+  {
+    StartCoroutine( ChangePhase( RaceMenuPhase.HostSelect ) );
+  }
+
+  public void BackToMultiSelect()
+  {
+    MultiLobbyStatus.LatlonStop();
+#if !OLD_MULTI
+    PhotonNetwork.Disconnect();
+#else
+    MultiplayPlugin.Finish(false);
+#endif
+    StartCoroutine( ChangePhase( RaceMenuPhase.MultiSelect ) );
+  }
+
+
+     //TitleBoardManager.Instance.AddCallback( this.TouchBack ) ;
+   // TitleBoardManager.Instance.AddCallback( this.TouchBack ) ;
+  // Out();

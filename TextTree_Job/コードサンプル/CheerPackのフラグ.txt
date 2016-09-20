@@ -1,0 +1,5 @@
+	private void ChgFlagToAlreadyBuy()
+	{
+		NetworkManager.Instance.GetCmd<NwCmdMyData>().GetData().newpack_info.ChgFlagToAlreadyBuy();
+	}
+	

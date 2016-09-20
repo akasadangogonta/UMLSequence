@@ -1,0 +1,19 @@
+要素数
+Enum.GetNames(typeof(a)).Length
+Enum.GetValues(typeof(a)).Length
+
+		print("いがああああeeeee" + Enum.GetNames(typeof(FlagEvolution)).Length);
+
+	if ( (int)flag < 0 || (int)flag >= Enum.GetNames(typeof(FlagEvolution)).Length )
+	{
+		return;
+	}
+
+
+
+Photonhandler    protected void OnApplicationQuit()
+    {
+        PhotonHandler.AppQuits = true;
+        PhotonHandler.StopFallbackSendAckThread();
+       // PhotonNetwork.Disconnect();
+    }

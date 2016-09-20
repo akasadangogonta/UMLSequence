@@ -1,0 +1,6 @@
+    mailUrl = System.Uri.EscapeDataString(mailUrl); // EscapeURLは" "が"+"に化けるので、こちらをつかう
+
+
+    message = message.Replace("&", "%26");
+    message = new System.Uri( message ).AbsoluteUri;
+    return message;

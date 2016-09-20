@@ -1,0 +1,7 @@
+        for(int targetId: notificatinList)
+        {
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, targetId, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+            AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            am.cancel(pendingIntent);
+        }

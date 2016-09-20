@@ -1,0 +1,1 @@
+		UserDataManager.Instance.UpdateRecoveryTime(100);

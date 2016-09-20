@@ -1,0 +1,2 @@
+string.Format( TextManager.GetText( "farm/evolution/overallList/Ability" ), sellCoin);
+TextManager.GetText( "farm/evolution/overallList/Ability" ),

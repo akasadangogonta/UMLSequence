@@ -1,0 +1,13 @@
+    while( !MenuBase.IsFinished ) yield return 0;
+    yield return 0;
+
+
+    //FadeControl.Instance.FadeStart( FadeType.Out, Color.black);
+    //while( FadeControl.Instance.IsFade ) yield return 0;
+
+    //UIManager.instance.LockInput();
+
+
+            StartCoroutine(inviteMultiRoom.GoInvitedRoomForSuspend());
+
+

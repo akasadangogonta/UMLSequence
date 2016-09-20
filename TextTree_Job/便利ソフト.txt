@@ -1,0 +1,68 @@
+Clibor
+FastSroneCapture
+
+
+実装してスクリーンショットを撮ってみます。少々お待ちください。
+
+
+村井さん
+
+お疲れ様です、実装しようとして途中で思い直したのですが、枠拡張の文言を削るとなりますと
+「所有ホース 購入ページ」「進化アイテム 購入ページ」「フレンド 購入ページ」
+となり誤解を招く可能性があるように思います。
+
+また先ほど大竹の方と話しをしまして、所有ホースと進化アイテムのボードの100個拡張のそれぞれの文言がアイコンにかぶっていますので、修正の必要があるのではないかという話になりました。
+簡単にできる解決策としては、文字の長さに応じて必要な分だけ横幅を圧縮する方法があります（結果的にタイトルと同じように見難くなる可能性もあります）。
+
+こちら問題ないということでしたらボードはの方はこのままにするつもりです。または何か他の提案がありましたらご指示お願いします。
+
+再度お手数ですが上記二点についてご返信よろしくお願い致します。
+
+
+>>村井さん
+了解しました、それではとりあえず文字の横幅を圧縮する方向で実装してみます。
+後ほどスクリーンショットも撮りますのでよろしくお願いします。
+
+
+
+  public void SetTitleText( string format = "", bool isTextManager = true )
+  {
+
+	if( !isTextManager )
+    {
+	  this.titleName.Text = format;
+
+	  float validWidth = Camera.main.pixelWidth * 0.600f;
+	  if(backBtn.gameObject.activeSelf){
+		validWidth = Camera.main.pixelWidth * 0.490f;		// ボタンがあるときはもう少し狭く
+	  }
+	  titleName.AdjustScaleX( validWidth );
+      return;
+    }
+    if( !string.IsNullOrEmpty( format ))
+    {
+      string message = TextManager.GetText( format, TextType.TitleBoard );
+      if( !string.IsNullOrEmpty( message ) )
+      {
+        this.titleName.Text = message;
+
+		
+		float validWidth = 0;
+		if(backBtn.gameObject.activeSelf)
+		{
+			validWidth = Camera.main.pixelWidth * 0.400f;//0.490f;		// ボタンがあるときは少し狭く
+		}else
+		{
+			validWidth = Camera.main.pixelWidth * 0.600f;//0.300f;
+		}
+
+		titleName.AdjustScaleX( validWidth );
+      }
+    }
+    else
+    {
+      this.titleName.Text = "";
+    }
+  }
+
+んんんんんなんじゃこりゃ面倒くせえ

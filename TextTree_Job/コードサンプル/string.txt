@@ -1,0 +1,349 @@
+
+指定文字列の削除
+string before = "あいうえお";
+string after = before.Replace("うえ", "");
+
+
+
+
+
+名前	説明
+System_CAPS_pubmethod	Clone()	
+この String インスタンスへの参照を返します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Compare(String, Int32, String, Int32, Int32)	
+指定した 2 つの String オブジェクトの部分文字列を比較し、それらの相対位置を並べ替え順序で示す整数を返します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Compare(String, Int32, String, Int32, Int32, Boolean)	
+指定した 2 つの String オブジェクトの部分文字列を比較し、並べ替え順序におけるそれらの相対位置を示す整数を返します。比較時に、大文字と小文字を区別するかどうかを設定できます。
+
+System_CAPS_pubmethodSystem_CAPS_static	Compare(String, Int32, String, Int32, Int32, Boolean, CultureInfo)	
+指定した 2 つの String オブジェクトの部分文字列を比較し、並べ替え順序におけるそれらの相対位置を示す整数を返します。比較時に、大文字と小文字を区別するかどうかを指定し、比較に影響を及ぼすカルチャ固有の情報を使用します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Compare(String, Int32, String, Int32, Int32, CultureInfo, CompareOptions)	
+指定した 2 つの String オブジェクトの部分文字列を比較し、2 つの部分文字列の互いのリレーションシップを並べ替え順序で示す整数を返します。比較時に、指定した比較オプションと、比較に影響を及ぼすカルチャ固有の情報を使用します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Compare(String, Int32, String, Int32, Int32, StringComparison)	
+指定した規則を使用して、指定した 2 つの String オブジェクトの部分文字列を比較し、並べ替え順序におけるそれらの相対位置を示す整数を返します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Compare(String, String)
+指定した 2 つの String オブジェクトを比較し、それらの相対位置を並べ替え順序で示す整数を返します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Compare(String, String, Boolean)	
+指定した 2 つの String オブジェクトを比較し、並べ替え順序におけるそれらの相対位置を示す整数を返します。比較時に、大文字と小文字を区別するかどうかを設定できます。
+
+System_CAPS_pubmethodSystem_CAPS_static	Compare(String, String, Boolean, CultureInfo)	
+指定した 2 つの String オブジェクトを比較し、並べ替え順序におけるそれらの相対位置を示す整数を返します。比較時に、大文字と小文字を区別するかどうかを指定し、比較に影響を及ぼすカルチャ固有の情報を使用します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Compare(String, String, CultureInfo, CompareOptions)	
+指定した 2 つの String オブジェクトを比較し、2 つの文字列の互いのリレーションシップを並べ替え順序で示す整数を返します。比較時に、指定した比較オプションと、比較に影響を及ぼすカルチャ固有の情報を使用します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Compare(String, String, StringComparison)	
+指定した規則を使用して、指定した 2 つの String オブジェクトを比較し、並べ替え順序におけるそれらの相対位置を示す整数を返します。
+
+System_CAPS_pubmethodSystem_CAPS_static	CompareOrdinal(String, Int32, String, Int32, Int32)	
+それぞれの部分文字列の対応する Char オブジェクトの数値を評価することにより、指定した 2 つの String オブジェクトの部分文字列を比較します。
+
+System_CAPS_pubmethodSystem_CAPS_static	CompareOrdinal(String, String)	
+それぞれの文字列の対応する String オブジェクトの数値を評価することで、指定した 2 つの Char を比較します。
+
+System_CAPS_pubmethod	CompareTo(Object)	
+このインスタンスと指定した Object とを比較し、並べ替え順序において、このインスタンスの位置が指定した Object の前、後ろ、または同じのいずれであるかを示します。
+
+System_CAPS_pubmethod	CompareTo(String)	
+このインスタンスと指定した String オブジェクトとを比較し、並べ替え順序において、このインスタンスの位置が指定した文字列の前、後ろ、または同じのいずれであるかを示します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Concat(IEnumerable<String>)	
+IEnumerable<T> 型の構築された String コレクションのメンバーを連結します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Concat(Object)	
+指定されたオブジェクトの文字列形式を作成します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Concat(Object, Object)
+指定した 2 つのオブジェクトの文字列形式を連結します。
+
+Concat(Object, Object, Object)	
+指定した 3 つのオブジェクトの文字列形式を連結します。
+
+Concat(Object, Object, Object, Object)	
+4 つの指定したオブジェクトと、オプションの可変長パラメーター リストで指定した任意のオブジェクトの文字列表現を連結します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Concat(Object[])	
+指定された Object 配列の要素の文字列表記を連結します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Concat(String, String)
+指定した 2 つの String インスタンスを連結します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Concat(String, String, String)	
+String の指定した 3 つのインスタンスを連結します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Concat(String, String, String, String)	
+指定した 4 つの String インスタンスを連結します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Concat(String[])	
+指定した String 配列の要素を連結します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Concat<T>(IEnumerable<T>)	
+IEnumerable<T> 実装のメンバーを連結します。
+
+System_CAPS_pubmethod	Contains(String)	
+指定した部分文字列がこの文字列内に存在するかどうかを示す値を返します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Copy(String)	
+指定した String と同じ値を使用して、String の新しいインスタンスを作成します。
+
+System_CAPS_pubmethod	CopyTo(Int32, Char[], Int32, Int32)	
+このインスタンスの指定位置から指定した数の文字を、Unicode 文字の配列内の指定位置へコピーします。
+
+System_CAPS_pubmethod	EndsWith(String)	
+この文字列インスタンスの末尾が、指定した文字列と一致するかどうかを判断します。
+
+System_CAPS_pubmethod	EndsWith(String, Boolean, CultureInfo)	
+指定されたカルチャを使って比較した場合に、この文字列インスタンスの末尾が、指定された文字列と一致するかどうかを判断します。
+
+System_CAPS_pubmethod	EndsWith(String, StringComparison)	
+指定された比較オプションを使って比較した場合に、この文字列インスタンスの末尾が、指定された文字列と一致するかどうかを判断します。
+
+System_CAPS_pubmethod	Equals(Object)	
+このインスタンスと、指定したオブジェクトの値が同一かどうかを判断します。String オブジェクトを指定する必要があります。(Object.Equals(Object) をオーバーライドする。)
+
+System_CAPS_pubmethod	Equals(String)	
+このインスタンスと、指定した別の String の値が同一かどうかを判断します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Equals(String, String)
+指定した 2 つの String オブジェクトの値が同一かどうかを判断します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Equals(String, String, StringComparison)	
+指定した 2 つの String オブジェクトの値が同一かどうかを判断します。 比較に使用するカルチャ、大文字と小文字の区別、および、並べ替え規則をパラメーターで指定します。
+
+System_CAPS_pubmethod	Equals(String, StringComparison)	
+この文字列と、指定した String オブジェクトの値が同一かどうかを判断します。 比較に使用するカルチャ、大文字と小文字の区別、および、並べ替え規則をパラメーターで指定します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Format(IFormatProvider, String, Object)	
+指定した文字列の 1 つまたは複数の書式項目を、対応するオブジェクトの文字列形式に置換します。 パラメーターにより、カルチャに固有の書式情報が指定されます。
+
+System_CAPS_pubmethodSystem_CAPS_static	Format(IFormatProvider, String, Object, Object)	
+指定した文字列の書式項目を、指定した 2 つのオブジェクトの文字列形式に置換します。 パラメーターは、カルチャ固有の書式情報を指定します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Format(IFormatProvider, String, Object, Object, Object)	
+指定した文字列の書式項目を、指定した 3 つのオブジェクトの文字列形式に置換します。 パラメーターにより、カルチャに固有の書式設定情報を指定します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Format(IFormatProvider, String, Object[])	
+指定した文字列の書式項目を、指定した配列内の対応するオブジェクトの文字列表記に置換します。 パラメーターにより、カルチャ固有の書式情報が指定されます。
+
+System_CAPS_pubmethodSystem_CAPS_static	Format(String, Object)
+指定された文字列の 1 つ以上の書式項目を、指定されたオブジェクトの文字列表記に置換します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Format(String, Object, Object)	
+指定した文字列の書式項目を、指定した 2 つのオブジェクトの文字列形式に置換します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Format(String, Object, Object, Object)	
+指定した文字列の書式項目を、指定した 3 つのオブジェクトの文字列形式に置換します。
+
+System_CAPS_pubmethodSystem_CAPS_static	Format(String, Object[])
+指定した文字列の書式項目を、指定した配列内の対応するオブジェクトの文字列形式に置換します。
+
+System_CAPS_pubmethod	GetEnumerator()	
+この文字列に含まれる個々の文字を反復処理するオブジェクトを取得します。
+
+System_CAPS_pubmethod	GetHashCode()	
+この文字列のハッシュ コードを返します。(Object.GetHashCode() をオーバーライドする。)
+
+System_CAPS_pubmethod	GetType()	
+現在のインスタンスの Type を取得します。(Object から継承されました。)
+
+System_CAPS_pubmethod	GetTypeCode()	
+TypeCode クラスには String を返します。
+
+System_CAPS_pubmethod	IndexOf(Char)	
+指定した Unicode 文字がこの文字列内で最初に見つかった位置の 0 から始まるインデックスをレポートします。
+
+System_CAPS_pubmethod	IndexOf(Char, Int32)	
+指定した Unicode 文字がこの文字列内で最初に見つかった位置の 0 から始まるインデックスをレポートします。 検索は、指定した文字位置から開始されます。
+
+System_CAPS_pubmethod	IndexOf(Char, Int32, Int32)	
+指定文字がこのインスタンス内で最初に見つかった位置の 0 から始まるインデックスをレポートします。 検索は指定した文字位置から開始され、指定した数の文字位置が検査されます。
+
+System_CAPS_pubmethod	IndexOf(String)	
+指定された文字列がこのインスタンス内で最初に見つかった位置の 0 から始まるインデックスをレポートします。
+
+System_CAPS_pubmethod	IndexOf(String, Int32)	
+指定された文字列がこのインスタンス内で最初に見つかった位置の 0 から始まるインデックスをレポートします。 検索は、指定した文字位置から開始されます。
+
+System_CAPS_pubmethod	IndexOf(String, Int32, Int32)	
+指定された文字列がこのインスタンス内で最初に見つかった位置の 0 から始まるインデックスをレポートします。 検索は指定した文字位置から開始され、指定した数の文字位置が検査されます。
+
+System_CAPS_pubmethod	IndexOf(String, Int32, Int32, StringComparison)	
+指定した文字列が現在の String オブジェクト内で最初に見つかった位置の 0 から始まるインデックスをレポートします。 現在の文字列での検索開始位置、現在の文字列で検索する文字の数、および指定した文字列に使用する検索の種類をパラメーターで指定します。
+
+System_CAPS_pubmethod	IndexOf(String, Int32, StringComparison)
+指定した文字列が現在の String オブジェクト内で最初に見つかった位置の 0 から始まるインデックスをレポートします。 現在の文字列内での検索の開始位置、および指定した文字列に使用する検索の種類をパラメーターで指定します。
+
+System_CAPS_pubmethod	IndexOf(String, StringComparison)	
+指定した文字列が現在の String オブジェクト内で最初に見つかった位置の 0 から始まるインデックスをレポートします。 指定した文字列に使用する検索の種類をパラメーターで指定します。
+
+System_CAPS_pubmethod	IndexOfAny(Char[])	
+Unicode 文字の指定した配列内にある文字がこのインスタンスで最初に見つかった位置の 0 から始まるインデックスをレポートします。
+
+System_CAPS_pubmethod	IndexOfAny(Char[], Int32)	
+Unicode 文字の指定した配列内にある文字がこのインスタンスで最初に見つかった位置の 0 から始まるインデックスをレポートします。 検索は、指定した文字位置から開始されます。
+
+System_CAPS_pubmethod	IndexOfAny(Char[], Int32, Int32)	
+Unicode 文字の指定した配列内にある文字がこのインスタンスで最初に見つかった位置の 0 から始まるインデックスをレポートします。 検索は指定した文字位置から開始され、指定した数の文字位置が検査されます。
+System_CAPS_pubmethod	Insert(Int32, String)	
+このインスタンス内の指定したインデックス位置に指定した文字列を挿入した、新しい文字列を返します。
+System_CAPS_pubmethodSystem_CAPS_static	Intern(String)	
+指定した String へのシステム参照を取得します。
+System_CAPS_pubmethodSystem_CAPS_static	IsInterned(String)	
+指定した String への参照を取得します。
+System_CAPS_pubmethod	IsNormalized()	
+この文字列が、Unicode 正規形 C であるかどうかを示します。
+System_CAPS_pubmethod	IsNormalized(NormalizationForm)	
+この文字列が、指定された Unicode 正規形であるかどうかを示します。
+System_CAPS_pubmethodSystem_CAPS_static	IsNullOrEmpty(String)	
+指定された文字列が null または Empty 文字列であるかどうかを示します。
+System_CAPS_pubmethodSystem_CAPS_static	IsNullOrWhiteSpace(String)	
+指定された文字列が null または空であるか、空白文字だけで構成されているかどうかを示します。
+System_CAPS_pubmethodSystem_CAPS_static	Join(String, IEnumerable<String>)	
+IEnumerable<T> 型の構築された String コレクションのメンバーを連結します。各メンバーの間には、指定した区切り記号が挿入されます。
+System_CAPS_pubmethodSystem_CAPS_static	Join(String, Object[])	
+オブジェクト配列の要素を連結します。各要素の間には、指定した区切り記号が挿入されます。
+System_CAPS_pubmethodSystem_CAPS_static	Join(String, String[])	
+文字列配列のすべての要素を連結します。各要素の間には、指定した区切り記号が挿入されます。
+System_CAPS_pubmethodSystem_CAPS_static	Join(String, String[], Int32, Int32)	
+文字列配列の指定した要素を連結します。各要素の間には、指定した区切り記号が挿入されます。
+System_CAPS_pubmethodSystem_CAPS_static	Join<T>(String, IEnumerable<T>)	
+コレクションのメンバーを連結します。各メンバーの間には、指定した区切り記号が挿入されます。
+System_CAPS_pubmethod	LastIndexOf(Char)	
+このインスタンス内で最後に出現する指定 Unicode 文字の 0 から始まるインデックス位置をレポートします。
+System_CAPS_pubmethod	LastIndexOf(Char, Int32)	
+このインスタンス内で最後に出現する指定 Unicode 文字の 0 から始まるインデックス位置をレポートします。 検索は、指定された文字位置から開始され、文字列の先頭に向かって逆方向に進みます。
+System_CAPS_pubmethod	LastIndexOf(Char, Int32, Int32)	
+このインスタンス内の部分文字列で最後に出現する指定 Unicode 文字の 0 から始まるインデックス位置をレポートします。 検索は指定された文字位置から開始し、文字列の開始に向かって後方に移動し、文字位置の指定された数だけ行われます。
+System_CAPS_pubmethod	LastIndexOf(String)	
+指定された文字列がこのインスタンス内で最後に見つかった 0 から始まるインデックス位置をレポートします。
+System_CAPS_pubmethod	LastIndexOf(String, Int32)	
+このインスタンス内で最後に出現する指定された文字列の 0 から始まるインデックス位置をレポートします。 検索は、指定された文字位置から開始され、文字列の先頭に向かって逆方向に進みます。
+System_CAPS_pubmethod	LastIndexOf(String, Int32, Int32)	
+指定された文字列がこのインスタンス内で最後に見つかった 0 から始まるインデックス位置をレポートします。 検索は指定された文字位置から開始され、指定した文字位置の数だけ文字列の先頭に向かって逆向きに移動して実行されます。
+System_CAPS_pubmethod	LastIndexOf(String, Int32, Int32, StringComparison)	
+指定された文字列がこのインスタンス内で最後に見つかった 0 から始まるインデックス位置をレポートします。 検索は指定された文字位置から開始し、文字列の開始に向かって後方に移動し、文字位置の指定された数だけ行われます。 指定した文字列を検索するときに実行する比較の種類をパラメーターで指定します。
+
+System_CAPS_pubmethod	LastIndexOf(String, Int32, StringComparison)
+指定した文字列が現在の String オブジェクト内で最後に見つかった 0 から始まる位置のインデックスをレポートします。 検索は、指定された文字位置から開始され、文字列の先頭に向かって逆方向に進みます。 指定した文字列を検索するときに実行する比較の種類をパラメーターで指定します。
+
+System_CAPS_pubmethod	LastIndexOf(String, StringComparison)	
+指定した文字列が現在の String オブジェクト内で最後に見つかった 0 から始まる位置のインデックスをレポートします。 指定した文字列に使用する検索の種類をパラメーターで指定します。
+
+System_CAPS_pubmethod	LastIndexOfAny(Char[])	
+Unicode 配列内の指定した 1 つ以上の文字がこのインスタンスで最後に見つかった 0 から始まるインデックス位置をレポートします。
+
+System_CAPS_pubmethod	LastIndexOfAny(Char[], Int32)	
+Unicode 配列内の指定した 1 つ以上の文字がこのインスタンスで最後に見つかった 0 から始まるインデックス位置をレポートします。 検索は、指定された文字位置から開始され、文字列の先頭に向かって逆方向に進みます。
+
+System_CAPS_pubmethod	LastIndexOfAny(Char[], Int32, Int32)	
+Unicode 配列内の指定した 1 つ以上の文字がこのインスタンスで最後に見つかった 0 から始まるインデックス位置をレポートします。 検索は指定された文字位置から開始し、文字列の開始に向かって後方に移動し、文字位置の指定された数だけ行われます。
+
+System_CAPS_pubmethod	Normalize()	
+この文字列と同じテキスト値を持ち、なおかつ、バイナリ表現が Unicode 正規形 C である新しい文字列を返します。
+
+System_CAPS_pubmethod	Normalize(NormalizationForm)	
+この文字列と同じテキスト値を持ち、なおかつ、バイナリ表現が、指定された Unicode 正規形である新しい文字列を返します。
+
+System_CAPS_pubmethod	PadLeft(Int32)	
+指定された文字数になるまで左側に空白を埋め込むことで、このインスタンス内の文字を右寄せした新しい文字列を返します。
+
+System_CAPS_pubmethod	PadLeft(Int32, Char)	
+指定された文字数になるまで左側に指定された Unicode 文字を埋め込むことで、このインスタンス内の文字を右寄せした新しい文字列を返します。
+
+System_CAPS_pubmethod	PadRight(Int32)	
+指定された文字数になるまで右側に空白を埋め込むことで、この文字列内の文字を左寄せした新しい文字列を返します。
+
+System_CAPS_pubmethod	PadRight(Int32, Char)	
+指定された文字数になるまで右側に指定された Unicode 文字を埋め込むことで、この文字列内の文字を左寄せした新しい文字列を返します。
+
+System_CAPS_pubmethod	Remove(Int32)	
+現在のインスタンスの指定した位置から指定した最後の位置までの全文字が削除された新しい文字列を返します。
+
+System_CAPS_pubmethod	Remove(Int32, Int32)	
+現在のインスタンス内の指定した位置から指定した文字数が削除された新しい文字列を返します。
+
+System_CAPS_pubmethod	Replace(Char, Char)	
+このインスタンスに出現する指定された Unicode 文字をすべて、別の指定された Unicode 文字に置換した新しい文字列を返します。
+
+System_CAPS_pubmethod	Replace(String, String)	
+現在のインスタンスに出現する指定した文字列をすべて、別に指定した文字列に置換した新しい文字列を返します。
+
+System_CAPS_pubmethod	Split(Char[])	
+配列内の文字に基づいて文字列を部分文字列に分割します。
+
+System_CAPS_pubmethod	Split(Char[], Int32)	
+配列内の文字に基づいて文字列を最大数の部分文字列に分割します。返される部分文字列の最大数も指定します。
+
+System_CAPS_pubmethod	Split(Char[], Int32, StringSplitOptions)	
+配列内の文字に基づいて文字列を最大数の部分文字列に分割します。
+
+System_CAPS_pubmethod	Split(Char[], StringSplitOptions)	
+配列内の文字に基づいて部分文字列に文字列を分割します。部分文字列に空の配列要素を含めるかどうかを指定することができます。
+
+System_CAPS_pubmethod	Split(String[], Int32,StringSplitOptions)	
+配列内の文字列に基づいて最大数の部分文字列に文字列を分割します。部分文字列に空の配列要素を含めるかどうかを指定することができます。
+
+System_CAPS_pubmethod	Split(String[], StringSplitOptions)	
+配列内の文字列に基づいて部分文字列に文字列を分割します。部分文字列に空の配列要素を含めるかどうかを指定することができます。
+
+System_CAPS_pubmethod	StartsWith(String)	
+この文字列インスタンスの先頭が、指定した文字列と一致するかどうかを判断します。
+
+System_CAPS_pubmethod	StartsWith(String, Boolean, CultureInfo)
+指定されたカルチャを使って比較した場合に、この文字列インスタンスの先頭が、指定された文字列と一致するかどうかを判断します。
+
+System_CAPS_pubmethod	StartsWith(String, StringComparison)	
+指定された比較オプションを使って比較した場合に、この文字列インスタンスの先頭が、指定された文字列と一致するかどうかを判断します。
+
+System_CAPS_pubmethod	Substring(Int32)	
+このインスタンスから部分文字列を取得します。 部分文字列は、文字列中の指定した文字の位置で開始し、文字列の末尾まで続きます。
+
+System_CAPS_pubmethod	Substring(Int32, Int32)	
+インスタンスから部分文字列を取得します。 この部分文字列は、指定した文字位置から開始し、指定した文字数の文字列です。
+
+System_CAPS_pubmethod	ToCharArray()	
+このインスタンスの文字を Unicode 文字配列へコピーします。
+
+System_CAPS_pubmethod	ToCharArray(Int32, Int32)	
+このインスタンスの指定した部分文字列の文字を Unicode 文字配列へコピーします。
+System_CAPS_pubmethod	ToLower()	
+
+この文字列のコピーを小文字に変換して返します。
+System_CAPS_pubmethod	ToLower(CultureInfo)	
+指定されたカルチャの大文字と小文字の規則を使用して、この文字列のコピーを小文字に変換して返します。
+
+System_CAPS_pubmethod	ToLowerInvariant()	
+インバリアント カルチャの大文字と小文字の規則を使用して、この String オブジェクトのコピーを小文字に変換して返します。
+
+System_CAPS_pubmethod	ToString()	
+String のこのインスタンスを返します。実際の変換処理は実行されません。(Object.ToString() をオーバーライドする。)
+
+System_CAPS_pubmethod	ToString(IFormatProvider)	
+String のこのインスタンスを返します。実際の変換処理は実行されません。
+
+System_CAPS_pubmethod	ToUpper()	
+この文字列のコピーを大文字に変換して返します。
+
+System_CAPS_pubmethod	ToUpper(CultureInfo)	
+指定されたカルチャの大文字と小文字の規則を使用して、この文字列のコピーを大文字に変換して返します。
+
+System_CAPS_pubmethod	ToUpperInvariant()	
+インバリアント カルチャの大文字と小文字の規則を使用して、この String オブジェクトのコピーを大文字に変換して返します。
+
+System_CAPS_pubmethod	Trim()	
+現在の String オブジェクトの先頭および末尾にある空白文字をすべて削除します。
+
+System_CAPS_pubmethod	Trim(Char[])	
+現在の String オブジェクトの先頭および末尾から、配列で指定された文字セットをすべて削除します。
+
+System_CAPS_pubmethod	TrimEnd(Char[])	
+現在の String オブジェクトの末尾から、配列で指定された文字セットをすべて削除します。
+
+System_CAPS_pubmethod	TrimStart(Char[])	
+現在の String オブジェクトの先頭から、配列で指定された文字セットをすべて削除します。
