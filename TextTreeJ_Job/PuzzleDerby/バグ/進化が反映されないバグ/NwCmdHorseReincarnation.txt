@@ -1,0 +1,2 @@
+NwCmdHorseReincarnation
+転生進化に関してサーバとやり取りする関数

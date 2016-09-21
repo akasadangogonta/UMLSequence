@@ -1,0 +1,6 @@
+HomeBannerManager
+ホーム画面のバナーを扱うｽｸﾘﾌﾟﾄ
+
+  Line90
+  Init()
+  バナーの画像処理初期化

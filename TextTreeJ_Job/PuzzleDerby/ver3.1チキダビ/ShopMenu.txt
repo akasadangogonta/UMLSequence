@@ -1,0 +1,11 @@
+ShopMenu
+
+  Line214
+  TouchHorseShoe
+    Line307
+    PaymentManager.Instance.Init();
+    ここでNwCmdPurchaseListのExecCmd()やってんのか
+
+
+
+  

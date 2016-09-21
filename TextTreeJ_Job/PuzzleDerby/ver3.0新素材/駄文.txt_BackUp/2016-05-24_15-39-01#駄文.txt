@@ -1,0 +1,1607 @@
+なんだこれ、どうやって分割するんだ
+たしかPackedSliceだよな、ん？というかその前にmaterial作んなくちゃいけないんじゃないか？ナンだこれ。。。
+でもオレmaterial作った覚えがないぞ、buildAtrasで自動に作られるんじゃなかった毛画
+解決
+
+あとは引き伸ばし問題、やり方が全くわからん
+とりあえず、ためしにpackdSliceの位置色々いじってみるか。。。。
+んやっぱりpackdSliceがレイのアレやわ
+問題はそれぞれの値が一体何をしめしているのか全く分からないってことだ
+
+元　298,
+197
+
+んん何か画面おかしくなったぞ、どういうことだ
+もっとspliteAtlassいじってみるか
+11,11,11,11だと縦に引き伸ばされた上に上までの幅が足りなくて、ミギの方は画像が見切れている
+
+まず元のFrameは、表示したい画像のy軸とsliceのy軸が全く一緒なんだよね、これはつまり可変させないってことか？
+
+新しく貰った画像は
+481,147の大きさの画像な訳ですよ
+つまり元の画像が
+ああそうか
+画像から見て判断して、縦が147だとすると、四隅の装飾の
+大きさは、だいたい３７ぐらいか、まあ37よりは若干小さいだろ
+じゃあ35にしておくか
+とすると、topLefは35,35でいいとして、
+bottomRightは最大値からそれぞれお35ずつ引く必要がある
+つまり481-30 = 451, 147 - 30 = 112か
+それでやってみるか
+
+30,max, 30,maxだと
+repeatされて縦幅いっぱい表示される
+
+30,1 30, maxだと
+repeatされずに縦かなり小さく表示される
+
+30, 30, 30, 30だと
+上の装飾だけ何故か引きのばれる
+
+なんでtop値がmax以下だと指定された域まで表示されないんだ？
+いやtop値が50でも引き伸ばしはされた、ただ真っ黒
+
+周りでやっていることを同じようにやっても全然上手くいかんな
+回りはすごいシンプルにやってんだけどな
+ちょっと2/1でやってみるか・・
+全部3030でやると何故か上の方だけちょっと引き伸ばされる
+これの理由が分からない、
+
+370で異変
+
+元のcommonWindowが
+22,394で
+packedSpriteに使われている値が
+11,197　（298, 197)ということは、
+やっぱ中心部から何キロかってことですか？
+試しに2/1の値をそれぞれに入れてみよう
+481,147だから
+２４０．５ と７3．５かな
+
+なあーんか左にずれてんだよなあ・・・
+
+しょうがない、ｽｸﾘﾌﾟﾄ見るか・・・
+
+    Vector2[] uvs = new Vector2[16]
+    {
+//vector2でやってますなあ、なんなんすかこのuvrec.heighってのは
+//    uvRect = sprite.GetUVs();
+//このspriteはpackedSpriteのことだから、packedSpriteで設定されている大きさのことだよな
+//つまりここでは298,197のことですよ
+//ああいや、heightが298、widthが197ですな、xyはたぶん座標でしょう
+なんですか、座標にheightを足しているんですか、懸命な判断ですね
+-top.Left.y / texSize.y がなんか。。。意味わからん、texSizeは多分読み込んだ画像サイズだよな、ここでいうと
+popupのサイズ、そのyだから147か。　つまりtopLeftに30,30って打ち込んだ場合は
+30/147が実行されるわけですな、結果は0.20408163265
+わけわからんよおね、表示したい画像の縦軸にこの値をぶち込む理由が
+例えばパーセンテージで考えてみようか、１０の２０パーは２でそ、　２０÷１０だと２になっちゃうか・・・ん？
+３０の５ぱーは0.15でそ？
+5/30は、0.16666666666　まあ近い値ではあるけども・・・・
+      new Vector2( uvRect.x, uvRect.y + uvRect.height ),
+      new Vector2( uvRect.x, uvRect.y + uvRect.height ) + new Vector2(                     0, -topLeft.y / texSize.y ),
+      new Vector2( uvRect.x, uvRect.y + uvRect.height ) + new Vector2( topLeft.x / texSize.x,                     0 ),
+      new Vector2( uvRect.x, uvRect.y + uvRect.height ) + new Vector2( topLeft.x / texSize.x, -topLeft.y / texSize.y ),
+      
+      new Vector2( uvRect.x, uvRect.y ) + new Vector2(                     0, bottomRight.y / texSize.y ),
+      new Vector2( uvRect.x, uvRect.y ),
+      new Vector2( uvRect.x, uvRect.y ) + new Vector2( topLeft.x / texSize.x, bottomRight.y / texSize.y ),
+      new Vector2( uvRect.x, uvRect.y ) + new Vector2( topLeft.x / texSize.x,                         0 ),
+      
+      new Vector2( uvRect.x + uvRect.width, uvRect.y + uvRect.height ) + new Vector2( -bottomRight.x / texSize.x,                      0 ),
+      new Vector2( uvRect.x + uvRect.width, uvRect.y + uvRect.height ) + new Vector2( -bottomRight.x / texSize.x, -topLeft.y / texSize.y ),
+      new Vector2( uvRect.x + uvRect.width, uvRect.y + uvRect.height ),
+      new Vector2( uvRect.x + uvRect.width, uvRect.y + uvRect.height ) + new Vector2(                          0, -topLeft.y / texSize.y ),
+      
+      new Vector2( uvRect.x + uvRect.width, uvRect.y ) + new Vector2( -bottomRight.x / texSize.x, bottomRight.y / texSize.y ),
+      new Vector2( uvRect.x + uvRect.width, uvRect.y ) + new Vector2( -bottomRight.x / texSize.x,                         0 ),
+      new Vector2( uvRect.x + uvRect.width, uvRect.y ) + new Vector2(                          0, bottomRight.y / texSize.y ),
+      new Vector2( uvRect.x + uvRect.width, uvRect.y )
+    };
+
+
+
+adb install -r Untitled.apk
+pause
+
+ＣｏｍｍｏｎＷｉｎｄｏｗのあれ
+298
+197
+
+CommonWindowいろんなところに広がりすぎで
+とりあえず
+なんだこれ、CheerPackResultってオレが作ったprefabだよな、その下にCommonWindowが作られてる
+
+
+やっぱCommonPartsのCommonWindowが適時移動してるわ
+しかも移動したときに自動でサイズが変わって折るわ・・・・
+
+ウィンドウサイズは　defaultSizeで変えてるのか
+
+とりあえずMainのScene内でのCommonWindowのプレハブの位置
+これは全部変えなくちゃいけない
+
+
+とりあえず実行ちゅうでは
+ショップ画面でのSubMenu/FriendMenu/HelpMain/Parent/Window/Frame
+チュートリアルのPuzzleCommonPanel/BgPanel
+基本としてSubMenus/CommonParts/CommonWindow　＜これがいろんなところに移動する
+
+
+プロジェクトのプレハブの中では
+
+GameScenes/Common/Prefabs　の CommonWindoｗ
+同フォルダ内のCommonWindowDetailText
+同フォルダ内のCommonWindowDetailText2
+GameScenes/Puzzle/Prefabs/PussleCommentPanel.prefab
+GameScenes/HomeMenu/Prefabs
+
+
+これあれだけ、まったく使ってないCommonWindowって名前のマテリアルがあるな
+\Common\Materials\CommonWindow.maｔ
+これ全く使ってないわ
+
+
+
+
+ろりあえずどっから直すか、基本のSubMenu/CommonPars/CommonWIndowからやるか
+この場合Texturehaどこにおけばいいんだろうか￥？
+アトラスの元画像は何故かMainMenu/Textiureのなかにある
+
+ということでプロジェクト上ではマテリアルがCommonに
+アトラス元画像はMainMenuの中におくことになりました。
+
+１９７　１９７
+
+PaymentManagerの中でNwCmdPurchaseのExecやってんのか
+
+そういえばこれ全部変えるのか
+
+
+
+1024
+
+-274.7
+-329
+
+
+
+	CommonWindow.mat
+
+クリア
+Assets\GameScenes\Boot\Prefabs\Window.prefab(305,29) 
+クリア
+Assets\GameScenes\Common\Prefabs\CommonWindow.prefab(565,29)  [SJIS]:   - {fileID: 2100000, guid: 48cb5b5c841be4b2d85df42467321d07, type: 2}
+クリア
+Assets\GameScenes\Common\Prefabs\Register.prefab(345,29)  [SJIS]:   - {fileID: 2100000, guid: 48cb5b5c841be4b2d85df42467321d07, type: 2}
+クリア
+C:\Project\PuzzleDerby\version2.9.1\Assets\GameScenes\Farm\Prefabs\EvolutionResult.prefab(474,29)  [SJIS]:   - {fileID: 2100000, guid: 48cb5b5c841be4b2d85df42467321d07, type: 2}
+クリア
+C:\Project\PuzzleDerby\version2.9.1\Assets\GameScenes\Farm\Prefabs\HorseSortWindow.prefab(2427,29)  [SJIS]:   - {fileID: 2100000, guid: 48cb5b5c841be4b2d85df42467321d07, type: 2}
+クリア
+C:\Project\PuzzleDerby\version2.9.1\Assets\GameScenes\Farm\Prefabs\LeiSortWindow.prefab(476,29)  [SJIS]:   - {fileID: 2100000, guid: 48cb5b5c841be4b2d85df42467321d07, type: 2}
+クリア
+C:\Project\PuzzleDerby\version2.9.1\Assets\GameScenes\Farm\Prefabs\ReincarnationResult.prefab(508,29)  [SJIS]:   - {fileID: 2100000, guid: 48cb5b5c841be4b2d85df42467321d07, type: 2}
+kuria
+C:\Project\PuzzleDerby\version2.9.1\Assets\GameScenes\Farm\Prefabs\SellConfirmWindow.prefab(1764,29)  [SJIS]:   - {fileID: 2100000, guid: 48cb5b5c841be4b2d85df42467321d07, type: 2}
+clrear
+C:\Project\PuzzleDerby\version2.9.1\Assets\GameScenes\Friend\Prefabs\FriendDeleteConfirm.prefab(1080,29)  [SJIS]:   - {fileID: 2100000, guid: 48cb5b5c841be4b2d85df42467321d07, type: 2}
+clear
+C:\Project\PuzzleDerby\version2.9.1\Assets\GameScenes\Friend\Prefabs\FriendSearchBoard.prefab(1061,29)  [SJIS]:   - {fileID: 2100000, guid: 48cb5b5c841be4b2d85df42467321d07, type: 2}
+clear
+C:\Project\PuzzleDerby\version2.9.1\Assets\GameScenes\Friend\Prefabs\IdSearchMain.prefab(556,29)  [SJIS]:   - {fileID: 2100000, guid: 48cb5b5c841be4b2d85df42467321d07, type: 2}
+clear
+C:\Project\PuzzleDerby\version2.9.1\Assets\GameScenes\Friend\Prefabs\InviteMain.prefab(586,29)  [SJIS]:   - {fileID: 2100000, guid: 48cb5b5c841be4b2d85df42467321d07, type: 2}
+clear 298
+C:\Project\PuzzleDerby\version2.9.1\Assets\GameScenes\Friend\Prefabs\LineMain.prefab(688,29)  [SJIS]:   - {fileID: 2100000, guid: 48cb5b5c841be4b2d85df42467321d07, type: 2}
+clear 298 250
+C:\Project\PuzzleDerby\version2.9.1\Assets\GameScenes\Friend\Prefabs\NotifySelectWindow.prefab(1157,29)  [SJIS]:   - {fileID: 2100000, guid: 48cb5b5c841be4b2d85df42467321d07, type: 2}
+clear 280 197 check
+C:\Project\PuzzleDerby\version2.9.1\Assets\GameScenes\Gacha\Prefabs\GachaFirst.prefab(385,29)  [SJIS]:   - {fileID: 2100000, guid: 48cb5b5c841be4b2d85df42467321d07, type: 2}
+clear 280 197 check
+C:\Project\PuzzleDerby\version2.9.1\Assets\GameScenes\Gacha\Prefabs\NormalGachaMain.prefab(581,29)  [SJIS]:   - {fileID: 2100000, guid: 48cb5b5c841be4b2d85df42467321d07, type: 2}
+clear 280 197 check
+Assets\GameScenes\Gacha\Prefabs\PlatinumGachaMain.prefab
+clear 280 197 check
+Assets\GameScenes\Gacha\Prefabs\RareGachaMain.prefab
+clear 280 197 check
+Assets\GameScenes\Gacha\Prefabs\TicketGachaMain.prefab
+clear 280 197 check?
+Assets\GameScenes\HomeMenu\Prefabs\HelpDetail.prefab
+clear 298 312  なんか初期状態だと非アクティブになってる
+Assets\GameScenes\HomeMenu\Prefabs\InformationMain.prefab
+clear 298 270 
+Assets\GameScenes\HomeMenu\Prefabs\LoginBoard.prefab
+clear 298 197 check? and link
+Assets\GameScenes\HomeMenu\Prefabs\MissionList.prefab
+clear 280 248.5 
+Assets\GameScenes\HomeMenu\Prefabs\PresentSortWindow.prefab
+clear 280 197
+Assets\GameScenes\HomeMenu\Prefabs\RenameWindow.prefab
+clear 298 200
+Assets\GameScenes\HomeMenu\Prefabs\ReviewIncentiveBoard.prefab
+clear 280 197 link
+Assets\GameScenes\HomeMenu\Prefabs\RewardWindow.prefab
+clear 298 320
+Assets\GameScenes\HomeMenu\Prefabs\SettingBasic.prefab
+clear 298 320
+Assets\GameScenes\HomeMenu\Prefabs\SettingBlock.prefab
+clear 298 234
+Assets\GameScenes\MainMenu\Prefabs\FriendSortWindow.prefab}
+うわこれやべえ、いわいるpopupではないけど、scrollBarにあの水色のやつ使ってる、これじゃあ消せないじゃん
+Assets\GameScenes\MainMenu\Prefabs\LHScrollBar.prefab
+clear 280 197 link check
+Assets\GameScenes\MainMenu\Scenes\MainMenu.unity
+これ違うマテリアルだから一時やめp1 puzzleCommonPanel clear 298 197
+p2 CommonWInodw　280 197 link
+Assets\GameScenes\Puzzle\Scenes\Puzzle.unity
+cleae 300, 300 怪しいな、こんなﾃﾞｶい必要ないんじゃ
+Assets\GameScenes\RaceMenu\Prefabs\FacebookWindow.prefab
+cレア画　298　１９７
+Assets\GameScenes\RaceMenu\Prefabs\LobbyPasswordWindow.prefab
+RegisterMain/Windowと　
+clear 298, 197
+Assets\GameScenes\Register\Scenes\Register.unity
+CommonWindow/window
+及び　280x197
+Assets\GameScenes\Register\Scenes\Register.unity
+
+見る限りframeが2つありますね
+window/Frame 298, 250
+GetTitleWindow/Frame 298, 197
+Assets\GameScenes\Result\Prefabs\ResultHelperMain.prefab
+
+CommonWindow/\Frame 280, 197
+Assets\GameScenes\Title\Scenes\Title.unity
+TitleMain/SettingWIndow/Frame 280, 197
+Assets\GameScenes\Title\Scenes\Title.unity
+
+clear 280, 197 link
+Assets\GameScenes\UserRank\Prefabs\GetTitleWindow.prefab
+
+43 個が検索されました。
+
+
+やばいなpuzzleMenuPointをbuidAtrassしたらなんかごっそり消えちゃ太
+revertしよう
+
+	
+ひとまずよしとしてPuzzlePointMenuいこか
+
+
+このPuzzlePointMenuって。太いやつ使ってね画じゃねえか・・・・
+
+	PuzzlePointMenu
+
+あれなんかチュートリアルでも使ってたきがするけど、見た感じPuzzleでしかつかってないな。。
+Assets\GameScenes\Puzzle\Materials\PuzzleMenuPoint.mat.meta
+Assets\GameScenes\Puzzle\Prefabs\AllyArea.prefab ６つ　しろ
+Assets\GameScenes\Puzzle\Prefabs\DirectionForUseSkill.prefab　しろ
+Assets\GameScenes\Puzzle\Prefabs\GreyPanel.prefabしろ
+Assets\GameScenes\Puzzle\Prefabs\HorseSkillWindow.prefab　細い野一つ
+Assets\GameScenes\Puzzle\Prefabs\PuzzleCommonPanel.prefab　２つ　あれ、細いの一つしかない。。。
+clear
+Assets\GameScenes\Puzzle\Prefabs\PuzzleGiveup.prefab　細い
+
+Assets\GameScenes\Puzzle\Prefabs\PuzzleItemConfirm.prefab　細い
+
+Assets\GameScenes\Puzzle\Prefabs\PuzzleNoContinue.prefab　細い
+
+Assets\GameScenes\Puzzle\Prefabs\PuzzleOption.prefab　細い
+
+Assets\GameScenes\Puzzle\Prefabs\PuzzleRetry.prefab　細い
+
+Assets\GameScenes\Puzzle\Prefabs\PuzzleTextWindow.prefab　細い
+
+Assets\GameScenes\Puzzle\Scenes\Puzzle.unity(26091,29) １９つ
+
+Assets\GameScenes\Shop\Prefabs\CheerPackMain.prefab　あってなきがごとし
+
+38 個が検索されました。
+
+
+うわなんや、LoadManagerでもあの水色つこうとるんけ
+
+ああ、あの太い水色、LoaderWindowで使ってんの蚊・・・・
+
+	LoadingManager
+
+C:\Project\PuzzleDerby\PuzDurbAndroid_Trunk_p3\Assets\GameScenes\Title\Materials\LoadManager.mat.meta(2,7)  [SJIS]: guid: 662560b6bde5840d7be0efe671aaa04f
+C:\Project\PuzzleDerby\PuzDurbAndroid_Trunk_p3\Assets\GameScenes\Title\Prefabs\LoaderWindow.prefab(374,29)  [SJIS]:   - {fileID: 2100000, guid: 662560b6bde5840d7be0efe671aaa04f, type: 2}
+C:\Project\PuzzleDerby\PuzDurbAndroid_Trunk_p3\Assets\GameScenes\Title\Prefabs\LoaderWindow.prefab(410,29)  [SJIS]:   - {fileID: 2100000, guid: 662560b6bde5840d7be0efe671aaa04f, type: 2}
+C:\Project\PuzzleDerby\PuzDurbAndroid_Trunk_p3\Assets\GameScenes\Title\Prefabs\LoaderWindow.prefab(446,29)  [SJIS]:   - {fileID: 2100000, guid: 662560b6bde5840d7be0efe671aaa04f, type: 2}
+4 個が検索されました。
+
+>
+-159　＞　-165.5
+ 
+-380.1  -328.9
+
+-127
+-51
+
+
+LeaderSprite
+15  -263
+
+
+256 25630
+1.3x1.3
+
+leaderHorseのy軸をなんとかかえたいなあ・・ウォッカウォッカ
+・
+-210.75　and 145 = 
+
+ああ,LayoutAdjustで調整しとるわ、これ
+
+一応元のデータもとっとくか
+変える前のLayoutAdjustのLeaderSpriteのデータ
+-210.75
+-247
+
+変更後はこうしたい
+-224.3　　いや-249の方がいいかも
+-256
+
+rarity_rootはどうっすかね
+とりあえずscaleは1.1倍でそ
+んでyj軸も下げなくては
+今は16:9の場合24、4:3の場合0に設定してある
+これをそれぞれ-51と
+
+109, 203.4
+109, 154.1
+
+75.3
+
+27
+
+informationMainが邪魔である
+元は167　こっから変えていく
+うーん146がジャストピッタリなサイズではあるんだけれども
+
+
+-17
+-270
+
+
+まずやることを考えよう
+午前チュに
+
+なんでバナーの位置変わらないんだ
+160 -475ね
+この座標なんなんだ
+どこで入力しているんだいったい
+
+
+まずやることを考えよう
+午前中にやらなくちゃいけないことがあるはずだ
+
+
+-1, -2, -3
+  3,  2,  1
+
+ちょっとこれおぼえておこうぜまじで、これおぼえなきゃ駄目だ
+重要
+ウルトラファンタジー
+10文字の場合、Underは１38.5topは１４０
+-138.5, 140 =
+-139, 140  採用
+ウォッカ
+
+ブエナビスタ
+
+
+-131.7、133.3　=　
+-132, 133　採用
+いや横スケール変えた方がいいわ
+
+ばなー
+２５２　/2 = 126, 
+72 /2 = 36
+
+まじ理由がわからん
+限界だな、なんでEditorでクリックすると表示が変わるんだよ
+これなんか根本的に何かおかしいわ
+
+
+オシラセボタンの場所
+
+C:\Project\PuzzleDerby\PuzDurbAndroid_Trunk_p3\Assets\GameScenes\HomeMenu\Textures\home_b_info.png.meta(2,7)  [SJIS]: guid: 0f5980531235e6a4ab899191779c546f
+C:\Project\PuzzleDerby\PuzDurbAndroid_Trunk_p3\Assets\GameScenes\MainMenu\Scenes\MainMenu.unity(68807,7)  [SJIS]:     - 0f5980531235e6a4ab899191779c546f
+C:\Project\PuzzleDerby\PuzDurbAndroid_Trunk_p3\Assets\GameScenes\MainMenu\Scenes\MainMenu.unity(68843,7)  [SJIS]:     - 0f5980531235e6a4ab899191779c546f
+3 個が検索されました。
+んんほとんどシーンじゃねえか
+しかもシーンのどこか全然わかんねえよ
+
+titlepositions
+-144, -200, -1
+-108, -200, -1
+
+なんやこれ
+normalとskipのときだけ
+titlePositions[1]で
+RankingTotalのときだけ
+titlePositions[1]になるんけ
+なんでこんな使い分けが必要なんや
+
+
+scrollListはadjustで調整してんのか
+とにかくFarmの調整はadjustのelement19や
+
+１８kara１４．５ね
+
+h_horse_circle
+
+p_b_type_Back
+
+毎回忘れるんだけど、今作業やってるのってどことどだっけ
+SubMenus/CommonParts/MenuHorseDetail/NameFrameと
+NameFrameはホーム画面
+SubMenus/HomeMenu/HorseAndMenuButons/HorseStatus/NameFrame
+MenuHorseDetailはホース詳細
+NameFrameいじってんのはHomeMenu.csとMenuHorseDetail.csか？
+
+あれなんだっけあの長い馬の名前
+
+バナーの○アイコン
+ソートボタンとか下
+☆の位置下
+３：４の調整（後か？）
+
+なんだ、cheerPackの決済画面、戻るボタン押しても元にもどらんぞ
+
+これあれか、CheerPackResultのTouchBtnが大事なのか
+CheerPackRstultはCommonWIndowを継承しているから
+たいていのことは親クラスでやってくれる
+だからCheerPackResutではTouchBtn関数しかない
+まずこのTouchBtnにはきてんのか？
+
+あ、AddCallBackが削れてる
+  public void _TouchCheerPack( /*List<ProductData> productData*/ )
+  {
+	LoadingManager.Instance.Pause();
+	MenuBase.CreateMenu<CheerPackMain>( ref instanceCheerPackMain, cheerPackMain, this.transform );
+	TitleBoardManager.Instance.AddCallback( this.TouchBack );
+	instanceCheerPackMain.CreateData();
+	ChangePhase( ShopPhase.CheerPack);
+	//StartCoroutine( InNewMenu( ShopPhase.CheerPack ) );
+
+
+
+
+
+  public void _TouchCheerPack( /*List<ProductData> productData*/ )
+  {
+    PaymentManager.Instance.SetGetListCallback(
+      InCheerPackMenu,
+      (err) =>
+      {
+        LoadingManager.Instance.Pause();
+        switch( err )
+        {
+        case PaymentManager.ErrorType.NotSupported :
+          AssertManager.Instance.Set( AssertType.ConnectFailed, () => this.ChangePhase( ShopPhase.Top ) );
+          break;
+        case PaymentManager.ErrorType.GetListFailed :
+          AssertManager.Instance.Set( AssertType.ConnectFailed, () => this.ChangePhase( ShopPhase.Top ) );
+          break;
+        }
+      }
+    );
+
+    List<NwDataPurchaseList> products = new List<NwDataPurchaseList>();
+    products.Add( NetworkManager.Instance.GetCmd<NwCmdMyData>().GetData().newpack_info.CreatePurchaseList() );
+    PaymentManager.Instance.Init( products.ToArray() );
+  }
+
+	private void InCheerPackMenu( List<ProductData> productData )
+	{
+		LoadingManager.Instance.Pause();
+		MenuBase.CreateMenu<CheerPackMain>( ref instanceCheerPackMain, cheerPackMain, this.transform );
+		TitleBoardManager.Instance.AddCallback( this.TouchBack );
+		instanceCheerPackMain.CreateData();
+		ChangePhase( ShopPhase.CheerPack);
+		//StartCoroutine( InNewMenu( ShopPhase.CheerPack ) );
+	}
+
+
+なんでかよう考えようや
+まず金の蹄鉄では最初のクリックが反応しない
+二回目のクリックでようやく反応する
+そして応援パックでは一切ボタンが反応しない
+デバックで追ってみると、ちゃんとコールバックは起動しているｱ(shopのtopに移動）し
+ているし、ちゃんとChangePhaseにも移行している
+なのに画面がいっさい変わらない
+commonWIndowも閉じない
+うーん、CommonWIndowが閉じないってのはなんか奇妙だな、、、
+
+７９から65　- 1４ずづか
+いっそー15ずつでいいんでないか
+
+
+ああＢａｃｋＢｔｎとＴｉｔｌｅＴｅｘｔだけじゃなくて、TitleBoard全部下げなくちゃいけねえのか
+
+ＴｉｔｌｅＢoard -102 -> -125
+つまり-23ずつさげればいいのか
+BackButton  -5 -> -28
+TitleText -4 -> -27
+いや逆だ、子要素だから位置を買えないためにはプラス23しなきゃ駄目だ
+-5 -> 18
+-4 -> 17
+あ、ヒエラルキーでやっても意味ないわ
+animationで位置制御してる
+
+プレイデータ、　助っ人ウィンドウ、出走確認画面
+
+オレ先週何やってたっけ
+ホース詳細画面、ホーム画面、あと一つファーム画面か
+なんだこれ、TitleBoardManagerのSetText関係ないやんけ
+一体どこで自動調整してんんだ
+
+
+=====================================
+ From: 大竹 克彦 (pzdb/CYCLONE-41/192.168.1.57/cyclone-staff-<bce74b5dfdd0877c>)
+  at Mon May 09 11:14:09 2016 (RSA2/認証)(封)
+-------------------------------------
+Rev5974, 5975で戻るボタン関連をコミット。
+
+=====================================
+ From: 大竹 克彦 (pzdb/CYCLONE-41/192.168.1.57/cyclone-staff-<bce74b5dfdd0877c>)
+  at Mon May 09 11:19:35 2016 (RSA2/認証)(封)
+-------------------------------------
+出走確認画面で使用する画像:
+p_b_raceConfirmFrame.png
+p_b_raceConfirmTitleFrame.png
+
+Rev5964を参照
+
+１２：００までには負わすぞカス
+あ、SetTextTitleは徒折るけどその後のif分で分岐違うところ見てた
+  if( !isTextManager )は通らない
+  if( !string.IsNullOrEmpty( format ))の中を通る
+
+float validWidth = Camera.main.pixelWidth * 0.300f;
+if(backBtn.gameObject.activeSelf){
+validWidth = Camera.main.pixelWidth * 0.490f;		// ボタンが
+あるときはもう少し狭く
+
+これおかしくない？せまくなってねえじゃん
+}
+とにかくこの0.490を変更しないと駄目だ
+とりある0.4にした、これで安泰
+あとlocalposition.xも買えないと駄目だ
+115から120にした方がいい樹もするけどまあやっぱええわこれで
+
+ホース詳細のrarityの位置がおかしいな
+y軸は-230が理想なんだけどな
+これスクリプトで座標い十点丘？
+x軸は61.5が理想？
+
+rarityロゴは-137.8 yjikuが理想
+rarityは-243.2　が理想
+
+星のlocalPositionは星の暗いによって変えなくちゃいけないな
+厳密にはSubMenu/CommonParts/MenuHorseDetail/TopLabels/Rarity
+スクリプトだとrarityCreater.gameObjectになる
+rarity=5（SS)までは
+58.1, -231
+rarity=6は
+61.5, -243.2
+rarit=7は
+68.5,  -243.2が相応しい
+
+rarityCreater.Set( (int)horseData.GetMasterData().rarity, (int)horseData.GetMasterData().GetMaxRarity() );
+こっからrarity病さyになる
+
+ちょっとこれは置いてButtonやろう
+ええと5974と5975で
+場所はMainMenu/Textures/TitleBoard/b_back2
+と
+
+それと未だにあれやからあれ
+まあええわ
+そうアトラスでかすぎ
+せや、あとホース詳細の右側の細かいのもじの大きさちがうから
+
+あの上の赤い奴いろんなとこに散らばってるな
+InformationMain.prefabと
+mainmenuのTitleBoard
+
+一体どっからInstantiate(rarity)やってるのかわからん
+どっかのスクリプトでやっているはずなんだが・。。。。
+rariryが5以内のときどこを通ってInstantiateしてるのか全く分からない
+
+3=４７
+2=42
+1= 37
+
+ええと使うマテリアルは
+confirmtempなるものやな。。。
+実際に使うpngは
+
+p_b_raceConfirmFrame.png
+p_b_raceConfirmTitleFrame.png
+階層はMainMenu/Texture/Common
+
+いじつプレハブはどれかな　RaceConfirmか
+
+-34
+ラウンド　難易度
+
+コンテニューなし
+セーブデータなし
+
+
+考えたらこれマルチでもおんなじことやんないといけないんだよな
+面倒くせえな
+スクリプトもプレハブもいじんなくちゃいけない
+どうにかなんないかな
+とりあえずscrollListを-88から-60
+MultiConfirmをスクリプトプレハブともに抜本的に変える
+
+h_banner_arrow_l　つかってるのはｌだけ
+これ大事だぜ、覚えておこうぜ
+
+こりゃ明日遅くまで残業だな
+とりあえずマルチコンフィルムもやんなきゃいけないし
+まああれはコピーすればいいけどさ・・・・
+出走確認画面のほかは、、、
+うーんinformationなんたらと
+horseDetailのとこのtitleなんとかの
+あのモジを小さくすること、あとはrarityの表示をちょっとミギにずらすことか？
+scrollList全般も下に下げなきゃいけない
+4:3の調整もしなくちゃいけない
+うーん厳しい。
+
+
+
+重要
+じゃあやることまとめ
+レースコンフィルム　○
+マルチコンフィルム　○
+赤ラベル（戻るボタン ○
+助っ人表示　○
+バナーの点滅が消えてる　○
+レアリティ表示　○
+
+ゲージの最大値が6万のやつと1万のやつを作る　○
+レースのときだけモジがミギにずれる　謎　○
+ゲージノアウトライン　○
+名前が長いと詰まる（ホーム画面のホース名、ホース詳細のタイプ表示）　○
+ホームの横の赤いラベル　○
+
+レベルが常に最大になっている　○　レベルに99代入してるじゃねえか
+comonnウィンドウの確認（レースクリアじ　など） ○
+ファームの新取得アイコン　○
+プレゼントのﾍｯﾀﾞｰ　○
+SettingMainプレハブの矢印画像　○
+一調整全般 △
+ホームのボタンのdoubleColor
+
+
+売却ボタン　○
+
+Lv: 最大 / 99 + 20
+
+スキルがないとレベルマイナス１になる　○
+
+
+
+
+
+
+
+バナーのタッチレクトとか
+もしやバナーマイナス１にしてないか？？
+
+
+
+
+
+出走確認でスクロールを導入する必要あり
+4:3表示
+
+
+-6.6
+
+-19　+67.5 = 48.5 
+-181 +67.5 = 	
+
+
+あれ、アイコン消えてるぞ、なんで？
+
+助っ人プレハブはHelperBoard
+差し替える画像は
+
+そもそもあれどこの画面なんだ
+
+まじで、もとからあるヒエラルキのHorseSelectWindowなのか
+https://svn.cyclone-ent.co.jp/webdav/netdms_puzzle_derby/trunk/program/client/Assets/GameScenes/MainMenu/Textures/Common/p_b_helperFrame.png
+な
+
+165、31　いかがなものか
+すきる
+スキルLV: 最大
+助っ人名前
+リーダースキル　あああああああああああ
+
+spritetextshadow 
+
+
+んんパズルテクストウィンドウはy軸は-140
+ここナンなんだ、レースシーンかgamemenu/puzzlegivup/bgpanel
+
+いちいち全部メモるぞ
+-220(parentと-55(scrolllistか？
+presentlist = 220 > -275
+
+
+シーンのFriendMenu
+-25:-72 > -35:-82
+friendRankngMain(clone)
+-240:-256> -260: -276
+idsearchMain（clone)のウィんどうを7 > -7
+LineMenu(clone)のwindowをまるごと14>－３０
+settingMain(clone)　-240>-290
+
+RenameWindow(Clone) windowを7 > -7
+HelpMain(Clone) parent>>-240:-256 > -260:-276
+HelpOtherMain(Clone) parent>> -240:-256 > -260:-276
+
+シーンのGachaMenu ３:-19 > -43:-59
+シーンのShopMenu　ShopItem >> 0>-40
+CheerPackMain(Clone) scrollList >>-252   > -280
+
+HorseShoueMain(Clone) Adjuster >> -240:-256 > -270:-286
+TeamLoist(Clone) parent >> ー220 > -260
+EnhanceMain(Clone) parent >> ー220 > -260
+EvolutionMain(Clone) parent >> ー220 > -260
+SellHorseSelect(Clone) parent >> ー240 > -260
+SellEvolutionSelect(Clone) parent >> ー240 > -260
+FarmMain(Clone)  parent >> ー220 > -260
+EvolutionItemBox(Clone) parent >> ー220 > -260
+NewCollectionMain(Clone)   PresButton >>   > -80
+			 parent ?? -251 > -281
+RaceEventList(Clone) Adjust >> -220: -236 >  -284:-290
+RaceEventSubList(Clone) Adjust >>  -220: -236 >  -284:-290
+HelperList(Clone)  >> ー220 > -260rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+MultiComment(Clone) parent -240 > -290
+
+RaceRankingEventList(Clone) >>  -220: -236 >  -284:-290
+RaceList(Clone)  -220: -236 >  -254:-26540
+MultiLobby(Clone) 0 > -30
+ｼｰﾝのplayerRecord scrollList>> 0 > -55
+
+EnhanceConfirm(Clone) parent >> ー240 > -260
+EnhanceExp(Clone) parent >> ー240 > -260
+EvolutionBaseSelect 220 > 260
+EvolutionNewBaseSelect(Clone) 220 > 260
+ReincarnationBaseSelect(Clone) 220 > 270
+
+TeamSelect 240 > 260
+ReincarnationConfirm(Clone) 210 > 250
+OverallChoice(Clone) 210 > 250
+EvolutionChoice(Clone) -146 > -185
+EvolutionConfirm(Clone) 240 > 250
+
+284は254に訂正しなきゃ駄目や、レース関係
+
+
+シーンFriendMenu Adjust>>35 > 55
+しーんMenuHorseDetail Adjust 0 > -44
+同じく　　　                   window >> -380 > -338
+
+TeamList これ駄目だけど後回し
+EnhanceConfirm(Clone)  Material >>  > -65
+
+ EvolutionNewBaseSelect(Clone) 下になんか余計な見えないコライダー追加しよう
+正式にはListArrow(Clone)か　
+
+EvolutionNewBaseSelect Adjust >> -２６０>－２４０
+ReincarnationNewBaseSelect Adjust > -270 > -250
+
+RaceMultiSelect(Clone) Adjust>> -220 > -240
+RaceEventList(Clone) Adjust >> 284 > -254
+RaceEventSubList(Clone)　同情
+RaceRankingEventList(Clone)　同情
+RaceRankingＳｕｂEventList(Clone)　同情
+RaceList(Clone)　adjust -254 > -264
+
+
+とりあえずMenuHorseDetailとHorseSelectWindowを比べて
+HorseSelectWindowを修正していこう
+
+まずやることは、「最大」をどうやって表示するか
+あれGetSkillLevelString()使えば何も考えずに実装できんでは
+
+とりあえずコモンウィンドウのデフォルト表示位置をずらすぞ
+Commonwindow.cs Settingwindow.cs RewardWindow.cs TitleWindow.cs これ全部いじった
+
+
+ふぁあああ
+４：３対応やるか、
+ひとまずは、何やるかな
+まずRaceConfirmka
+
+重要
+ミッションリンストプレハブの４：３対応　○
+助っ人のｽｸﾛｰﾙ対応　○
+TeamListのyajirusi ○
+RaceRankingＳｕｂEventList(Clone)のレイアウトアジャスタ　○
+EvolutionChoice(Clone)のスクロール対応
+
+
+他プレハブを使わない全ての4:3対応
+
+全てのwebView
+
+horseSelectWindowはShopMenuﾊﾟｸればいいんやな
+
+なんやこれ、CommonScrollBarが残って舞うぞ
+レースからSelectWindow出してもどったときに、助っ人選択画面でスクロールがないのに
+スクロールがでてしまう
+のでHorseSelectWindowのOutでCommonScrollBarのenablesdをFALSEにしても
+こんどは、トレーニング画面からHorseSelectWindowに飛んでもどってきたときに
+スクロールバーがきえてしあむ
+
+
+やることは一杯あるぞ、
+HomrHorseParametarのプレハブ活用 ○
+4:3での文字圧縮
+homeMenuシーンのいらないオブジェクトの削除
+ホーム画面の馬を小さく
+
+
+ん、HomeMenuシーンのHorseAndMenuButtonの中に動的に画が生成されてるのか
+背景はrarityBackだな、
+馬を変えと背景も変わってしまうから、むずかしいな
+とりあえず目標決めよう、午前中までに
+スワイプで馬が切り替わるようにする、矢印はあとでいいよ
+ああ、Edutor上でのHorseAndMenuButtonってホース詳細の下に隠れて単価・・・・
+しかし画像がでかすぎて、左右に表示するのかなかなか難しいな
+ちょっと待てよHorseAndMenuButton全部をスワイプさせる必要はないのか
+少なくてもFooterButtonは絶対にスワイプさせる必要はないだろ
+
+とりあえずHorseAndMenuButtonの中のそれぞれオブジェクトの役割を整理しよう
+HorseAndMenuButton
+　LeaderRoot　＞　中心の馬画像、馬エフェクトなどが入っている
+　RarityRoot　＞　ラリティロゴの表示と背景全般
+　HorseStatus　＞　ホースの名前やステータスの表示
+　BtnRoot　＞　Footerボタンの表示
+
+
+んｎ、やっぱりよく考えても、Footerボタン以外全部動かしほうがいい気がしてきた。
+ＲａｒｉｔｙRootだけ他の要素よりい画面分左にずれているな
+こうするか
+LeaderRootとHorseStatusだけスライドさせて、完全にスライドしおわったｒ
+RariryyRootを置き換えるってのは・
+バナーは３つあるけどどうやって移動してんだ
+
+え
+例えばさ、チームメンバーが2羽だとして
+curslideNumが、1, 3, 5 7 9, 11, 13, 15のとき
+つまり実際はteameHorse[1]だなつまり結局は解が１になるようにしたいのか
+2でわって余りが１になればいいのか、なんだこれ
+なるほど、んでチームメンバーが3羽のときは
+
+1 = 2羽m
+
+  public static float defaultWindowWidth  = 320.0f;
+  public static float defaultWindowHeight = 569.0f;// iPhone6の750x1334を基準とするため、Widthをそのままにした場合のHeightの値に.
+つまり縦軸は1/2にすると
+284.5
+
+
+-425　から　-160か
+265
+-140　から　-10040
+
+no.1800
+重要
+・ホームのバナーのスワイプ領域の修正○
+・ホームの馬画像の大きさ調整　○
+・ホーム画面の馬の★表示追
+ホース詳細、スキル名縮小 ○加　○
+・ホームの馬名をセンタリングから左寄せに。　○
+・馬名の属性ブロックの金色の縁を削除　○
+
+スケット画面のスキルのLinespace　○
+ホース詳細　名前部分　縮小 ○
+
+
+インストール直後のコモンウィンドウ
+バナーの枠を動かさない
+同意するぼたんの変更
+
+40、-2453
+
+
+BannerCamera   transform 2559, -108.5
+		size 57
+		viewPort 0.53, 0.71
+         			0.36, 0.2
+		
+なんだ、ｶﾒﾗのサイズが３３３から240にかわっ撮るぞ
+
+
+Flare-R6
+
+
+５２　４０
+
+・ホーム画面で馬のエフェクトが出ていなかったものが出るようになっている　　○
+・出走確認画面でリーダースキルが2行以上の場合に行間がつまり過ぎている　○
+・出走確認画面で合計スタミナのバーが隠れてしまっている(実機のみ, 16:9 4:3両方)　○
+・ResultMain(Clone）の位置がおかしい-126> -147、いやHeaderＴｅｘｔまるまるいらない　○
+・ＲａｃｅＣｏｎｆｕｒｎItemのスキル説明のlinespaceが狭い　○
+
+
+-126 > -140
+
+あきらかに使ってるのはもう検索の必要ないだろ
+○Blocks.png.meta
+C:\Project\PuzzleDerby\PuzDurbAndroid_Trunk_p3\Assets\GameScenes\MainMenu\Materials\Blocks.mat(19,46)  [SJIS]:          
+ m_Texture: {fileID: 2800000, guid: 4bf8be00e8516b047baa0cc81a783af2, type: 3}
+C:\Project\PuzzleDerby\PuzDurbAndroid_Trunk_p3\Assets\Resources\Sprite Atlases\Blocks.png.meta(2,7)  [SJIS]:
+ guid: 4bf8be00e8516b047baa0cc81a783af2
+
+○Boot.png.meta
+C:\Project\PuzzleDerby\PuzDurbAndroid_Trunk_p3\Assets\GameScenes\Boot\Materials\Boot.mat(19,46)  [SJIS]:           m_Texture: {fileID: 2800000, guid: d2447ac36a831324d82ad0043bc9d048, type: 3}
+C:\Project\PuzzleDerby\PuzDurbAndroid_Trunk_p3\Assets\Resources\Sprite Atlases\Boot.png.meta(2,7)  [SJIS]: guid: d2447ac36a831324d82ad0043bc9d048
+iti
+
+とりあえずミッションリストのscrollの縦軸を340から300に変えてみるぞ
+そうか把握に時間
+
+MissionList変更するぞ
+MissionList
+	>Parent = y:-270
+		>Scroll = y:-15
+		>Scroll = area.y: 220 > 210
+
+まだフレンドリストの位置調整が不安定
+
+
+FriendRankingMain
+parent
+	-260	-245
+	-276	-261
+scolllist
+	284	254
+	336	306
+
+
+FriendListMain
+parent
+	-240	-225		-230
+	-256	-241		-265
+scrollList
+	284	254		235
+	336	306		306
+NoftyMain
+parent
+	-240	-225
+	-256	-241
+scrollList
+	284	254
+	336	306
+
+missionList
+scrollList
+	210	
+	300	
+parent
+	-270	
+	-282	
+scrolList transform
+	-15	-5
+	-40	-30
+
+rankingList
+scrollList
+	2	-240
+	300	
+parent
+	-245 > -230	
+	-282	
+scrolList transform
+	-15	-5
+	-40	-30
+
+Titleのボタンが明るい
+Registerのヘッダーを赤に
+レース中のボタンをさし買え
+
+
+14.5
+222　36
+
+５０　５０
+
+puzzleItemConfirm
+Diagram
+
+
+raceListのmoverが-24.5になっとんな
+
+
+はいはいRaceRankingEventSubList(Clone)ね
+RaceEventSubList
+scrollListのスクロール領域が306だわ、修正しないと
+
+
+
+どうしようわからんわ、
+moverの初期位置が変わるのは-24.5になるのは
+scrollListが-3のときなんだよな
+scollListが21.5のときは何故か0になるんだよ
+なんで触った瞬間にmoverがゼロになるんだよ
+
+
+	protected void ScrollListTo_Internal(float pos)
+ほうほう、ここがスライドか」
+
+んんんんんんんんんんｎ
+diffDist = width - curMoveDist;
+this.MoveBanners(diffDist);
+だから、このdiffDist分だけ動く
+
+してみるとこのWidthの値が大事な気がする、このwidthは引数で
+渡すときは-curDistってなってるから
+ StartCoroutine( this.EaseMoveBanner( -curDist ));
+このcurDistが重要な樹がする
+んでこのcurDistは    
+  curDist += displayWidth;
+    if( curDist < -displayWidth*0.5f )
+とか色々な使われ方がしている
+curDistは０からdisplayWidthの値を動いて
+二分の一点を動いたときに動作を変えている
+
+とするとだよ、スピードとは何にも関係ないような気がするよ
+
+
+
+・ホーム画面
+	・英字レアリティの下の部分、SL・Lはレジェンドの文	字があるものの、SS以下はなく、★と英字の間のスペースが気になります。
+	　SS以下は間を詰めるといういうのは難しいでしょうか ○
+	・馬名の上の接頭語の開始位置、もう少し左で良いような…。スペースが気になります。　　○
+・馬詳細
+	ホーム画面同様S以下のレアリティと★の間のスペースを詰められないですかね ○
+・ホースメニュー
+	・文字が少し上に寄っている感じがするため、文字の位置を少し下げてください　○
+・助っ人選択画面
+	・助っ人画面のLスキルの説明文がセンタリングされているため、馬詳細と同じように左寄せでお願いします
+
+
+もうHomeStarsってスクリプトがあるんでね
+これ使いましょう
+
+-122.8 からのー
+
+h_header_back	か
+
+
+
+C:\Project\PuzzleDerby\PuzDurbAndroid_Trunk_p2\Assets\GameScenes\HomeMenu\Textures\h_horse_back.png.meta(2,7)  [SJIS]: guid: 81a05cc00991eb34290753e6e5ef80c7
+C:\Project\PuzzleDerby\PuzDurbAndroid_Trunk_p2\Assets\GameScenes\MainMenu\Prefabs\MenuHorseDetail.prefab(7304,18)  [SJIS]:   staticTexGUID: 81a05cc00991eb34290753e6e5ef80c7
+C:\Project\PuzzleDerby\PuzDurbAndroid_Trunk_p2\Assets\GameScenes\MainMenu\Scenes\MainMenu.unity(41214,18)  [SJIS]:   staticTexGUID: 81a05cc00991eb34290753e6e5ef80c7
+C:\Project\PuzzleDerby\PuzDurbAndroid_Trunk_p2\Assets\GameScenes\MainMenu\Scenes\MainMenu.unity(45560,18)  [SJIS]:   staticTexGUID: 81a05cc00991eb34290753e6e5ef80c7
+C:\Project\PuzzleDerby\PuzDurbAndroid_Trunk_p2\Assets\GameScenes\MainMenu\Scenes\MainMenu.unity(116468,18)  [SJIS]:   staticTexGUID: 81a05cc00991eb34290753e6e5ef80c7
+C:\Project\PuzzleDerby\PuzDurbAndroid_Trunk_p2\Assets\GameScenes\MainMenu\Scenes\MainMenu.unity(134922,18)  [SJIS]:   staticTexGUID: 81a05cc00991eb34290753e6e5ef80c7
+C:\Project\PuzzleDerby\PuzDurbAndroid_Trunk_p2\Assets\GameScenes\MainMenu\Scenes\MainMenu.unity(143879,18)  [SJIS]:   staticTexGUID: 81a05cc00991eb34290753e6e5ef80c7
+中断しました。
+7 個が検索されました。
+
+
+MenuHorseDetailプレハブ とおおおお
+バナーを快活にするのと
+ノーマルレースの位置
+
+
+
+
+先週はホーム画面での馬の表示データをスワイプで表示できるようにすることと
+カメラを使ったバナーのマスク表現などを実装して水曜にROMを提出して
+木曜は反応がなかったので3.1の実装についてコードの懐石
+金曜は3.0の修正要望について対応していきました。
+
+とりあえず今日はクライアントの修正要望に対して自分がやるべきタスクがまだ二つ残ってるので
+それの解決をしようと思ってて
+今週中に全ての修正要望を終える予定
+
+
+    else if( curDist > displayWidth*0.5f )
+うーんスワイプ領域の判定のスクリプト難しいぞ
+    else if( curDist > displayWidth*0.5f )の0.5を0.25に変えても何も川なら無い
+むしろ何かバグっぽくなる
+
+まずそもそもこのdisplayWidthってのはデヒスプレイの横画面の1/2なんだよな
+
+      this.MoveBanner( index, -displayWidth*3.0f );
+nnnnnn
+これが何か怪しいな、怪しいな
+0.5だと3.0で正常な値が出る
+してみると-.25では？
+ん？本当にこれであってる？
+
+
+
+  private IEnumerator EaseMoveBanner( float width )
+  {
+    float curTime = 0.0f;
+    float curMoveDist = 0.0f;
+    float startTime = Time.time;
+    float diffDist = 0.0f;
+    while( curTime < bannerMoveTime )
+    {
+      float dist = LHMath.ExponentialInOut( startTime, bannerMoveTime, 0, width );
+      diffDist = dist-curMoveDist;
+      this.MoveBanners( diffDist );
+      curMoveDist = dist;
+      curTime += Time.deltaTime;
+      if( isTouch ) yield break;
+      yield return 0;
+    }
+    diffDist = width - curMoveDist;
+    this.MoveBanners( diffDist );
+
+	DrawLamp();
+  }
+
+んんんｎ、このDistが怪しいよな
+何一点のか分からんが、このdistが怪しい
+
+
+そもそもこのEaseMoverBannerは
+こっからyばれてる
+
+  protected void ReleaseCallback()
+  {
+    if( !isBannerEnabled || !isTouch ) return;
+    isTouch = false;
+    if( curDist != 0.0f )
+    {
+      StartCoroutine( this.EaseMoveBanner( -curDist ));
+    }
+  }
+
+んんん、なんやcurDistって
+curDist += width;　　か
+curDist += displayWidthしかやっとらんぞ
+
+
+    diffDist = width - curMoveDist;
+    this.MoveBanners( diffDist );
+んんんんんんんんんんん
+
+
+問題はやっぱ指を離したときなんだよな
+順を追って考えよう
+   if( curDist != 0.0f )
+    {
+      StartCoroutine( this.EaseMoveBanner( -curDist ));
+    }
+これはちょっとでも初期位置から動いてたらEaseMoveBannerに飛ぶいうことなやな
+EaseMoveBanner
+
+   while( curTime < bannerMoveTime )
+    {
+      float dist = LHMath.ExponentialInOut( startTime, bannerMoveTime, 0, width );
+      diffDist = dist-curMoveDist;
+      this.MoveBanners( diffDist );
+      curMoveDist = dist;
+      curTime += Time.deltaTime;
+      if( isTouch ) yield break;
+      yield return 0;
+    }
+    diffDist = width - curMoveDist;
+    this.MoveBanners( diffDist );
+
+これはちょっと難しいな
+最初のbannerMoveTImeを使ったwhile分
+もしcurTimeがbannerMoveTimeより小さいなら
+
+      float dist = LHMath.ExponentialInOut( startTime, bannerMoveTime, 0, width );
+ん、なんかこれがおかしくね
+しかしこのwidthってのが-cuyDistなんだよな、なにやってんのか全然わかんね
+
+  public static float ExponentialInOut( float startTime, float totalTime, float fromValue, float toValue )
+  {
+    float t = ( Time.time - startTime );
+    t /= totalTime /2.0f;
+    if( t < 1.0f )
+    {
+      return ( toValue - fromValue ) / 2.0f * Mathf.Pow( 2,  10.0f * ( t - 1 ) ) + fromValue;
+    }
+    t -= 1;
+    return ( toValue - fromValue ) / 2.0f * ( -Mathf.Pow( 2,  -10.0f * t ) + 2 ) + fromValue;
+  }
+
+なんやこれ。。。。。
+
+        StartCoroutine( this.EaseMoveBanner( -displayWidth ) );
+これはわかる、自動更新や、一定時間なんにも差ワットランと
+-displayWidhtで１マス分うごく、これはかえんでええ
+
+      StartCoroutine( this.EaseMoveBanner( -curDist ));
+
+つまりこのcurDistが動かなくてはいけない位置なのか
+しかし不思議なのは-curDistしかないのに、前にも後ろにも動けことだよな
+
+
+ReleaseCallbac
+
+MoveBanneｒは手動で動かしてるときも常に反応するのか
+とするとだ
+
+
+      this.MoveBanner( index, displayWidth*3.0f );
+これどういう意味なんだろうなあ・・・
+
+現在のバナーオブジェクトを３歩先にもってくいうことか。。。
+
+
+スライドは終わったけどノーマルレースが皆目検討がつかない
+どうもSetScrollPosがｇ
+
+
+普通はUpdateCamera()の中のRepositionItemsの中のPositionVertically(bool updateExtents)
+でmoverのマイナス値を許さないはずでは
+
+ああしょうがない位置から全部見るか・・・
+curPosｂが一だと-24.5になる
+更にほうっておくと腐りだす
+
+
+	/// <param name="easing">The type of easing to be used for the scroll.</param>
+	public void ScrollToItem(int index, float scrollTime, EZAnimation.EASING_TYPE easing)
+	{
+		if (index < 0 || index >= items.Count)
+			return;
+		ScrollToItem(items[index], scrollTime, easing);
+	}
+
+	public void ScrollToItem(IUIListObject item, float scrollTime, EZAnimation.EASING_TYPE easing)
+	{
+		snappedItem = item;
+
+		if (newItems.Count != 0)
+		{
+			if (itemsInserted || doItemEasing)
+				RepositionItems();
+			else
+				PositionNewItems();
+
+			itemsInserted = false;
+			newItems.Clear();
+		}
+
+		if (orientation == ORIENTATION.HORIZONTAL)
+		{
+			if (direction == DIRECTION.TtoB_LtoR)
+				autoScrollPos = item.transform.localPosition.x / amtOfPlay;
+				//autoScrollPos = Mathf.Clamp01(item.transform.localPosition.x / amtOfPlay);
+			else
+				autoScrollPos = -item.transform.localPosition.x / amtOfPlay;
+				//autoScrollPos = Mathf.Clamp01(-item.transform.localPosition.x / amtOfPlay);
+		}
+		else
+		{
+			if (direction == DIRECTION.TtoB_LtoR)
+				autoScrollPos = -item.transform.localPosition.y / amtOfPlay;
+				//autoScrollPos = Mathf.Clamp01(-item.transform.localPosition.y / amtOfPlay);
+			else
+				autoScrollPos = item.transform.localPosition.y / amtOfPlay;
+				//autoScrollPos = Mathf.Clamp01(item.transform.localPosition.y / amtOfPlay);
+		}
+
+		autoScrollInterpolator = EZAnimation.GetInterpolator(easing);
+		autoScrollStart = scrollPos;
+		autoScrollDelta = autoScrollPos - scrollPos;
+		autoScrollDuration = scrollTime;
+		autoScrollTime = 0;
+		autoScrolling = true;
+
+		// Do some state cleanup:
+		scrollDelta = 0;
+		isScrolling = false;
+
+		if (itemSnappedDel != null)
+			itemSnappedDel(snappedItem);
+	}
+
+
+
+
+	public EZAnimation.EASING_TYPE snapEasing = EZAnimation.EASING_TYPE.ExponentialOut;
+
+
+-240
+
+
+駄目だぜんぜんわからん
+、そもそもさっきの説明がよくわからんかった
+だめだ、自分流でいこう
+頭抱えるだけじゃしょうがないで、取りあえず仮設たてまくろう
+
+racelistItemを一つだけにすると
+RaceListItem0のy座標自体は変わらないけど
+moverがゼロになる
+そんかわり何故か
+
+count全部instantiateするとｙ座標自体は106.5で変わらない
+なぞの志望　moverは-24.5になる
+では２つではどうか
+だめだnullエラーでまともに動作しねえわ
+くそしね
+
+そもそもなんでscrollPosと　scrollTargetIndexは-1が設定されているのか
+
+とりあえずiはゼロから始まるぞ
+つまりCreateListの時点で主人公は死人である
+
+        scrollPos =i
+
+このくそみてえな条件分なに
+なんだよinitialPageSetteって
+      if ( initialPageSetter != null && initialPageSetter.stageID == friendDatas[i].id )
+      {
+        scrollTargetIndex = i;
+        initialPageSetter.Reset();
+      }
+
+なんでそもそもレースなのにfriendDataからとってきてんだ
+わけわかんねえなこれ
+
+
+駄目だおh化の方法考えよう
+まず抜本的に何が問題なのか
+moverが何故か-24.5になるのが問題なわけだ
+
+もうわけわかんねえな、UIScrollListとNormalRaceListBasicどっちから攻略すればいいんだよ
+わけわかんええよ、なんでフレンドリストからレースの情報とって来れるんだよ
+ちょっとフレンドリストから見てみるか
+
+くっだらねえな、継承先で
+  protected override List<NwDataRaceData> MatchList {
+    get { return NetworkManager.Instance.GetCmd<NwCmdRaceList>().GetData().NormalRaceDatas; }
+  }
+
+  protected override List<NwDataRaceData> FriendMatchList {
+    get { return NetworkManager.Instance.GetCmd<NwCmdRaceFriendList>().GetData().NormalRaceDatas; }
+  }
+
+ってなってるは、フレンド関係ねえじゃねえか、ネーミングおかしいだろ
+なんで
+public class NwDataRaceFriendListに
+  public  NwDataRaceData[] normal_race_list;
+なんてレースデータはいってんだろうな、わっけわかんねえな
+
+
+    int count = friendDatas == null ? 0 : friendDatas.Count;
+	scrollPos = -1;
+    base.objs = new GameObject[count];
+
+	int scrollTargetIndex = -1;
+
+まあ実際に６０個近くレースデータが出来上がってんだから
+countにゼロが代入されていることはありえない
+
+UIScrollListね
+
+	public void AddItem(IUIListObject item, string text)
+	{
+		if (!m_awake)
+			Awake();
+		if (!m_started)
+			Start();
+
+		InsertItem(item, items.Count, text, false);
+	}
+このInsertItemの中で
+		// Add the item:
+		newItems.Add(item);
+をしていて
+このnewItems.Countが!=0じゃないと
+RepositionItemsとかにいかない
+
+	public void ScrollToItem(IUIListObject item, float scrollTime, EZAnimation.EASING_TYPE easing)
+	{
+		snappedItem = item;
+
+		if (newItems.Count != 0)
+		{
+			if (itemsInserted || doItemEasing)
+				RepositionItems();
+			else
+				PositionNewItems();
+
+			itemsInserted = false;
+			newItems.Clear();
+		}
+	
+おかしいよなあ、なんで中に入っていかないんだろう。。。。
+
+      scrollList.AddItem( item.gameObject );て
+やってるから、確実にnewItemsに入ってるはずなんだけどなあ。。。。。。
+
+
+とにかくResetPositionの前にCreateListをやっている必然性があるんだよ
+
+
+      scrollList.AddItem( item.gameObject );
+＞
+		AddItem(item, null);
+＞
+		InsertItem(item, items.Count, text, false);
+＞
+				PositionNewItems();
+				＞
+				｛
+					// See if we need to go ahead and position the item:
+					if (positionItemsImmediately)
+					{
+						if (itemsInserted || doItemEasing)
+						{
+							RepositionItems();
+							itemsInserted = false;
+							newItems.Clear();
+						}
+						else
+							PositionNewItems();
+					}
+				｝
+＞
+		newItems.Clear();
+
+nnnnnなんでここでくりあしちまうんだ
+ここでクリアしちゃ駄目だろ
+なんなんだこれ
+でもどっちにしろ、これif (positionItemsImmediately)
+の中に入った辞典で絶対に消されちゃうのか
+
+いや、その中に入っても			if (itemsInserted || doItemEasing)
+			
+のどちらかがtrueならRepositionされるからセーフだ
+問題は、一体、どこの、どうやって、これを、呼ぶか棚
+
+		if (position != items.Count)
+		{
+			itemsInserted = true;
+
+
+つまり		if (position != items.Count)
+		{
+			itemsInserted = true;
+			items.Insert(position, item
+
+position == items.CountだからitemInsetedがtrueにならないのか
+つまりどういうこと？
+
+		InsertItem(item, items.Count, text, false);
+よくいるとitem.Countじゃなくてitems.Countだな
+いったいどこでitemsはAddしてんだ
+
+４：３
+
+
+
+LateUpdate()
+  ScrollLitTo_Internal(scrollPos)
+ここが
+
+
+
+ちょっと実験ね236
+scrollPos = autoScrollInterpolator(autoScrollTime, autoScrollStart, autoScrollDelta, autoScrollDuration);
+
+
+public void ScrollToItem(int index, float scrollTime)
+>
+public void ScrollToItem(int index, float scrollTime, EZAnimation.EASING_TYPE easing)
+>
+ScrollToItem(items[index], scrollTime, easing);
+{
+  line914 autoScrollPos = -item.transform.localPosition.y / amtOfPlay;
+}
+---------------------------
+LateUpdate
+  Line3173
+  else if (autoScrolling)
+  {
+	// Auto-scroll:
+	autoScrollTime += timeDelta;
+
+	if (autoScrollTime >= autoScrollDuration)
+	{
+		autoScrolling = false;
+		scrollPos = autoScrollPos; ○
+	}
+  }
+>
+protected void ScrollListTo_Internal(float pos)
+
+
+amtOfPlayとautoScrollPosは密接な関係性があるな
+
+	NormalRaceList.In >
+	StartCoroutine(ResetPosition()); >
+ private IEnumerator ResetPosition()
+
+やっぱviewableAreaはあれのことか、そして今回の件とは全く関係なかったですね
+しかし4:3と16:9で移動位置がずれるのはナンなんだ
+
+autoScrollPos = -item.transform.localPosition.y / amtOfPlay;
+結局ここに集約されてんだよな
+amtOfPlayってナンなんだよ
+
+autoScrollPosは大事、でももっと大事なのはamtOfPlayで
+これの値が違うせいで16;9と4;3では結果が変わってしまう気がする。
+viewableAreaのｙが100のときは4828
+結果curPosが2のときのはyの値は160.5になる
+16:9のamtOfPlay
+
+４：３のamtOfPlayは4692（vireableが236）
+結果curPosが2のときのはyの値は92.5になる
+PARENTは-254
+
+
+16:9のamtOfPlayは4622（viewable306)
+いがああああautoScrollPos 0.0124405
+いがああああautoScrollStart 0.0124405
+いがああああautoScrollDelta 0.0124405
+ｙの値は57.5
+parentはー２９０
+
+あれ一緒だ。。。。
+moverもscrollListの値も一緒だから
+違うのはparentの位置だけってことになる。
+なんかおかしいな。。
+
+
+
+10.5 > 92.5
+
+１６：９
+-24.5 > 57.5 > 139.5　
+だいたい82ずつあがってんのか
+
+両方とも82ずつプラスはしているけども
+
+常識的に考えてamtOfPlayしかない
+amtObPlayはvirwableAreaで内容かわっちゃうんだｋが
+
+1992行目
+
+if (doItemEasing)
+{
+	if (newItems.Contains(items[i]))
+		items[i].transform.localPosition = newPos;
+	else
+	{
+		itemEasers.Add(AnimatePosition.Do(items[i].gameObject, EZAnimation.ANIM_MODE.To, newPos, EZAnimation.GetInterpolato
+r(positionEasing), positionEaseDuration, positionEaseDelay, null, OnPosEasingDone));
+	}
+}
+else
+	items[i].transform.localPosition = newPos ○
+
+itemのpositionwを変えてるな
+
+curPosが１のとき、かつ４：３のときは
+いがああああああええええedge31
+いがああああああええええitem[i].TopLeftEdge41.5
+いがああああああええええnewPos.y-10.5
+
+いがああああああええええedge66
+いがああああああええええitem[i].TopLeftEdge41.5
+いがああああああええええnewPos.y24.5
+
+
+ようやくわかってきたな。。。。
+TopLeftEdgeの値は変わってないから
+edgeの値で全部変わってしまうんだ。そしてEdgeはたぶん
+viewableAreaに影響される
+
+
+いがああああああええええviewableAreaActual.y * 0.5f 153

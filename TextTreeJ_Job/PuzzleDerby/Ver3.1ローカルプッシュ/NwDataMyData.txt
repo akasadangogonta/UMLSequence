@@ -1,0 +1,3 @@
+line26
+ﾌﾟｯｼｭの変数に値を代入
+  public bool is_push;

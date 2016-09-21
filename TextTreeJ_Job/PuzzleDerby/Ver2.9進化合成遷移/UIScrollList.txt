@@ -1,0 +1,26 @@
+UIScrollList
+　
+　Line826
+  スクロールバーと画面を移動させる関数
+　protected void ScrollListTo_Internal(float pos)
+　
+　Line860
+　float値でScrollを移動させる
+　public void ScrollListTo(float pos)
+
+　Line894
+　実際にｽｸﾛｰﾙさせるスクリプト
+　public void ScrollToItem(IUIListObject item, float scrollTime, EZAnimation.EASING_TYPE easing)
+
+　Line1748
+　アイテムのポジションを替えている？
+　public void PositionItems()
+
+　Line1786
+　アイテムのポジションを替えている？
+　public void RepositionItems()
+　
+　Line3089
+　この中から、autoScrollPosに値が入っている場合は
+　ScrollListTo_Internalに飛んでmoverのlocalPositionを変更している？
+　LateUpdate()

@@ -1,0 +1,9 @@
+ReincarnationConfirm
+
+　 Line550
+  マテリアルのIDデータを設定する
+　  private void ResetMaterial() 
+
+  Line573
+  設定されたデータを下に画像を描写する。なのでここよりこの前のResetMaterialの方が大事だったりする
+   private void DrawMaterial() 

@@ -1,0 +1,14 @@
+using UnityEngine;
+using System.Collections;
+
+public class NwCmdPushInfo : NwCmdBase
+{
+  public void ExecCmd( bool isNotice )
+  {
+    base.Init();
+    
+    base.SetIntParam( "send_flg", isNotice ? 1 : 0 );
+    base.Exec();
+  }
+}
+変数が格納されてねえな

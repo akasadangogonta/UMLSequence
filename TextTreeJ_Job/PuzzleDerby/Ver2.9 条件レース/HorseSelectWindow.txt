@@ -1,0 +1,2 @@
+HorseSelectWindow
+選択とかホースデータとか冗長な選択画面  

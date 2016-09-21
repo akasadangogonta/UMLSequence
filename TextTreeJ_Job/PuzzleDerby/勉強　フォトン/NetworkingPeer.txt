@@ -1,0 +1,13 @@
+わけわかんねえな似たような機能がっかり
+
+　　Line3182
+　　internal void RPC(PhotonView view, string methodName, PhotonPlayer player, bool encrypt, params object[] parameters)
+　　PhotonView.RPC > PhotonNetWork.RPC > NetworkingPeer.RPCという流れでくる関数。
+　　いったいどこまで続くんだ
+
+　　　　rpcEvent[(byte)3] = methodName;
+　　　　rpcEvent[(byte) 4] = (object[]) parameters;
+　　　　this.OpRaiseEvent(PunEvent.RPC, rpcEvent, true, options);
+
+　　うーんなのこっちゃなああ。。
+　　

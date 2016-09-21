@@ -1,0 +1,20 @@
+Assets/GameScenes/Farm/Scriptscs(131,37): warning CS0219: The variable `initializedNarrowIds' is assigned but its value is never used
+
+Assets/GameScenes/Farm/Scripts/NewHorseCollectionList.cs(194,9): warning CS0219: The variable `num' is assigned but its value is never used
+
+Assets/GameScenes/Puzzle/Scripts/GameLogic.cs(579,15): warning CS0219: The variable `horseIndex' is assigned but its value is never used
+
+ Assets/GameScenes/Puzzle/Scripts/GameLogic.cs(1148,9): warning CS0219: The variable `totalCount' is assigned but its value is never used
+
+Assets/GameScenes/Puzzle/Scripts/GameLogic.cs(1680,19): warning CS0219: The variable `targetPosition' is assigned but its value is never used
+
+Assets/GameScenes/Puzzle/Scripts/GameLogic.cs(1974,28): warning CS0219: The variable `skillParamData' is assigned but its value is never used
+
+Assets/GameScenes/Puzzle/Scripts/GameLogic.cs(1966,10): warning CS0219: The variable `coroutineEnd' is assigned but its value is never used
+
+
+
+
+
+
+

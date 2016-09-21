@@ -1,0 +1,5 @@
+ShopMenu
+
+　Lin59
+　Inしているところ
+　  public override void In ()

@@ -1,0 +1,60 @@
+public enum HorseElement
+{
+  None  = 0,
+  Fire,
+  Water,
+  Wind,
+  Light,
+  Earth,
+}
+
+public enum HorseSex
+{
+  Male = 1,
+  Female,
+  Gelding,
+}
+
+public enum HorseType
+{
+  None    = -1,
+  Balance = 1,  // バランス.
+  Stamina,      // スタミナ.
+  Speed,        // スピード.
+  Recovery,     // 勝負根性.
+  Enhance,      // 強化専用.
+  Plus,         // +強化専用.
+  Turf,         // 芝.
+  Dirt,         // ダート.
+  Sprinter,     // 短距離.
+  Meyer,        // 中距離.
+  Stayer,       // 長距離.
+  Almighty,     // 万能.
+  SkillUp,      // スキルアップ.
+}
+
+public enum HorseRarity
+{
+  Normal = 1,
+  Rare2,
+  Rare3,
+  Rare4,
+  Rare5,
+  Rare6,
+  Rare7,
+
+  Max = Rare7
+}
+
+public enum HorseRank
+{
+  C = 1,
+  B,
+  A,
+  S,
+  SS,
+  L,
+  SL,
+
+  Max = SL
+}

@@ -1,0 +1,2206 @@
+さ、駄文やるぞ
+
+これ、１６：９でもスクロール必要だわ
+3時間購入不可というかそれぞれのレースチケットごとなのか、レースチケット自体が買えなくなるのか
+あたぶんチケットごとだわ
+んで全部のチケットが3時間待機状態なら売り切れ表示か
+
+つまりTicketListMainと、TicketConfirm画面が必要なのか
+TicketResultも必要なのかな？
+
+なるほどなるほど
+
+そうかネット通信関係も必要なのか
+というかチケットはローカルで保存してないから
+デバック用のapiを用意してもらわないとそもそもテストプレイさえできないわ
+
+
+ん？文字あパネルからはみ出さないかこれ？
+	コンテニュー不可・回復なし・チーム水限定
+	あはいるか。。。。
+	ということは現在入ってる初級・中級・上級ってのは入らなくなるのか
+	いや難易度は表示位置がかわんだよ
+
+
+NwDataMultiLobbyData
+NwDataRaceData
+
+public int	special_terms_id = 0;				
+// 限定ルール(0:通常,1:コンテニュー不可,2:時間制限,3:ターン制限)
+	public int	special_terms_value = 0;		
+// id=2:制限時間(秒), id=3:ターン数
+
+
+・チケットっぽいアイコンってのはどっちで用意するのか
+・ん？文字あパネルからはみ出さないかこれ？
+
+まずたぶんNwなんとかかんたらが必要やろ
+取りあえず画像として必要なのはチケットっぽいあいこんと、黄色いパネルネ
+RaceMenu.pngニは黄色いパネルは一途ランからね（オレンジはある）
+
+いまもレースチケットではないけどチケット扱っている場面はあるよな、ガチャで
+取りあえずそれ見てみるか
+どうやらNwBasicInfoにガチャ関連チケットがありますな
+  public int gacha_ticket_id = 0;
+  public int own_ticket_num = 0;
+  public string button_name_ticket = "";
+
+これはｶﾞﾁｬ専門の変数ってことでいいのかな
+今回のチケットレースでは違う変数が必要？
+とりあえず3時間経過したかどうかって変数がローカルに必要だな
+boolがいいのかfloatがいいのか、それとも両方がいいのか
+floatだけで十分な気がして切ったな
+float値が０なら購入可能になるって判断
+
+float ｒaceTiketPurchaseTimeｒ
+問題はどこの
+ああ、ｽｸﾘﾌﾟﾄ名はNwBasicInfoだけど、クラス名は
+public class NwDataGachaDataだわ
+なるほど、がちゃの数だけNwDataGachaDataがあるわけか
+
+じゃあガチャがその数だけクラスあるなら
+レースﾁｹｯﾄもその数だけ。。。。。
+
+
+
+該当レースのボスの色にしたい・・・？
+まあ黄色一色増やせば可能なのかな？
+あれ、でも天属性みたいなのなかったっけ？
+あ、火水風天地の五種か
+
+ん？ドロｐップ率２倍？経験地二倍っていったいどの変数で対応してうるな
+ん？なんか面倒くせえな
+
+
+
+パズル条件だけどのクラスのどの変数かわかんねえんだよな
+
+
+重要
+レース名の横に、フォントのサイズを大きくして難易度表示か
+
+
+・ゲーム条件
+	NwDataMultiLobbyData
+	NwDataRaceData
+		public int	special_terms_id = 0;	
+		// 限定ルール(0:通常,1:コンテニュー不可,2:時間制限,3:ターン制限)
+パズル条件
+
+
+デッキ条件
+
+
+それぞれ何のクラスの何の変数使っているかよく見よう
+というかこの条件を入れるのはいいんだけど、他にも今色々表示されてるよな
+
+
+
+
+
+ん怪しいの発見
+  public static PieceColor unuseBlockOnPieceColor;  // unuseBlockをPieceColorで表現したもの.
+なんだこれ
+
+		anywayColor = (int)PieceColor.Pink;
+		if (PuzzleConfig.unuseBlockOnPieceColor == PieceColor.Pink)
+		{
+			anywayColor = (int)PieceColor.Red;	// 回復ブロックが使用不可の時は赤で初期化
+		}
+
+なんかPuzzleConfigが怪しいような樹はするんだけど
+具体的にそれの何処でやってるとかはわからんな
+
+    useBlockFlags[(int)PieceColor.Pink] = true;
+Pinkが回復なのか
+	public static float [] BlockRate = {15,15,15,15,15,15, 0, 0}; //block color 0:pink, 1:red, 2:blue, 3:green, 4:yellow, 5:brown, 6:Clear(Stone) 7:Poison(Dark)
+ほうほう、BlockRate[0]が回復か。。。。
+
+
+お、GameLogicの323行目に怪しいのがありますな
+    PuzzleConfig.unuseBlock = raceData.unuse_block;
+	ＲａｃｅＤａｔａのunuse_blockをPuzzleConfigに代入しとる
+してみると、このRaceDataの情報はどっから持ってきてるナン
+
+どうやらNwCmdRaceActionからとってきてますな
+NwCmdRaceAction経由のNwDataRaceActionの中の
+  public int               unuse_block;
+から取得してますなあ
+
+
+ほう、RaceMenuの
+１４７７行目に怪しいのがありますな
+      cmdAction = NetworkManager.Instance.GetCmd<NwCmdRaceAction>();
+        cmdAction.SetCallBack(
+      ()=>
+      {
+        //LoadingManager.Instance.Pause();
+        RaceData.RaceExecId = cmdAction.GetData().race_exec_id;
+        RaceData.SetCurStep(0);
+        RaceData.StageId = curStageId;
+        RaceData.MyOrder = -1;
+        RaceData.RaceType = curRaceType;
+        
+        if( TutorialManager.CheckTutorialPhase() )
+        {
+          RaceData.RaceId = -1;
+          RaceData.IsInit = false;
+        }
+        else
+        {
+          RaceData.RaceId  = curRaceId;
+          RaceData.IsInit  = true;
+        }
+        RaceData.Save(16);  // multi
+        PlayerPrefs.Save();
+        //LHDebug.Log( SaveData.GameStatus );
+        //LHDebug.Log( RaceData.LoadGameStatus() );
+        
+        StartRaceRun();
+        /*
+        TimeManager.SaveNowTime( SaveTimeType.RecoveryTime );
+        UserDataManager.Instance.UpdateFriendPoint( cmdAction.GetData().friend_point );
+        UserDataManager.Instance.UpdateEntryPoint( cmdAction.GetData().entry_point );
+        UserDataManager.Instance.UpdateRecoveryTime( cmdAction.GetData().recovery_time );
+        
+        SoundManager.Instance.StopBgm( 1.8f );
+        UIManager.instance.LockInput();
+        FadeControl.Instance.FadeStart( FadeType.Out, Color.black, endCallback:
+        ()=>
+        {
+          //Application.LoadLevel( "Puzzle" );
+          StartRaceRun();
+        }
+      );
+      */
+      },
+      RaceActionFailed
+      );
+      cmdAction.ExecCmd( curRaceId, curStageId, curHelperId, instanceRaceConfirm.UseTeamId );
+
+
+ＳｔａｒｔRace関数内ですねえ。。。。
+これどのタイミングで発行されるんだっけ
+出走するボタン押した瞬間ですね。。。。。
+
+
+
+・必要素材
+	・チケットレース(ショップ側)
+		・チケット絵
+		・「獲得する」「売切れ」
+		・チケットの項目表示用のフレーム(レース側で使用するものと同様?)
+		・所持数表示用のフレーム(レース側で使用するものと同様?)
+	・チケットレース(レース側)
+		チケットレース用のフレームが必要(既存のものの色変え)
+		所持数表示用のフレーム
+・条件表示
+	追加素材不要
+
+うん４つやな
+
+
+
+race_listから取得すればいいのか変数増やして
+NwCmdRaceListとかあったような
+
+NwDataRaceListg変数いっぱいありすぎて沸け分からないんだけど
+でも実際使うのはごく一部だった気がする
+実際使うのは
+  public  NwDataRaceData[] new_normal_race_list;
+  public  NwDataRaceData[] new_event_race_list;
+  public  NwDataRaceData[] new_special_race_list;
+
+  public  NwDataJockeyEventVersion[] jockey_event_version;
+だけじゃね？
+
+一応
+  // 2.7以下.
+  public  NwDataRaceData[] normal_race_list;
+  public  NwDataRaceData[] event_race_list;
+も一杯送られてきてるけど、ソース見ると2.7以下って書いてあるからな
+
+// stage_list
+public class NwDataStageData 
+{
+  public int    id;
+  public int    race_exec_id;
+  public string name;
+  public string sub_title;
+  public int    race_number;
+  public int    default_enemy_stamina;
+  public int    enemy_stamina;
+  public int    use_entry_point;
+  public int    max_battle_num;
+  public StageClearStatus status; // 0:clear, 1:new, 2:normal
+  public int    grade;
+  public bool   is_keep_out;
+  public bool   is_female_only;  // less than 1.6.3 only
+  public int    stage_element;
+  public int    difficulty;
+  public int    condition_category;
+  public int    condition_type;
+  public int[]  condition_value;
+  public int    request_user_count;
+  public bool   is_complete;
+  public List<NwDataEntryUser> entry_users { get; private set; }
+  public NwDataFacebookId[] friends; // 2014.11.6
+  public int    singleplay_sound_id;  // 2014.11.18
+  public int    multiplay_sound_id;   // 2014.11.18
+	public int		special_terms_id = 0;				// 限定ルール・・・0:通常, 1:コンテニュー不可, 2:時間制限&コンテニュー不可, 3:ターン制限&コンテニュー不可
+	public int		special_terms_value = 0;			// id=2:制限時間(秒), id=3:ターン数
+
+}
+
+この中に南下変数追加すんのかな
+なんだこれ、is_completeとか全く使わないし送られてもこない変数あるやんけ。。。。。。
+
+
+まずガチャチケット見てみるか
+ public int gacha_ticket_id = 0;
+  public int own_ticket_num = 0;
+  public string button_name_ticket = "";
+
+これを見て思うのはまず絶対にown_ticket_numは必要だ
+raceListには
+
+NetworkＭａｎａｇｅｒ見ると    { typeof(NwCmdRaceAction),     new UrlData( "POST",   true, "http://", "race_exec", 6 ) },
+でApiはrace_execだな
+
+んでこれがチケットレースかどうかって、あれが必要なんだ、判定が
+bool型が使えないから、intで0 or 1 か　-1　or 1　やるしかないような。。
+あいやちがうは
+own_ticket_numが-1ならチケットレースじゃなくせばいいんだ
+ん、いやちょっと待てよ、
+なんでｶﾞﾁｬチケットにはgacha_ticket_idが必要なんｄ
+
+んんｎ
+cmdGachaAction.ExecCmd (data.gacha_id, num, data.is_step_gacha, data.step_id, data.gacha_ticket_id);
+ここで必要になるんだなあ
+サーバ側に保存されているチケット枚数減らさなくちゃいけねえもんな
+
+じゃあ変数二つ追加か
+あとあれだ、ドロップ二倍とかどこに入ってるかみつけｃなくちゃいけねえな
+
+
+なんだこれ、サーバから受け取った文字列をそのままSut_textとしてパネルのそこにはっているか？
+だったら何もいじる必要性がないな
+ってことはドロップ率二倍とかも、サーバから直接送られてくるだけで、ローカルには保存されてないのか内容
+
+
+とりあえず画像関係は聞かないとな
+チケットのアイコン、racesubListの画像差し替え（黄色いパネル）
+
+
+どうしようか、何も思い浮かばない
+しょうがないなんかapiの質問でも考えるか
+
+重要
+>坂本さん
+おつかれさまです。チケットレースのJSON関連の相談になります。
+
+
+レース一覧画面でチケットレースを表示するやり方に関しては、
+race_listで送られてくるstage_listの変数郡の中に、ガチャチケットのgacha_ticket_id、own_ticket_numの２つと似たような変数を追加を
+想定しているのですが、どうでしょうか？
+
+チケットIDが０（か-1)のときは通常レース、1以上のときはチケットが必要なチケットレースといった具合に表示しようと思っています。
+レース実行によるチケットの減少は、現在出走した瞬間にrace_execのリクエストパラメータでrace_idとstage_idを渡しているので
+そのレースがチケットレースである場合はサーバ側で対応するチケット所持数を1減らすといったことを想定しています。
+
+
+shopメニューのチケット購入画面に関してですが、これは新しくJSONの通信を作ることを想定しています。想定している変数としては
+
+チケットID
+そのチケットの所持数
+チケットレースの名前
+チケットレースの属性
+次に購入できるまでの時間
+
+の5つを、チケッレースの種類分だけ配列で受け取ることを想定しています。
+購入時にはチケットIDをリクエストパラメータとして送りたいと思います。
+
+
+
+抜けているところや他の案などがありましたらご指摘お願いします。
+お手数ですがよろしくお願いします。
+
+
+
+重要
+ちょっと大事なこと飼い解くか
+・チケットが存在するときは、その対象となるぜんれーすを出す
+・チケットが一枚も存在しないときは、レースを表示しない ??
+・レースに入った瞬間にチケットを消費、出走ポイントも週費
+・一チケット1レースではない
+
+
+なんだこれ,,,,,
+sub_titleに何も入ってないのにドロップ率2倍でかいてあるわ
+あSetDataFacebookの引数の
+NwDataLimitedEvent limitedEventの中のtitleからドロップ率2倍とか色々取得してますな
+
+まあたどってくとＮｗＤａｔａＢａｓｉｃＩｎｆｏの中のlimitedEventに保存されておるわ
+cmdBasicInfo.ExecCmd();は、見たところ三箇所で呼ばれてる
+GameControllerの214行目
+ＭａｉｎＭｅｎｕＬｏｇｉｃの２０５行目、４１２行目、５８７行目
+あ、起動直後にGameControllerの方が世ばてるな
+逆にレースに出走するまでそれ以外よばれてねえじゃねえか
+あレース終わった後にMainMenuLogicの２０５行目呼ばれてるわ
+なんかやるきおきないなあ
+修正こないかなあ
+
+さすがにaa
+んんんんんんんんんんんんんんんんんんんんんんんん。。。。。。。。。。。ああああああああああ
+応援パックみたいに１回しか使えないとか単純なものじゃねえもんな
+レース入った瞬間にまた呼ばねえと駄目だ
+
+
+レース終了後に更新なら既存のbasicＩｎｆｏでいいけどさ
+
+
+これないよう的にNwDagtaBasicInfoに突っ込んだほうがいいな
+userDataと同じように開始直後に呼ばれるし、かつレース終了直後とかいろんなところで既に呼ばれてるし
+内包してる変数がどれもレースのパラメータと関係が深い
+
+APIだと　appli_startか
+もう眠くて眠くてしょうがねえや
+何も考えられ名ない」
+
+raceListの方の下の文字はBasicInf(appli_start)から取ってきている
+raceSubListの方の下の文字はNwDataRaceList(race_list)から取ってきている
+
+レース関係はレースリストに入れればいいんですよそれで官僚だよ
+チケット購入関係をどうすｒかだよなどこに入れるかUserDataか
+BasicInfoか、いやBasicInfoはバージョン関係のあれだから
+やっぱりUserDataに突っ込むか
+んでまたゲーム中に呼ぶのかUserData、ExecCmdで
+チケット数はローカルに保存できないからそうするしかないよな
+
+出走ポイントどうやって回復してるのか見ようかk
+
+
+race_list
+race_ticket_id = 0;
+own_ticket_num = 0;
+
+
+新しいcmd
+race_ticket_id = 0;
+own_ticket_num = 0;
+race_name = ""
+arriment = 属性
+purchase_time
+
+
+坂本さんとどうやってコミュニケーションとるかだよな
+出走ボタン押した瞬間race_execなるものが呼ばれ取るな
+ここにチケットID突っ込めないものだろうか
+race_exec(NwCmdRaceAction)のExecCmdで渡している
+変数郡
+｛
+      base.SetIntParam( "race_id", raceId );
+//      base.SetIntParam( "multiplay_race_exec_id", -1 ); // TEST
+      base.SetIntParam( "stage_id", stageId );
+      base.SetStrParam( "helper_id", helperId.ToString() );
+      base.SetIntParam( "use_team_id", useTeamId );
+      
+      NwDataBasicInfo baseData = NetworkManager.Instance.GetCmd<NwCmdBasicInfo>().GetData();
+      if( baseData != null )
+      {
+        base.SetIntParam( "horse_master_version" , baseData.horse_master_version );
+        base.SetIntParam( "lei_master_version",    baseData.lei_master_version );
+        base.SetIntParam( "skill_master_version",  baseData.skill_master_version );
+        base.SetIntParam( "lskill_master_version", baseData.lskill_master_version );
+} 
+
+んでサーバから返ってくる値は次の通り
+turn_dir : 0
+ground_type : 0
+race_track_id : 6
+boss_horse_id : 34501
+boss_horse_name : "30cb30b730ce30d530e930ef30fc"
+boss_tagline : "83ef9e97306a308b77ed8ddd96e25973738b"
+use_event_course : False
+unuse_block : 0
+race_exec_id : 17222
+steps
+
+>坂本さん
+了解しました。お手数ですが引き続きよろしくお願いいたします。
+
+
+
+[2016/05/10 12:25:10] 村井 俊介: ホーム画面等でホースのステータスを棒状のもので表示する箇所がありますが、
+各ステータスの最大値はどのくらいになるのでしょうか？
+こちらですが、能力アップ設定で1.5倍になっていても元の値でお願いできますか。
+元の能力で10000を最大でお願いします。
+(将来アップデート時に最大値が増えるかもしれませんが…)
+[2016/05/10 12:25:25] 村井 俊介: また、ホームで表示するバナーについて、現在平行四辺形にみえる画像になっていますが、
+新しいデザインにあわせて、テストの段階でデザインにあわせた長方形のものになると考えてよろしいでしょうか。
+こちら神宮の方に確認いたします。少しお待ちください
+
+
+ROMの方ありがとうございます。
+今確認させていただいております
+
+デザインとは別になりますが
+・馬の詳細で能力がn倍になっている場合、今だとn倍の数値で表示されていると思うのですが、こちらも3.0.0だとn倍になってなさそうです。
+・先日いただきましたROMでGooglePlayにα版登録して課金周りを見ていた際、決済後の購入完了ウインドが表示されていなかったように思います
+この2箇所見ていただけないでしょうか
+
+
+現在HomeHorseParameter使ってるの五箇所か？
+horseDetailとhorseSelectとSlideObj1,2,3
+horseDetailだけスクリプトでプレハブをインｓタンティエイトしてる
+基本それぞれそんなに変わらないけど
+horseDetailが長さ200ｵﾌｾｯﾄｰ10
+selectが長さ140
+他単純にながさ200のみ
+
+
+
+重要
+助っ人選択画面でボタンからプレイデータを選択すると助っ人画面の文字が表示されたままの問題を修正　○
+ヒエラルキのhorseSelectWindowのｚ軸を-100 からー９０に仕様、とりあえず
+４：３ではHorseStatasのゲージがホーム画面で消えるので、その分HorseStatus一式を下にずらす　○
+4:3だとホース詳細で長いスキル名がはみ出しまう門谷
+
+
+ＨｅａｄｅｒManagerからRecoveryTimeいじれるのでは
+recoveryRestTime/oneRecoveryTime　+ remainTimeが全回復に必要な時間だ
+
+
+nt totalTime = ((recoveryRestTime/oneRecoveryTime) * oneRecoveryTime) + oneRemainTime;
+これ全部秒数だからな
+時間に直すのには360で割ればいいのか
+21600
+
+
+UserDataManager.Instance.GetRecoveryTime()
+    int oneRemainTime = recoveryRestTime%oneRecoveryTime;
+    int entryPoint              = UserDataManager.Instance.GetEntryPoint();  // ネット上の現在値
+    int maxEntryPoint = UserDataManager.Instance.GetMaxEntryPoint();
+    int curEntryPoint = (maxEntryPoint-(recoveryRestTime-1)/oneRecoveryTime)-1;
+
+
+もう何が何やら全然わからんよな
+UserDataManagerは使わないほうがいいのかな？
+
+1028秒を時間と分と秒に直すと？
+
+1028/60で　分がでるはず
+1028/3600で時間が割るはず思ってたが違うのか
+
+10２８/60 = 17.13........
+つまり17分と13秒。。。。あれ
+たった17分か
+あれ
+
+じゃあ1028%3600やってみよか
+、０．３
+あ全然違うわ。。。。
+
+つまり時間は/3600
+分は%3600
+秒は
+
+つまり分は秒/60 をやった解　a に対して　
+a%60か
+６７　21か
+予想では　y は１０．５ずつでよかったはずなのになあ。。。
+
+
+チキダビやらなあかんな
+これ何をどうするんだ
+坂本さんに何か頼むんだっけ、もう頼んだよな
+ＪＳＯＮ以外に何かやること、ああ画面遷移作るか
+
+出走ポイント回復時間の表示の切り替え
+キャンペーン対象馬はステータスのn倍表示も交互に出力すること
+ホーム画面でのリーダーバッﾁﾞの表示
+スワイプのスムーズな感覚の実装
+
+
+さて遊んでる場合じゃねえな
+
+とりあえずコモンウィンドウからやるか？
+
+-136　> -159
+
+レース終了後リザルト画面でフレンド申請をした後、申請をしたという確認の文言が表示されなくなっています。現状ユーザーが利用しているver2.9.2、公開前のver3.0.0共に同じ挙動です。申請自体は反映しています。
+
+ver3.0.0のみマルチを開始する前のチーム選択の画面で全ての馬がLV11と表示されます。ホストでもゲストでも同じ症状が発生します。（長押しで詳細を確認するときは問題なく正しい数値で表示されます）
+
+
+なんだこれ、どうこをどうするれば
+PaymentManagerってなんや
+
+PaymentManager内の、Productsからデータを取ってきてるけど、問題はその
+Productsが、どこから代入されてるかってことだよな
+調べると代入されてるところは一点のみ、
+あれ、もしかしてこのProductsって、課金のHorseShoeでしか使われないやつか、わかったわ
+
+じゃあ、参考にするのは他のところの方がええな。。。。
+いやどうだろうか、いやそうだろ
+課金なんてめっちゃ面倒くさいところだからな
+ガチャとか、もしくはオレがやったことがある、RaceListの方がええんでないか
+
+
+https://svn.cyclone-ent.co.jp/webdav/netdms_puzzle_derby/trunk/program/client/Assets/GameScenes/RaceMenu/Texture/race_namepanelframe.png
+
+https://svn.cyclone-ent.co.jp/webdav/netdms_puzzle_derby/trunk/program/client/Assets/GameScenes/RaceMenu/Texture/race_namepanel_ticket.png
+
+https://svn.cyclone-ent.co.jp/webdav/netdms_puzzle_derby/trunk/program/client/Assets/GameScenes/Shop/Textures/b_get.png
+
+
+ああ、現金使う場合はproduct(paymentManager）通さなくちゃいけないけど
+ただデータ貰うだけならそんな複雑じゃなくていいじゃね、、という話しに
+
+
+    base.SetIntParam( "horse_master_version", data.horse_master_version );
+    base.SetIntParam( "lei_master_version", data.lei_master_version );
+    base.SetIntParam( "skill_master_version", data.skill_master_version );
+    base.SetIntParam( "lskill_master_version", data.lskill_master_version );
+
+たぶんこのリクエストパラメータ必要だけど
+どうなるんだろうか
+必要なのはチケットIDだかｒ
+ＥｘｅｃＣｍｄに引数が必要なんだな
+
+  
+  public void ExecCmd( double[] sellLeiIds, int sellPrice )
+  {
+    base.Init();
+    
+    base.SetArrayParam( "sell_lei_ids", sellLeiIds );
+    base.SetIntParam( "sell_price", sellPrice );
+    
+    base.Exec();
+  }
+
+public LimitedEventType event_type;
+んｎ、ＪＳＯＮってStringとかint以外も綿船の？
+
+
+んんん、Postとゲットの違いがわかんねえんだけど
+投げるだけならPostでいいのか？
+
+
+NetworkManager
+Ｌｉｎｅ149
+    { typeof(NwCmdRaceResult),     new UrlData( "POST",   true, "http://", "race_result", 7 ) },
+なんだろうなあこれ。。。。
+
+Line250
+  public UrlData GetData( System.Type type )
+  {
+    return apiElements[ type ];
+  }
+
+
+NwCmdBase
+Line98
+    NetworkManager.UrlData tmpData = NetworkManager.Instance.GetData( myType );
+
+
+んんなんか分からんがクラス名からURLをぶちぬいてるのか？
+だとするとーーーーー、、、
+Url指定の\ところでＧｅｔ、Postも指定しているんだよなね
+今回だとPostだけでいい気がしてきたな
+
+いやGetもＰｏｓｔもそういう意味じゃねえから
+全体で見るとNetworkManagerはPostの方が圧倒的に多いな
+ネットの情報によると、Getはネット上で情報を確認できる
+ただ扱える情報量が少ない
+Postは情報量は多く使えるとあるな
+
+
+どういうときにGETで、どういうときにPOSTなのかわかりづらい方、
+以下に当てはまる場合はPOSTを使いましょう
+
+サーバーでデータ更新をする場合
+データを書き換えたり、削除したり、新規登録したりする場合です。
+サーバーデータに受け渡す値が見えていたら、容易に書き換えが可能になるからです。
+
+データ量が多い場合
+前述したとおり、Internet Explorerでは処理できるURLの長さに制限があります。
+よってデータ量が多いときはPOSTにしてください。
+
+秘匿情報を送る場合
+メールアドレスやパスワードなど外部に知られたくない情報を送る場合です。
+
+ちょっとガチャ調べてみますか？
+
+ｶﾞﾁゃから調べよう、どうなってるのか、
+あれ、でもガチャって
+
+
+重要
+ガチャは最初にNwCmdBasicInfoよんでるのか
+んでNwCmdGachaActionでどのガチャを選んだか送信
+
+金の蹄鉄は
+まあ大分回り道してるけど
+直接的にサーバからデータ郡を取ってきてるのは
+NwCmdPurchaseList 
+あ、これちゃんと金の蹄鉄ボタンが押された瞬間に呼ばれてるな
+んで決済は
+NwCmdPurchase
+か、、、、、
+ふむふむ
+
+で出走ポイント回復は
+NwCmdEntryPointRecovery	
+
+んで馬わく拡張は
+NwCmdFarmExtension
+
+んでｼﾝｶｱｲﾃﾑ枠拡張は
+NwDataEvolutionExtensio
+
+
+とするとねえ、、、、、、、、、、、、、、、、、、、、、
+まあもうNwCmdBasicInfoやめてよろしいとおもうのだがいかがか？
+まあとりあえずそれで進めていくか
+とりあえずな
+後から簡単に変えられるだろ。。。。。
+
+ところで、ドロップアップ二倍とかのデータってどっから貰ってるんだっけ
+引数のNwDataLimitedEvent limitedEventをおおお
+eventText.Text = limitedEvent.title;
+で代入してるんですなあ
+このNwDataLimitedEventは
+またお前か、NwCmdBasicInfoで貰っている
+んわかったなもう
+
+あれ、あのNameFrameの玉のあれなんっけあれ
+あれもJSONに必要でそ？
+なんか
+public enum HorseElement
+{
+  None  = 0,
+  Fire,
+  Water,
+  Wind,
+  Light,
+  Earth,
+}　からの～
+horseElement.PlayAnim
+( SaveData.BlockId, horse.GetMasterData().GetElementBlockIndex() );
+
+まあでも
+  public int GetElementBlockIndex()
+  {
+    int main = (int)element;
+    int sub = (int)sub_element;
+
+    if( sub_element == HorseElement.None )  return (main-1)*5+main;
+
+    return (main-1) * 5 + sub;
+  }
+
+ってあるから結局のところintで大丈夫でしょ
+
+ネット上のチケット数が増えるだけだから
+何も貰わないんだよなあ
+
+減った金の蹄鉄をローカルにう反映させるのは
+このスクリプトを使え
+
+  private IEnumerator ChangeResult()
+  {
+    while( !MenuBase.IsFinished ) yield return 0;
+    MenuBase.CreateMenu<LeiExtensionResult>
+( ref instanceResult, result, this.transform );
+    
+    UserDataManager.Instance.UpdateMaxLeiNum
+( cmdEvolutionExtension.GetData().max_lei_num );
+    UserDataManager.Instance.UpdateGoldHorseShoe
+( cmdEvolutionExtension.GetData().gold_horse_shoe );
+    instanceResult.SetWindow
+( extensionTexts:new string[1]{ UserDataManager.Instance.GetMaxLeiNum().ToString() } );
+    curMenu = instanceResult;
+    curMenu.In ();
+  }
+
+この
+   UserDataManager.Instance.UpdateGoldHorseShoe
+( cmdEvolutionExtension.GetData().gold_horse_shoe ); がキモっぽきな
+
+
+
+
+これがリクエストパラメータのサンプルじゃｙ
+    case TutorialPhase.End :
+      base.SetIntParam( "race_id", raceId );
+      base.SetIntParam( "coopplay_race_exec_id", raceExecId ); // Please use the coopplay's id!!, Don't send any normal race_id!
+      base.SetIntParam( "stage_id", stageId );
+      base.SetStrParam( "helper_id", helperId.ToString() );
+      base.SetIntParam( "use_team_id", useTeamId );
+      
+      NwDataBasicInfo baseData = NetworkManager.Instance.GetCmd<NwCmdBasicInfo>().GetData();
+      if( baseData != null )
+      {
+        base.SetIntParam( "horse_master_version" , baseData.horse_master_version );
+        base.SetIntParam( "lei_master_version",    baseData.lei_master_version );
+        base.SetIntParam( "skill_master_version",  baseData.skill_master_version );
+        base.SetIntParam( "lskill_master_version", baseData.lskill_master_version );
+      }    case TutorialPhase.End :
+      base.SetIntParam( "race_id", raceId );
+      base.SetIntParam( "coopplay_race_exec_id", raceExecId ); // Please use the coopplay's id!!, Don't send any normal race_id!
+      base.SetIntParam( "stage_id", stageId );
+      base.SetStrParam( "helper_id", helperId.ToString() );
+      base.SetIntParam( "use_team_id", useTeamId );
+      
+      NwDataBasicInfo baseData = NetworkManager.Instance.GetCmd<NwCmdBasicInfo>().GetData();
+      if( baseData != null )
+      {
+        base.SetIntParam( "horse_master_version" , baseData.horse_master_version );
+        base.SetIntParam( "lei_master_version",    baseData.lei_master_version );
+        base.SetIntParam( "skill_master_version",  baseData.skill_master_version );
+        base.SetIntParam( "lskill_master_version", baseData.lskill_master_version );
+      }
+
+
+
+raceMenuのExecCmd
+
+    LoadingManager.Instance.Play(true);
+    NwCmdRaceList cmdRaceList = NetworkManager.Instance.GetCmd<NwCmdRaceList>();
+    JockeyEventVersionLoader jockeyEventVersionLoader = new JockeyEventVersionLoader();
+    cmdRaceList.SetCallBack(
+    ()=>
+    {
+      jockeyEventVersionLoader.Load( cmdRaceList.GetData().jockey_event_version, gameObject, TouchMultiSelectMain );
+    }
+    ,
+    (err) =>
+    {
+      LoadingManager.Instance.Pause();
+      switch( err )
+      {
+      default :
+        AssertManager.Instance.SetConnectFailed( cmdRaceList );
+        break;
+      }
+    });
+//    isMulti = (selectItem.buttonType != MultiSelectButtonType.Single);
+//      Debug.LogError("RaceList isMulti="+isMulti);
+    TitleBoardManager.Instance.SetMultiMode(isMulti);
+    cmdRaceList.ExecCmd(isMulti); // isMulti = false
+
+
+現状raceListで返ってくる値は
+  public  NwDataRaceData[] normal_race_list;
+  public  NwDataRaceData[] event_race_list;
+と
+  public  NwDataRaceData[] new_normal_race_list;
+  public  NwDataRaceData[] new_event_race_list;
+  public  NwDataRaceData[] new_special_race_list;
+の五つ
+このうち
+nre_event_race_listが
+
+
+
+  private void TouchShortEntryBtn(int index) {
+    CommonWindow.Instance.PlayCloseAnim();
+    if(index == 0) {
+      if(UserDataManager.Instance.GetGoldHorseShoe() > 0) {
+        cmdRecovery = NetworkManager.Instance.GetCmd
+<NwCmdEntryPointRecovery>();
+        cmdRecovery.SetCallBack(
+          ChangeResult,
+          FailedRecovery
+        );
+        cmdRecovery.ExecCmd();
+      } else {
+        StartCoroutine(this.OpenShopWindow());
+      }
+    }
+
+>>坂本さん
+おはようございます。
+
+ショップのレースチケットの購入画面ですが
+・最初に「レースチケットの獲得」ボタンを押したとき、チケット一覧を取得するapi
+・チケットを選択し獲得する際、チケットIDをサーバに送って獲得後の金の蹄鉄の個数を取得するapi
+の二つを想定しています。
+
+上記で問題ありませんでしたら、apiの名前、変数の名前など、決まり次第ご連絡の方よろしくお願いします。
+
+また一つ疑問がありまして、例えば馬枠拡張の際、エラーが出るとサーバから
+"overLimit"
+"shortHorseShoe"
+などの文字列が返ってきているようなのですが、今回のチケット獲得では何かこちら側で用意しておく
+必要のあるエラーはありますでしょうか？
+
+お手数ですがよろしくお願いします。
+
+
+了解しました、急ぎではないので大丈夫です。また後日よろしくお願いいたします。
+
+appli_startのlimited_eventの中に入っているtitle
+
+user_dataで受け取ってんの課
+{ typeof(NwCmdMyData),     new UrlData( "GET",  true,  "http://", "user_data", 3 ) },
+user_data.entry_pointでネット上の最新の残り時間取得
+
+user_data_managerの中の
+  public void LoadData()
+  {
+    userData = NetworkManager.Instance.GetCmd<NwCmdMyData>().GetData();
+  }
+でUserDataManagerにNwCmdMyDataの情報写してるのか
+まあ結果としてintでいいんですよ
+
+NwDataRaceData
+  public int    end_time;
+かああ・・・・・・
+
+
+public enum NetworkError
+{
+  NoConnect,
+  TimeOut,
+  Maintenance,
+  OverMaintenance,
+  InvalidRequest,
+  Inconsistent,
+  FailedReceive,
+  NeedVersionUp,
+  ServerError,
+  NeedDataUpdate,
+  
+  NoError
+}
+
+  public enum ErrorType
+  {
+    None,
+    AlreadyRecovered,
+    ShortHorseShoe
+  }
+
+  protected override ParseError CheckError (NwDataError errorData)
+  {
+    ParseError parseError = NwCmdBase.ParseError.Inconsistent;
+    switch( errorData.error )
+    {
+    case "alreadyRecovered" : error = ErrorType.AlreadyRecovered; break;
+    case "shortHorseShoe"   : error = ErrorType.ShortHorseShoe;   break;
+    default :
+      parseError = NwCmdBase.ParseError.ParseFailed;
+      break;
+    }
+    
+    return parseError;
+  }
+
+ボタンが効かないバグ
+ああそうか、commonwindowを継承してないと駄目だ
+
+
+めんどくさいけど一つずつ検証していくしか方法はないぞ
+
+
+
+こっちがHorseShoeのスクリプトね
+    case PaymentManager.ErrorType.ConsumeFailed :
+      instanceResult.SetFormat( error.ToString() );
+      instanceResult.SetWindow();
+      TitleBoardManager.Instance.AddCallback( () => StartCoroutine( this.ResumeConsumeProduct() ) );
+      break;
+    case PaymentManager.ErrorType.SuspendResume :
+      MainMenuLogic.Instance.TouchShop( ShopPhase.HorseShoe );
+      return;
+
+こっちがTicketRaceShopのスクリプト
+case NetworkError.Inconsistent :
+switch( cmdTicketRaceShopAction.GetError() )
+{
+case NwCmdEntryPointRecovery.ErrorType.ShortHorseShoe :
+	AssertManager.Instance.SetInconsistentError( cmdTicketRaceShopAction, cmdTicketRaceShopAction.
+　　　　　　GetError().ToString(), () => MainMenuLogic.Instance.TouchShop( ShopPhase.HorseShoe ) );
+	break;
+case NwCmdEntryPointRecovery.ErrorType.AlreadyRecovered :
+	AssertManager.Instance.SetInconsistentError( cmdTicketRaceShopAction, cmdTicketRaceShopAction.
+　　　　　　GetError().ToString(), TitleBoardManager.Instance.TouchBack );
+	break;
+}
+＞
+  public void SetInconsistentError( NwCmdBase cmd, string errorName, DefaultCallback endCallback = null )
+  {
+    this.endCallback = endCallback;
+    this.OpenErrorWindow( string.Format( "{0}/{1}", cmd.GetType().ToString(), errorName ), cmd );
+  }
+
+
+もう上からひとつずつ解決していくしかないと思うよまじで
+まずSetWIndowはいいとして
+SetFormatろはどうだろうか
+
+まじ理由がわからん
+まずボタンがどうみても反応していない
+
+
+ＬｏａｄｉｎｇManageｒがプレイだとずっと出てることになるのか
+逆にpauseが一緒の力か
+
+
+
+  public void SetInconsistentError( NwCmdBase cmd, string errorName, DefaultCallback endCallback = null )
+  {
+    this.endCallback = endCallback;
+    this.OpenErrorWindow( string.Format( "{0}/{1}", cmd.GetType().ToString(), errorName ), cmd );
+  }
+
+
+  public void SetPhotonError( PhotonAssertType errortype, DefaultCallback endCallback = null, NwCmdBase cmd = null )
+  {
+    this.endCallback = endCallback;
+    this.OpenErrorWindow( string.Format( "{0}/{1}", "Photon", errortype.ToString() ), cmd );
+  }
+
+
+
+ NwDataBasicInfo basicData = NetworkManager.Instance.GetCmd<NwCmdBasicInfo>().GetData();
+basicData.cost_recovery_timeが出走ﾎﾟｲﾝﾄ１ポイント分に必要な時間
+
+
+
+
+
+重要
+おおおおお
+  private void UpdateRecoveryTime()
+  {
+    if( startMenuType != MenuType.Result )
+    {
+      int recoveryTime = UserDataManager.Instance.GetRecoveryTime() - TimeManager.GetIntervalTime( SaveTimeType.RecoveryTime );
+      UserDataManager.Instance.UpdateRecoveryTime( recoveryTime );
+    }
+  }
+
+これ真実じゃね
+[MainMenuLogic]のCheckGiveup
+  UserDataManager.Instance.UpdateRecoveryTime( recoveryTime );
+
+[ResultMenu]のTouchGiveupWindow
+  UserDataManager.Instance.UpdateRecoveryTime( raceResult.recovery_time );
+
+なんか他にも一杯あるけど考えるの面倒くせえわ
+
+
+
+
+
+  private void SetEventTime( int closeTime )
+  {
+    if( closeTime > 60*60*24 )
+    {
+      timeText.Text = string.Format( TextManager.GetText( "race/limitedEventDaysFormat" ), closeTime/(60*60*24) );
+    }
+    else if( closeTime > 60*60 )
+    {
+      timeText.Text = string.Format( TextManager.GetText( "race/limitedEventHoursFormat" ), closeTime/(60*60) );
+    }    else
+    {
+      timeText.Text = string.Format( TextManager.GetText( "race/limitedEventMinutesFormat" ), closeTime/60 );
+    }
+    timeText.renderer.enabled = true;
+  }
+
+
+>>村井さん
+おつかれさまです。
+レースチケットの再購入できるまでの時間の表示についての相談です。
+
+現状のレースメニューの「あと○日」などの表示では、サーバから取ってきた時間を表示するのみなので、
+再度レースメニューに入り直して再取得しないと正確な時間が表示されないようになっています。
+
+こちら出走ポイントのようにサーバから取ってきた値を元にローカルで計算することで、
+秒単位でリアルタイム表示をすることもできます。（○日○時間○分○秒など）
+レースチケット購入画面ではリアルタイム表示で問題ないでしょうか？
+
+お手数ですがよろしくお願いします。
+
+
+サーバからチケットリストで取得した値と、現在の時間 - チケットリストを取得した瞬間の時間を使って
+
+
+
+
+
+	private int GetTicketRepurchTime(NwDataTicketRaceShop data)
+	{
+		int time = data.repurch_time - Mathf.FloorToInt(TimeManager.GetIntervalTime(SaveTimeType.TicketsRepurchTime));
+		if(time < 0)
+		{
+			time = 0;
+			return time;
+		}
+
+		if( time > 60*60*24 )
+		{
+			time = time/(60*60*24);
+		}
+		else if( time > 60*60 )
+		{
+			time = time/(60*60);
+		}
+		else
+		{
+			time = time/60;
+		}
+
+		return time;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+了解しました、リアルタイム表示で実装していきます。よろしくお願いします。
+
+
+
+stage_nameなる変数はマルチにしか存在しねえ
+
+
+
+
+NwDataRaceData(RaceList)
+NwDataStageData（RaceSubList)
+
+難易度表示はsubListのほう名
+というか既にあるじゃねえかdifficulty
+
+あれかrace_ticket_idと
+own_ticket_num
+
+
+"stageBoardDetailFormat"  
+
+目標を決めよう
+午前中に条件レースの表示とチケットレースとそれ以外の表示の仕分けを行うy
+午前中にできるはずだ
+
+
+先週は提出した３．０の修正と、ショップ画面、レースメニュー画面のチケットレースの実装をおこないました
+ショップ画面の方はあとJSONの用意を待つだけで、レース画面の方は今日中に終わらせたいと思います。
+
+まず普通のレースとチケットレースの描写の違いはナンなんだ？
+TicketRaceNumの表示非表示の有無と
+ボードの色と、時間表示の有無か
+時間表示はたぶん勝手に今まで通りのスクリプトで非表示にしてくれんじゃないか
+
+
+      if( basicInfoData.RaceEvents.ContainsKey( datas[i].id ) )
+      {
+        item.SetData( i, datas[i], TouchCallback, RaceType.Ranking, basicInfoData.RaceEvents[datas[i].id], instanceMaterial );
+      }
+      else
+      {
+        item.SetData( i, datas[i], TouchCallback, RaceType.Ranking, material:instanceMaterial );
+      }
+これがあれか、イベントレースの表示があるかどうかのあれか。。。。
+
+
+一番右の赤い奴がRaceRankingEventList
+真ん中のオレンジの奴がRaceEventList
+
+
+
+
+
+
+// stage_list
+public class NwDataStageData 
+{
+  public int    id;
+  public int    race_exec_id;
+  public string name;
+  public string sub_title;
+  public int    race_number;
+  public int    default_enemy_stamina;
+  public int    enemy_stamina;
+  public int    use_entry_point;
+  public int    max_battle_num;
+  public StageClearStatus status; // 0:clear, 1:new, 2:normal
+  public int    grade;
+  public bool   is_keep_out;
+  public bool   is_female_only;  // less than 1.6.3 only
+  public int    stage_element;
+  public int    difficulty;
+  public int    condition_category;
+  public int    condition_type;
+  public int[]  condition_value;
+  public int    request_user_count;
+  public bool   is_complete;
+  public List<NwDataEntryUser> entry_users { get; private set; }
+  public NwDataFacebookId[] friends; // 2014.11.6
+  public int    singleplay_sound_id;  // 2014.11.18
+  public int    multiplay_sound_id;   // 2014.11.18
+	public int		special_terms_id = 0;				// 限定ルール・・・0:通常, 1:コンテニュー不可, 2:時間制限&コンテニュー不可, 3:ターン制限&コンテニュー不可
+	public int		special_terms_value = 0;			// id=2:制限時間(秒), id=3:ターン数
+
+}
+
+
+重要
+レース名の横に、フォントのサイズを大きくして難易度表示か
+
+
+・ゲーム条件
+	NwDataMultiLobbyData
+	NwDataRaceData
+		public int	special_terms_id = 0;	
+		// 限定ルール(0:通常,1:コンテニュー不可,2:時間制限,3:ターン制限)
+パズル条件
+
+
+デッキ条件
+
+
+
+重要
+レース名の横に、フォントのサイズを大きくして難易度表示か
+
+
+・ゲーム条件
+	NwDataMultiLobbyData
+	NwDataRaceData
+		public int	special_terms_id = 0;	
+		// 限定ルール(0:通常,1:コンテニュー不可,2:時間制限,3:ターン制限)
+パズル条件
+
+
+デッキ条件
+
+
+それぞれ何のクラスの何の変数使っているかよく見よう
+というかこの条件を入れるのはいいんだけど、他にも今色々表示されてるよな
+
+
+
+
+
+ん怪しいの発見
+  public static PieceColor unuseBlockOnPieceColor;  // unuseBlockをPieceColorで表現したもの.
+なんだこれ
+
+		anywayColor = (int)PieceColor.Pink;
+		if (PuzzleConfig.unuseBlockOnPieceColor == PieceColor.Pink)
+		{
+			anywayColor = (int)PieceColor.Red;	// 回復ブロックが使用不可の時は赤で初期化
+		}
+
+なんかPuzzleConfigが怪しいような樹はするんだけど
+具体的にそれの何処でやってるとかはわからんな
+
+    useBlockFlags[(int)PieceColor.Pink] = true;
+Pinkが回復なのか
+	public static float [] BlockRate = {15,15,15,15,15,15, 0, 0}; //block color 0:pink, 1:red, 2:blue, 3:green, 4:yellow, 5:brown, 6:Clear(Stone) 7:Poison(Dark)
+ほうほう、BlockRate[0]が回復か。。。。
+
+
+お、GameLogicの323行目に怪しいのがありますな
+    PuzzleConfig.unuseBlock = raceData.unuse_block;
+	ＲａｃｅＤａｔａのunuse_blockをPuzzleConfigに代入しとる
+してみると、このRaceDataの情報はどっから持ってきてるナン
+
+どうやらNwCmdRaceActionからとってきてますな
+NwCmdRaceAction経由のNwDataRaceActionの中の
+  public int               unuse_block;
+から取得してますなあ
+
+
+ほう、RaceMenuの
+１４７７行目に怪しいのがありますな
+      cmdAction = NetworkManager.Instance.GetCmd<NwCmdRaceAction>();
+        cmdAction.SetCallBack(
+      ()=>
+      {
+        //LoadingManager.Instance.Pause();
+        RaceData.RaceExecId = cmdAction.GetData().race_exec_id;
+        RaceData.SetCurStep(0);
+        RaceData.StageId = curStageId;
+        RaceData.MyOrder = -1;
+        RaceData.RaceType = curRaceType;
+        
+        if( TutorialManager.CheckTutorialPhase() )
+        {
+          RaceData.RaceId = -1;
+          RaceData.IsInit = false;
+        }
+        else
+        {
+          RaceData.RaceId  = curRaceId;
+          RaceData.IsInit  = true;
+        }
+        RaceData.Save(16);  // multi
+        PlayerPrefs.Save();
+        //LHDebug.Log( SaveData.GameStatus );
+        //LHDebug.Log( RaceData.LoadGameStatus() );
+        
+        StartRaceRun();
+        /*
+        TimeManager.SaveNowTime( SaveTimeType.RecoveryTime );
+        UserDataManager.Instance.UpdateFriendPoint( cmdAction.GetData().friend_point );
+        UserDataManager.Instance.UpdateEntryPoint( cmdAction.GetData().entry_point );
+        UserDataManager.Instance.UpdateRecoveryTime( cmdAction.GetData().recovery_time );
+        
+        SoundManager.Instance.StopBgm( 1.8f );
+        UIManager.instance.LockInput();
+        FadeControl.Instance.FadeStart( FadeType.Out, Color.black, endCallback:
+        ()=>
+        {
+          //Application.LoadLevel( "Puzzle" );
+          StartRaceRun();
+        }
+      );
+      */
+      },
+      RaceActionFailed
+      );
+      cmdAction.ExecCmd( curRaceId, curStageId, curHelperId, instanceRaceConfirm.UseTeamId );
+
+
+ＳｔａｒｔRace関数内ですねえ。。。。
+これどのタイミングで発行されるんだっけ
+出走するボタン押した瞬間ですね。。。。。
+
+
+・ゲーム条件
+NwDataMultiLobbyData
+NwDataRaceData
+public int	special_terms_id = 0;	
+// 限定ルール(0:通常,1:コンテニュー不可,2:時間制限,3:ターン制限)
+
+・パズル条件
+パズル条件いうのはまだようよう良くわかっとらんねんな
+いやわかったけどこれさ
+出走ボタン押した瞬間にしか取得しねえじゃねえかよ
+NwDataRaceAction
+public int unuse_block
+
+デッキ条件
+NwDataRaceDataの
+  public int    condition_category;
+  public int    condition_type;
+  public int[]  condition_value;
+
+
+>>村井さん
+おつかれさまです。
+チケットレースの事で質問なのですが、マルチの方でも実装する予定でしょうか？
+お手数ですがよろしくお願いします。
+
+  public int    condition_category;
+  public int    condition_type;
+  public int[]  condition_value;
+
+
+まあパズル条件以外はNwDataRaceDataから取ってこれるな
+あ違うわ、NwDataStageDataだ
+
+｛
+	>坂本さん
+	おつかれさまです。チケットレースのJSON関連の相談になります。
+	
+	
+	レース一覧画面でチケットレースを表示するやり方に関しては、
+	race_listで送られてくるstage_listの変数郡の中に、ガチャチケットのgacha_ticket_id、own_ticket_numの２つと似たような変数を追加を
+	想定しているのですが、どうでしょうか？
+	
+	チケットIDが０（か-1)のときは通常レース、1以上のときはチケットが必要なチケットレースといった具合に表示しようと思っています。
+	レース実行によるチケットの減少は、現在出走した瞬間にrace_execのリクエストパラメータでrace_idとstage_idを渡しているので
+	そのレースがチケットレースである場合はサーバ側で対応するチケット所持数を1減らすといったことを想定しています。
+	
+	
+	shopメニューのチケット購入画面に関してですが、これは新しくJSONの通信を作ることを想定しています。
+	想定している変数としては
+	
+	チケットID
+	そのチケットの所持数
+	チケットレースの名前
+	チケットレースの属性
+	次に購入できるまでの時間
+	
+	の5つを、チケッレースの種類分だけ配列で受け取ることを想定しています。
+	購入時にはチケットIDをリクエストパラメータとして送りたいと思います。
+	
+	
+	抜けているところや他の案などがありましたらご指摘お願いします。
+	お手数ですがよろしくお願いします。
+}
+
+
+なんか門限が統一されていないな
+
+
+
+
+条件レースの表示の文言を決めて欲し
+いやいいかそれはこっちで、、だいたい想像つくわ
+
+
+なんかPuzzleConfigが怪しいような樹はするんだけど
+具体的にそれの何処でやってるとかはわからんな
+
+    useBlockFlags[(int)PieceColor.Pink] = true;
+Pinkが回復なのか
+	public static float [] BlockRate = {15,15,15,15,15,15, 0, 0}; //block color 0:pink, 1:red, 2:blue, 3:green, 4:yellow, 5:brown, 6:Clear(Stone) 7:Poison(Dark)
+ほうほう、BlockRate[0]が回復か。。。。
+
+使用禁止ブロックてのは複数ありえるのか？
+
+
+
+
+
+
+これrace_listにunuseBlock入れてもらう必要あるな
+
+最終的にrace_listの中のシナリオ一覧に
+  public int race_ticket_id = 1; //Ver3.0.1
+  public int own_ticket_num = 4; //Ver3.0.1
+さらにその中のレース一覧（stage_listの中）に
+  public int    difficulty_class_id = 1;  //ver3.0.1
+　public int    unuse_block
+を入れて欲しいと思います。
+
+
+んんｎ本当にrace_list以外なかったかなあｋ、ｋ、
+なんかマルチうんたらであったような。。。。
+friend_race_progress　なるものもあるけどこっちはまあええか
+
+マルチでも同じrace_list使ってるな
+ただExecCMdでis_multiplayってリクエストパラメータおくっとんのか。。。。
+
+
+>>坂本さん
+おはようございます。
+急ぎではないですが、チケットレースのシナリオ一覧とレース一覧のJSONに関する確認になります。
+
+
+3.0.1ではレース一覧のボードに、ゲーム条件、パズル条件、デッキ条件の３つを表示することになりますが、
+パズル条件の方は、どうやらクライアントの方では最後の出走確認ボタンを押すまで
+（race_execでunuse_blockを受け取るまで）条件が分からない状態になっています。
+
+このため事前のrace_listのapiの方でもunuse_blockを送ってもらう必要があるように思います。
+場所としてはrace_listのstage_listの中、condition_categoryなどと同じ場所に置いてもらいたいと思います。
+
+
+また最終的には同じ場所に、「かんたん、初級」などを表示するのに必要なdifficulty_class_id
+そしてボスの色を表すboss_elementのようなものが恐らく必要になります。
+
+その一つ上のシナリオ一覧の方（stage_elementが入っている場所）には、名称は仮ですが
+チケットレースを表示するのに必要なrace_ticket_id、own_ticket_numのような変数が必要になります。
+
+
+全部でracelistに変数を5つ追加されることを想定しています。後ほどご確認のほう宜しくお願いします。
+
+
+しおり
+MasterHorseData
+public enum HorseType
+{
+  None    = -1,
+  Balance = 1,  // バランス.
+  Stamina,      // スタミナ.
+  Speed,        // スピード.
+  Recovery,     // 勝負根性.
+  Enhance,      // 強化専用.
+  Plus,         // +強化専用.
+  Turf,         // 芝.
+  Dirt,         // ダート.
+  Sprinter,     // 短距離.
+  Meyer,        // 中距離.
+  Stayer,       // 長距離.
+  Almighty,     // 万能.
+  SkillUp,      // スキルアップ.
+}
+
+ふーん
+common/horse/typeName          
+ [ "バランス", "スタミナ", "スピード", "勝負根性", "強化専用", "+強化専用", "芝", "ダート", "短距離", "中距離", "長距離", "万能", "S強化専用", "GⅠホース", "スターホース", "レジェンドホース" ],
+
+      List<string> typeNames = TextManager.GetTexts( "common/horse/typeName" );
+      names.Add( typeNames[(int)master_data.main_type-1] );
+      if( master_data.sub_type != HorseType.None )
+      {
+        names.Add( typeNames[(int)master_data.sub_type-1] );
+      }
+
+ふーん、Listで受け取るのか
+
+public enum HorseElement
+{
+  None  = 0,
+  Fire,
+  Water,
+  Wind,
+  Light,
+  Earth,
+}
+
+性別、コスト、属性、タイプ、進化度（rarity?)、同一禁止、指定ホース、指定カード
+
+リーダー雌馬限定
+チーム雌馬限定
+チームコスト限定
+リーダー○属性限定
+チーム○属性限定
+リーダー○○タイプ限定
+チーム○○タイプ限定
+リーダー☆○以下限定
+チーム☆○以下限定
+同一ホース禁止
+リーダー指定ホース禁止
+チーム指定ホース禁止
+リーダー指定カード禁止
+チーム指定カード禁止
+
+
+チームスタミナタイプ限定
+リーダースタイナタイプ限定
+チーム☆3以下限定
+回復、火属性、水属性なし
+
+
+しおり
+一応目盛っとくか
+255　、２４０、２
+	
+
+>>村井さん。
+お忙しいなか失礼します。
+現在条件レースの表示を、仮のデータを入れてテストしているのですが、
+ゲーム条件、パズル条件、デッキ条件を入れると、文字ボードの枠に入りきらない可能性があります。
+（下の画像はパズル条件を抜いた、ゲーム条件 とデッキ条件の長めものをいれた状態です）
+
+解決策としては3つの条件を交互に表示する、
+もしくは文言を工夫して入りきるようにする、
+そもそもサーバ側で条件を詰め込みすぎないよう調整する
+などがありますが、どういった方向性で進めればよろしいでしょうか。
+
+お手数ですがよろしくお願いします。
+
+
+>>村井さん
+おつかれさまです。とりあえず出走確認画面で実装したものが上の一枚目の画像になります。
+
+それと先ほどのレースボードの件ですが、一応確認を取ったほうがいいという事になりまして、
+さきほど確認いただいた画像がゲーム条件とデッキ条件の最大の文字の長さではなくて、
+2.9のverupの際に、仕様上は馬属性限定や馬タイプ限定で複数指定が可能になるように実装されてあります。
+
+そのため上の二枚目の画像のようにたとえばバランスタイプとスタミナタイプを限定とする場合、
+う目一杯でパズル条件を入れることは難しい状態にはなります。
+それほど条件を詰め込むことはないとは思うので、一括表示でも問題ないでしょうか？
+
+
+
+リーダーメス馬限定
+
+
+>>坂本さん
+了解しました、ありがとうございます。
+さっそく実装していきますのでよろしくお願いします。
+
+了解しました、その形で実装していきます。よろしくお願いします。
+
+arrow
+-61
+item
+-68
+
+
+
+本日いただいた質問と順番前後しますが、先日お伝えしたチケットレースのAPI
+
+・race_ticket_list(レースチケット一覧)
+・shop_race_ticket_buy(レースチケット購入)
+
+につきまして、ひとまずレスポンス項目など下記で準備しようと思いますのでご確認ください。
+
+----------------------------
+・race_ticket_list
+
+【リクエストパラメータ】
+なし
+
+【レスポンス】
+race_ticket_id ⇒ レースチケットID
+own_ticket_num ⇒ 現在の所持数
+race_name      ⇒ 対象となるレース名
+stage_element  ⇒ 敵の属性(race_listで返している項目と同じです)
+time_left      ⇒ チケット購入可能になるまでの残り時間(秒)
+
+上記をひとまとまりで、販売中のチケット分返そうと思います。
+----------------------------
+
+
+
+----------------------------
+・shop_race_ticket_buy
+
+【リクエストパラメータ】
+race_ticket_id ⇒ race_ticket_listで返すレースチケットID
+
+【レスポンス】
+gold_horse_shoe ⇒ 購入後の金の蹄鉄所持数
+own_ticket_num  ⇒ 購入後のレースチケット所持数
+
+また、shop_race_ticket_buyのエラー時の文字列に下記を追加したいと思います。
+
+outOfTerm         ⇒ チケットの販売期間外(終売等)
+purchaseTimeLimit ⇒ 前回購入してからまだ3時間経っていない
+※エラーメッセージは共に「このチケットは販売時間外のため購入できません」でお願い出来ますでしょうか。
+----------------------------
+
+
+
+
+
+
+上記、何か情報に不備がありましたらご連絡ください。
+
+お手数おかけしますが、宜しくお願い致します。
+
+MainMenuLogic.Instance.TouchShop
+	LoadingManager.Instance.Pause();
+
+>>坂本さん
+おつかれさまです。
+APIの件の了解しました。こちらで確認してみましたが、問題ないと思います。
+その方向でよろしくお願いします。
+
+
+このチケットは販売時間外のため購入できません」
+この文言どこに突っ込むんだ？
+
+あと3.0とそれ以降で受け取るracelist変えるみたいだけど
+これどうやって判断するんだ？
+
+
+＞五十嵐さん
+
+昨日ご連絡いただいたrace_listのAPIの件、
+下記の通りレスポンスを追加しようと思いますので、ご確認ください。
+
+stage_listに
+
+boss_element        ⇒ ボスの属性
+unuse_block         ⇒ 出現しない属性ブロック
+difficulty_class_id ⇒ 難易度
+
+ひとつ上の階層に
+race_ticket_id ⇒ レースチケットID(チケットレースでない場合は0)
+own_ticket_num ⇒ レースチケット所持数
+
+
+足りない情報などがありましたらご連絡ください。
+
+また、現在レース情報を、
+-----------------------------
+●旧バージョン用(現在不使用)
+normal_race_list
+event_race_list
+ranking_event_race_list
+
+●現バージョン用
+new_normal_race_list
+new_event_race_list
+new_special_race_list
+-----------------------------
+
+のリストで返していると思いますが、今回のタイミングで
+
+ver3.1.0以上は、
+------------------------------------------
+normal_race_list(中身は現在のnew_normal_race_list)
+event_race_list(中身は現在のnew_event_race_list)
+special_race_list(中身は現在のnew_special_race_list)
+------------------------------------------
+
+と変更し、旧バージョン用の不要なデータを除いて返そうと思うのですが、問題ないでしょうか？
+
+
+
+public class NwDataMultiLobbyData {
+
+うわああああ何コレ、何コレいやだだあ
+ここにも条件レースの変数あるわ、とりあえず突っ込んでくか
+
+やっぱunuse_blockが０のときは仕様制限ナシか
+
+
+
+NwDataBasicInfoのおおお
+NwDataLimitedEventのおおおお
+titleなんですわ！！！
+
+public class NwDataBasicInfo
+{
+  
+  public NwDataNotice[]             notice;
+  public NwDataCampaignHorse[]      target_horse_card_ids;
+  public bool                 ばし      charging;
+  public bool                       reload_gacha_list;
+  public bool                       is_building_appdriver;
+  public int                        is_multi;
+  public int                        need_friend_point;
+  public NwDataLimitedEvent[]       limited_event;　　これこれｗ
+}
+
+あれえええ、ちゃんとNwDataLimitedEvent複数できてんな
+なんでエラーが出てるのか・・・・・
+
+たぶんそもそｍ
+
+
+
+
+
+    foreach( NwDataLimitedEvent limitedEvent in limited_event )
+    {
+      if( !LimitedEvents.ContainsKey( limitedEvent.event_type ) )
+      {
+        LimitedEvents.Add( limitedEvent.event_type, limitedEvent );
+      }
+      
+      if( limitedEvent.race_ids != null )
+      {
+        foreach( int raceId in limitedEvent.race_ids )
+        {
+          RaceEvents.Add( raceId, limitedEvent );
+        }
+      }
+    }
+
+ほう、ここで（NwDataBasicInfoのInit()で）RSaceEventsなるところに？
+うん？
+あLimitedEventsに代入してるのか
+  public Dictionary<LimitedEventType,NwDataLimitedEvent> LimitedEvents { get; private set; }
+あ違うわ両方に代入してる
+limitedEventからLimitedEventsとRaceEventsに代入してう
+
+basicInfoData.LimitedEvents
+basicInfoData.RaceEvents
+の二つがBasicnfoでNwDataLimitedEfemtno
+受け渡し先になっている
+だ
+
+if( basicInfoData.RaceEvents.ContainsKey( friendDatas[i].id ) )       NormalRaceListBase  116
+if( basicInfoData.RaceEvents.ContainsKey( datas[hasIdIndex].id ) )   NormalRaceListBase   128
+if( basicInfoData.RaceEvents.ContainsKey( raceData.id ) )      RaceEventList  112
+if( basicInfoData.RaceEvents.ContainsKey( raceData.id ) )      RaceRankingEvent  86
+if( basicInfoData.RaceEvents.ContainsKey( raceData.id ) )      RaceRankingEvent  129
+if( basicInfoData.RaceEvents.ContainsKey( raceData.id ) )　　　RaceRankingEvent 172
+
+んんんんｎ、、、、raceData.idと照合するのは至極全うで理解できるんだけど、、、、、
+
+んんん、複数対応させるならばーーーー
+しおり
+  public Dictionary<int,NwDataLimitedEvent> RaceEvents { get; private set; }
+これをさ、Dictionary<List<int>, NwDataLimitedEvent>にすればいいんでは？
+いや駄目か。。。　いやいけるか？
+
+仮にListにするんだとしたらぁ
+下のこーどは
+if( basicInfoData.RaceEvents.ContainsKey( raceData.id ) )
+{
+item.SetData( count, raceData, TouchCallback, raceType, basicInfoData.RaceEvents[raceData.id], instanceMaterial );
+
+foreach(item in 
+あだめだ。。。。だめだこれ
+んんん、てことはもう仮想IDしかねえじゃねえか。。。。。
+
+まあLimitedEvent関連は全部ここか
+public void SetDataFacebook( int index, NwDataRaceData data, NwDataRaceData friendData, RaceListItemTouchCallback cbMethod, RaceType raceType, NwDataLimitedEvent limitedEvent = null, Material material = null , RaceListFacebookTouchCallback cbFacebookMethod = null)
+
+
+    if( data.end_time > 0 )
+    {
+      if( limitedEvent != null && limitedEvent.GetRestCloseTime() > 0 )
+      {
+        eventText.renderer.enabled = true;
+        eventText.Text = limitedEvent.title;
+      }
+      this.SetEventTime( data.end_time );
+    }
+    else if( limitedEvent != null && limitedEvent.GetRestCloseTime() > 0 )
+    {
+      eventText.renderer.enabled = true;
+      eventText.Text = limitedEvent.title;
+      this.SetEventTime( limitedEvent.GetRestCloseTime() );
+    }
+あれ、これeventTextに代入してるだけじゃねえか
+ここじゃねえよｶｽ
+
+
+おもったより簡単か、、、
+あんだけ一杯情報貰って起点の荷
+やるのは文字の表示だけか
+
+
+2016-06-10
+
+
+
+
+あれええええ
+まずRaceSaveDataと
+
+
+えええええええ
+NwDataLimitedEventの変数郡がこちら
+  public int              event_category;
+  public int              event_id;
+  public LimitedEventType event_type;
+  public ValueCalcType    calc_type;
+  public float            value;
+  public int[]            race_ids;
+  public string           title;
+  public string           detail;
+  public int              close_time;
+  public string           close_datetime;
+  
+して、RaceSaveDataがこちら
+  public RaceSaveData()
+  {
+    version        = 2; // multi
+
+    raceExecId     = -1;
+    raceId         = -1;
+    stageId        = 1;
+    raceName       = "";
+    stageName      = "";
+    isFriend       = false;
+    getFriendPoint = 1;
+    friendUserid   = -1;
+    
+    curStep        = -1;
+    horseParams    = null;
+    useTeamId      = 1;
+    myStamina      = 100;
+    skillTurns     = null;
+    skillTurns2    = null;
+    passiveSkills  = null;
+    helperHorse    = null;
+    getMoney       = 0;
+    getExp         = 0;
+    getTreasures   = null;
+    pieces         = null;
+    order          = null;
+    myOrder        = -1;
+    comboNum       = 0;
+	turnCount       = 0;
+	sumCombo       = 0;
+    
+    helperData     = null;
+    
+    isInit         = false;
+    raceType       = RaceType.Normal;
+    isActiveTurnSkill = false;
+    fastAttacked   = false;  // Enemy Skill FastAttacck
+    isMultiBgm     = false;
+    singleBgm      = 1;      // 0 or 1 is Norrmal BGM, else New BGM.
+    multiBgm       = 1;
+    isMultiplay    = false;
+    difficulty     = -1;
+
+		startTime 				= System.DateTime.MaxValue;
+		timeLimit 		 		= 0;
+		turnLimit 		 		= 0;
+
+		get_title_no 			= 0;
+  }
+
+
+厳密にはのこの２つのクラスで値の受け渡しはない
+ただNwDataRaceDataで取得しない、何故かBasicInfoでしか取得しないLimitedEventを
+いちいち壮大に読み込んでraceListItemのspriteGTextに直説打ち込んでいるだけ
+
+つかいのは結局RaceListItemの中のEvent.Textなんだよな
+んんんん、いや違う違う
+
+
+
+public void SetDataFacebook( int index, NwDataRaceData data, NwDataRaceData friendData, RaceListItemTouchCallback cbMethod, RaceType raceType, NwDataLimitedEvent limitedEvent = null, Material material = null , RaceListFacebookTouchCallback cbFacebookMethod = null)
+{
+｝
+
+
+だからさ、この  public Dictionary<int,NwDataLimitedEvent> RaceEvents { get; private set; }の
+intをさ、何か複合させた仮想IDにすればいいんだよ、
+だからこれは、NwDatabBasicの中だけで内部解決する話しなんだRa
+
+      if( limitedEvent.race_ids != null )
+      {
+        foreach( int raceId in limitedEvent.race_ids )
+        {
+          RaceEvents.Add( raceId, limitedEvent );
+        }
+      }
+であるからして
+
+  public int              event_category;
+  public int              event_id;
+  public LimitedEventType event_type;
+  public ValueCalcType    calc_type;
+  public float            value;
+  public int[]            race_ids;
+  public string           title;
+  public string           detail;
+  public int              close_time;
+  public string           close_datetime;
+  
+の中のいずれか二つを合体させればよい、
+  public Dictionary<LimitedEventType,NwDataLimitedEvent> LimitedEvents { get; private set; }
+でこれはたぶん今回関係ないだろう
+あれ、これ単純にrace_idsとevent_id合体させればいいんじゃないの？
+
+ん？NwDataLimitedEventがNwDataBasicInfoにないぞ？
+あれ、さっきまでなかったのにちゃんと
+public class NwDataBasicInfoの中にNwDataLimitedEvent｢｣あるな
+
+そうか、一つのLimitedEventの中に複数のRaceIdsが代入されているのか
+
+んんやっぱNwDataRaceDataとNwDataLimitedEventで、
+raceId以外の共通する変数が必要だ
+あこれ駄目だ、NwDataRaceData極端に保持変数すくない
+NwDataStageDataqの方が圧倒樹に多い
+いややっぱ必要ないぁ？？
+NwDataLimitedEvent○ごと貰ってきているわけだから
+
+一応LimitedEventコピーしとくか
+event_category : 1
+event_id : 296
+event_type : 141
+calc_type : 1
+value : 1.5
+race_ids[] none
+title : "30b930ad30ebUP1.5500d"
+detail : "30b930ad30ebUP1.5500d"
+close_time : 20895
+
+
+event_category : 2
+event_id : 19
+event_type : 121
+calc_type : 1
+value : 2
+race_ids
+	[0] : 5
+	[1] : 12
+	[2] : 19
+	[3] : 25
+	[4] : 31
+	[5] : 37
+	[6] : 43
+	[7] : 49
+	[8] : 55
+title : "30c930ed30c330d773872500d"
+detail : "6bce9031670866dc65e500:00ff5e23:59306f57305c5e602730ce30fc30de30eb30ec30fc30b930c930ed30c330d773872500d"
+close_time : 42494
+
+
+
+なんか不可思議だね
+event_categotyあ２のとき
+event_typeは121なのか
+
+
+
+
+しおり
+弊社内で確認しましたが誰も覚えておらず、表示されるものと勘違いしていた可能性がございます。申し訳ございません。
+こちら急ぎではないため次回のアップデート時に「フレンド申請をしました」と文言が表示されるようお願いできますでしょうか。
+
+
+
+今回元ネタはどうするか
+shopでいいよな、散々やったし、shopのゴールドホースシューかレースチケット参考にしよう
+
+
+
+
+
+helperUnderText（"フレンドになるとメリットが増えます@フレンド申請を行いますか?"）
+が使われているのは二箇所のみ
+ResultHelperMainの100行目と163行目
+
+ResultHelperMainの177行目に
+"neighborUnderText" : "このプレイヤーとフレンドになりました",　があるな
+これ使われることあんの？
+そもそもどういうとき使われるの？
+うーん？？これとフレンド申請しましたってど、一体tどういう違いなの＞
+
+
+
+
+	private void SetMultiNeighborBoard( NwDataMultiUserData user )
+	{
+の中で
+このプレイヤーとフレンドになりましたがあるな
+これどうなのか
+
+
+
+
+
+  private void SetEventuserBoard()　もう友達扱い
+private void SetFriendBoard()　　もう友達
+private void SetHelperBoard()　　友達申請あり
+ private void SetMultiFriendBoard( NwDataMultiUserData user )　もう　友達
+  private void SetMultiHelperBoard( NwDataMultiUserData user )　友達申請あり
+private void SetMultiNeighborBoard( NwDataMultiUserData user )　フレンドになりました？？？
+
+
+うーーんいっぱいあるけどどれもほぼつかいものにならん
+
+なんなのこれ、元を堕すると107行目にSetMultiDataがあって
+そのなかでif (user.user_id == resultdata.become_friends [i]) ga
+ｔrueだと呼ばれる
+まあ、ええわ、とりあえずSetHelperBoardとSetMultiHelperBoardで
+うーんもうダイレクトにResultHelperMainの194行目があれや
+
+
+重要
+合成素材選択のソート                 ○
+フレンドリストのコモンウィンドウ　　　  ○
+プレゼントのソート                        ○
+
+バナーのクリック許容範囲の可変     ×
+ローカルプッシュの勉強　　　　　　　　×
+
+HorseItemListManageBaseは今EvolutionNewBaseSelectでしか使われてない
+（旧進化合成画面）
+
+早く終わったからって満足しちゃ駄目だ
+午前中に
+
+
+>>坂本さん
+おはようございます。
+ショップ画面のチケットレースの対応ありがとうございました。
+一通りチェックして、こちらの方では問題がないことが確認ができました。
+
+続きましてレースメニューの方のJSONの確認をしたいと思っています。
+新しいrace_listのテスト実装の方が済みましたら、ご連絡お願いします。
+
+お手数ですがよろしくお願いします。
+
+まず２．７以前とかの実装はどこでやってんだろうなあ
+
+まあええわ
+
+優先順位決めよう
+とにかくフレンドリストのあれや
+
+時間が早いか遅いか
+取得時期
+presentdate
+
+
+
+>>村井さん
+おつかれさまです。プレゼントソートでプレゼントを受け取った順を実装したのですが、
+正確な文言は「受け取り順（新）、受け取り順（古）」で問題ないでしょうか？
+
+お手数ですが宜しくお願いします。
+
+
+
+
+
+Menu.pngとMenuManageBaseｔとMainMenu.scene
+か
+MenuManageBaseだからあれか、画像の差し替えか。。。
+MainMenuはバナーのあれだ
+手作業でいけるか
+
+
+
+
+CheckCondition checkClass = new CheckCondition();
+
+checkClass.SetData(RaceData.ConditionCategory,
+           RaceData.ConditionType,
+           RaceData.ConditionValue,
+           useTeamHorses);
+
+bool flag = checkClass.CheckAndCreateErrorWindow(this.transform);
+
+checkClass = null;
+return flag;
+
+
+
+ConfirmBase 93 97 143
+RaseSubListItem 247, 251, 283
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Confirmの方は
+
+まず第一候補の修正店としては、
+ちげえよConfirmBaseだ
+ 50行目
+
+  public void CreateData( RaceSaveData raceDat
+
+でももっといいところがあるような気がするな
+
+その一つ前は
+RaceMenu 1206line
+  private void SetConfirm( NwDataUserData data )
+
+
+RaceListSubItemの方は
+
+一番直前は
+RaceSubListItem　70Line
+  public void SetDataFacebook( Transform parent, int index, NwDataStageData data, NwDataStageData friendData, RaceSubListItemTouchCallback cbMethod, RaceType raceType, NwDataLimitedEvent limitedEvent = null, Material material = null ,bool dontPlay = false, bool is_neighbor_multi = false)
+
+少し前さかのぼると
+RaceMenuの889Line
+　public void IsNormalSubList
+
+もっと前にさかのぼると
+RaceListItem　（SubListItemじゃないよ）　の246行目
+  public NwDataRaceData GetData()
+
+更に前が
+
+
+
+いいやもう直前でめんどうくせええ
+
+まずあのテキストマネージャつかってるところ二箇所あるよな
+そこチェックしよう
+
+
+#if DEBUG_MODE
+チェックレースの表示、文言（CanfirmBaseとRaceSubListItem)
+
+
+
+case 1: // Gender
+	if((type == 1)||(type == -1)) { // Leader only?  -1:default,Leader only
+		ret = string.Format(TextManager.GetText("race/deckLimitLeaderFemale"));
+	}else{
+		ret = string.Format(TextManager.GetText("race/deckLimitTeamFemale"));
+	}
+	break;
+	
+case 2: // Cost
+	ret = string.Format(TextManager.GetText("race/deckLimitTeamCost"), value[0]);
+	break;
+	
+case 3: // Element
+	List<string> elementNames = TextManager.GetTexts("common/horse/elementName");
+	string elementValuesCombine = "";
+	foreach (var item in value)
+	{
+		if(elementValuesCombine != "")
+		{
+			elementValuesCombine += ", ";
+		}
+		elementValuesCombine += elementNames[item - 1];
+	}
+	
+	if(type == 1) { // Leader only?
+		ret = string.Format(TextManager.GetText("race/deckLimitLeaderElement"), elementValuesCombine);
+	}else{
+		ret = string.Format(TextManager.GetText("race/deckLimitTeamElement"), elementValuesCombine);
+	}
+	break;
+	
+case 4: //Type
+	List<string> typeNames = TextManager.GetTexts("common/horse/typeName" );
+	string typeValuesCombine = "";
+	foreach (var item in value)
+	{
+		if(typeValuesCombine != "")
+		{
+			typeValuesCombine += ", ";
+		}
+		typeValuesCombine += typeNames[item- 1];
+	}
+	
+	if(type == 1) { // Leader only?
+		ret = string.Format(TextManager.GetText("race/deckLimitLeaderType"), typeValuesCombine);
+	}else{
+		ret = string.Format(TextManager.GetText("race/deckLimitTeamType"), typeValuesCombine);
+	}
+	break;
+	
+case 5: //Rare:
+	if(type == 1) { // Leader only?
+		ret = string.Format(TextManager.GetText("race/deckLimitLeaderRarity"), value[0].ToString());
+	}else{
+		ret = string.Format(TextManager.GetText("race/deckLimitTeamRarity"), value[0].ToString());
+	}
+	break;
+	
+case 6: //Same:
+	ret = string.Format(TextManager.GetText("race/deckLimitSameHorse"));
+	break;
+	
+case 7: //Horse:
+	if(type == 1) { // Leader only?
+		ret = string.Format(TextManager.GetText("race/deckLimitLeaderCardGroupId"));
+	}else{
+		ret = string.Format(TextManager.GetText("race/deckLimitTeamCardGroupId"));
+	}
+	break;
+	
+case 8: //Card:
+	if(type == 1) { // Leader only?
+		ret = string.Format(TextManager.GetText("race/deckLimitLeaderCardId"));
+	}else{
+		ret = string.Format(TextManager.GetText("race/deckLimitTeamCardId"));
+	}
+	break;
+
+
+同一ホース禁止とコスト制限がちょっとあれやな
+
+MultiLobbySelectの109行目ね・・・・List<NwDataMultiLobbyData> を受け取ってセットしてる
+
+
+
+７７５
+
+くれば迎える
+変えれば来る
+
+
+MainLogin_MatchCheck
+PuzzleFall

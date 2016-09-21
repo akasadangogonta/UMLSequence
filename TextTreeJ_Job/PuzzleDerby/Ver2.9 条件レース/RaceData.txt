@@ -1,0 +1,19 @@
+RaceData
+GameScenes/Common/Plugin/General/RaceData
+
+  Line210付近
+  RaceMenuのフラグ判定で使う条件レースのパラメータたち
+  static public int             ConditionCategory;
+  static public int             ConditionType;
+  static public int             ConditionValue;
+
+　Line540付近
+　なんかよくわからないことに条件レースの変数を使っている。要注意。しかもswitchで判定してるのはElementとRareだけという
+
+　Line４３４
+　MultiConfirmItemで使われるなぞの関数、自分の馬ﾃﾞｰﾀを3つ渡して、何らかのｴﾗｰメッセージを取得する
+  public static TeamTotalStatus CalcStatus(NwDataUserHorse[] horseDatas)
+
+
+　
+  

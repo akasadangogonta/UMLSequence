@@ -1,0 +1,8 @@
+line71
+プッシュするかどうかの判定に代入
+  public void UpdatePushInfo      ( bool enabled ) { userData.is_push    = enabled; }
+
+
+line77 
+一番最初にheaderManagerのrecoveryTimeにぶちこむ関数
+  if( HeaderManager.Instance != null ) HeaderManager.Instance.UpdateRecoveryTime( num );

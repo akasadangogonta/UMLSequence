@@ -1,0 +1,34 @@
+RaceConfirmItem
+>GameScenes/RaceMenu/Scripts/RaceConfirmItem
+なんか相当面倒くさいぞ
+パラメータの設定がSetDatとCulcStatusに分かれてるからな
+SetDataの中の58行目にCulcStatusがある
+だからね、EjectHorseCheckはもうRaceConfirmアイテムの中の入れ込んだほうが
+いいと思うぞ
+
+
+  Line120付近
+  IsLeaderFemaleなどのbool型に情報を設定している関数
+  private void CalcStatus( double[] horseIds, NwDataUserHorse helperHorse)
+    if(horseData.GetMasterData().sex == HorseSex.Female)
+
+  Line180付近
+　SameHorseNums.Add(i);
+　Line240付近
+　SameHorseNums.Add(helperHorseNumber);
+
+　Line290付近
+　  public bool CheckMatchType( HorseType type )
+  {
+    bool match = true;
+    for( int i = 0; i < 6; i++ )
+    {
+      if( HorsesTypes[i*2] == HorseType.None ) continue;
+      if( HorsesTypes[i*2] != type && HorsesTypes[i*2+1] != type ) {
+        match = false;
+        break;
+      }
+    }
+    return match;
+  }
+　このi*2というのは、タイプが一つの馬につき最大２つあるからなんだなあ・・

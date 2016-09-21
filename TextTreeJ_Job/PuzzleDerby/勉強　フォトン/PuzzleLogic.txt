@@ -1,0 +1,9 @@
+いわずと知れたパズルロジック
+
+　　Line774
+　　  public IEnumerator SetMultiSamePieces(bool sender_true_host_false_turn)
+　　一番最初にRPCを呼ぶ場所
+　　PhotonView.RPC　:569
+　　PhotonManager.SendSyncData 　:157
+　　PhotonManager.SuccessCheck 　:116
+　　PuzzleLogic.SetMultiSamePieces　:786

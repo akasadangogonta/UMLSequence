@@ -1,0 +1,7 @@
+RarityCreater
+☆を描画するスクリプト
+
+　Line45
+   星の実際の描画
+       instanceRarityStars[index].transform.localPosition = new Vector3( spaceStars*index, 0, 0 );
+   localPosition.xが、0から-10.0(spaceStarsの分だけマイナス値で追加されていく。

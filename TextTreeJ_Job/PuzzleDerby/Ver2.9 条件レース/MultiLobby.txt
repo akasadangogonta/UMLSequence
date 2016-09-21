@@ -1,0 +1,15 @@
+MyltiLobby
+
+　　Ｌｉｎｅ85付近
+　　ロビー画面のくりえいと
+　　  public void CreateData(int lobbyId, MultiType type, DefaultCallback cancel, DefaultCallback start) {
+
+　Line240行目
+　multiLobbyItemに馬データをぶちこんでる
+
+　      multiLobbyItems[i].SetData((list != null) ? list.Count : 0, data, ShowCardDetail);
+
+　　Line410
+　　レースの実行？
+　　TouchDecide() 
+

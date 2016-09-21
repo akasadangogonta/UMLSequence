@@ -1,0 +1,8 @@
+AssetBundleManager
+なんかResourcesからとってきたりしてる
+
+
+   Line272
+  んあかよくわかないものをロードしてる
+   private void Load( AssetType type, int assetId, int imageVersion, GameObject cbObj, LoadAssetCallback cbMethod )
+  {

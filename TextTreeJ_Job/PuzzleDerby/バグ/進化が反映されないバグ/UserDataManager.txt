@@ -1,0 +1,5 @@
+UserDataManager
+
+  Line 206
+  EvokutionMainなどで呼ばれる馬の更新に使う関数。ここではただ単にContainKeyで指定のHorseIdが存在するかを見ている
+　  public void UpdateHorse( NwDataUserHorse data )

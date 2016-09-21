@@ -1,0 +1,2 @@
+NwCmdPurchaseList
+HorseShoeMainの画面に映る直前に呼ばれる

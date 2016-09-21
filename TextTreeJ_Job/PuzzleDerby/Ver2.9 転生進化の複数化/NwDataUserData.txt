@@ -1,0 +1,6 @@
+NwDataUserData
+助っ人のときに使うデータ
+
+　Line20
+  銀の蹄鉄画面にいくかどうかの判定に使う変数
+  public bool   is_event_user;

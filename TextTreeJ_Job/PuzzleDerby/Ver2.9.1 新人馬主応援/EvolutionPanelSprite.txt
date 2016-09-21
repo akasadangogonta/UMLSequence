@@ -1,0 +1,12 @@
+EvolutionPanelSprite
+
+　Line93
+　ボタンのコールバックに実態を与えている
+　public void SetData( int index, NwDataUserHorse horseData, EvolutionPanelCallback tapCallback = null, EvolutionPanelCallback holdCallback = null )
+
+
+  Line330
+  UIButtonのコールバックの設定とかを行っている
+  private void PressButton( IUIObject btn )
+　button.SetValueChangedDelegate( TapButton );
+  

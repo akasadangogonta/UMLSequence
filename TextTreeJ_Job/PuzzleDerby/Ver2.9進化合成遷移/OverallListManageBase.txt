@@ -1,0 +1,9 @@
+OverallListManageBase
+
+  Line39
+  初期化動作のIn。スクロールバー操作はこの中の    CommonScrollBar.Instance.SetData( horseList.scrollList );の後にやらないとおかしくなる。
+　  public override void In ()
+
+　Line154
+　スクロールの長さやポジションを色々いじる部分
+　ここの設定によって上のLine39のスクリプトが変わってくる

@@ -1,0 +1,310 @@
+うーんこれ何からやればいいのか、とりあえずJSON情報を全部見てみようか
+
+
+
+まずuser_dataみるか・・
+horse_id : 102984
+horse_card_id : 1877
+is_favorite : False
+level : 1
+stamina : 124
+speed : 74
+recovery : 99
+exp : 0
+next_exp : 26
+speed_plus : 0
+stamina_plus : 0
+recovery_plus : 0
+skill_level_list
+　[0] : 1
+　[1] : -1
+horse_rarity_group_id : 430222
+exceed_count : 0
+horse_card_group_id : 222
+
+
+
+次reincarnation_horse
+horse_id : 103206
+horse_card_id : 1843
+level : 1
+stamina : 324
+speed : 486
+recovery : 81
+exp : 0
+next_exp : 32
+speed_plus : 0
+stamina_plus : 0
+recovery_plus : 0
+horse_rarity_group_id : 610563
+exceed_count : 0
+horse_card_group_id : 563
+skill_level_list
+  [0] : 1
+  [1] : -1
+
+
+
+
+
+
+
+
+
+
+
+
+同じHorseIdを調べなかきゃ意味ないんじゃないの？
+とりあえずヘイローで調べてみるか
+ヘイローのサンデーサイレンス、最大ヘイローね
+通常ヘイローが1846、 サンデーサイレンスが1843
+通常進化ヘイローが1847
+サンデーサイレンスはその後二回進化可能（1843>1844>1845
+
+
+horse_id : 103208
+horse_card_id : 1846
+is_favorite : False
+level : 1
+stamina : 216
+speed : 144
+recovery : 72
+exp : 0
+next_exp : 32
+speed_plus : 0
+stamina_plus : 0
+recovery_plus : 0
+skill_level_list
+　[0] : 1
+　[1] : -1
+horse_rarity_group_id : 520564
+exceed_count : 0
+horse_card_group_id : 564
+
+転生させるとさ
+horse_id : 103208
+horse_card_id : 1843
+level : 1
+stamina : 324
+speed : 486
+recovery : 81
+exp : 0
+next_exp : 32
+speed_plus : 0
+stamina_plus : 0
+recovery_plus : 0
+horse_rarity_group_id : 610563
+exceed_count : 0
+horse_card_group_id : 563
+skill_level_list
+  [0] : 1
+  [1] : -1
+
+うん・・・・・・
+なんか問題なさそうだな
+
+とは別問題で南下変なエラーでた
+SpriteFontの
+public string RemoveUnsupportedCharacters(string str)
+{
+	StringBuilder sb = new StringBuilder();
+
+	for (int i = 0; i < str.Length; ++i)
+		if (charMap.ContainsKey(str[i]) || str[i] == '\n' || str[i]
+== '\t' ||
+			str[i] == '#' || str[i] == '[' || str[i] == ']' || str[
+i] == '(' || str[i] == ')' || str[i] == ',') // Color tag chars
+			sb.Append(str[i]);
+
+	return sb.ToString();
+}
+これも多分関係ないんでわ。。。。？
+デバッグで止めちゃうとなんか起こるんでそ？
+んんどうしようか、一体何がどれに関係あるんだか皆目検討がつかない・・・・・・
+大竹さんの言ってたマウス連打すると指定の処理を飛ばしちゃうとかそういのもあるのかな
+
+
+知行ずつデバックで降りていって遷移でも見るか。
+
+一体何をどうすればいいのか、とにかくバグレポだと、転生進化の場合を
+レイにとってるから、トリアエズ通常進化ではなく転生進化で市tらべ抵抗
+1時間で結果だすぞ
+
+まずどのタイミングcmdが呼ばれんの？それがわかんねえからどうしようもねえ、絶対解決するぞ
+
+まず遷移としては、ReincarnationConfirmのTouchActionButton
+その次にEvolutionMainのConfirmEvolution、これはもう絶対でしょ
+やっぱり遷移しないとしたら、そうか、エラーが帰ってきても画面には表示されるもんあ
+画面上ナンにもエラーが返ってこないいうことは。。。。
+
+とりあえずConfirmEvolutionの中身全部書き写してみる
+OverallResultFlag = EvolutionSelect.Reincarnation;
+if ( TutorialManager.CheckTutorialReincarnation() )
+{
+	LoadingManager.Instance.Play( true );
+	NwCmdHorseReincarnation cmdHorseEvolution = NetworkManager.Instance.GetCmd<Nw
+CmdHorseReincarnation>();
+	cmdHorseEvolution.SetCallBack(
+		() => {
+		LoadingManager.Instance.Pause();
+		this.UpdateDatas( cmdHorseEvolution.GetData() );
+		MenuBase.CreateMenu<ReincarnationEffect>( ref instanceReincarnationEffect,
+reincarnationEffectWindow, this.transform );
+		instanceReincarnationEffect.SetData( this.baseHorseId, instanceReincarnation
+Confirm.materialHorses, cmdHorseEvolution.GetData().reincarnation_horse.horse_card_id, this.EndEffect );
+		StartCoroutine( ChangePhase( ReincarnationPhase.Effect ) );
+},
+	(err) => 
+	{
+		LoadingManager.Instance.Pause();
+		switch( err )
+		{
+		case NetworkError.Inconsistent :
+			AssertManager.Instance.SetInconsistentError( cmdHorseEvolution, c
+mdHorseEvolution.GetError().ToString() );
+			break;
+		default :
+			AssertManager.Instance.SetConnectFailed( cmdHorseEvolution );
+			break;
+		}
+	}
+	);
+		cmdHorseEvolution.ExecCmd( this.curBaseData.horse_id, instanceReincarnation
+Confirm.GetSelectedHorses(), this.curBaseData.GetMasterData().evolution_money );
+
+おれは普通にこの(err)の後、つまりエラーが出てきたときのこと考えてたけど
+でもさ、errの後だったらちゃんとなんかパネル出てきてエラーが表示されたと思う。
+それが何にもないんだもなあ
+でも確かerrには送られないバグになる可能性もあったよな確か
+
+ああそういうつくりなのか
+NwCmdHorseReincarnationのExecCmdの後に、なんかよくわからんけど
+NwCmdBaseのInit()が呼ばれて、続いて
+ああというか、NwCmdHorseReincarnationのExecCmdの中の一番最初に
+base.Init()が呼ばれてんじゃねえか
+
+へええ全部通信が終わってからReincarnationEffectとかアニメーション画面にいくのか
+んー、JSONは正常に受けっているとすると、それをローカルに渡していない可能性があるんじゃないのかｎ
+
+素材馬が消えてるってことは、確実にUpdataHorseが呼ばれているということ。
+素材の削除と新しい馬の入手は同じ関数でやっているから、片方が行われて片方が行われないっていうのは
+なかなかありえない気がする。
+
+ンーエラーだとそもそもReincarnationEffectに進まないからな
+やっぱりエラー処理ではないんだ
+
+んで成功だとすると、確かお話しでは、素材は消えてるけど馬のデータは変わっていないとあった
+つまりはさ。、
+まあでも他にあるとしたら、ベースとなる馬のIDが検索で見つからなくて馬データを更新できなかったとかかな
+
+2通り
+horse_id
+
+んんｎまあ他の可能性としては、doubleを使っているせいで整数値が変なものにかわっちゃうとかね
+そもそもガチャとかプレゼントでは新しい馬を手に入れてるわけだから、ここでは絶対にhorse_idは絶対入れているはず
+その関数はどこにあるんだろうか、。。。JSONで受け取った後の話ですよ
+予想ではhorse_id代入の関数はやっぱりhorse_idを管轄しているNwDataUserHorseの中にあると思うんだけど、
+どうなんでしょうか。
+
+坂本さんはこっちの送信は問題ないといっているから、もしかしたらクライアント側から送る数値が
+間違っているのかもしれない。所有していないhorseIｄを渡しているかもしれないｌ
+パラメータとして受け取っているということは、ExecCjdだよな
+  public void ExecCmd( double baseHorseId, double[] matHorseIds, int useMoney )
+  {
+    base.Init();
+    
+    base.SetStrParam( "base_horse_id", baseHorseId.ToString() );    
+    base.SetArrayParam( "material_horse_ids", matHorseIds );
+    base.SetIntParam( "use_money", useMoney );
+    
+    base.Exec();
+  }
+
+んんんんんん、とりあえずdoubleをToStringにしてみるか。
+確かToStringにしたら何故か値が１増えたんだよな
+なんらのかの経路をを取ったことでToStringを通して1増えたことは考えられないだろうか
+
+
+35,66,96
+
+
+んんんんんんんんんんんんん
+とりあえずバグ掲示板にあったダンヒルがディンヒルにならないくそバグどうにかしよう
+
+
+
+うんん？
+Editor上だとErrorが出てるのに正常な馬情報が返ってきてるな
+POST:http://stg.api.derby.pzga.jp/version1.0/farm_horse_reincarnation
+{"error":"access token parameter error","error_code":-99}
+
+{"money":412884,"reincarnation_horse":{"horse_id":107808,"horse_card_id":2293,"level":1,"stamina":309,"speed":185,"recovery":247,"exp":0,"next_exp":37,"speed_plus":450,"stamina_plus":450,"recovery_plus":600,"horse_rarity_group_id":530663,"exceed_count":0,"horse_card_group_id":663,"skill_level_list":[1,-1]}}
+UnityEngine.Debug:Log(Object)
+LHDebug:Log(String) (at Assets/GameScenes/Common/Plugins/General/LHDebug.cs:169)
+<Connect>c__Iterator20:MoveNext() (at Assets/GameScenes/Common/Scripts/Network/Common/NetworkManager.cs:408)
+
+
+
+
+  "NwCmdHorseEvolution": {
+    "InvalidRequest": "所持していないホースか進化アイテムが\n選択されています。",
+    "NotMatchMaterial": "進化素材の情報が正しくありません。",
+    "ShortMoney": "お金が足りません。"
+  },
+
+うーーーーーん、、、、、
+このNotMatchMaterialってエラーが帰ってきてるみたいだな
+
+
+ああ勘違いだ、普通の進化合成でもこのエラー出てくる
+
+どっかをブレークポイントで止めてなんとかならんかなあ
+
+
+NwCmdBaseのCreateUrlでなんかずっととまるおりますなぁ
+Request.csの ThreadPool.QueueUserWorkItemでもまたとまりおりますなぁ
+
+いったいどっからエラーが返ってくるのか考えよう
+
+うーんなんかRequestのGetHeaderかSetHeaderがなんか怪しいな
+デバッカーで見た限りでは
+
+
+
+HTTP.Request.Send ():239
+NetworkManager.Connect　　:368
+UnityEngine.MonoBehaviour.StartCoroutine 　62
+NetworkManager.RegistCmd　284
+NwCmdBase.Exec　223
+
+
+ううん、やっぱりブレークポイントの飛び飛びでは
+var close = response.GetHeader ("Connection").ToLower () == "close";
+を最後にcallbackに設定された、succesの関数んにとぶなあ
+
+
+Connect（）の中でParse()と通ってそこでエラーログ作ってんのか？
+しかし妙だよな
+通信が
+
+public class NwCmdHorseEvolution : NwCmdBase
+{
+  private NwDataHorseEvolution data;
+  public enum ErrorType
+  {
+    None,
+    InvalidRequest,
+    NotMatchMaterial,
+    ShortMoney
+  }
+
+Evolutionで返ってくるエラーはこの４つだろ？
+InvalidRequestはまだ分かるよ
+無効なマテリアルって・・・・
+そもそも有効なマテリアルしかローカルのConfirm画面で通さないはずなのに
+なんで無効なマテリアルとな
+
+NwCmdBase.Exec　223
+NwCmdAuth.ExecCmd　:45
+NetworkManager.Parse　:465
+NetworkManager.Connect　:414

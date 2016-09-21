@@ -1,0 +1,27 @@
+  private enum PlayerData
+  {
+    UserId,
+    AliasCd,
+    BgmFlag,
+    SeFlag,
+    ElementFlag,
+    SkillFlag,
+    NwCmdRaceAction,
+    GameStatus,
+    PointBack,
+    UserSortId,
+    HorseSortId,
+    ItemSortId,
+    BlockId,
+    SecureCode,
+    IsRetry,
+    RaceCode,
+    RacePage,
+    AccountRetry,
+    FindSnsId,
+    RaceType,
+    ModelType,
+    PresentSortId,
+  }
+
+なんだこれ。。。。。

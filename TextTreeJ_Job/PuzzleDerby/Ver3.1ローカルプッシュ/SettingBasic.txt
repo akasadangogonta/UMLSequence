@@ -1,0 +1,6 @@
+public class SettingsBasic : MonoBehaviour
+{
+  public  UIButton[]     optionBtns;
+  public  GameObject[]   pushObjects;
+  public  bool           isPush = false;  これねええ
+

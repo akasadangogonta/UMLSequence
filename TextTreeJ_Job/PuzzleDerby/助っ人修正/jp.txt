@@ -1,0 +1,38 @@
+jp.txt
+
+　Line320
+　ResultHelperMain画面で使う文字列
+    "list":
+    {
+      "nowFormat"     : "現在プレイ中",
+      "minutesFormat" : "{0} 分前",
+      "hoursFormat"   : "{0} 時間前",
+      "dayFormat"     : "{0} 日前",
+      "monthFormat"   : "30 日以上前",
+      "deleteConfirm" : "このフレンドを削除します@本当によろしいですか?",
+      "searchDetail"  : "このユーザーに@フレンド申請を行いますか?",
+      "notifyTitle"   : "フレンド申請",
+      "notifyDetail"  : "このユーザーの@フレンド申請を承認しますか?",
+      "friendNothing" : "フレンドが一人もいません。",
+      "notifyNothing" : "フレンド申請は@一件もありません。",
+      "numTextFormat" : "フレンド数 {0}/{1}"
+    },
+
+  Line351
+　ResultHelperMain画面で使う文字列
+      "list":
+    {
+      "nowFormat"     : "現在プレイ中",
+      "minutesFormat" : "{0} 分前",
+      "hoursFormat"   : "{0} 時間前",
+      "dayFormat"     : "{0} 日前",
+      "monthFormat"   : "30 日以上前",
+      "deleteConfirm" : "このフレンドを削除します@本当によろしいですか?",
+      "searchDetail"  : "このユーザーに@フレンド申請を行いますか?",
+      "notifyTitle"   : "フレンド申請",
+      "notifyDetail"  : "このユーザーの@フレンド申請を承認しますか?",
+      "friendNothing" : "フレンドが一人もいません。",
+      "notifyNothing" : "フレンド申請は@一件もありません。",
+      "numTextFormat" : "フレンド数 {0}/{1}"
+    },
+

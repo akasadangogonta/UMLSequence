@@ -1,0 +1,22 @@
+HorseList
+
+  Ｌｉｎｅ１３５付近
+　Ｃｒｅａｔｅの第二引数でFilterうけとてなにやらしてますな
+　  public void Create( List<NwDataUserHorse> horseDatas, List<List<HorseFilter>> horseFilters = null, int listMaxNum = -1, bool isRemove = false )
+  {
+
+　Line530
+　714の関数からとんでくるフィルターの適応作業
+　  private bool IsHorseVisible(NwDataUserHorse horse) 
+
+　Line568
+　馬の顔を張り続ける
+　CreateListItem
+
+　Line624
+　馬の顔を張り続ける作業を行う、実際この中のCreateListItemから始まる
+　  private void CreateList()
+
+　Line714
+　フィルターを作る作業の関数
+　  private int FilterHorses() {

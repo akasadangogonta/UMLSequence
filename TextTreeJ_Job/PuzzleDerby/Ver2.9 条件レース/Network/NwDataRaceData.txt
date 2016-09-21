@@ -1,0 +1,17 @@
+NwDataRaceData
+>GameScenes/Common/Scripts/Network/Race/NwDataRaceData
+
+  Line25付近
+  実際の一つ一つのレースデータが格納されている
+  public NwDataStageData[] stage_list;  //1レース分のデータが並ぶ
+
+  Line85付近
+　このcsファイルの中にもう一つNwDataStageDataというのがあってこの中に
+　細かいステージの情報が格納されている
+
+  Line100付近
+　条件レースに関する変数が格納されている
+  public int    condition_category;
+  public int    condition_type;
+  public int    condition_value;
+  

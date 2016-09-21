@@ -1,0 +1,15 @@
+HorseItemList
+
+　Line263
+　HorseListではクリエイトでhorseFilter情報を渡しているが、何故かHorseItemListでは
+　Refreshで渡している
+　  public void Refresh( List<NwDataUserHorse> horseDatas, List<List<HorseFilter>> horseFilters, bool isRemove = false, int listMaxNum = -1 )
+
+
+  Line1264
+　問題の関数
+  private void TouchPrevPage()
+
+  Line1284
+　問題の関数
+   private void TouchNextPage()

@@ -1,0 +1,9 @@
+Line８４
+　　PhotonNetwork.ConnectUsingSettings( GlobalConfig.PhotonVersion );
+　　あからさまにPhotonに接続しとるな
+　　
+Line１０８
+    PhotonNetwork.CreateRoom
+
+Line１１０
+　　hotonNetwork.JoinRoom(

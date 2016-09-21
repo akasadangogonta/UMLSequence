@@ -1,0 +1,432 @@
+んんんんんｎどからやっかなあ
+RookiePackって
+
+public enum ShopPhase
+{
+  Top = 0,
+  HorseShoe,
+  Recovery,
+  Extension,
+  LeiExtension
+}
+これにRookiePackつけるか
+いや汎用性考えるとCheerPackの方がいいな
+
+んｎその前にまずどのJSOnで送ってもらうか決めるかな。。。。。
+いちいちこの１変数のためだけでに新しいJSON作るのも面倒だしなあ
+
+ShopMenu>Extention
+-176.9623
+-244.9623
+-312.9623
+つまりこれ何個ずつ動いてる？
+-68か？
+とすると-312.9623の-68は
+-380,9623
+
+SCROLL関係
+  public  UIScrollList              scrollList;
+this.DefaultViewableArea = scrollList.viewableArea;
+scrollList.ClearList( true );
+scrollList.RepositionItems();
+scrollList.UpdateCamera();
+this.scrollList.AddItem( container );
+this.scrollList.RemoveItem( container ,true);
+
+ CommonScrollBar.Instance.SetData( horseList.scrollList );
+
+scrollList.viewableArea = horseList.DefaultViewableArea
+horseList.scrollList.viewableArea = horseList.DefaultViewableArea + new Vector2( 0, diffHeight );//+34
+
+    string objName = string.Format( "ListContainer<{0}>", index );
+    UIListItemContainer container = new GameObject(objName).AddComponent<UIListItemContainer>();
+    listContainers.Add( container );
+    this.scrollList.AddItem( container );
+
+CALLBACK関係
+TitleBoardManager.Instance.AddCallback( this.TouchBack );
+
+うーんやっぱり新しい画面つくるなら新しいプレハブ作んなきゃだめだな・・・
+
+
+んんｎ、対称カメラが違うんだなあ、ScrollCameraなんだなあ
+なんのこっちゃ
+うーん、どういう構造にすればいいか見当が・・・・・
+
+
+おかしいな、なんで画像が一緒に移動してくれないんだ。。
+なんかITweenの対象になってくれない
+なんか下からばばばて来る奴の仲間に入れてもらえないんだけど
+
+どうしよう、前のに習って似たようなの作るか
+自分流で整えていくか、かなり難しいなあ
+まず子オブジェクトが全然思ったように移動してくれないよ
+でもよーく考えてみればShopMainの中のオブジェクトってみんあ
+いやきのせいか。。。
+あの下からしゅっしゅって奴をどこで実行しているか見てみるか
+
+button.SetValueChangedDelegate( PressButton );
+PessButtoﾝは設定でつかうところで、押されたとき呼ばれるところｊひゃないな
+
+んんーーなんで上に浮きぬけるんだろうな。。
+どうやて止めるんだコレ、オレどうやってとめてたんだ
+
+AssetBundleManager.Instance.LoadTexture( AssetType.HorseCard, this.horseData.horse_card_id, this.horseData.GetMasterData().image_version, this.gameObject, (tex) => StartCoroutine( this.SetLoadTexture(tex) ) );
+
+んんん第3引数のthis.horseData.GetMasterData().image_versionはナンなんだ？これなんで必要なんだ、バージョンによって顔変わるのか
+
+ところでJSONは本当に
+
+250、50
+
+さ、ネットの研究をするか
+まずHorseShoeMainからね
+新人オーナー
+    ShopMenu.AddPrint(10,100,"CreateData() start",300);
+
+    List<ProductData> products = PaymentManager.Instance.Products;
+    scrollList.ClearList(true);
+
+まずなんだこのShopMenuAddPrintって、意味わからん
+次のproductsも意味がわからんな、最初の方は
+なんかStartCroutineと構文が似てrけど（文字列で関数指定）
+全くやっぱわからんな
+遷移先を見ると
+public static void AddPrint(int x,int y, string str,int count) {
+ってなってるんだよな
+はいはい、少し分かった
+
+ナンなんだそもそもProductって、アイテムIDとかのことか？
+そうみたいね。。。
+アイテムデータをこんな短い関数で取得できるのか
+
+
+>坂本さん
+おつかれさまです。新人応援パックのことなのですが、このアイテム情報は何か新しいJSONを作って送るのでしょうか？もしくはshop_goods_listを改良する予定でしょうか？お手数ですが宜しくお願いします。
+
+  public string product_id;
+  public string name;
+  public int price;
+  public int gold_horse_shoe;
+  public int horse
+  public int ticket
+  public int priority;
+  pubic bool rokie;
+
+
+rev 5826で39行目のCalcStatusをコメントアウトした理由は？
+
+pt3が最新作業コミットやで
+p2が
+
+
+思い込みはよくない、ひとつづ確認しよう
+
+public  int               TotalCost    { get; protected set; }
+チェックに使っている
+public  int[]             TotalSpeeds  { get; protected set; }
+一切使ってない
+public  int               TotalStamina { get; protected set; }
+結構いろんなところで使っている、恐ろしい
+表示でも使ってるし、何よりhorseData.GetRevisionStamina(false,raceId);
+で謎の計算式やってるのが怖い。でも結局のところ、この計算結果で生まれた
+TotalStaminaの解は表示でしか使ってないな、
+public  int               TotalRecovery{ get; protected set; }
+一切使ってない、しかし horseData.GetRevisionRecovery(false,raceId)
+で謎のカザンを繰り返している。
+public  HorseElement      LeaderElement{ get; protected set; }
+使っているようで全然使っていない、
+public  HorseElement      HorsesElement{ get; protected set; }
+これも使っているとみせかけて実はつかっていない。
+public  HorseRarity       LeaderRareMax{ get; protected set; }
+チェックでかなり使ったいるが、チェック処理は別クラスに移したので必要ない
+public  HorseRarity       HorsesRareMax{ get; protected set; }
+チェックでかなり使っているが問題ない
+public  bool              IsLeaderFemale{ get; protected set; }
+チェックで相当使っているが問題ない
+public  bool              IsHorsesFemale{ get; protected set; }
+めぐりめぐってチェックで使っている
+public  HorseType         LeaderType   { get; protected set; }
+なぜか一切使ってないな
+public  HorseType         HorsesType   { get; protected set; }
+何故か一切使っていない
+
+public  HorseElement[]    HorsesElements{ get; protected set; }
+public  HorseType[]       HorsesTypes   { get; protected set; }
+public  int[]             HorsesGroupId{get; protected set; }
+public  int[]             HorsesCardId{get; protected set; }
+protected bool[]            isRunOk;
+
+ 
+質問まとめるか
+直接付与する場合、horseIdがJSONに必要になる。
+productsに一緒くたに送る場合、何もしないと金の蹄鉄購入画面にも
+新人パックがでてしまう。どうやって振り分けるか
+
+pt２＝　古いあれ
+
+pt3＝現在進行中のタスク
+
+
+なんだpriorityって、IDみたいなもんか、２から8まで順番にならん伝名
+なんか和訳みると優先順位かいてあるな、なるほど
+
+>>坂本さん
+おはようございます。先週Skype内の会話が忙しくて流れてしまったのですが、新人馬主応援パックについて相談があります。
+現状、課金で使っているJSONはNwCmdPurchaseListとNwCmdPurchaseになると思いますが、この中のデータだけですと、応援パックのダイヤモンドホースなど馬情報が直接付与できないと思われます。
+このためおそらく応援パック用のJSONを作るか、既にあるNwCmdPurchaseListとNwCmdPurchaseを改変することになると思うのですが、どちらの方向性、または他の手段を使う予定などありますでしょうか？お手数ですがご返答お願い致します。
+
+
+了解しました、強化ホースなどはプレゼント経由で渡すということですね、ありがとうございました。かけますが、引き続き2点ほど質問があります。
+
+１．おそらく今回応援パックに使うJSONは、これまで使ってきたNwCmdPurchaseListをそのまま使う形になると思いますが、この場合、NwCmdPurchaseListで受け取ったリストの内、金の蹄鉄購入画面で表示するアイテムなのか、応援パック画面で表示するアイテムなのかを判定しなければいけません。
+こちらJSON内のどのパラメータで判定することになるのか、既に決まっていましたらお伝えいただきたいと思います。
+
+２．おそらくモンスト同様に、新人応援パックの詳細画面では商品の説明文が入ると思うのですが、こちらの文字列はJSONで受け渡すことになるのでしょうか？もしくは事前に説明文の内容を頂いて、こちら側で実装する形になりますでしょうか？完全にこちら側で実装する場合、表示する文字列の内容を、準備が出来次第教えていただければと願います。
+
+また質問とは異なりますが、今回応援パックで使うバナー画像に関しまして、準備が整いましたらご連絡お願いいたします。長文でご迷惑かけますが宜しくお願いします。
+
+
+>>村井さん
+返信が送れてすみませんでした。色に関しましては、例を出しますと
+[#FF7800]最大
+のようにwebなどでよく使うカラーコードを文字列の前に置きますと色を指定することができます。
+センタリングに関しましては、全ての行を中央寄せにすることは簡単にできますが、個別の行で指定するとなりますと、スペースキーで細かく調整するしか現状方法がない状態です。
+そのためサーバから文字列を送る場合は、まずこちらから応援パックを実装したapkを渡して、それを用いて端末の画面を見ながら細かく調整することになると思います。
+
+
+どうしようか。。。sokut
+
+
+
+SCROLL関係
+  public  UIScrollList              scrollList;
+this.DefaultViewableArea = scrollList.viewableArea;
+scrollList.ClearList( true );
+scrollList.RepositionItems();
+scrollList.UpdateCamera();
+this.scrollList.AddItem( container );
+this.scrollList.RemoveItem( container ,true);
+
+ CommonScrollBar.Instance.SetData( horseList.scrollList );
+
+scrollList.viewableArea = horseList.DefaultViewableArea
+horseList.scrollList.viewableArea = horseList.DefaultViewableArea + new Vector2( 0, diffHeight );//+34
+
+    string objName = string.Format( "ListContainer<{0}>", index );
+    UIListItemContainer container = new GameObject(objName).AddComponent<UIListItemContainer>();
+    listContainers.Add( container );
+    this.scrollList.AddItem( container );
+
+なあにいこれええ
+なあんかわかったようなわかんねえような。。。。
+とりあえずローカル変数にlistContainersなるものが必要なんだな
+
+ＨｏｒｓｅＬｉｓｔ　678行目
+CreateContainer
+
+
+>>坂本さん
+おつかれさまです。
+こちらつまりuser_dataから文字列を貰って、調整はこちらで行い、リリース時にはサーバと関係なくローカルのみで文字列が表示できている状態に
+
+>>坂本さん、村井さん
+おつかれさまです。
+完全にアプリ内でデータを持つ場合ですと、その後サーバの都合に合わせたデータの変更もないということだと思いますので、何かデザイナーの方に「こういう風に作ってください」という画像を作成していただければ、こちらの方で調整することが可能です。
+おそらく今回の場合ですとそれが一番早く実装が出来ると思うのですが、いかがでしょうか？よろしくお願いします。
+
+スクロール関係実装するぞ面倒くさいけど
+
+    listContainers.Add( container );
+    this.scrollList.AddItem( container );
+
+    container.AddChild( sprite.gameObject );
+    container.UpdateCamera();
+
+Application.OpenURL
+５７０，１００？なんかおかしくね
+でかすぎて画面にはいんねえよ、比率だけそろえればいいか
+２５０，５０だと比率が合わない
+単純に2倍計算だと235,50にしなければ、でもそれだとコンド小さすぎるな
+0.7倍でどうだろうか
+570x0.7 = 49 + 350 = 399 
+100 x 0.7 = 70
+比率からして横幅のがでかいんだなあ。。。
+
+んん、横幅を350にしたいときは
+
+100　ｘ　350/570
+￥
+
+>坂本さん
+おつかれさまです。確かによく確認したところ、shop_goods_listが呼ばれるのは金の蹄鉄購入画面に移行するときでした。お手数かけてしまい失礼しました。
+応援パックの情報の渡し方についてですが、ご提案されましたuser_dataに入れる形で私としてもお願いしたいと思います。
+購入後につきましてはローカルのnewpack_purchase_flgが代入された変数を1にするだけですので、ゲーム中には再度user_dataを呼ばない形で対応するつもりです。
+
+ご迷惑おかけしますがよろしくお願いします。
+
+了解しました！引き続きお願い致します。
+
+なので、user_dataに下記のようなレスポンスを追加し、
+
+["newpack_info"]
+
+ ["newpack_purchase_flg"] => 応援パック購入済か(0:未購入、1:購入済)
+ ["product_id"] => プロダクトID("jp.co.netdreamers.puzzlederby.newpack")
+ ["price"] => 価格(480)
+ ["gold_horse_shoe"] => 獲得する金の蹄鉄個数(5)
+
+なんかNwPurchaseListにへんなのはいってるぞ
+
+>村井さん
+おはようございます。
+応援パックの購入後に表示されるポップアップなのですが、現在のところ画像のように金の蹄鉄購入画面で購入した際と同じものになっていおりまして、金の蹄鉄以外の何が手に入ったか分かりにくい状態です。
+この画面での文言の詳細についてお伺いしたいと思います。
+また確かこの画面までに、馬などはプレゼントの方に配布されるという説明が無いような気がしますので、合わせてここで説明すると良いように思います。よろしくお願いします。
+
+よろしくお願いします。必要ないかもしれませんが、
+
+RaceConfirmItemとMultiConfirmItemのスタミナ表示の修正行うか
+
+
+了解しました。HTMLが届き次第実装していきたいと思います。
+お手数ですがよろしくお願いします。
+
+了解しました。おそらくバナーの実装は明日になってしまうと思います、ご面倒かけますがよろしくお願いします。
+他応援パックに関しまして引き続きチェックを行っていきますので、何かありましたらお手数ですがよろしくお願いします。
+
+実装してみないと分かりませんが、個人的には大きいバナーの方がインパクトがあって良いと思います。
+比較画像を用意しますので少々お待ちください。
+
+了解です。よろしくお願いします。
+
+
+いいか、覚えてろよ、277 48.6 だ
+倍率はいくら？0.486だ倍か？
+
+大きいバナーは0.489倍だ
+277　x　156.5ですな
+
+
+
+>村井さん
+お待たせいたしました、下記の画像が比較画像になります。
+一応詳細画面の前のショップ画面でも２つのバナーの比較画像を作りました。
+私見ですが詳細画面の方は大きい方がやはり見やすいと思いますが、ショップ画面は小さいバナーの方がいいかもしれません。
+よろしくお願いします。
+
+確認します、少々お待ちください。
+
+了解しました。それと今プロジェクトの方の容量が大きくなってきていまして、最終的にはこの応援パックのバナーも、ホーム画面のバナーのようにAssetBundleから取ってきたいと思っています。こちらの件に関しまして可能でしょうか？
+
+ありがとうございます、お手数ですがよろしくお願いします。
+
+了解しました、よろしくお願いします。
+
+>坂本さん
+おつかれさまです。今回応援パックではバナーを大きいものと小さいもの２つ使うことになるので、URLを二つ用意して欲しいのですが、可能でしょうか？
+
+了解しました、ありがとうございます。
+それでは実装していきますのでよろしくお願いします。
+
+>坂本さん
+お忙しい中失礼します。初心者応援パックの情報がまだshop_goods_listに残っているようでして、newpack_purchase_flgが0のときに、金の蹄鉄購入画面に初心者応援パックが表示されてしまいます。
+こちらサーバ側で対応できますでしょうか？お手数でご確認お願いします。
+
+ありがとうございます。よろしくお願いします。
+
+URLの指定が間違ってるのか？？
+
+
+昨日はひきつづき新人オウエンパンックを実装していって
+
+  public static string assetHost = "http://stg.img.derby.pzga.jp/AssetBundle";
+ほう
+stg.img.derby.pzga.jp/AssetBundle/Android(かiOS)/ItemBanner/newpack.unity3d
+ほう
+
+stg.img.derby.pzga.jp/AssetBundle/Android/ItemBanner/newpack1.unity3d
+ほう
+stg.img.derby.pzga.jp/AssetBundle/Android/LeiIcon/lei_1.unity3d
+
+
+なんだ理由が分からないAssetBundleはもうあっちで用意してあるのか
+さすがに用意はしてあるはずだと思うけど、あっちからしたらそんな難しい作業じゃないじゃん
+
+
+
+newpack1.unity3d(大きい方)
+newpack2.unity3d(小さい方)
+なんでnullなんだ。。。。。
+
+もうううううう面倒くっせええええええええ
+これ一々解析してくのかよ
+
+くっそわけわかんねえ、なんだこれ
+無効な引数を入れると透明になるのか
+じゃあ真っ白になるのはなんなんだ
+
+なるほど、やはりUserDataManagerの関数変えた弊害が出てしまった
+
+
+>坂本さん
+おつかれさまです。昨日話したAssetBundleの件ですが、お手数ですが準備が整いましたらご連絡お願いします。
+宜しくお願いいたします。
+
+
+考えられうるバグ何がある今回の初心者応援パックで
+もうあらかた、すくなくともスクロールに関しては解決したはず
+ああボタンあったか
+
+ありがとうございます！こちら問題なく動作していることが確認できました！
+坂本さん休みだったんですね、
+
+
+
+大坂様、村井様
+
+ver2.9.0のROMをアップロード致しました。
+
+下記がROMのアドレスになります。
+
+
+iOS staging ipa
+　https://drive.google.com/drive/folders/0B3FdrvPA3y78Vl8tLVZVbHJ3cWs
+
+iOS release xcode
+　https://drive.google.com/drive/folders/0B3FdrvPA3y78UlFsNi03Y0hIalk
+
+Android staging apk
+　https://drive.google.com/drive/folders/0B3FdrvPA3y78NUlieWhiak1kNEE
+
+Android release apk
+　https://drive.google.com/drive/folders/0B3FdrvPA3y78YTJLb1lJUFB0MU0
+
+変更点は、下記になります。
+・チキダビ起動対応
+
+よろしくお願い致します。
+
+
+
+>村井さん
+おつかれさまです。本日確認用のROMを提出する予定なのですが、一応先に画像の方でも確認いただこうと思いまして、下の画像が応援パックの詳細画面になります。
+バナーの背景を有り合せのもので多少変えたりしたのですが、こちらで問題ないでしょうか？他何か問題点などありましたらご指摘お願いします。よろしくお願いします。
+
+
+了解しました。後ほど大竹の方よりROM提出の連絡があると思いますので、少々お待ちください。お手数ですがよろしくお願いします。
+
+うーーん、なぞ！
+
+
+予想としてはインスタンスが作成されていないことだ
+おそらくこの可能性が一番高いだろう
+ん？しかしHorseShoeのインスタンスが作成されるのって、金の蹄鉄購入画面に移行したときだよな？
+そうすると、shoptopにいった時点でバグが発生しなくなるのはおかしい
+つまりshopMenuのIN()か
+
+ちゃんと作成はされてる、座標がずれてんだ
+うーんなぞなぞ
+[110だとなんかいい感じにぶつ切りにできる
+
+出走とかのMenuBaseデカイボタン

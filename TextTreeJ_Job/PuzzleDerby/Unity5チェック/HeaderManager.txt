@@ -1,0 +1,8 @@
+[47]
+Init()
+buyGoldShoeButton.SetCallbackWithSound( ()=> MainMenuLogic.Instance.JumpAppScene( "unity://shop/buyshoe" ) );
+ByuGoldShoeButtonにコールバックをセットしている？
+
+
+[441]
+public void TouchPlayerRecord()

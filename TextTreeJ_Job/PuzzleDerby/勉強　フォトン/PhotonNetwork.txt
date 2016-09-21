@@ -1,0 +1,44 @@
+なにこれ。。。。たぶんphoton使うときに中核になるスクリプト
+
+Line2909
+　　internal static void RPC(PhotonView view, string methodName, PhotonTargets target, bool encrypt, params object[] parameters)
+　　ここ、ここ、ここ
+　　これレースが始まった瞬間に呼ばれている、予想ではInstantiateの方が先に呼ばれているとおもったけど
+　　こっちのが早い。（しかしRPCって一体何の約だ）
+　　　　　　しおり
+	RPC
+	remote procedure call
+	ネットワーク上の別の端末の関数等を呼び出す仕組み。
+　　へえ、へえ、へえ
+　　
+　　よくわからんがこの第二引数がリモートで他社の関数を呼び出す関数名なのか
+　　Debugで見るに
+    (PhotonView view, string methodName, PhotonTargets target, bool encrypt, params object[] parameters)
+    view = {View (0)1 on GameLogic (scene)}
+    MethodName = "ReceiveSyncData"
+    target = null 　　　　　　　　　　　　　　　　　　　　　　　＜ブレークポイントで止めたからか？
+　　ebcrypt = false
+    paramer = [1] 101530
+
+
+
+     あれ、callstatic見ると
+
+　　PhotonNetwork.RPC　:2911
+　　PhotonView.RPC　:569
+　　PhotonManager.SendSyncData 　:157
+　　PhotonManager.SuccessCheck 　:116
+　　UnityEngine.MonoBehaviour.StartCoroutine 　:62
+　　PuzzleLogic.SetMultiSamePieces　:786
+　　UnityEngine.MonoBehaviour.StartCoroutine 　:62
+　　GameLogic.Start　362
+
+　　なるほど、PhotonNetworkもいいけどそれよりもPhotonManagerのが重要っぽいな
+　　それよりも前にまず遠隔メゾット見てみるか　ReceiveSyncData
+　　あ、これPhotonManagerの162行目だ
+
+　　どうやって第二引数のmethodを呼び出してるのかと思ったけど
+　　networkingPeer.RPC(view, methodName, PhotonNetwork.masterClient, encrypt, parameters);
+　　でたぶん呼び出してるな、うん、なんかNetworkingPeerってのが相当大事っぽいな
+　　問題はこの第一引数のviewを、さかのぼって一体何処で取得してるかってことなんだよな　
+

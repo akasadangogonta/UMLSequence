@@ -1,0 +1,196 @@
+[3]
+user_id : 101551
+alias_cd : "2772-1213-9964"
+nickname : "306a306f306a"
+rank : 3
+next_use_time : 0
+get_friend_point : 2
+is_friend : True
+last_play_time : 217
+elapsed_time : 85681
+is_favorite : False
+leader_horse　＋
+is_event_user : False
+plate_no : 1
+open_play_data_flg : 1
+
+これがサーバから着てる
+user_idはNwDataUserDataに保存しているやつと出所は一緒でしょう
+
+ＲｅｓｕｌｔＨｅｌｐｅｒＭａｉｎ　line189
+ private void TouchOk()
+    NwCmdFriendRequest cmdFriendRequest = NetworkManager.Instance.GetCmd<NwCmdFriendRequest>();
+    cmdFriendRequest.ExecCmd( friendId );
+
+ResuleHelperMainで選択したuserIDをサーバに送ってるな
+一体なにしてんだこいつ
+なんかID送ってるだけで何もうけとってないな、単純に何人助っ人しましたてきな何かあれか
+
+
+    cmdFriendRequest.SetCallBack(
+    () =>
+    {
+      LoadingManager.Instance.Pause();
+
+	  StartCoroutine(FriendApply());
+     // this.CheckOverItem();
+    },
+
+
+あれTouchOk呼ばれ寝蝦夷なんだこれ
+ああオレResultHelperMainみてたわコレ違うわ
+友達申請のときのあれだ。。
+
+    RaceData.friendData          = touchItem.GetData();
+    RaceData.FriendUserId        = touchItem.GetData().user_id;
+    RaceData.IsFriend            = touchItem.GetData().is_friend;
+    RaceData.WillGetFriendPoint  = touchItem.GetData().get_friend_point;
+    RaceData.HelperHorse         = touchItem.GetData().leader_horse;
+    curHelperId                  = touchItem.GetData().user_id;
+
+RaceMenuのTouchHelperでなんやらかんやらやっとるな
+
+
+
+んんんんんんん、、、、、もしかしていけるか？
+
+
+
+>>村井さん
+おつかれさまです。
+Ver3.2のフレンドヘルパーの複数化についての一応の確認になります。
+
+資料を読みましたところ、
+
+相手ユーザーがログインしていない
+⇒相手ユーザーのデッキ1も現在のデッキも表示されない
+
+ヘルパーとして相手ユーザーのデッキのいずれかを選ぶ
+⇒選んだデッキは相手ユーザーが再ログインするまで表示されない
+
+相手ユーザーがログインする
+⇒デッキ１と現在のデッキが両方選択可能になる
+
+という認識で間違ってないでしょうか？
+お手数ですがよろしくお願いします。
+
+
+
+>>坂本さん
+
+
+まず通信関係、レースメニューとレースとレースリザルト周りのapiの確認しよう
+
+race_exec(NwCmdRaceAction)で　helperId渡しとるなこいつ
+
+
+    // Race
+    { typeof(NwCmdHelperList),     new UrlData( "POST",   true, "http://", "race_helper_list", 5 ) },
+	ヘルパーリストを貰ってる
+    { typeof(NwCmdRaceAction),     new UrlData( "POST",   true, "http://", "race_exec", 6 ) },
+	HelperIdをおくっとるで
+    // 2014.11.6
+    { typeof(NwCmdRaceFriendList), new UrlData( "GET",    true, "http://", "friend_race_progress", 49 ) }, 
+	なんかマルチ関係の何かや名
+    { typeof(NwCmdRaceList),       new UrlData( "GET",    true, "http://", "race_list", 4 ) },
+	ﾏﾙﾁ関係の何か
+    { typeof(NwCmdRaceResult),     new UrlData( "POST",   true, "http://", "race_result", 7 ) },
+	なんか、まあ、ヘルパーとは関係ないよ
+
+    { typeof(NwCmdRaceRetry),      new UrlData( "POST",   true, "http://", "race_retry", 36 ) },
+	なんか用や分からん、Rac
+    { typeof(NwCmdRaceRun),        new UrlData( "POST",   true, "http://", "race_run",   44 ) },
+    { typeof(NwCmdCoopRaceAction), new UrlData( "POST",   true, "http://", "coopplay_race_exec", 50 ) },
+    { typeof(NwCmdCoopRaceResult), new UrlData( "POST",   true, "http://", "coopplay_race_result", 51 ) },
+    { typeof(NwCmdCoopRaceRun),    new UrlData( "POST",   true, "http://", "coopplay_race_run",   52 ) },
+
+>>坂本さん
+おつかれさまです。
+Ver3.2のフレンド助っ人の追加についての相談になります。
+
+3.2ではフレンド一人につき助っ人ホースを2体用意するということで
+apiのrace_helper_listの、helper_listの中の助っ人情報に
+新しく変数を追加してもらいたいと思っています。
+
+変数の内容が0のときはこれまで通りの情報、
+1の場合には今回追加される第二の助っ人情報を入れてもらうことを想定しています。
+
+また出走するときのapiのrace_execには
+フレンドの助っ人の内どちらを選択したのかをサーバに送るために、
+新しくリクエストパラメータを追加することを考えています。
+
+何か抜けている点や他の提案がありましたらご指摘お願いします。
+お手数ですがよろしくお願いします。
+
+
+>>坂本さん
+了解しました。上記内容把握しました、ありがとうございます。
+
+apiの方も確認取れましたので
+提示していただいた方向で実装を進めていきます。
+
+お手数おかけしますがよろしくお願いします。
+
+
+>>坂本さん
+おつかれさまです。さきほど確認を取れたつもりでいましたが、
+再度確認したところ、is_favoriteの値にnullが渡されているようでして
+エラーが出てしまいました。
+
+こちらお手数ですがご確認>>坂本さん
+おつかれさまです。さきほど確認を取れたつもりでいましたが、
+再度確認したところ、is_favoriteの値にnullが渡されているようでして
+エラーが出てしまいました。
+
+こちらお手数ですが確認の方取れますでしょうか？の方取れますでしょうか？
+
+
+
+
+ありがとうございました！修正の確認とれました。
+引き続きよろしくお願いします。
+-1が多分手前や
+
+フレンド準　ランク準　お気に入り順は　teamIdソートやろうか
+
+
+＞五十嵐さん
+
+ご連絡ありがとうございます。
+
+[2016年7月13日 15:18] 遼 五十嵐: 
+
+<<< 3.2ではフレンド一人につき助っ人ホースを2体用意するということで
+apiのrace_helper_listの、helper_listの中の助っ人情報に
+新しく変数を追加してもらいたいと思っています。
+こちらに関しては、単純にフレンドの場合はhelper_listの数が増えるという形で実装し、どちらのデッキかという判定に関してはそのかたまりの中にteam_idという変数を追加しようとおもっているのですが、それでも問題ないでしょうか？
+
+[2016年7月13日 15:18] 遼 五十嵐: 
+
+<<< また出走するときのapiのrace_execには
+フレンドの助っ人の内どちらを選択したのかをサーバに送るために、
+新しくリクエストパラメータを追加することを考えています。
+で、その追加したteam_idをここのリクエストパラメータに追加していただきければと思います。
+実際はrace_runで処理する部分になるので、race_execでなくrace_runに追加をお願いしたいのですが、可能でしょうか？
+
+今テスト用にrace_helper_listに修正を入れてみたので、お手数ですがご確認いただければと思います。
+
+宜しくお願い致します。
+
+
+
+>>坂本さん
+お疲れ様です。
+昨日のJSON関係の話しの続きなのですが、race_runで渡す新しいパラメータ名は
+そのままteam_idで問題ないでしょうか？
+お手数おかけしますが宜しくお願いします。
+
+
+
+
+
+とりあえずHorseListを-27からちょっと変えてみるか
+EvolutionBaseSelectのparentを一揆に210に変えよう　-260から-210に変更します
+
+
+了解しました、helper_team_idで設定します。よろしくお願いします。

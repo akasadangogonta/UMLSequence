@@ -1,0 +1,13 @@
+HorseListSort
+
+   Line50付近
+　horseFiltersに色々Addしてる、こっちのが実態を当てえているっていう表現に相応しい
+　  void Start() {
+
+
+　Ｌｉｎｅ４２５付近
+　HorseFilterに何らかの実態を与えているね
+　とりあえずrarityFilters、elementFilters。typeFiltersの３つが作られていっる。ここの最初行でfiltrtListｗそ一旦全てクリアしている
+　  public void Sorted() 
+
+  static private List<List<HorseFilter>> temporaryFilters; // 特定の場所で一時的に使うフィルター(転生進化は指定

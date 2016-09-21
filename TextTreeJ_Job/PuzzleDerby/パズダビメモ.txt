@@ -1,0 +1,587 @@
+ヘイロー
+1846,1238,1848,1851,1949,1557
+1846,1467,3223,3223,3226,3226
+
+リヴァーマン
+846,1795,1859,1980,1857
+
+カヒネキリ
+412
+Lei
+1,1,1,19,19,19,32,32,32,45,45,45,47,47,47,48,48,48
+
+
+ダイヤモンドホース
+1833,1833,1833,1833,1833,1833,1833,1833,1833,1833
+
+
+
+2894のジーズティジー
+元は転生進化先がティズナウ (id = 2891)
+
+2894
+大物を輩出の血統 シーズティジー（オス） rarity = 4
+>2897, 
+キャプテンスティーヴ（オス）　rarity = 4
+>2900 
+フサイチペガサス（オス）　rarity = 4
+
+2895
+BC連覇ホースの父 シーズティジー（オス） rarity = 5
+>2898	
+キャプテンスティーヴ（オス） rarity = 5
+>2901
+フサイチペガサス（オス）　rarity = 5
+
+1658-7917-9195
+
+5626-7189-7175
+
+
+2290, 2291
+ダンヒチ　☆４
+必要素材
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_lei&lei_ids=45,45,35,35,35&alias_cd=1658-7917-9195&platform=a&debug_mode=1
+
+↓　転生
+2294
+ディンヒル
+
+必要素材　2222,2296,2299,2304,2301
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_horse_card&horse_card_ids=2222,2296,2299,2304,2301&skill_level=1,1&exp=9999999999&speed_plus=0&stamina_plus=0&recovery_plus=0&alias_cd=4119-1224-9147&platform=a&debug_mode=1
+
+
+
+ゆーざーのデッキ
+ウォッカ最大　3070
+トウカイテイオー　2680
+マンノウォー　2919
+ゼニヤッタ　2073
+ニホンピロウィナー　3089
+ナリタブライアン　2617
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_horse_card&horse_card_ids=3070,2680,2919,2073,3089,2617&skill_level=1,1&exp=9999999999&speed_plus=0&stamina_plus=0&recovery_plus=0&alias_cd=9348-5496-4132&platform=a&debug_mode=1
+
+
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_horse_card&horse_card_ids=2222,2296,2299,2304,2301,2290&skill_level=1,1&exp=9999999999&speed_plus=0&stamina_plus=0&recovery_plus=0&alias_cd=2772-1213-9964&platform=a&debug_mode=1
+
+
+
+
+9,11,22,47,47
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_lei&lei_ids=9,11,22,47,47&alias_cd=3526-4834-5112&platform=a&debug_mode=1
+
+
+
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_gold_horse_shoe&value=1000&alias_cd=3526-4834-5112&platform=a&debug_mode=1
+
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_silver_horse_shoe&value=100&alias_cd=3526-4834-5112&platform=a&debug_mode=1
+
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_money&value=200000&alias_cd=3526-4834-5112&platform=a&debug_mode=1
+
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_platinum_horse_shoe&value=100&alias_cd=3526-4834-5112&platform=a&debug_mode=1
+
+
+
+
+
+
+
+
+
+9,19,9,
+
+
+
+
+
+
+トウカイテイオー☆４　550
+必要素材
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_lei&lei_ids=4,9,18,22,34&alias_cd=1658-7917-9195&platform=a&debug_mode=1
+
+
+シーズティジー
+reinId 1
+1333,2897,2900,2903,2821
+reinId 2
+1,2,3,4,5,
+reinId 3
+5,6,7,8,9
+
+
+現在のID　9348-5496-4132
+
+
+端末のID　7946-6271-7592
+
+最強馬チームサンプル
+
+端末のID　
+4132-5621-3422
+
+
+
+
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_horse_card&horse_card_ids=2898,2901,1846,3008,1845,412&skill_level=1,1&exp=9999999999&speed_plus=0&stamina_plus=0&recovery_plus=0&alias_cd=4132-5621-3422&platform=a&debug_mode=1
+
+
+
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_horse_card&horse_card_ids=2898,2901,1846,3008,1845,412&skill_level=1,1&exp=9999999999&speed_plus=0&stamina_plus=0&recovery_plus=0&alias_cd=8552-6812-8975&platform=a&debug_mode=1
+
+
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_horse_card&horse_card_ids=2898,2901,1846,3008,1845,412&skill_level=1,1&exp=9999999999&speed_plus=0&stamina_plus=0&recovery_plus=0&alias_cd=7946-6271-7592&platform=a&debug_mode=1
+
+2789,2564,2602,1393,2862,2558
+
+
+こちらで確認した状況としましてはホスト側
+No2789クリフジ　水
+No2564サクラバクシンオー　水・天
+No2602メジロマックイーン　水・火
+に対しゲスト側
+No1393クリフジ　水
+No2862シンボリルドルフ　火・水
+No2558オルフェーヴル　風・水
+で水曜限定のクラシックロード、超上級の英セントレジャーへ参加しようとしたところ、「このレースステージは指定にある属性の馬だけでチームを編成しないと出走することができません。」の文言が出て出走できなかったです。
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_horse_card&horse_card_ids=2789,2564,2602&skill_level=1,1&exp=9999999999&speed_plus=0&stamina_plus=0&recovery_plus=0&alias_cd=1425-5753-3548&platform=a&debug_mode=1
+
+4653-7748-1319
+
+6218-8516-3347
+
+1425-5753-3548
+
+
+
+//オリフェーブル
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_horse_card&horse_card_ids=2258&skill_level=1,1&exp=999999999999&speed_plus=999&stamina_plus=999&recovery_plus=999&alias_cd=3526-4834-5112&platform=a&debug_mode=1
+
+
+
+//ダイヤモンドホース
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_horse_card&horse_card_ids=1833,1833,1833,1833,1846,2258,412&skill_level=1,1&exp=0&speed_plus=0&stamina_plus=0&recovery_plus=0&alias_cd=6293-7148-1853&platform=a&debug_mode=1
+
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_horse_card&horse_card_ids=1833,1833,1833,1833,1846,2258,412&skill_level=1,1&exp=0&speed_plus=0&stamina_plus=0&recovery_plus=0&alias_cd=3526-4834-5112&platform=a&debug_mode=1
+
+転生進化
+ヘイロー
+1846,1238,1848,1851,1949,1557
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_horse_card&horse_card_ids=1846,1238,1848,1851,1949,1557&skill_level=1,1&exp=0&speed_plus=0&stamina_plus=0&recovery_plus=0&alias_cd=6293-7148-1853&platform=a&debug_mode=1
+1846,1467,3223,3223,3226,3226
+
+
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_horse_card&horse_card_ids=18461238,1848,1851,1949,1557&skill_level=1,1&exp=0&speed_plus=0&stamina_plus=0&recovery_plus=0&alias_cd=3526-4834-5112&platform=a&debug_mode=1
+
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_lei&lei_ids=41&alias_cd=3526-4834-5112&platform=a&debug_mode=1
+
+2898,2901,1846,3008,1845,
+
+
+
+
+
+
+リヴァーマン
+
+846,1795,1859,1980,1857
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_horse_card&horse_card_ids=846,1795,1859,1980&skill_level=1,1&exp=0&speed_plus=0&stamina_plus=0&recovery_plus=0&alias_cd=5511-3759-3228&platform=a&debug_mode=1
+
+シーズティジー 2894
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_horse_card&horse_card_ids=1333,2897,2900,2903,2821&skill_level=1,1&exp=0&speed_plus=0&stamina_plus=0&recovery_plus=0&alias_cd=4653-7748-1319&platform=a&debug_mode=1
+シーズティジー （サンプル）
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_horse_card&horse_card_ids=1,2,3,4,5&skill_level=1,1&exp=0&speed_plus=0&stamina_plus=0&recovery_plus=0&alias_cd=6635-4991-8993&platform=a&debug_mode=1
+シーズティジー（サンプル2）
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_horse_card&horse_card_ids=5,6,7,8,9&skill_level=1,1&exp=0&speed_plus=0&stamina_plus=0&recovery_plus=0&alias_cd=4653-7748-1319&platform=a&debug_mode=1
+
+1333, 2897, 2900, 2903, 2821
+
+412>     1790    2432    2431
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_lei&lei_ids=45&alias_cd=9737-5655-9671&platform=a&debug_mode=1
+7141-4169-1843
+1,19,32,45or46or47
+１８３３
+
+
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_lei&lei_ids=34,34,34,45,45&alias_cd=9737-5655-9671&platform=a&debug_mode=1
+
+
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_lei&lei_ids=4,22,73&alias_cd=5536-3361-2529&platform=a&debug_mode=1
+
+846,1795,1859,1980
+
+お手数ですがよろしくお願いします。
+
+通常進化
+ヘイロー
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_lei&lei_ids=34,34,34,45,45&alias_cd=6293-7148-1853&platform=a&debug_mode=1
+
+サンデーサイレンス
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_lei&lei_ids=53,53,50,50,33&alias_cd=5511-3759-3228&platform=a&debug_mode=1
+
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_lei&lei_ids=50,51,56,45,45&alias_cd=5511-3759-3228&platform=a&debug_mode=1
+
+カヒネキリ
+1,19,32,47,47
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_lei&lei_ids=1,19,32,47,47&alias_cd=5511-3759-3228&platform=a&debug_mode=1
+
+シーズディジー
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_lei&lei_ids=34,34,34,34,34&alias_cd=6635-4991-8993&platform=a&debug_mode=1
+
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_lei&lei_ids=34,45&alias_cd=7141-4169-1843&platform=a&debug_mode=1
+
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_lei&lei_ids=38,38&alias_cd=7141-4169-1843&platform=a&debug_mode=1
+
+
+5626-7189-7175
+
+
+
+http://stg.api.derby.pzga.jp/debug_tools/debug_test?action=get_lei&lei_ids=41,38,38&alias_cd=5626-7189-7175&platform=a&debug_mode=1
+
+raceMenu line1378
+
+<prefab>
+HelperBord
+HelperList
+RaceConfirm
+
+assert.txt
+commonWindow.txt
+
+Plugins/General/RaceData.cs
+NwCmdMultiLobbyCreate.cs
+NwCmdCoopRaceAction.cs
+NwCmdRaceAction.cs
+RaceMenuPhase.cs
+NwCmdCoopRaceAction.cs 
+NwDataStageData .cs
+
+RaceMenu > RaceRankingEventList
+RaceMenu > HelperList
+D
+RaceConfirm
+
+
+スタミナ:
+スピード:
+勝負根性:
+
+中級・リーダー火限定
+MultiLobbySelectItem.preb
+RaceConfiｒｍItem
+
+
+    callback = cbMethod;
+  
+    this.raceName.Text    = raceName;
+    this.subRaceName.Text = subRaceName;
+	this.raceId = in_raceId;
+
+    base.UseTeamId = UserDataManager.Instance.GetUseTeam().id;
+    
+    Dictionary<int,NwDataTeamDetail> datas = UserDataManager.Instance.GetTeamDatas();
+    base.teamNum = datas.Count;
+    
+    scrollList.ClearList(true);
+    instanceRaceConfirmItems = new RaceConfirmItem[teamNum];
+
+
+    callback = cbMethod;
+    multiType = type;
+    LobbyKey = "----";
+   
+    instanceWindow = FindObjectOfType(typeof(LobbyPasswordWindow)) as LobbyPasswordWindow;
+    if(instanceWindow == null) {
+      instanceWindow = Instantiate(passwordWindow) as LobbyPasswordWindow;
+    }
+   
+    bool isHost = (multiType == MultiType.Host);
+    this.raceName.gameObject.SetActive(isHost);
+    this.subRaceName.gameObject.SetActive(isHost);
+    if(isHost) {
+      this.raceName.Text = raceName;
+      this.subRaceName.Text = subRaceName;
+
+
+結局このRaceConfirmとかMultiConfirmのCalcStatusって何のためにあるの？ただの条件判定のためだけのコードだとしたら、相当助長だな
+
+
+It looks like you have the FacebookManager on a GameObject in your scene. Our new prefab-less manager system does not require the FacebookManager to be on a GameObject.
+It will be added to your scene at runtime automatically for you. Please remove the script from your scene.
+UnityEngine.Debug:LogWarning(Object)
+Prime31.AbstractManager:initialize(Type)
+FacebookManager:.cctor() (at Assets/Plugins/SocialNetworkingCommon/Facebook/FacebookManager.cs:51)
+
+Unity recompiled. Connection gets closed and replaced. You can connect as 'new' client.
+UnityEngine.Debug:LogWarning(Object)
+PhotonNetwork:.cctor() (at Assets/Photon Unity Networking/Plugins/PhotonNetwork/PhotonNetwork.cs:1060)
+PhotonEditor:EditorUpdate() (at Assets/Photon Unity Networking/Editor/PhotonNetwork/PhotonEditor.cs:243)
+PhotonEditor:EditorUpdate() (at Assets/Photon Unity Networking/Editor/PhotonNetwork/PhotonEditor.cs:211)
+UnityEditor.EditorApplication:Internal_CallHierarchyWindowHasChanged()
+
+NullReferenceException: Object reference not set to an instance of an object
+UIManager.Update () (at Assets/UnityAssets/EZGUIandSM2/Plugins/EZ/GUI/Management/UIManager.cs:1297)
+
+NullReferenceException: Object reference not set to an instance of an object
+iTween.TweenUpdate () (at Assets/UnityAssets/iTween/Plugins/iTween.cs:4624)
+iTween.Update () (at Assets/UnityAssets/iTween/Plugins/iTween.cs:6563)
+
+＞大竹さん
+race_resultのAPIにレスポンスを追加する形になると思いますが、こちらも詳細を確認しておりますので、確認次第ご連絡致します。
+ご迷惑をおかけしますが、暫しお待ちください。
+
+宜しくお願い致します。
+
+
+
+＞大竹さん
+
+パズダビグランプリの方ですが、ver2.8.0以降はrace_resultの['ranking_result']の中身を下記の通りイベント毎に変更する形でいかがでしょうか。
+
+●ポイント王イベント(現チャレンジイベント)の場合
+
+既存の項目に
+
+["event_type_id"] => イベント種別(1:ポイント王、2:コンボ王、3:スコア王)
+["rank"] => 現在の順位
+
+を追加
+
+●コンボ王の場合
+
+["event_type_id"] => イベント種別(1:ポイント王、2:コンボ王、3:スコア王)
+["combo_num"] => 今回の最高コンボ数
+["max_combo_num"] => イベント期間中の最大コンボ数
+["rank"] => 現在の順位
+
+●スコア王の場合
+
+["event_type_id"] => イベント種別(1:ポイント王、2:コンボ王、3:スコア王)
+["turn_bonus"] => ターンボーナス
+["combo_bonus"] => コンボボーナス
+["team_bonus"] => チームボーナス
+["score"] => 今回のスコア
+["max_score"] => イベント期間中の最大スコア
+["rank"] => 現在の順位
+
+
+また、スコアの計算式で使用する下記の項目をリクエストパラメータに追加いただけますでしょうか。
+
+clear_turn_num => クリアターン数
+ave_combo_num => 平均コンボ数
+
+お手数ですが、一度ご確認いただき情報の過不足などあればご連絡ください。
+
+宜しくお願い致します。
+
+      System.Action<List<TestData>> output = (target22232List)=>{
+        string log = string.Empty;
+        foreach ( var target in targetList )
+        {
+          log += target.ToString();
+          log += "\n";
+        }
+        Debug.Log( log );
+      };
+      System.Comparison<TestData> sortIndex0 = (obj1, obj2)=>{ return obj1.index0 - obj2.index0; };
+      System.Comparison<TestData> sortIndex1 = (obj1, obj2)=>{ return obj1.index1 - obj2.index1; };
+      System.Comparison<TestData> sortIndex2 = (obj1, obj2)=>{ return obj1.index2 - obj2.index2; };
+      System.Comparison<TestData> sortIndex3 = (obj1, obj2)=>{ return obj1.index3 - obj2.index3; };
+
+      List<TestData> list = new List<TestData>();
+      list.Add( new TestData( 0, 0, 1, 1 ) );
+      list.Add( new TestData( 1, 0, 2, 3 ) );
+      list.Add( new TestData( 2, 0, 3, 5 ) );
+      list.Add( new TestData( 3, 1, 4, 7 ) );
+      list.Add( new TestData( 4, 1, 5, 9 ) );
+      list.Add( new TestData( 5, 1, 6, 2 ) );
+      list.Add( new TestData( 6, 2, 7, 4 ) );
+      list.Add( new TestData( 7, 2, 8, 6 ) );
+      list.Add( new TestData( 8, 2, 9, 8 ) );
+
+      list.Sort( sortIndex0 );
+      output(list);
+
+      list.Sort( sortIndex3 );
+      output(list);
+
+      list.Sort( sortIndex0 );
+      output(list);
+
+      list.Sort( (obj1, obj2)=>{
+        int result = sortIndex1(obj1, obj2);
+        if ( result == 0 )
+        {
+          result = sortIndex3(obj1, obj2);
+        }
+        return result;
+      } );
+      output(list);
+
+class TestData
+  {
+    public int index0;
+    public int index1;
+    public int index2;
+    public int index3;
+
+    public TestData(int i0, int i1, int i2, int i3 )
+    {
+      index0 = i0;
+      index1 = i1;
+      index2 = i2;
+      index3 = i3;
+    }
+
+    public override string ToString ()
+    {
+      return string.Format ("[TestData]{0}, {1}, {2}, {3}", index0, index1, index2, index3 );
+    }
+  }
+
+
+trunk5882 waring変数の削除一覧
+MultiLobby.cs
+HelperList.cs
+CheckCondition.cs
+MissionListItem.cs
+ReincarnationMaterialSelect.cs
+ReincarnationConfirm.cs
+OverallListManageBase.cs
+OverallList.cs
+OverallChoiceItemList.cs
+HorseItemList.cs
+EvolutionConfirm.cs
+EnhanceConfirm.cs
+NwDataUserHorse.cs
+
+
+
+| ローカルのMasterDataを使う方法
+
+・Unityのメニューの"PuzzleDerby->BuildSettings->Debug->USE_DUMMY_MASTERDATA->ON"を選択して、
+　後は普通に実行するだけ
+　
+　選択すると、DummyDataをResourcesにコピーし、DefineにUSE_DUMMY_MASTERDATAを追加します。
+
+・DummyDataを普段使用しているサーバの情報で更新する事が可能です。
+	1.Editor上で、普通に実行する。
+	2.タイトル画面まで行き、Hierarchy上で、"GameController"を選択する
+	3.Inspectorで、"AssetBundleManager"を探し、"Is Save Master Data To Local"にチェックを入れる
+	4.タイトルからホームに進んだら、DummyDataの元ファイルは更新されているはずです。
+	5.元ファイルの更新が終わったら再度"PuzzleDerby->BuildSettings->Debug->USE_DUMMY_MASTERDATA->ON"を選択します。
+	　これをしないと、DummyDataがResourcesの方にコピーしないため。
+
+・再度サーバのMasterDataが使いたくなった場合は、Unityのメニューの"PuzzleDerby->BuildSettings->Debug->USE_DUMMY_MASTERDATA->OFF"を選択します。
+
+　選択すると、ResourcesにあるDummyDataを削除し、DefineからUSE_DUMMY_MASTERDATAを削除します。
+
+
+
+謎のEvolutionMainのInにあったコード
+    
+	/*
+    if( TutorialManager.IsAlreadyReadHelpMessage( HelpMessageType.Evolution ) )
+    {
+      CommonWindow.Instance.SetDatas( "Confirm",
+      (idx) =>
+      {
+        CommonWindow.Instance.PlayCloseAnim();
+        TitleBoardManager.Instance.UnlockExtraBtn();
+      },
+      TutorialManager.GetHelpMessage( HelpMessageType.Evolution )
+      );
+      CommonWindow.Instance.PlayOpenAnim( this.transform );
+      TitleBoardManager.Instance.LockExtraBtn();
+	}
+	*/
+
+
+
+リリース用ビルド
+----------------------------------
+レUse Existing Keystore
+Browse Keystore : NDからもらったキーストアファイル /Pzdb_Files/secret/pzdb.keystore
+pass : nedori
+
+Key
+Alias : nd_key
+pass : nedori
+----------------------------------
+
+ステージングビルド
+----------------------------------
+レUse Existing Keystore
+Browse Keystore : /program/documents/Android_register/keystore/puzzle.keystore
+pass : puzzle2013
+
+Key
+Alias : puzzlekey
+pass  : puzzle2013
+
+
+>>坂本さん
+おつかれさまです。
+stagingの方では条件レースが設定されていない
+おそらくですが、apiのmultiplay_lobby_searchで
+ホスト側の選択したレースのレース条件が
+正しくゲスト側に情報が渡されていない可能性があります。
+
+遅くに失礼いたします、坂本さんはまだ居られますでしょうか？
+
+stagingの方ですと条件レースが送られきていないみたいですので
+テスト用にstagingにも条件レースを送っていただきたいのですが、可能でしょうか？
+
+それと大変お手数ですが、apiのmultiplay_lobby_searchで正しい
+conditionを渡しているかの再度確認をお願いできますでしょうか？
+
+お手数ですがよろしくお願いします。
+
+
+ホストの作った部屋をクリックした瞬間に
+
+あ、失礼しました、lobby_list[]の中の
+  public int condition_category;
+  public int condition_type;
+  public int[] condition_value;
+の３つになります。
+
+お手数おかけします。
+
+マルチの条件レースも
+
+
+
+了解しました、ありがとうございました。
+
+
+現象確認できました、遅くまで大変失礼いたしました。ありがとうございます。
+こちら側の問題で、明日までには修正が終わると思います。今日中に提出できなくて申し訳ないです。
+
+ご面倒おかけしました。
+
+
+本日はありがとうございました。
+
+重要
+昔の仕様
+昔はホストのリーダーが条件クリアしてれば問題なかった
+MultiLobbySelectItem
+    if(RaceData.ConditionType != 1) {
+
+
+了解しました、確認します。少々お待ちください。
+
+
+>>坂本さん
+おつかれさまです。
+失礼しました、アイコンの種類と数値の紐付けが間違っていたようです。
+０=回復、1=火、2=水、3=風、4=天、5=地、6=紫と金のブロック
+で間違いないでしょうか？
+また別件で今更の話しではあるのですが、紫と金のレリーフのブロックの名前を
+教えていただけるとありがたいです。
+
+クライアント側では把握できていなかったので、今後のために
+
+了解しました、名前の件もありがとうございます。
+早速実装していきますのでよろしくお願いします。

@@ -1,0 +1,9 @@
+MainMenuLogic
+
+  Line472
+  画像切り替え
+　private IEnumerator ChangeMainMenu( MenuType menuType )
+
+　Line321
+  Farmボタンが押されたときに呼ばれるが、それ以外にもHELPのチュートリアルが選択されたときも自動的に押されたこととなる。（ここをとおらないと進化画面などにいかない）
+　  public void TouchFarm( FarmPhase phase = FarmPhase.Top )

@@ -1,0 +1,10 @@
+いやあそうはいう手も、やっぱunityremoteつかうかまあだからWebViewが呼ばれると
+お知らせのnoticeFrameが手間に移動しちゃうということだよな
+だけどEditor上だとwebViewが動かないから不安はあない。
+
+何をどうやって修正すればいいかわかんないだけど、どうしよう
+あ、一回WebVire表示切ってみればいいのか
+
+お知らせが下がるときは　HomeMenuの77行目
+outPrivateの225は通貨せず
+switchではanimType.Defalt

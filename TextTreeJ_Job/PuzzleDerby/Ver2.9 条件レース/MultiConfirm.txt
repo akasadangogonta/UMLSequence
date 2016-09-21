@@ -1,0 +1,8 @@
+MultiConfirm
+
+　Ｌｉｎｅ82付近
+　MultiConfirmItemの作成
+　CreateData
+
+  Line240付近
+　出走の可否？およびエラーメッセージの表示判定関連のコード

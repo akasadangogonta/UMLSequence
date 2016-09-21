@@ -1,0 +1,9 @@
+HorseCardSprite
+
+  Line166
+  AssetBundleから馬の顔を読み込んでいる。
+　  public void SetIconTexture( int horseCardId, int imageVersion )
+
+  Line595
+　AssetBundleから馬の顔を読み込んでいる。
+  private void LoadCardTexture( bool isMasterData = false )

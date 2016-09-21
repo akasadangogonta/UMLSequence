@@ -1,0 +1,22 @@
+HorseItemList
+
+　Line221
+　Createです
+　 public void Create( List<NwDataUserHorse> horseDatas, EvolutionType evolutionType = Evolutio
+
+  Line684
+  進化先のパネルの作成。この関数一つで旧転生進化画面と旧津上進化画面の両方の描写を掛け持ちしている。しかしスクリプトは全く共用していないのではっきり言って紛らわしい
+　  private void CreateListItems()
+　　
+　Line768
+　パターンA,B,Cの入力
+　  private void SetReincarnationPatternText (int index, GameObject backPanel)
+
+　Line925
+　ｆilterHorsesなるよくわからないものを設定している箇所。単純に作成する馬の数しかはいってないように思う。
+　いやこれあれだ、filterHorsesっていうメンバ変数にaddしている。大事だなこれ
+　private int FilterHorses()
+
+　Line1117
+　パネルの基本となるオブジェクトの作成
+　 private UIListItemContainer CreateContainer( int index )

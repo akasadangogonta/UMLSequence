@@ -1,0 +1,9 @@
+MultiLobbySelectItem
+ホストのルームの実態
+
+ Line150付近
+　ConditionTypeを一応見てるな、しかし-1にしか対応していない
+　これ昔の名残りですな
+  public void ConditionLimitCheck() 
+
+了解しました。2と6以外のCategoryであればローカルだけで条件判定できる予定でいます。それではその方向で進めていきますのでよろしくお願いします。

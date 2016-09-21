@@ -1,0 +1,3 @@
+line170
+  PhotonNetwork.Disconnect();
+  名前からすると接続を切っている？

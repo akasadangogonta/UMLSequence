@@ -1,0 +1,20 @@
+HorseItemListManageBase
+
+  Line99
+  転生進化用のクリエイト
+　  public void CreateReincarnation( HorseCardCallback tapCallback, bool isMaxNum = false, bool isRemove = false,
+
+　Line230
+　sortを実行したときに呼ばれる関数（こっちはraritytとか属性とか
+　  public void Sorted()
+  {
+    if( !isCreated )return;
+    
+    horseSort.Sorted(); ここでソートをセット（horseSort.horseFiltersをセット）
+    horseList.Refresh( this.horseDatas, horseSort.GetHorseFilters(), this.isRemove );　ここで実際にソート）
+    TitleBoardManager.Instance.SetSubText( HorseListSort.GetSortNameShort() );
+  }
+
+  Line344
+  sortの実行したときに呼ばれる、こっちはSortの中のSortのソート（スピードとかスタミナとか）
+　  private void SortList( int index )
