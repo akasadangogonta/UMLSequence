@@ -1,2 +1,0 @@
-MenuManager
-Farm画面のバナーたちの設定。使っているプレハブはMenuManagerBase

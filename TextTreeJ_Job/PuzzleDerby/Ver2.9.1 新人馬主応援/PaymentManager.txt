@@ -1,6 +1,0 @@
-PaymentManager
-アイテムの情報を溜め込んだスクリプト
-
-  Line130
-  アイテムをネット(NwCmdPurchaseList)から取得。cmdPurchaseListに保存
-　  public void Init()

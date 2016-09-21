@@ -1,9 +1,0 @@
-ReincarnationConfirm
-
-  Line276
-  進化実行が可能かどうかの判定
-  private CheckActionBtnl
-
-　Line300
-  進化実行ボタンを押すと呼ばれる。事前に設定されたコールバックによりこの後EvolutiomMainのConfirmEvolution()関数へ移動する。  
-  TouchActionButton

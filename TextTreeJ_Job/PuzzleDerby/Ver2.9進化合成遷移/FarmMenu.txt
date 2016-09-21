@@ -1,5 +1,0 @@
-FarmMenu
-
-　　Line493
-　　画面の切り替え
-　  public override void Out ()

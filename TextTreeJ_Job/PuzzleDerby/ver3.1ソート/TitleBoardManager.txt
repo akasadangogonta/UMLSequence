@@ -1,3 +1,0 @@
-178行目
-    public void InBoard
-　　ExtraButtonのコールバクとかの設定

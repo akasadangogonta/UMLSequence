@@ -1,5 +1,0 @@
-HelpMain
-
-  Line157
-  チュートリアルの中のボタンを押したときに呼ばれる関数
-　  private void TouchTitleBtn( int index )

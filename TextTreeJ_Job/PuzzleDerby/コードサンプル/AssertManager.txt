@@ -1,2 +1,0 @@
-          AssertManager.Instance.SetInconsistentError(cmd, cmd.GetError().ToString());
- AssertManager.Instance.SetConnectFailed(cmd);

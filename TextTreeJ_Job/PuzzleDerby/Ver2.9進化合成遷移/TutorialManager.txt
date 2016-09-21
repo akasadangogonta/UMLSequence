@@ -1,5 +1,0 @@
-TutorialManager
-
-  Line339
-  チュートリアルの中のトレーニング合成、及び進化合成、及び転生進化合成が押されたときに実行される関数
-　  static public void StartTutorialFromHelp( TutorialEndType endType )

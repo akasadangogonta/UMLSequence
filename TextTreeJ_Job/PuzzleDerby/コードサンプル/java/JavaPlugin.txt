@@ -1,9 +1,0 @@
-intを返したいときは
-霊
-CallStatic<int>("getLastLocalNotifyId");	
-
-
-
-  AndroidJavaClass cls = new AndroidJavaClass("com.sample.plugin"))
-  string str = cls.GetStatic<string>("mStr");
-  cls.SetStatic("Hello World");

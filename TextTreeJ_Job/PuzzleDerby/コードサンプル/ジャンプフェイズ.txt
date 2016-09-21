@@ -1,3 +1,0 @@
-        buyGoldShoeButton.SetCallbackWithSound( ()=> MainMenuLogic.Instance.JumpAppScene( "unity://shop/buyshoe" ) )
-
-;MultiLobbySelect

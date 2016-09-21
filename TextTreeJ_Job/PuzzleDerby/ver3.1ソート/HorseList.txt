@@ -1,1 +1,0 @@
-ソートウィンドウのプレハブ  public  SortWindow                sortWindow;がある

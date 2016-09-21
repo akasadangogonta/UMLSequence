@@ -1,6 +1,0 @@
-TitleBoardManager
-ここにヘッダーの戻るボタンとかタイトルをいじるコードがある
-
- Line205
-  public void SetTitleText
-  文字の大きさの自動調整

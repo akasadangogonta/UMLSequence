@@ -1,6 +1,0 @@
-    button.SetValueChangedDelegate( PressButton );　↓
-     private void PressButtonIUIObject btn)
-
-
-   SetCallbackWithSound
-

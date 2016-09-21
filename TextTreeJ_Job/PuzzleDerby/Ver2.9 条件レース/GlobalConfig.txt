@@ -1,2 +1,0 @@
-GlobalConfig
-GameScenes/Common/Plugins/General/GlobagConfig

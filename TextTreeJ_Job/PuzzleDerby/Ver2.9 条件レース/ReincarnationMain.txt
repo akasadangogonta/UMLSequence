@@ -1,5 +1,0 @@
-ReincarnaitionMain
-
-  LINE212
-　inとoutで画面を制御
-　  public IEnumerator ChangePhase( ReincarnationPhase phase )

@@ -1,8 +1,0 @@
-TitleBordManager
-
-  Line54
-  タイトルネームの変数
-  titleName
-
-　Line205
-　タイトルネームの変更に必要な関数

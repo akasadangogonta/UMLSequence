@@ -1,9 +1,0 @@
-RaceSubListItem
-
-　　Line68
-　　	public void SetDataFacebook( Transform parent, int index, NwDataStageData data, NwDataStageData friendData, RaceSubListItemTouchCallback cbMethod, RaceType raceType, NwDataLimitedEvent limitedEvent = null, Material material = null ,bool dontPlay = false, bool is_neighbor_multi = false)
-　　こっからレースタイプを選んでるのか
-
-ＣｒｅａｔｅＬｉｓｔ
-　　Line58
-　　

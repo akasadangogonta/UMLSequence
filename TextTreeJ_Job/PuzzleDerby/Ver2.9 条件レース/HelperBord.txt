@@ -1,7 +1,0 @@
-HelperBord
->GameScenes/RaceMenu/Scripts/HelperBord
-
-　Line150
-  callbackのTouchHelperを呼ぶ動作。つまり実際はTouchHelperBordより前にここが　呼ばれている。
-　TouchHelperBordのコードはHelperList.csの177行目にある
-  private void TouchMe()

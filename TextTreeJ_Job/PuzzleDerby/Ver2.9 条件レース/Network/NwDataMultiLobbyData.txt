@@ -1,6 +1,0 @@
-NwDataMultiLobbyData
-GameScenes/Common/Scripts/Network/Multi/Data/NwDataMultiLobbyData
-(何に使うのこれ)
-
-  Line30付近
-　怪しげな条件レースの変数

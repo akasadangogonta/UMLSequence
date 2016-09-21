@@ -1,9 +1,0 @@
-NwDataUserHorseData
-
-  Line425
-  転生進化先のIdを取得する
-　public int GetReincarnationId(int evolutionIndex = 1)
-
-  Line444
-　転生進化先のマテリアルズを取得する
-　public int[] GetReincarnationMaterialHorseIds(int evolutionIndex = 1)

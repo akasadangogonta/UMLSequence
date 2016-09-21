@@ -1,9 +1,0 @@
-EvolutionMain
-
-　Line322
-  進化実行ボタンを押すと呼ばれる。サーバの応答に答えるコールバック関すの設定と、その直後にExecCmdを呼んでいる。
-  ConfirmEvolution（）
-
-　　Line495
-　受け取った馬やお金のローカルへの代入と、素材馬の削除などをやっている。
-　  private void UpdateDatas( NwDataHorseReincarnation nwData ) 

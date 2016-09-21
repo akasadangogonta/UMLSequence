@@ -1,6 +1,0 @@
-HelperBoard
-助っ人選択のボード
-
-　　Line122
-　　eventUsetのヘルパーボード画像のロード
-　　LoadEventUserPlateTexture

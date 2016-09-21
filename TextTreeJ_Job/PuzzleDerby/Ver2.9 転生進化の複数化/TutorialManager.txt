@@ -1,5 +1,0 @@
-TutorialManager
-
-　Line307
-  あやしげ、いつかチュートリアルを復活させたときにコメント外すかも
-  static public bool CheckTutorialReincarnation()

@@ -1,4 +1,0 @@
-お知らせ
-　SubMenusからLoginMenu、そこからParent>window>noticeFrame
-
-	1	 		

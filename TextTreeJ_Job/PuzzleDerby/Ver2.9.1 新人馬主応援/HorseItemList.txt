@@ -1,6 +1,0 @@
-HorseItemList
-
-  Line1009
-  EvolutionPanelSpriteのボタンコールバックに実態を与えたりしている
-　private void CreateEvolutionPanel(int i, HorseListItem item)
-　evolutionPanel.SetData(i, item.horseData, this.TapPanelSprite, this.HoldPanelSprite);

@@ -1,5 +1,0 @@
-NwDataUserManager
-
-　　Line804
-　　UserDataManagerで検索したあとに呼ばれる本格的な馬のアップデート
-　　 public void UpdateData( NwDataUserHorse updateData )

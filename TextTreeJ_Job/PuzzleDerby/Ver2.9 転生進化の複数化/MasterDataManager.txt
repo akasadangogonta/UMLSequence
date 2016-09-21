@@ -1,6 +1,0 @@
-MasterDataManager
-
-  Line123
-  どっかからながーい数字データ持ってきて、それをＭａｓｔｅｒＨｏｒｓｅＤａｔａクラスに突っ込んでいる
-　 public void LoadHorseData( TextAsset txt )
-

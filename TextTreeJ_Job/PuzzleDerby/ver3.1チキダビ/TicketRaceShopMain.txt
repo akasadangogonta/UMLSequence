@@ -1,6 +1,0 @@
-TicketRaceShopMain
-
-  Line153
-  PaymentManager.Instance.Purchase( data, "HorseShoeResult" );
-  おそらく変える必要があるところ
-

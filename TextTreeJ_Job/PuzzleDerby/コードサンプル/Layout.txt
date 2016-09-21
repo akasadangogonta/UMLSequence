@@ -1,1 +1,0 @@
- LayoutAdjuster.screenType == LayoutAdjuster.ScreenType.Screen_4_3 

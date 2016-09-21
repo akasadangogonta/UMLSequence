@@ -1,5 +1,0 @@
-public delegate void TicketRaceShopCallbackRaceData( NwDataRaceData data );
-public delegate void TicketRaceShopCallback( NwDataTicketRaceShop data );
-
->>坂本さん
-apiの名前の件了解しました、ご確認ありがとうございます。また引き続きよろしくお願いします。

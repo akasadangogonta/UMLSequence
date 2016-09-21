@@ -1,8 +1,0 @@
-５０行目ひき
-　　Ｉｎ（）
-　　ん？ちょっと違うな、これ代２引数が、textManagerをストリングを持ってきているだけ
-    TitleBoardManager.Instance.InBoard( TitleBoardType.Sort, HorseListSort.GetSortNameShort(), this.PushSortBtn );　　　
-第3引数はCommonindowを作ってるだけだ
-　　
-２３７行目
-　　PushSortButton

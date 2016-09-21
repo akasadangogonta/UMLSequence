@@ -1,7 +1,0 @@
-CommonWIndow.text
->Resources/Texts/CommonWindow
-
-  Line180付近
-  エラーメッセージの作成
-  
-  

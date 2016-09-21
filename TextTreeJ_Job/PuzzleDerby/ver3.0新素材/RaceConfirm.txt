@@ -1,8 +1,0 @@
-RaceConfirm.cs
->GameScenes/RaceMenu/Scripts/RaceConfirm
-
-　Line65付近
-　ラヴェルのセット
-
-　Line100付近
-　条件レースエラー判定の実際の関数

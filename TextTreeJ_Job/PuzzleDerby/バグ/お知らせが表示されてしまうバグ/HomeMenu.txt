@@ -1,5 +1,0 @@
-HomeMenu
-
-  Line742
-  お知らせが下がるときに呼ばれる
-　OutPrivate

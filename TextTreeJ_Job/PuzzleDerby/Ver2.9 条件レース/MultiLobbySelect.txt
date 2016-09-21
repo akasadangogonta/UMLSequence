@@ -1,3 +1,0 @@
-MultiLobbySelect
-ホストのルームを表示
-NwDataMutiLobbyDataを格納している

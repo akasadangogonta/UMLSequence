@@ -1,6 +1,0 @@
-NetworkManager
-GameScenes/Common/Scripts/NetWork/Common/NetWokManagert.cs
-
-  Line150付近
-　race_listからNwCdmRaceListにデータが送られる関数
-　    { typeof(NwCmdRaceList),       new UrlData( "GET",    true, "http://", "race_list", 4 ) },

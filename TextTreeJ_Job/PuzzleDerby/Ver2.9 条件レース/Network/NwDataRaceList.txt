@@ -1,8 +1,0 @@
-NwDataRaceList
->GameScenes/Common/Scripts/Network/Race/NwDataRaceList
-
-  Line100付近
-　条件レースで使う変数
-  public int    condition_category;
-  public int    condition_type;
-  public int[]  condition_value;
