@@ -8,7 +8,7 @@ ctrl + alt
 
 
 
-caCtrl + c = ｷｬﾝｾﾙ
+Ctrl + c = ｷｬﾝｾﾙ
 
 ファイルへの書き込み: cat >bar
 Ctrl + d = catの書き込み終了

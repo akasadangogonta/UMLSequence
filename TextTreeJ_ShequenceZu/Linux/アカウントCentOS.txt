@@ -1,0 +1,12 @@
+普通のCentOS7はこのPCでは重すぎる、使わないほうが吉
+でも今使ってるアカウントは多分
+centOS : trobriand　$
+root : trobriand #
+
+CentOSStartXを使いましょう
+使ってるｱｶｳﾝﾄは
+root : trobriand
+centOSS : trobriand
+
+ユーザーを切り替えたい場合は一度logoutコマンドを入力
+その御自動でlogin画面に映る
