@@ -88,6 +88,7 @@ public class BaseObj : AutoAddEventTrigger
 		Vector3 position = new Vector3 (data.posX, data.posY, 1);
 		this.gameObject.transform.localPosition = position;
 
+		this.gameObject.transform.rotation = Quaternion.Euler (new Vector3 (0, 0, data.angle));
 		//UpdateObj ();
 	}
 
@@ -104,8 +105,33 @@ public class BaseObj : AutoAddEventTrigger
 		data.lineNum = 0;
 		data.posX= this.transform.localPosition.x;
 		data.posY= this.transform.localPosition.y;
+
+		data.angle = this.transform.rotation.eulerAngles.z;
 		
 		GeneralController.SetNewObject (data, this);
+	}
+
+	virtual protected void UpdateObj (ObjectsData data = null)
+	{
+		if (data == null)
+		{
+			Debug.Log ("Exception argument in UpdateObj base class");
+			return;
+		}
+		
+		data.posX= this.transform.localPosition.x;
+		Debug.Log ("save data.posx = " + data.posX);
+		data.posY= this.transform.localPosition.y;
+		Debug.Log ("save data.posy = " + data.posY);
+		
+		data.angle = this.transform.rotation.eulerAngles.z;
+		Debug.Log ("save data.angle = " + data.angle);
+		return;
+	}
+	
+	public void UpdateObjectsDataToSaveData()
+	{
+		UpdateObj ();
 	}
 
 	override protected void Awake () 
@@ -381,26 +407,4 @@ public class BaseObj : AutoAddEventTrigger
 		}
 	}
 
-	//
-	//ObjectData Set Method
-	//
-
-
-	virtual protected void UpdateObj (ObjectsData data = null)
-	{
-		if (data == null)
-		{
-			Debug.Log ("Exception argument in UpdateObj base class");
-			return;
-		}
-
-		data.posX= this.transform.localPosition.x;
-		data.posY= this.transform.localPosition.y;
-		return;
-	}
-
-	public void UpdateObjectsDataToSaveData()
-	{
-		UpdateObj ();
-	}
 }
