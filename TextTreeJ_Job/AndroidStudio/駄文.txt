@@ -1065,5 +1065,7 @@ Can't use Subversion command line client: svn
 
 
 
-
+よしパズルダービーはとりあえず置いといて
+シェルスクリプトとかantについて勉強しよう
+外部からgradleを実行できるかも確認しなくては
 
