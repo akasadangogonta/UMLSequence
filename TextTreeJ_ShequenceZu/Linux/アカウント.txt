@@ -1,0 +1,6 @@
+全ユーザ確認
+cut -d: -f1 /etc/passwd
+
+ﾕｰｻﾞｰ登録
+useradd
+passwd

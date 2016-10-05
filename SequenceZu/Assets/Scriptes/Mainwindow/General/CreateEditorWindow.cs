@@ -28,6 +28,7 @@ public class CreateEditorWindow : MonoBehaviour
 
 		instanceTargetObj = Instantiate (data.gameObject) as GameObject;
 		instanceTargetObj.transform.parent = instanceEditorWindow.transform;
+		instanceTargetObj.transform.SetSiblingIndex (7);
 		Vector3 screenPos = Camera.main.ScreenToWorldPoint(InnerCircle.transform.localPosition );
 		instanceTargetObj.transform.position = InnerCircle.transform.position;
 		instanceTargetObj.transform.localScale = new Vector3 (1, 1, 1);
@@ -67,6 +68,14 @@ public class CreateEditorWindow : MonoBehaviour
 			
 			instanceEditorWindow.GetComponent<EditorWindowControll>().SetData
 				(data, instanceTargetObj.GetComponent<EditorTargetControllOnTriangle>());
+			break;
+		case ObjType.Text:
+			Destroy(instanceTargetObj.GetComponent<TextObj>());
+			
+			instanceTargetObj.AddComponent<EditorTargetControllOnText>();
+			
+			instanceEditorWindow.GetComponent<EditorWindowControll>().SetData
+				(data, instanceTargetObj.GetComponent<EditorTargetControllOnText>());
 			break;
 		}
 
