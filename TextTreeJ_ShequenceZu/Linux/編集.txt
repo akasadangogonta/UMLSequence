@@ -18,6 +18,9 @@ rm -r [target]・
 移動
 mv
 
+ﾘﾈｰﾑ
+mv *リネーム前* *リネーム後*
+
 ファイルを作成
 touch 
 echo?

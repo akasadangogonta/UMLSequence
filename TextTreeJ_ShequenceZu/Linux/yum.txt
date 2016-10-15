@@ -1,4 +1,6 @@
-ping
-
-1
+参考書ではシステムのダウンロードにyumを使いなさいと書いてあることが多いが
+ubuntsuには標準でyum機能はついていない
+このためsudo apt-get install ***で代用するか、もしくは
+sudo apt-get install yumで、yumの機能をｲﾝｽﾄｰﾙしてから
+sudo yum install ***とすると良い
 
