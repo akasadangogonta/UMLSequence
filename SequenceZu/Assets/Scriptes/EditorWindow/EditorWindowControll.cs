@@ -172,7 +172,6 @@ public class EditorWindowControll : MonoBehaviour {
 
 			break;
 		case ObjType.Triangle:
-		case ObjType.TriangleWire:
 		case ObjType.Text:
 			ActRotateZ(originObj.gameObject);
 			ActRotateZ(targetObj.gameObject);
