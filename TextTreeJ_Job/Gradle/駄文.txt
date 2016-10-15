@@ -59,3 +59,233 @@ org.gradle.java.home=C:\\Program Files\\Java\\jdk1.7.0_25\\
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+task GetLatestAPK {
+    String targetFolder = "../../client";
+    String renamedAPK = "InstallTargetAPK.apk";
+
+    File dir = new File(targetFolder);
+    String[] files = dir.list();
+    println('Found Files are ' + files.length)
+
+    String savedName = "";
+    int hitCount = 1;
+
+    for (String fname : files) {
+        if (fname.startsWith("puzzlederby") && fname.endsWith("GooglePlay.apk")) {
+            hitCount++;
+
+            if (savedName == "") {
+                println('[' + fname + '] First write file name')
+
+                savedName = fname;
+            } else {
+                String numberOfSavedName = savedName.replace("puzzlederby", "");
+                int endNumSaved = numberOfSavedName.indexOf("_");
+                numberOfSavedName = numberOfSavedName.substring(0, endNumSaved);
+                println('saveNumber ' + numberOfSavedName)
+
+                String numberOfTargetString = fname.replace("puzzlederby", "");
+                int endNumTarget = numberOfTargetString.indexOf("_");
+                numberOfTargetString = numberOfTargetString.substring(0, endNumTarget)
+                println('targetNumber ' + numberOfTargetString)
+
+                if (Integer.parseInt(numberOfSavedName) < Integer.parseInt(numberOfTargetString)) {
+                    println('Target file is later than already saved file at the <year, month, day>')
+                    println('[' + fname + '] Overwrite file name')
+                    savedName = fname;
+                } else if (Integer.parseInt(numberOfSavedName) == Integer.parseInt(numberOfTargetString)) {
+                    numberOfSavedName = savedName.replace("puzzlederby", "");
+                    numberOfTargetString = fname.replace("puzzlederby", "");
+                    String tmp = "";
+
+                    endNumSaved = numberOfSavedName.indexOf("_");
+                    tmp = numberOfSavedName.substring(0, endNumSaved);
+                    numberOfSavedName = numberOfSavedName.replace(tmp, "");
+                    endNumSaved = numberOfSavedName.indexOf("_");
+                    numberOfSavedName = numberOfSavedName.substring(0, endNumSaved);
+                    println('saveNumber ' + numberOfSavedName)
+
+                    endNumTarge = numberOfTargetString.indexOf("_");
+                    tmp = numberOfTargetString.substring(0, endNumSaved);
+                    numberOfTargetName = numberOfTargetName.replace(tmp, "");
+                    endNumTarget = numberOfTargetName.indexOf("_");
+                    numberOfTargetName = numberOfTargetName.substring(0, endNumTarget);
+                    println('targetNumber ' + numberOfTargetName)
+
+                    if (Integer.parseInt(numberOfSavedName) < Integer.parseInt(numberOfTargetString)) {
+                        println('Target file is later than already saved file at the <hour, minute, second>')
+                        println('[' + fname + '] Overwrite file name')
+                        savedName = fname;
+                    }
+                }
+            }
+        }
+    }
+    GlobalOriginTargetAPK = savedName;
+
+    /*
+    from(targetFolder)
+    into(targetFolder)
+    include(savedName)
+    println("Copy and rename APK file\ntargetFolder " + targetFolder + "\nsavedName " + savedName  + "\nrenamedAPK " + renamedAPK)
+    rename(savedName, renamedAPK)
+
+}*/
+
+
+
+
+
+
+
+
+
+def GlobalOriginTargetAPK = ''
+def GlobalRenamedAPK = 'InstallTargetAPK.apk'
+def GlobalTargetFolder  =' ../../client'
+
+nto(GlobalTargetFolder)
+    include(GlobalOriginTargetAPK)
+    println("Copy and rename APK file\ntargetFolder " + GlobalTargetFolder + "\nsavedName " + GlobalOriginTargetAPK  + "\nrenamedAPK " + GlobalRenamedAPK)
+    //rename(GlobalOriginTargetAPK, GlobalRenamedAPK)
+    rename('puzzlederby20160924_185804_staging_GooglePlay.apk', 'Untitled.apk')
+
+
+
+
+
+
+
+
+
+
+
+    from(GlobalTargetFolder)
+    i
+
+task InstallLatestAPK(type: Exec){
+    String NameWithDirectory = GlobalTargetFolder + '/' + GlobalRenamedAPK;
+    File file = new File(NameWithDirectory);
+    if(!file.exists()) return;
+    println("invoke InstalLatestAPK")
+    commandLine 'adb', 'install', '-r', NameWithDirectory
+}
+
+
+
+
+Javaのコードは勝手に実行してしまう、明示的にtask実行しなくても
+初期化段階で実行してしてまう
+taskの宣言で<<を使うと、明示的に実行するまで実行されないが、
+そうすると今度task type: CopyなどのGradleCommnadよりも
+必ず後に実行されてしまう。
+
+ようは、Javaを基準に考えると、javaのコードの実行を早めるか
+GradleCommandを遅めるか、単純にその二択なんだよ
+
+理想としてはGradleCommandをお染める方法なんだよな
+
+
+
+タスクの 処理 内容を定義する場合は << が必要
+タスクの 設定 内容を定義する場合は << は不要
+
+てあるけど、実質タスクの設定内容が＝処理になっとるからな
+おれは<<の後に<<がつかないタスク処理をやりたいんだ
+
+この設定されたtaskを、<<がつくtaskの後に実行したいんだけど、どうすれば言い訳？
+
+
+
+
+
+
+def classesDir = new File('build/classes')
+
+    ext.srcFile = file('mountains.xml')
+    ext.destDir = new File(buildDir, 'generated')
+    inputs.file srcFile
+    outputs.dir destDir
+
+
+task transform {
+    ext.srcFile = file('mountains.xml')
+    ext.destDir = new File(buildDir, 'generated')
+    inputs.file srcFile
+    outputs.dir destDir
+    doLast {
+        println "Transforming source file."
+        destDir.mkdirs()
+        def mountains = new XmlParser().parse(srcFile)
+        mountains.mountain.each { mountain ->
+            def name = mountain.name[0].text()
+            def height = mountain.height[0].text()
+            def destFile = new File(destDir, "${name}.txt")
+            destFile.text = "$name -> ${height}\n"
+        }
+    }
+}
+
+
+def classesDir = new File('build/classes')
+
+task resources << {
+    classesDir.mkdirs()
+    // do something
+}
+task compile(dependsOn: 'resources') << {
+    if (classesDir.isDirectory()) {
+        println 'The class directory exists. I can operate'
+    }
+    // do something
+}
+
+
+task copyTaskWithPatterns(type: Copy) {
+    from 'src/main/webapp'
+    into 'build/explodedWar'
+    include '**/*.html'
+    include '**/*.jsp'
+    exclude { details -> details.file.name.endsWith('.html') &&
+                         details.file.text.contains('staging') }
+}
+また、Project.copy()メソッドでファイルをコピーすることもできます。これはタスクの場合と大体同じように動作しますが、いくつかの大きな制限もあります。まず、copy()メソッドはインクリメンタルには実施されません(「更新されていないタスクをスキップする」参照)。
+
+例16.13 copy()メソッドで更新チェックせずにファイルをコピーする
+
+build.gradle
+task copyMethod << {
+    copy {
+        from 'src/main/webapp'
+        into 'build/explodedWar'
+        include '**/*.html'
+        include '**/*.jsp'
+    }
+}
