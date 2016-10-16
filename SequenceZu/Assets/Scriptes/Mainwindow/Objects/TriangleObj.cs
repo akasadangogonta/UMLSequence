@@ -20,9 +20,9 @@ public class TriangleObj : BaseObj
 		base.Start ();
 	}
 	
-	override public void LoadSaveData(ObjectsData data)
+	override protected void LoadSaveDataMain(ObjectsData data)
 	{
-		base.LoadSaveData (data);
+		//base.LoadSaveData (data);
 	}
 	
 	override protected void AddNewObj (ObjectsData data = null)

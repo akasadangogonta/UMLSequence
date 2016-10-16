@@ -24,6 +24,9 @@ public class EditorWindowControll : MonoBehaviour {
 	public GameObject colorPointersForAngle;
 	public GameObject fluctButtonsForAngle;
 
+	public ScaleButton[] scaleButton;
+	public Text scaleText;
+
 	private BaseObj originObj;
 	private EditorTargetControllBase targetObj;
 
@@ -66,6 +69,11 @@ public class EditorWindowControll : MonoBehaviour {
 		foreach (var item in angleButton) 
 		{
 			item.SetData(targetObj, AngleChange);
+		}
+
+		foreach (var item in scaleButton) 
+		{
+			item.SetData(originObj, ScaleChange);
 		}
 
 		ReseLineEditButtonPos ();
@@ -187,5 +195,29 @@ public class EditorWindowControll : MonoBehaviour {
 			value += 360;
 		}
 		angleText.text = value.ToString() + "°";
+	}
+
+	private void ScaleChange(Vector3 value)
+	{
+		switch(originObj.type)
+		{
+		case ObjType.Frame:
+		case ObjType.Triangle:
+		case ObjType.Text:
+			originObj.gameObject.transform.localScale = value;
+			//targetObj.gameObject.transform.localScale = value;
+			break;
+		}
+
+		/*
+		if (value >= 360) 
+		{
+			value -= 360;
+		} else if (value < 0) 
+		{
+			value += 360;
+		}
+		angleText.text = value.ToString() + "°";
+		*/
 	}
 }

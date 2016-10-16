@@ -22,11 +22,11 @@ public class TextObj : BaseObj
 		base.Start ();
 	}
 	
-	override public void LoadSaveData(ObjectsData data)
+	override protected void LoadSaveDataMain(ObjectsData data)
 	{
-		line.text = data.text[0];
+		//line.text = data.text[0];
 
-		base.LoadSaveData (data);
+		//base.LoadSaveData (data);
 	}
 	
 	override protected void AddNewObj (ObjectsData data = null)
