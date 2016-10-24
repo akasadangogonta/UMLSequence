@@ -1,0 +1,9 @@
+Gradleでコマンドラインの標準コマンドを出力する際は最初の２つの引数に'cmd'と'C'を入れる
+例　:  commandLine 'cmd', '/c', 'echo', 'hello'
+
+task TestLog << {
+    exec {
+        commandLine 'cmd', '/c', "adb devices > ../InstallApk/tmpLog.txt"
+       // commandLine 'cmd', 'C', ["echo devices"]
+    }
+}

@@ -1,0 +1,240 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.3.0'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+def GlobalBeforeName = ''
+def GlobalAfterName = 'InstallTargetApk.apk'
+def GlobalBeforeApkFolder  = '../../client'
+def  GlobalAfterApkFolder = '../InstallApk'
+
+task NewCreate {
+    println("Initialize some files")
+    File newfile = new File(GlobalAfterApkFolder + "/" + GlobalAfterName);
+
+    try{
+        newfile.createNewFile();
+    }catch(IOException e){
+        System.out.println(e);
+    }
+}
+
+task CopyAllApk << {
+    copy {
+        from(GlobalBeforeApkFolder)
+        into(GlobalAfterApkFolder)
+
+        File dir = new File(GlobalBeforeApkFolder);
+        String[] files = dir.list();
+        println('Founding files in client folder are ' + files.length)
+
+        int hitCount = 1;
+
+        for(String item: files)
+        {
+            if (item.startsWith("puzzlederby") && item.endsWith("GooglePlay.apk"))
+            {
+                println('Hit apk file, count ' + hitCount)
+                hitCount++;
+
+                include(item)
+            }
+        }
+    }
+}
+
+task GetLatestApk << {
+    File dir = new File(GlobalAfterApkFolder);
+    String[] files = dir.list();
+    if(files == null) {
+        return;
+    }
+
+    String savedName = "";
+
+    for (String item : files) {
+        if (item.startsWith("puzzlederby") && item.endsWith("GooglePlay.apk"))  {
+
+            if (savedName == "") {
+                println('[' + item + '] First write file name')
+
+                savedName = item;
+            } else {
+                String numberOfSavedName = "";
+                numberOfSavedName = savedName.replace("puzzlederby", "");
+                int endNumSaved = numberOfSavedName.indexOf("_");
+                numberOfSavedName = numberOfSavedName.substring(0, endNumSaved);
+
+                String numberOfTargetName = "";
+                numberOfTargetName = item.replace("puzzlederby", "");
+                int endNumTarget = numberOfTargetName.indexOf("_");
+                numberOfTargetName = numberOfTargetName.substring(0, endNumTarget)
+
+                if (Integer.parseInt(numberOfSavedName) < Integer.parseInt(numberOfTargetName)) {
+                    println('Target file is later than already saved file at the <year, month, day>')
+                    println('[' + item + '] Overwrite file name')
+                    savedName = item;
+                } else if (Integer.parseInt(numberOfSavedName) == Integer.parseInt(numberOfTargetName)) {
+
+                    numberOfSavedName = "";
+                    numberOfTargetName = "";
+
+                    endNumSaved = 0;
+                    endNumTarget = 0;
+                    String tmp = "";
+
+                    endNumSaved = savedName.indexOf("_");
+                    tmp = savedName.substring(0, endNumSaved + 1);
+                    numberOfSavedName = savedName.replace(tmp, "");
+                    endNumSaved = numberOfSavedName.indexOf("_");
+                    numberOfSavedName = numberOfSavedName.substring(0, endNumSaved);
+
+                    endNumTarget = item.indexOf("_");
+                    tmp = item.substring(0, endNumTarget + 1);
+                    numberOfTargetName = item.replace(tmp, "");
+                    endNumTarget = numberOfTargetName.indexOf("_");
+                    numberOfTargetName = numberOfTargetName.substring(0, endNumTarget);
+
+                    if (numberOfSavedName != "" && numberOfTargetName != "" &&
+                        Integer.parseInt(numberOfSavedName) < Integer.parseInt(numberOfTargetName)) {
+                        println('Target file is later than already saved file at the <hour, minute, second>')
+                        println('[' + item + '] Overwrite file name')
+                        savedName = item;
+                    }
+                }
+            }
+        }
+    }
+    GlobalBeforeName = savedName;
+
+    copy {
+        from(GlobalAfterApkFolder)
+        into(GlobalAfterApkFolder)
+
+        if(GlobalBeforeName == "")
+        {
+            println('Not found target apk file')
+            return;
+        }
+
+        include(GlobalBeforeName)
+        println("Rename target as latest file = " + GlobalBeforeName)
+        rename(GlobalBeforeName, GlobalAfterName)
+    }
+}
+
+task CheckConnect << {
+    String NameWithDirectory = GlobalAfterApkFolder + '/tmpLog.txt'
+
+    exec {
+        commandLine 'cmd', '/c', "adb devices > " + NameWithDirectory
+    }
+
+    try{
+
+        File file = new File(NameWithDirectory);
+        if(!file.exists() || !file.canRead()) {
+            println("Not found or cant't read, tmpLog.txt of connection result log")
+            return;
+        }
+
+        BufferedReader br = new BufferedReader(new FileReader(file));
+
+
+        String tmpLog = "";
+        String line = "";
+        while((line = br.readLine()) != null){
+            tmpLog += ('\n');
+           tmpLog += line;
+        }
+
+        br.close();
+
+        println("adb devices result message = \n" + tmpLog)
+
+        String adbDevicesDefaultMsg = "List of devices attached";
+        if(!tmpLog.contains(adbDevicesDefaultMsg))
+        {
+            println('tmpLog.txt is not contain effective message')
+            return;
+        }
+
+        tmpLog = tmpLog.replace(adbDevicesDefaultMsg, "");
+
+        String stringAsFlag = "device";
+        if(!tmpLog.contains(stringAsFlag))
+        {
+            println('connecting device is not found')
+            return;
+        }
+        else
+        {
+            println('device is connecting')
+            tasks.InstallCommon.execute()
+        }
+
+    }catch(FileNotFoundException e){
+        System.out.println(e);
+    }catch(IOException e){
+        System.out.println(e);
+    }
+
+}
+
+task InstallCommon << {
+    exec {
+        String NameWithDirectory = GlobalAfterApkFolder + '/' + GlobalAfterName;
+        File file = new File(NameWithDirectory);
+        if(!file.exists()) {
+            println("Not found apk")
+            return;
+        }
+
+        println("Invoke InstalLatestAPK")
+        println("Install Target = " + NameWithDirectory)
+        commandLine 'adb', 'install', '-r', NameWithDirectory
+    }
+}
+
+task DeleteTmpFile << {
+    try {
+        String NameWithDirectory = GlobalAfterApkFolder + '/tmpLog.txt'
+        File file = new File(NameWithDirectory);
+        if (file.exists()) {
+            println('Delete tmpLog')
+            project.delete NameWithDirectory
+        }
+    }catch(FileNotFoundException e) {
+        System.out.println(e);
+    }catch(IOException e){
+        System.out.println(e);
+    }
+}
+
+task InstallLatestApkFromClientFolder << {
+    tasks.CopyAllApk.execute()
+    tasks.GetLatestApk.execute()
+    tasks.CheckConnect.execute();
+    tasks.DeleteTmpFile.execute()
+}
+
+task InstallLatestApk << {
+    tasks.GetLatestApk.execute()
+    tasks.CheckConnect.execute();
+    tasks.DeleteTmpFile.execute()
+}

@@ -10,3 +10,8 @@ task deletePuzzleApk << {
         fileset(dir: file('../../client/'), includes: $/puzzlederby*.apk/$)
     }
 }
+
+task実行時にﾌｧｲﾙをdeleteしたいときは
+project.deleteを使う
+このさいdelte{　}で囲む必要はない
+
