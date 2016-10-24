@@ -61,7 +61,6 @@ public class CreateEditorWindow : MonoBehaviour
 				(data, instanceTargetObj.GetComponent<EditorTargetControllOnFrame>());
 			break;
 		case ObjType.Triangle:
-		case ObjType.TriangleWire:
 			Destroy(instanceTargetObj.GetComponent<TriangleObj>());
 
 			instanceTargetObj.AddComponent<EditorTargetControllOnTriangle>();

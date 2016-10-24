@@ -51,9 +51,9 @@ public class FrameObj : BaseObj
 		//lineNum = defaultLineNum;
 	}
 
-	override public void LoadSaveData(ObjectsData data)
+	override protected void LoadSaveDataMain(ObjectsData data)
 	{
-		base.LoadSaveData (data);
+		//base.LoadSaveData (data);
 
 		int difference = data.lineNum - defaultLineNum;
 
@@ -163,8 +163,10 @@ public class FrameObj : BaseObj
 
 		data.type = (int)thisObjType;
 		lineNum = text.Length;
+		data.lineNum = lineNum;
 		data.text = new string[lineNum];
 		data.color = new int[lineNum];
+
 
 		for (int count = 0; count < lineNum; count++)
 		{

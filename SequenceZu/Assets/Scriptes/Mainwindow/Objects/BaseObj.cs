@@ -79,17 +79,48 @@ public class BaseObj : AutoAddEventTrigger
 	{
 	}
 
+
 	virtual public void LoadSaveData(ObjectsData data)
 	{
-		InitializeSetParam ();
+		LoadSaveDataBefore (data);
+		LoadSaveDataMain (data);
+		LoadSaveDataAfter (data);
+	}
 
+	private void LoadSaveDataBefore(ObjectsData data)
+	{
+		InitializeSetParam ();
+		
 		this.id = data.id;
 		this.lineNum = data.lineNum;
 		Vector3 position = new Vector3 (data.posX, data.posY, 1);
 		this.gameObject.transform.localPosition = position;
+		
+		this.gameObject.transform.localScale = new Vector3 (data.scaling, data.scaling, 0);
+	}
 
+	virtual protected void LoadSaveDataMain (ObjectsData data) {}
+
+	private void LoadSaveDataAfter(ObjectsData data)
+	{
 		this.gameObject.transform.rotation = Quaternion.Euler (new Vector3 (0, 0, data.angle));
-		//UpdateObj ();
+	}
+
+
+	private void DataAccess(ObjectsData data)
+	{
+		data.lineNum = this.lineNum;
+
+		data.posX= this.transform.localPosition.x;
+		Debug.Log ("save data.posx = " + data.posX);
+		data.posY= this.transform.localPosition.y;
+		Debug.Log ("save data.posy = " + data.posY);
+		
+		data.angle = this.transform.rotation.eulerAngles.z;
+		Debug.Log ("save data.angle = " + data.angle);
+		
+		data.scaling = this.transform.localScale.x;
+		Debug.Log ("save data.scaling = " + data.scaling);
 	}
 
 	virtual protected void AddNewObj(ObjectsData data = null)
@@ -102,11 +133,8 @@ public class BaseObj : AutoAddEventTrigger
 		InitializeSetParam ();
 		
 		data.id = GetCurId;
-		data.lineNum = 0;
-		data.posX= this.transform.localPosition.x;
-		data.posY= this.transform.localPosition.y;
 
-		data.angle = this.transform.rotation.eulerAngles.z;
+		DataAccess (data);
 		
 		GeneralController.SetNewObject (data, this);
 	}
@@ -119,13 +147,7 @@ public class BaseObj : AutoAddEventTrigger
 			return;
 		}
 		
-		data.posX= this.transform.localPosition.x;
-		Debug.Log ("save data.posx = " + data.posX);
-		data.posY= this.transform.localPosition.y;
-		Debug.Log ("save data.posy = " + data.posY);
-		
-		data.angle = this.transform.rotation.eulerAngles.z;
-		Debug.Log ("save data.angle = " + data.angle);
+		DataAccess (data);
 		return;
 	}
 	
@@ -310,8 +332,9 @@ public class BaseObj : AutoAddEventTrigger
 		{
 			movingImage = Instantiate (targetObj) as GameObject;
 			movingImage.transform.parent = targetObj.transform.parent.transform;
-			movingImage.transform.localScale = new Vector2 (1, 1);
+			movingImage.transform.localScale = targetObj.transform.localScale;
 			movingImage.transform.position = targetObj.transform.position;
+			movingImage.transform.rotation = targetObj.transform.rotation;
 
 			SetTransperent(movingImage, 50);
 		}

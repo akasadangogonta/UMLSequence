@@ -10,7 +10,6 @@ public enum ObjType
 	None = -1,
 	Frame = 0,
 	Triangle,
-	TriangleWire,
 	Text,
 }
 
