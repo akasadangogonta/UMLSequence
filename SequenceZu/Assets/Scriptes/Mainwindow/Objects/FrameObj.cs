@@ -12,11 +12,8 @@ public class FrameObj : BaseObj
 	public GameObject[] button;
 	[System.NonSerialized]
 	public GameObject[] inputField;
-
-	//instantiateParts
-	public GameObject[] PartsOfFrameObj;
 	
-	private EditFrameMethods editMethods = new EditFrameMethods ();
+	public GameObject[] PartsOfFrameObj;
 
 	private int defaultLineNum = GlobalConfig.defaultFrameLineNum;
 
@@ -25,36 +22,33 @@ public class FrameObj : BaseObj
 
 	public Image capcelOutline;
 
-	override public void ReturnThisScript ()
+	private FrameModifyMethods editMethods;
+
+	override protected void AwakeAfter()
 	{
-		GetComponent<ButtonTranspoter> ().script = this;
-		GetComponent<ButtonTranspoter> ().type = thisObjType;
+		editMethods = this.gameObject.AddComponent<FrameModifyMethods> ();
 	}
 
 	override protected void InitializeSetParam()
 	{
 		if (text == null || text.Length == 0)
 		{
-			text = editMethods.GetTextObj(this.gameObject);
+			text = editMethods.GetTextObj (this.gameObject);
 			button = editMethods.GetButtonObj (this.gameObject);
 			inputField = editMethods.GetInputObj (this.gameObject);
-			//base.lineNum = text.Length;
+			base.lineNum = text.Length;
 		}
 	}
-	
+
 	override protected void Start()
 	{
 		base.Start ();
 
 		type = thisObjType;
-
-		//lineNum = defaultLineNum;
 	}
 
 	override protected void LoadSaveDataMain(ObjectsData data)
 	{
-		//base.LoadSaveData (data);
-
 		int difference = data.lineNum - defaultLineNum;
 
 		if (difference > 0)
@@ -109,22 +103,6 @@ public class FrameObj : BaseObj
 			editMethods.ModifyFrame (this.gameObject.GetComponent<RectTransform> (), isPlus:false);
 
 			SetSiblingBaseObj ();
-			/*
-			DeleteLineObj (ref editButton, ref baseFrameObj.button, direction);
-			
-			DeleteLineObj (ref editText, ref baseFrameObj.text, direction);
-			
-			editMethods.DeleteLineObj (ref baseFrameObj.inputField, direction, baseObj.gameObject);
-			
-			ModifyFrame (false);
-			
-			SetAddListener ();
-			
-			SetSiblingBaseObj ();
-			
-			ModifyLineNum(false);
-			ChangeColorAllowPos ();
-			*/
 		}
 	}
 
@@ -150,16 +128,13 @@ public class FrameObj : BaseObj
 	}
 
 
-	override protected void AddNewObj (ObjectsData data = null)
+	override protected void AddNewObjBrunch (ObjectsData data = null)
 	{
 		if (data != null) 
 		{
 			Debug.Log ("Exception argument in AddObj branch class");
 			return;
 		}
-
-		data = new ObjectsData ();
-		base.AddNewObj (data);
 
 		data.type = (int)thisObjType;
 		lineNum = text.Length;
@@ -220,5 +195,11 @@ public class FrameObj : BaseObj
 	public void InitializeModifyFrame()
 	{
 
+	}
+
+	override public void ReturnThisScript ()
+	{
+		GetComponent<ButtonTranspoter> ().script = this;
+		GetComponent<ButtonTranspoter> ().type = thisObjType;
 	}
 }

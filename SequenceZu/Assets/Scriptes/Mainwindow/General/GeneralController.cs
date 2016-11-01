@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -62,7 +62,7 @@ public class GeneralController : MonoBehaviour {
 	{
 		if (m_savedata.m_obj != null)
 		{
-			List<BaseObj> obj =  GetComponent<CreateObj>().LoadDataToCreateObj () ;
+			List<BaseObj> obj =  GetComponent<CreateObjControll>().LoadDataToCreateObj () ;
 			if (obj != null)
 			{
 				instatiatedObj = obj;
@@ -192,6 +192,6 @@ public class GeneralController : MonoBehaviour {
 	public GameObject GetSelectTargetObject(long id)
 	{
 		ObjectsData data = _GetSelectedObjectData (id);
-		return GetComponent<CreateObj> ().Create (data);
+		return GetComponent<CreateObjControll> ().Create (data);
 	}
 }

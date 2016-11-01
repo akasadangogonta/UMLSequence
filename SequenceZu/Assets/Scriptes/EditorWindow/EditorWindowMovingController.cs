@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EditorFrameMovingController : MonoBehaviour 
+public class EditorWindowMovingController : MonoBehaviour 
 {
 	protected long id;
 	private Color[] defaultColor;

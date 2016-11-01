@@ -4,7 +4,7 @@ using System.Collections;
 public class HideEditor : MonoBehaviour {
 	public void OnClick()
 	{
-		GeneralController.instanceThisGameObject.GetComponent<CreateEditorWindow> ().HideEditorWindow ();
-		GeneralController.instanceThisGameObject.GetComponent<CreateEditorWindow> ().linkBaseObj.UpdateObjectsDataToSaveData ();
+		GeneralController.instanceThisGameObject.GetComponent<InvokeEditorWindow> ().HideEditorWindow ();
+		GeneralController.instanceThisGameObject.GetComponent<InvokeEditorWindow> ().linkBaseObj.UpdateObjectsDataToSaveData ();
 	}
 }

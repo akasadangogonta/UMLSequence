@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
-public class CreateEditorWindow : MonoBehaviour
+public class InvokeEditorWindow : MonoBehaviour
 {
 	public GameObject instanceEditorWindow;
 	public GameObject InnerCircle;
@@ -33,48 +33,58 @@ public class CreateEditorWindow : MonoBehaviour
 		instanceTargetObj.transform.position = InnerCircle.transform.position;
 		instanceTargetObj.transform.localScale = new Vector3 (1, 1, 1);
 
+
+		var itemButton = instanceTargetObj.GetComponentsInChildren<Button>();
+		if (itemButton != null)
+		{
+			foreach (var item in itemButton)
+			{
+				item.interactable = false;
+			}
+		}
+		var itemRenameButton = instanceTargetObj.GetComponentsInChildren<RenameButton>();
+		if (itemRenameButton != null) 
+		{
+			foreach (var item in itemRenameButton)
+			{
+				Destroy (item);
+			}
+		}
+		var itemButtonSupport = instanceTargetObj.GetComponentsInChildren<ButtonSupport>();
+		if (itemButtonSupport != null)
+		{
+			foreach (var item in itemButtonSupport)
+			{
+				Destroy (item);
+			}
+		}
+
+
 		switch (data.type)
 		{
 		case ObjType.Frame:
 			Destroy(instanceTargetObj.GetComponent<FrameObj>());
 
-			var itemButton = instanceTargetObj.GetComponentsInChildren<Button>();
-			foreach (var item in itemButton) 
-			{
-				item.interactable = false;
-			}
-
-			var itemRenameButton = instanceTargetObj.GetComponentsInChildren<RenameButton>();
-			foreach (var item in itemRenameButton) 
-			{
-				Destroy(item);
-			}
-			var itemButtonSupport = instanceTargetObj.GetComponentsInChildren<ButtonSupport>();
-			foreach (var item in itemButtonSupport) 
-			{
-				Destroy(item);
-			}
-
-			instanceTargetObj.AddComponent<EditorTargetControllOnFrame>();
+			instanceTargetObj.AddComponent<EditorFrameObj>();
 
 			instanceEditorWindow.GetComponent<EditorWindowControll>().SetData
-				(data, instanceTargetObj.GetComponent<EditorTargetControllOnFrame>());
+				(data, instanceTargetObj.GetComponent<EditorFrameObj>());
 			break;
 		case ObjType.Triangle:
 			Destroy(instanceTargetObj.GetComponent<TriangleObj>());
 
-			instanceTargetObj.AddComponent<EditorTargetControllOnTriangle>();
+			instanceTargetObj.AddComponent<EditorTriangleObj>();
 			
 			instanceEditorWindow.GetComponent<EditorWindowControll>().SetData
-				(data, instanceTargetObj.GetComponent<EditorTargetControllOnTriangle>());
+				(data, instanceTargetObj.GetComponent<EditorTriangleObj>());
 			break;
 		case ObjType.Text:
 			Destroy(instanceTargetObj.GetComponent<TextObj>());
 			
-			instanceTargetObj.AddComponent<EditorTargetControllOnText>();
+			instanceTargetObj.AddComponent<EditorTextObj>();
 			
 			instanceEditorWindow.GetComponent<EditorWindowControll>().SetData
-				(data, instanceTargetObj.GetComponent<EditorTargetControllOnText>());
+				(data, instanceTargetObj.GetComponent<EditorTextObj>());
 			break;
 		}
 

@@ -71,13 +71,9 @@ public class BaseObj : AutoAddEventTrigger
 	protected long GetCurId { get { return GeneralController.GetCurId; } }
 	protected float GetScale { get { return GeneralController.GetScale; } }
 	
-	virtual public void ReturnThisScript()
-	{
-	}
+	virtual public void ReturnThisScript() {}
 
-	virtual protected void InitializeSetParam()
-	{
-	}
+	virtual protected void InitializeSetParam() {}
 
 
 	virtual public void LoadSaveData(ObjectsData data)
@@ -123,13 +119,11 @@ public class BaseObj : AutoAddEventTrigger
 		Debug.Log ("save data.scaling = " + data.scaling);
 	}
 
-	virtual protected void AddNewObj(ObjectsData data = null)
+	private void AddNewObj()
 	{
-		if (data == null)
-		{
-			Debug.Log ("Exception argument in AddObj base class");
-			return;
-		}
+		var data = new ObjectsData ();
+		AddNewObjBrunch (data);
+
 		InitializeSetParam ();
 		
 		data.id = GetCurId;
@@ -138,6 +132,7 @@ public class BaseObj : AutoAddEventTrigger
 		
 		GeneralController.SetNewObject (data, this);
 	}
+	virtual protected void AddNewObjBrunch(ObjectsData data) {}
 
 	virtual protected void UpdateObj (ObjectsData data = null)
 	{
@@ -156,11 +151,13 @@ public class BaseObj : AutoAddEventTrigger
 		UpdateObj ();
 	}
 
-	override protected void Awake () 
+	override protected void AwakeMain () 
 	{
-		base.Awake ();
 		touchMoment = Time.time;
+		AwakeAfter ();
 	}
+	virtual protected void AwakeAfter () {}
+
 
 	override protected void Start()
 	{
@@ -314,7 +311,7 @@ public class BaseObj : AutoAddEventTrigger
 	{
 		print ("DoubleClickLeft");
 		
-		GeneralController.instanceThisGameObject.GetComponent<CreateEditorWindow> ().ShowEditorWindow (this);
+		GeneralController.instanceThisGameObject.GetComponent<InvokeEditorWindow> ().ShowEditorWindow (this);
 	}
 
 	private void OnDoubleClickRight()
@@ -331,7 +328,7 @@ public class BaseObj : AutoAddEventTrigger
 		if (movingImage == null) 
 		{
 			movingImage = Instantiate (targetObj) as GameObject;
-			movingImage.transform.parent = targetObj.transform.parent.transform;
+			movingImage.transform.SetParent(targetObj.transform.parent.transform);
 			movingImage.transform.localScale = targetObj.transform.localScale;
 			movingImage.transform.position = targetObj.transform.position;
 			movingImage.transform.rotation = targetObj.transform.rotation;

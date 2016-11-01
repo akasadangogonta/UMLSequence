@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
@@ -9,7 +9,12 @@ public class AutoAddEventTrigger : MonoBehaviour {
 	protected EventTrigger 		trigger;
 	protected EventTrigger.Entry  entry;
 
-	virtual protected void Awake()
+	void Awake()
+	{
+		AwakeBefore ();
+		AwakeMain ();
+	}
+	private void AwakeBefore()
 	{
 		if (GetComponent<EventTrigger> () == null) 
 		{
@@ -22,6 +27,8 @@ public class AutoAddEventTrigger : MonoBehaviour {
 			trigger = GetComponent<EventTrigger> ();
 		}
 	}
+	virtual protected void AwakeMain () {}
+
 	
 	
 	virtual protected void Start () 

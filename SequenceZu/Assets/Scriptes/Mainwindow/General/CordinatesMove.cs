@@ -18,9 +18,8 @@ public class CordinatesMove : AutoAddEventTrigger {
 
 	protected float GetScale { get { return GeneralController.GetScale; } }
 
-	override protected void Awake () 
+	override protected void AwakeMain () 
 	{
-		base.Awake ();
 		MainCamera = GameObject.Find ("/Main Camera");
 		createArea = GameObject.Find ("/MainCanvas/CreateArea");
 

@@ -1,0 +1,10 @@
+objdump -d hello | less
+出力後に
+/**** で当該文字を検索
+
+
+
+・関数の配置アドレスを知る
+readelf -a hello | grep ********x
+
+

@@ -4,29 +4,24 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class EditorTargetControllOnFrame : EditorTargetControllBase
+public class EditorFrameObj : EditorBaseObj
 {
-	//[System.NonSerialized]
-	public RectTransform editFrameTransform;
-	public RectTransform baseFrameTransform;
-
 	FrameObj baseFrameObj;
 
-	public GameObject[] editText;
-	public GameObject[] editButton;
-
-	EditFrameMethods editMethods = new EditFrameMethods ();
+	FrameModifyMethods editMethods;
 
 	private readonly float oneLineDistance = GlobalConfig.oneLineDistanceOfFrame;
 
-	override protected void Start () 
+	override protected void StartMain () 
 	{
-		base.Start ();
+		curEditData.editType = EditType.Button;
+
+		editMethods = this.gameObject.AddComponent<FrameModifyMethods> ();
 
 		baseFrameObj = (FrameObj)baseObj;
 		
-		editFrameTransform = this.gameObject.GetComponent<RectTransform> ();
-		baseFrameTransform = baseObj.gameObject.GetComponent<RectTransform> ();
+		editTransform = this.gameObject.GetComponent<RectTransform> ();
+		baseTransform = baseObj.gameObject.GetComponent<RectTransform> ();
 		
 		editButton = editMethods.GetButtonObj (this.gameObject);
 
@@ -202,8 +197,8 @@ public class EditorTargetControllOnFrame : EditorTargetControllBase
 
 	private void ModifyFrame(bool isPlus)
 	{
-		editMethods.ModifyFrame(editFrameTransform, isPlus);
-		editMethods.ModifyFrame(baseFrameTransform, isPlus);
+		editMethods.ModifyFrame(editTransform, isPlus);
+		editMethods.ModifyFrame(baseTransform, isPlus);
 	}
 	
 

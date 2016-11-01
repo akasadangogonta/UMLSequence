@@ -8,11 +8,17 @@ public struct CurEditData
 	public EditType editType;
 }
 
-public class EditorTargetControllBase : MonoBehaviour {
+public class EditorBaseObj : MonoBehaviour {
+
 	protected int lineNum;
 	public int LineNum { get { return lineNum; } }
 
+	protected GameObject[] editText;
+	protected GameObject[] editButton;
+
 	protected BaseObj baseObj;
+	protected RectTransform editTransform;
+	protected RectTransform baseTransform;
 
 	public ObjType type;
 
@@ -38,7 +44,13 @@ public class EditorTargetControllBase : MonoBehaviour {
 		this.collorArrowPosCallback = callback;
 	}
 
-	virtual protected void Start ()
+	void Start ()
+	{
+		StartBefore ();
+		StartMain ();
+	}
+
+	private void StartBefore()
 	{
 		if (GetComponent<ButtonTranspoter> () == null) 
 		{
@@ -52,11 +64,12 @@ public class EditorTargetControllBase : MonoBehaviour {
 		{
 			//type = GetComponent<ButtonTranspoter> ().type;
 		}
-
+		
 		curEditData.editType = EditType.Text;
 		curEditData.id = 0;
 		type = baseObj.type;
 	}
+	virtual protected void StartMain () { }
 
 	protected void SetAddListener(GameObject[] target, EditType type)
 	{

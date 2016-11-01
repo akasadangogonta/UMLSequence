@@ -16,10 +16,8 @@ public class ButtonSupport : AutoAddEventTrigger
 	//Color highlightedColor = new Color32(220, 255, 255, 255);
 	//Color highlightedColor = new Color32(255, 255, 235, 255);
 
-	override protected void Awake()
+	override protected void AwakeMain()
 	{
-		base.Awake ();
-		
 		button = GetComponent<Button> ();
 
 

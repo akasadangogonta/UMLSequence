@@ -5,15 +5,30 @@ using System.Collections.Generic;
 
 public class TextObj : BaseObj 
 {
-	public Text line;
-
 	[System.NonSerialized]
 	public ObjType thisObjType = ObjType.Text;
 
-	override public void ReturnThisScript ()
+	[System.NonSerialized]
+	public GameObject[] text;
+	private Text textCs { get { return text[0].GetComponent<Text> (); } }
+
+	[System.NonSerialized]
+	public GameObject[] button;
+	
+	private TextModifyMethods editMethods;
+	
+	override protected void AwakeAfter()
 	{
-		GetComponent<ButtonTranspoter> ().script = this;
-		GetComponent<ButtonTranspoter> ().type = thisObjType;
+		editMethods = this.gameObject.AddComponent<TextModifyMethods> ();
+	}
+
+	override protected void InitializeSetParam()
+	{
+		if (text == null || text.Length == 0)
+		{
+			text = editMethods.GetTextObj (this.gameObject);
+			button = editMethods.GetButtonObj (this.gameObject);
+		}
 	}
 
 	override protected void Start()
@@ -24,26 +39,21 @@ public class TextObj : BaseObj
 	
 	override protected void LoadSaveDataMain(ObjectsData data)
 	{
-		//line.text = data.text[0];
-
-		//base.LoadSaveData (data);
+		textCs.text = data.text[0];
 	}
 	
-	override protected void AddNewObj (ObjectsData data = null)
+	override protected void AddNewObjBrunch (ObjectsData data = null)
 	{
 		if (data != null)
 		{
 			Debug.Log ("Exception argument in AddObj branch class");
 			return;
 		}
-		
-		data = new ObjectsData ();
+
 		data.type = (int)thisObjType;
 
 		data.text = new string[1];
-		data.text[0] = line.text;
-		
-		base.AddNewObj(data);
+		data.text[0] = textCs.text;
 	}
 	
 	override protected void UpdateObj (ObjectsData data = null)
@@ -59,11 +69,17 @@ public class TextObj : BaseObj
 			if (item.id == this.id)
 			{
 				string[] tmp = new string[1];
-				tmp[0] = line.text;
+				tmp[0] = textCs.text;
 				item.text = tmp;
 				base.UpdateObj(item);
 				return;
 			}
 		}
+	}
+
+	override public void ReturnThisScript ()
+	{
+		GetComponent<ButtonTranspoter> ().script = this;
+		GetComponent<ButtonTranspoter> ().type = thisObjType;
 	}
 }

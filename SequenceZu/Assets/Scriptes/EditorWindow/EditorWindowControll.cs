@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,7 +28,7 @@ public class EditorWindowControll : MonoBehaviour {
 	public Text scaleText;
 
 	private BaseObj originObj;
-	private EditorTargetControllBase targetObj;
+	private EditorBaseObj targetObj;
 
 	//instantiateParts
 	public GameObject[] PartsOfFrameObj;
@@ -45,7 +45,7 @@ public class EditorWindowControll : MonoBehaviour {
 		defaultDelLineButtonPos [1] = delLineButton [1].transform.localPosition;
 	}
 
-	public void SetData(BaseObj originObj, EditorTargetControllBase targetObj)
+	public void SetData(BaseObj originObj, EditorBaseObj targetObj)
 	{
 		this.targetObj = targetObj;
 		this.originObj = originObj;
@@ -78,6 +78,7 @@ public class EditorWindowControll : MonoBehaviour {
 
 		ReseLineEditButtonPos ();
 		InitializeAngle ();
+		InitializeScale ();
 
 		if (originObj.type == ObjType.Frame && originObj.lineNum != defaultLineNum)
 		{
@@ -155,8 +156,20 @@ public class EditorWindowControll : MonoBehaviour {
 
 		var angles = targetObj.transform.rotation.eulerAngles;
 		float adjustAngleZ = Mathf.Floor (angles.z * 10) / 10;
-
 		AngleChange (adjustAngleZ);
+	}
+	private void InitializeScale()
+	{
+		ScaleChange (originObj.transform.localScale);
+
+		float targetScale = 1.2F;
+		switch(originObj.type)
+		{
+		case ObjType.Triangle:
+		case ObjType.Text:
+			targetObj.gameObject.transform.localScale = new Vector2(targetScale, targetScale);
+			break;
+		}
 	}
 
 	private void AngleChange(float value)
@@ -205,19 +218,9 @@ public class EditorWindowControll : MonoBehaviour {
 		case ObjType.Triangle:
 		case ObjType.Text:
 			originObj.gameObject.transform.localScale = value;
-			//targetObj.gameObject.transform.localScale = value;
 			break;
 		}
 
-		/*
-		if (value >= 360) 
-		{
-			value -= 360;
-		} else if (value < 0) 
-		{
-			value += 360;
-		}
-		angleText.text = value.ToString() + "°";
-		*/
+		scaleText.text = "x " + value.x.ToString ();
 	}
 }

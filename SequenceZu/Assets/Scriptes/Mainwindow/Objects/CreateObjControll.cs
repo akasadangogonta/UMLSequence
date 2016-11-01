@@ -13,7 +13,7 @@ public enum ObjType
 	Text,
 }
 
-public class CreateObj : MonoBehaviour  {
+public class CreateObjControll : MonoBehaviour  {
 	public GameObject[] createObjectsType;
 	public GameObject[] createPartsType;
 	private GameObject[] instanceCreateObjects;
@@ -23,15 +23,13 @@ public class CreateObj : MonoBehaviour  {
 	private GameObject instanceTargetObj;
 
 	private ObjType targetObjType;
-
-
-	protected long GetCurId { get { return GeneralController.GetCurId; } }
+	
 
 	// Use this for initialization
 	void Awake () {
-		Func <CreateObj> General = () =>
+		Func <CreateObjControll> General = () =>
 		{
-			return GameObject.Find ("/GeneralController").GetComponent<CreateObj>();
+			return GameObject.Find ("/GeneralController").GetComponent<CreateObjControll>();
 		};
 
 		if (General () != null)
@@ -44,19 +42,9 @@ public class CreateObj : MonoBehaviour  {
 		createArea = GameObject.Find ("/MainCanvas/CreateArea");
 	}
 
-	
-	public void ClickButton()
-	{
-		GeneralController.SetCurId (GetCurId + 1);
-		
-		InstantiateObj ();
-		
-		instanceTargetObj.GetComponent<ButtonTranspoter>().SetDataTranspoter();
-	}
-
 	public void _GetInstanceGameObjectFromObjectData(ObjectsData data)
 	{
-		foreach (var item in GeneralController.instanceThisGameObject.GetComponent<CreateObj>().instanceCreateObjects)
+		foreach (var item in GeneralController.instanceThisGameObject.GetComponent<CreateObjControll>().instanceCreateObjects)
 		{
 			targetObjType =  item.GetComponent<ButtonTranspoter>().type;
 			Debug.Log ("searching object type == " + targetObjType);
@@ -113,7 +101,7 @@ public class CreateObj : MonoBehaviour  {
 			}
 		}
 		
-		CreateObj createObj = GetComponent<CreateObj> ();
+		CreateObjControll createObj = GetComponent<CreateObjControll> ();
 		List<BaseObj> instantiatedObj = new List<BaseObj>();
 
 		foreach (var item in GeneralController.m_savedata.m_obj)

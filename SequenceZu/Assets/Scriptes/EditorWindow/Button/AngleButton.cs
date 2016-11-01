@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public enum TurnDirect
@@ -10,11 +10,11 @@ public class AngleButton : AutoAddEventTrigger
 {
 	public TurnDirect direct;
 
-	private EditorTargetControllBase targetObj;
+	private EditorBaseObj targetObj;
 
 	System.Action<float> AngleChange;
 
-	public void SetData(EditorTargetControllBase targetObj, System.Action<float> AngleChange)
+	public void SetData(EditorBaseObj targetObj, System.Action<float> AngleChange)
 	{
 		this.targetObj = targetObj;
 		this.AngleChange = AngleChange;

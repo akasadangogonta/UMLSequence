@@ -8,10 +8,28 @@ public class TriangleObj : BaseObj
 	[System.NonSerialized]
 	public ObjType thisObjType = ObjType.Triangle;
 
+	[System.NonSerialized]
+	public GameObject[] button;
+
+	private TriangleModifyMethods editMethods;
+
+	override protected void AwakeAfter()
+	{
+		editMethods = this.gameObject.AddComponent<TriangleModifyMethods> ();
+	}
+	
 	override public void ReturnThisScript ()
 	{
 		GetComponent<ButtonTranspoter> ().script = this;
 		GetComponent<ButtonTranspoter> ().type = thisObjType;
+	}
+
+	override protected void InitializeSetParam()
+	{
+		if (button == null || button.Length == 0)
+		{
+			button = editMethods.GetButtonObj (this.gameObject);
+		}
 	}
 
 	override protected void Start()
@@ -25,18 +43,15 @@ public class TriangleObj : BaseObj
 		//base.LoadSaveData (data);
 	}
 	
-	override protected void AddNewObj (ObjectsData data = null)
+	override protected void AddNewObjBrunch (ObjectsData data = null)
 	{
 		if (data != null)
 		{
 			Debug.Log ("Exception argument in AddObj branch class");
 			return;
 		}
-		
-		data = new ObjectsData ();
+
 		data.type = (int)thisObjType;
-		
-		base.AddNewObj(data);
 	}
 	
 	override protected void UpdateObj (ObjectsData data = null)

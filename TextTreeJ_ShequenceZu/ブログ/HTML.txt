@@ -1,0 +1,6 @@
+上の要素はデフォルト, 下の要素は box-sizing: border-box を指定しています. box-sizing プロパティに指定している値が違うだけで表示サイズが異なるのが分かるかと思います.
+
+css の世界では, width に 300px と指定していても padding や border-width が指定されていた場合, 
+実際に表示される要素の幅は width + 両サイドのpadding + 両サイドのborder-width でした.
+
+つまり上記のサンプルの上の要素は 300px + (15*2)px + (5*2)px = 340px として表示されているわけです.

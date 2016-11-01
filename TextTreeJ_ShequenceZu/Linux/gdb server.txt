@@ -1,0 +1,53 @@
+リモートアクセスの手順
+[window1]
+cd hello
+gdbserver localhost:12345
+
+[window2]
+cd hello
+gdb -q hello
+(gdb) target extended-remote localhost:12345
+
+
+
+・リモートで走らせる
+(gdb) run
+
+
+
+
+・リモートの終了
+GDB側で
+(gdb) monitor exit
+でgdbserver側を終了
+
+quitでGDB側を終了
+
+
+・ブレークを張る
+（gdb) break ***
+・ブレイクから進む
+(gdb) nexti
+(gdb) stepi  < 関数内部へ進む
+・ブレークの解除
+(gdb) continue
+
+
+・デバックウィンドウを表示
+(gdb) layout src
+(gdb) layout asm
+
+・
+
+
+
+[gdb]
+gdbserver実行　gdbserver localhost:12345 ./hello
+gdb実行　gdb -q hello
+gdbserverに接続　target extended-remote localhost:1245
+
+
+終了ｺﾏﾝﾄﾞ
+gdbserver終了　monitor exit
+gdb終了　quit
+gdb抜け出し　ctrl + z

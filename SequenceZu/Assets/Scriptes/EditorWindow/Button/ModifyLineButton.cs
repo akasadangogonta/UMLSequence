@@ -27,11 +27,10 @@ public class ModifyLineButton : AutoAddEventTrigger
 
 	private LineEditButtonModify ChangePos;
 
-	private EditorTargetControllBase targetObj;
+	private EditorBaseObj targetObj;
 
-	protected override void Awake ()
+	protected override void AwakeMain ()
 	{
-		base.Awake ();
 		if (nomoreText != null &&
 			nomoreText.color.a != 0) 
 		{
@@ -42,7 +41,7 @@ public class ModifyLineButton : AutoAddEventTrigger
 		}
 	}
 
-	public void SetData(EditorTargetControllBase targetObj, LineEditButtonModify ChangePos = null)
+	public void SetData(EditorBaseObj targetObj, LineEditButtonModify ChangePos = null)
 	{
 		this.targetObj = targetObj;
 		this.ChangePos = ChangePos;
@@ -53,7 +52,7 @@ public class ModifyLineButton : AutoAddEventTrigger
 		Debug.Log ("linbaBaseObj.type = " + targetObj.type);
 		if (targetObj.type == ObjType.Frame) 
 		{
-			EditorTargetControllOnFrame obj = targetObj.gameObject.GetComponent<EditorTargetControllOnFrame>();
+			EditorFrameObj obj = targetObj.gameObject.GetComponent<EditorFrameObj>();
 
 			if(action == EditorAct.Add)
 			{

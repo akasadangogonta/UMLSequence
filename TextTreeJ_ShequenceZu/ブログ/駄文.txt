@@ -1,0 +1,79 @@
+divのmain_bodyのHTML部分だがさっぱり分からん
+
+	<div class="main_body">
+	<p class="sub_header2"><%sub_title></p>
+      <!--topentry-->
+		<h2 class="entry_header"><a href="<%topentry_link>" title="<%template_extend>"><%topentry_title></a></h2>
+		<div class="entry_body">
+		<%topentry_discription><span class="state">（<%topentry_year>/<%topentry_month>/<%topentry_day> <%topentry_youbi> <%topentry_hour>:<%topentry_minute>）</span>
+	    </div>
+        <!--/topentry-->
+    </div>
+    <div class="pagetop"><a href="#container" title="<%template_go_top>">@</a></div>
+
+    <!--/search_area-->
+
+
+
+
+	<p class="page_navi">
+		<!--prevpage--><a href="<%prevpage_url>" title="<%template_prevpage>">&laquo;</a><!--/prevpage-->
+		<span>&nbsp;|&nbsp;</span><a href="<%url>" title="<%template_home>"><%template_home></a><span>&nbsp;|&nbsp;</span>
+		<!--nextpage--><a href="<%nextpage_url>" title="<%template_nextpage>">&raquo;</a><!--/nextpage-->
+	</p>
+
+
+	<!--plugin-->
+
+	<!--plugin_third-->
+	<dl class="plugin">
+		<dt style="text-align:<%plugin_third_talign>"><%plugin_third_title></dt>
+		<!--plugin_third_description--><dd style="text-align:<%plugin_third_ialign>"><%plugin_third_description></dd><!--/plugin_third_description-->
+		<dd style="text-align:<%plugin_third_align>"><%plugin_third_content></dd>
+		<!--plugin_third_description2--><dd style="text-align:<%plugin_third_ialign>"><%plugin_third_description2></dd><!--/plugin_third_description2-->
+	</dl>
+	<!--/plugin_third-->
+
+	<!--/plugin-->
+
+
+
+
+</div><!-- /blog_content -->
+
+
+
+
+
+あ、色の指定ってcolorだけじゃなくて
+background : #D4B79A; みたいなのもあるのか
+    background:url(http://templates.blog.fc2.com/template/scratch/scratch_main_hdr.gif) #fff right top no-repeat;
+
+ここの#fffで色指定してたわくそ。。
+。
+
+
+
+
+
+
+
+
+	div.main_body h2.entry_header {
+		margin : 10px 0;
+		padding: 10px 10px 10px 45px;
+		font-size : x-large;	
+		voice-family : "\"}\"";
+		voice-family : inherit;
+		font-size : small;
+		background:url(http://templates.blog.fc2.com/template/scratch/scratch_title.gif) left center no-repeat;
+
+
+
+
+<!-- admax -->
+<script src="http://adm.shinobi.jp/s/8873ee5a01148e9ae52b3fc95255c310"></script>
+<!-- admax -->
+
+
+="5" width="793" height="595" /></a>
