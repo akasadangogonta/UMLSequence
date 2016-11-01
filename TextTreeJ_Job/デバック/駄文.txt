@@ -1,3 +1,91 @@
 さ、つくろか
 
 GameControllerのOnGUIでなんかやっとるなDebugWIndow
+
+
+もう一行ずつみていくしかねえよなあ
+
+
+    Matrix4x4 backup = GUI.matrix;
+    Matrix4x4 matrix = new Matrix4x4();
+    float scale = (Mathf.Min( Screen.width, Screen.height) / baseSize_);
+
+とりあえずここでmatrixなるよくわからねえものをセットしとるわ
+このScreen.widthとScreen.heigtは、実際のエディター上のsceneの画面のサイズ
+んでこの
+(Mathf.Min( Screen.width, Screen.height) / baseSize_);
+がよくわかんねえよなあ
+baseSizeが400な訳なんだけど、なんでそれで割ってるのか、そして割ったものを何に
+使うのか、
+のちのSetTrsでVector3(scale, scale, scale)てやってるんだよな
+当然これx, y, zのことだとは思うけど
+このscaleはbase４００に対する倍率だからな
+もしwidth 600 height 450だとして、　minで　450を選択するから
+結果450 / 400で1.125にしかならねえぞ？
+vector3(1.125, 1.125, 1.125)ってなんだよ
+よくわかんええよな、そもそもこの400って何なんだ
+
+
+    matrix.SetTRS( Vector3.zero, Quaternion.identity, new Vector3( scale, scale, scale ) );
+    GUI.matrix = matrix;
+
+    Vector2 size = rootItem_.GetSize();
+    windowRect_.width = size.x + windowMargin_ * 2;
+    windowRect_.height = size.y + windowMargin_ * 2 + windowTopBarHeight_;
+
+ここでSetTrsでmatrix設定したGUIにwindowを設定しとるわけやな
+
+    windowRect_ = GUI.Window( windowID_, windowRect_, WindowProc, "DebugWindow" );
+
+ここでwindowRect_とか代入してるけど、実際のところmatrixが適用されるから、1.125倍されんのかな
+でも単純にそう考えると、なんでcolliderセットしたときにさ、大きさがずれたんだろか
+俺はちゃんと1.125倍したで？もしかしてz軸もなんか必要やったんか？
+そもそもmatrixてのがようわからんからなあ
+    Matrix4x4 matrix = new Matrix4x4();
+なんだよこれ、駄目だ説明呼んでもわからん
+
+
+標準 4x4 変換行列
+
+変換行列は同次座標系を使用して任意の線形 3D 変換 (平行移動、回転、スケール、シア(剪断)等) や 透視変換を実行できます。スクリプトで行列を使用します。 Vector3 や Quaternion や Transform クラスの機能を使用することでほとんどの場合はもっと簡単です。 非標準のカメラ投影の設定のような特別な場合に単純な行列が使用されます。
+
+    matrix.SetTRS( Vector3.zero, Quaternion.identity, new Vector3( scale, scale, scale ) );
+
+うーん一体何が簡単なんだろうか　平行移動、回転、スケールか
+最初のVector3.zeroは平行移動表してんのか？
+つまりScreen.widthとScreen.heightの一番左上からどのぐらい動くかということを。。。
+
+
+
+
+    GUI.matrix = backup;
+
+
+
+おかしくねえか？横幅変えたところで、Mathf.Minで小さいほうとってくるから
+縦幅　/ 400で　scaleは変わらねえはずだ
+なのになんでここまでcolliderの大きさが変わるんだ？
+ということは、windowＲｅｃｔの値が変わっているということか。
+
+あれえええ？？データだとrootＩｔｅｍの値もwindowRect_の値も変わってねえな
+
+とするとやはりGUI.windowに設定した時点で値が変わってしまうのか
+
+
+
+なるほど目的が分かった。
+画面内に対して大きさが一定なんだ
+
+画面の大きさは取得できるわけだ。だからやってることは絶対に簡単なはずなんだ
+なんでできないんだ。
+ようは画面の縦幅を変えない限り、大きさは買わない
+これ絶対。
+普通に考えるとscaleをかけるだけで簡単に解決だ
+だけどなぜか横幅を変えてもコライダーのでかさが変わるんだよ
+
+
+
+そうか、gameの縦幅横幅は可変でも、scene上では全く変わってねえんだ
+だから祖語が出るんだ。
+だからはっきり言えば、コライダーの大きさは一切変えなくていいんだ。
+
