@@ -1,0 +1,7 @@
+Assets/GameScenes/Common/Plugins/General/GameController.cs(579,62): error CS1736: The expression being assigned to optional parameter `windowPos' must be a constant or default value
+
+  private void CreateDebugWindow(Vector2 windowPos = Vector2.zero)
+  {
+
+  private void CreateDebugWindow(Vector2 windowPos = default(Vector2))
+  {
