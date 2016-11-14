@@ -5,3 +5,62 @@ Assets/GameScenes/Common/Plugins/General/GameController.cs(579,62): error CS1736
 
   private void CreateDebugWindow(Vector2 windowPos = default(Vector2))
   {
+
+
+
+
+
+  public static NwDataUserHorse GetImaginaryHorse(MasterSkillData skill)
+  {
+    NwDataUserHorse imaginaryHorse = new NwDataUserHorse();
+    //imaginaryHorse.GetMasterData().master_skill_data = skill;
+    imaginaryHorse.SetMasterSkillData(skill);
+    Debug.Log("いがあああああ" + skill.skill_id);
+    Debug.Log("いがあああああ" + imaginaryHorse.GetMasterData().master_skill_data.skill_id);
+    return imaginaryHorse;
+  }
+
+
+    MasterSkillParamData skillParamData = MasterSkillParamManager.GetParamData( data.GetSkillPatternId(skillEffectIndex) );
+    NwDataUserHorse horse = ImaginarySkillData.GetImaginaryHorse(data);
+    Debug.Log("いがあああああ" + data.skill_id);
+    Debug.Log("いがああああ" + horse.GetMasterData().skill_id);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  private string clickEvaluateString =
+    "window.addEventListener(clickfunction()" + "{0})";
+
+
+
+  private readonly string clickEvaluateString =
+    "window.addEventListener('load', function() {" +
+    "  window.addEventListener('click', function() {" +
+    "    Unity.call( '{0}');" +
+    "  }, false);" +
+    "}, false);";
+
+  private void Awake()
+  {
+    string clickEventString = "clicked";
+    //Debug.Log( "いがあああ" + clickEvaluateString[0] + clickEventString + clickEvaluateString[1] );
+    Debug.Log( "いがあああ" + string.Format(clickEvaluateString, clickEventString));
+  }
+
+
+
+FormatException: Input string was not in a correct format.
+System.String.FormatHelper (System.Text.StringBuilder result, IFormatProvider provider, System.String format, System.Object[] args) (at /Users/builduser/buildslave/mono/build/mcs/class/corlib/System/String.cs:1970)
