@@ -303,8 +303,9 @@ public class BaseObj : AutoAddEventTrigger
 		if ((Time.time - touchMoment) < doubleClickLimit)
 		{
 			act();
+			BaseObj.mouseEvent = MouseEvent.None;
 		}
-		touchMoment = Time.time;
+		touchMoment = Time.time;	
 	}
 
 	private void OnDoubleClickLeft()
