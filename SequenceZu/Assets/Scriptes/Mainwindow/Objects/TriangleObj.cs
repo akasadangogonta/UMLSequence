@@ -41,7 +41,7 @@ public class TriangleObj : BaseObj
 	
 	override protected void LoadSaveDataMain(ObjectsData data)
 	{
-		imageCs.color = editMethods.GetColor(data.Colors[0]); 
+		imageCs.color = editMethods.GetColor(data.Colors[0], ColorDepth.thin); 
 	}
 	
 	override protected void AddNewObjBrunch (ref ObjectsData data)

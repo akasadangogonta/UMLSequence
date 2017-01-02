@@ -61,6 +61,13 @@ public class ModifyMethodsBase :MonoBehaviour
 
 	public Color32 GetColor(int arrayPos, ColorDepth depth = ColorDepth.middle)
 	{
+		//types
+		/*
+			None = -1,
+			Frame = 0,
+			Triangle,
+			Text,
+		*/
 		return ColorClass.list[arrayPos][(int)depth];
 	}
 	public int ChooseColor(Color color)

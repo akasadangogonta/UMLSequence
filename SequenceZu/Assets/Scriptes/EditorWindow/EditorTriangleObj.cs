@@ -10,7 +10,7 @@ public class EditorTriangleObj : EditorBaseObj
 	
 	override protected void StartMain () 
 	{
-		curEditData.editType = EditType.Button;
+		curEditData.editType = EditType.Image;
 
 		editMethods = this.gameObject.AddComponent<TriangleModifyMethods> ();
 		
@@ -63,21 +63,12 @@ public class EditorTriangleObj : EditorBaseObj
 	
 	override protected void  ChangeColorAllowPos()
 	{
-		while (curEditData.id > lineNum - 1)
-		{
-			curEditData.id--;
-			//curEditData.editType = EditType.Button;
-			if (curEditData.id < 0) 
-			{
-				Debug.LogWarning("curEditData.id is minus");
-				break;
-			}
-		}
-		
+		/*
 		base.collorArrowPosCallback (_GetColorAllowPos (lineNum, curEditData, true),
 		                             _GetColorAllowPos (lineNum, curEditData, false));
+		                             */
 	}
-	
+	/*
 	protected Vector2 _GetColorAllowPos(int lineNum, CurEditData editData, bool isLeft)
 	{
 		Vector2 returnVector = Vector2.zero;
@@ -102,4 +93,5 @@ public class EditorTriangleObj : EditorBaseObj
 		
 		return returnVector;
 	}
+	*/
 }
