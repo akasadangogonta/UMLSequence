@@ -31,6 +31,7 @@ public class TouchObj : AutoAddEventTrigger {
 	//
 	override public void OnMouseDown()
 	{
+		Debug.Log ("TouchObj.OnMouseDown");
 		touchCallback (touchId , editType);
 	}
 

@@ -1,6 +1,0 @@
-Line586
-private System.Comparison<NwDataPresentList>
-    case PresentSortType.ExpiredNew:
-      return (a,b)=>{ return ComparisonDate( a.expired_date, b.expired_date ); };
-    case PresentSortType.ExpiredOld:
-      return (a,b)=>{ return ComparisonDate( b.expired_date, a.expired_date ); };

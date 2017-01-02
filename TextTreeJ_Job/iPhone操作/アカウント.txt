@@ -1,8 +1,0 @@
-設定を開く＞iTunes&AppStoreを開く>AppleIdを変更
-
-
-fsf34043@xzsok.com
-Request_8
-
-    float colliderPosX = (windowRect_.width / 2) + windowRect_.position.x;
-    float colliderPosY = (windowRect_.height / 2) + windowRect_.position.y;

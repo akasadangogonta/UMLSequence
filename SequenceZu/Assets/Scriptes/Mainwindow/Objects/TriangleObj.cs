@@ -9,7 +9,8 @@ public class TriangleObj : BaseObj
 	public ObjType thisObjType = ObjType.Triangle;
 
 	[System.NonSerialized]
-	public GameObject[] button;
+	public GameObject[] image;
+	private Image imageCs { get { return image[0].GetComponent<Image> (); } }
 
 	private TriangleModifyMethods editMethods;
 
@@ -26,9 +27,9 @@ public class TriangleObj : BaseObj
 
 	override protected void InitializeSetParam()
 	{
-		if (button == null || button.Length == 0)
+		if (image == null || image.Length == 0)
 		{
-			button = editMethods.GetButtonObj (this.gameObject);
+			image = editMethods.GetImageObj(this.gameObject);
 		}
 	}
 
@@ -40,18 +41,19 @@ public class TriangleObj : BaseObj
 	
 	override protected void LoadSaveDataMain(ObjectsData data)
 	{
-		//base.LoadSaveData (data);
+		imageCs.color = editMethods.GetColor(data.Colors[0]); 
 	}
 	
-	override protected void AddNewObjBrunch (ObjectsData data = null)
+	override protected void AddNewObjBrunch (ref ObjectsData data)
 	{
-		if (data != null)
+		if (data == null)
 		{
-			Debug.Log ("Exception argument in AddObj branch class");
+			Debug.Log ("data is null");
 			return;
 		}
 
 		data.type = (int)thisObjType;
+		data.Colors [0] = (int)ColorClass.dic[(Color32)imageCs.color ];//editMethods.ChooseColor(imageCs.color);
 	}
 	
 	override protected void UpdateObj (ObjectsData data = null)
@@ -66,10 +68,13 @@ public class TriangleObj : BaseObj
 		{
 			if (item.id == this.id)
 			{
+				int[] tmpColor = new int[1];
+				tmpColor[0] = (int)ColorClass.dic [imageCs.color];
+				item.Colors = tmpColor;
+
 				base.UpdateObj(item);
 				return;
 			}
 		}
 	}
-
 }

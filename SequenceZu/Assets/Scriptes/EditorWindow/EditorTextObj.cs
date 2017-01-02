@@ -27,8 +27,6 @@ public class EditorTextObj : EditorBaseObj
 		
 		SetAddListener ();
 		
-		lineNum = editButton.Length;
-		
 		ChangeColorAllowPos ();
 	}
 	
@@ -79,7 +77,7 @@ public class EditorTextObj : EditorBaseObj
 		while (curEditData.id > lineNum - 1)
 		{
 			curEditData.id--;
-			curEditData.editType = EditType.Button;
+			//curEditData.editType = EditType.Button;
 			if (curEditData.id < 0) 
 			{
 				Debug.LogWarning("curEditData.id is minus");

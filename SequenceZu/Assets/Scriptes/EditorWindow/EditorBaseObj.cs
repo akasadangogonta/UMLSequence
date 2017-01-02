@@ -15,6 +15,7 @@ public class EditorBaseObj : MonoBehaviour {
 
 	protected GameObject[] editText;
 	protected GameObject[] editButton;
+	protected GameObject[] editImage;
 
 	protected BaseObj baseObj;
 	protected RectTransform editTransform;
@@ -67,6 +68,7 @@ public class EditorBaseObj : MonoBehaviour {
 		
 		curEditData.editType = EditType.Text;
 		curEditData.id = 0;
+		lineNum = 1;
 		type = baseObj.type;
 	}
 	virtual protected void StartMain () { }

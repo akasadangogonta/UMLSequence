@@ -1,3 +1,9 @@
 CreateObj内のｽｸﾘﾌﾟﾄがきたない
 CerateObjに色んな昨日入れすぎ、分割すべき
 AnimSupportを使いやすくしたい。
+
+
+
+	override protected void AddNewObjBrunch (ref ObjectsData data)
+	{
+		if (data == null) 

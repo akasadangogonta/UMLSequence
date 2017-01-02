@@ -44,4 +44,27 @@ public class ModifyMethodsBase :MonoBehaviour
 		}
 		return tmpInputList.ToArray();
 	}
+
+	public GameObject[] GetImageObj(GameObject target)
+	{
+		Image[] tmpImage = target.GetComponentsInChildren<Image>();
+		var tmpImageList = new List<GameObject>();
+		foreach (var item in tmpImage)
+		{
+			if (item.gameObject.name.Contains("Image"))
+			{
+				tmpImageList.Add (item.gameObject);
+			}
+		}
+		return tmpImageList.ToArray();
+	}
+
+	public Color32 GetColor(int arrayPos, ColorDepth depth = ColorDepth.middle)
+	{
+		return ColorClass.list[arrayPos][(int)depth];
+	}
+	public int ChooseColor(Color color)
+	{
+		return (int)ColorClass.dic [color];
+	}
 }

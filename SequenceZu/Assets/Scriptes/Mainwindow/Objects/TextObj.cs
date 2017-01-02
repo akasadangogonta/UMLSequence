@@ -14,6 +14,7 @@ public class TextObj : BaseObj
 
 	[System.NonSerialized]
 	public GameObject[] button;
+	private Button buttonCs { get { return button[0].GetComponent<Button> (); } }
 	
 	private TextModifyMethods editMethods;
 	
@@ -39,21 +40,32 @@ public class TextObj : BaseObj
 	
 	override protected void LoadSaveDataMain(ObjectsData data)
 	{
-		textCs.text = data.text[0];
+		textCs.text = data.texts[0];
+		textCs.color = ColorClass.list[data.Colors[0]][1];
+
+		ColorBlock colorBlock = buttonCs.colors;
+		colorBlock.normalColor = ColorClass.list[data.Colors[0]][0];
+		colorBlock.highlightedColor = ColorClass.list[data.Colors[0]][0];
+		colorBlock.disabledColor = ColorClass.list[data.Colors[0]][0];
+		colorBlock.pressedColor = ColorClass.list[data.Colors[0]][1];
+		buttonCs.colors = colorBlock;
 	}
 	
-	override protected void AddNewObjBrunch (ObjectsData data = null)
+	override protected void AddNewObjBrunch (ref ObjectsData data)
 	{
-		if (data != null)
+		if (data == null)
 		{
-			Debug.Log ("Exception argument in AddObj branch class");
+			Debug.Log ("data is null");
 			return;
 		}
 
 		data.type = (int)thisObjType;
 
-		data.text = new string[1];
-		data.text[0] = textCs.text;
+		data.texts = new string[1];
+		data.texts[0] = textCs.text;
+		data.Colors = new int[1];
+
+		data.Colors [0] = (int)ColorClass.dic [(Color32)textCs.color];
 	}
 	
 	override protected void UpdateObj (ObjectsData data = null)
@@ -68,9 +80,14 @@ public class TextObj : BaseObj
 		{
 			if (item.id == this.id)
 			{
-				string[] tmp = new string[1];
-				tmp[0] = textCs.text;
-				item.text = tmp;
+				string[] tmpText = new string[1];
+				tmpText[0] = textCs.text;
+				item.texts = tmpText;
+
+				int[] tmpColor = new int[1];
+				tmpColor[0] = (int)ColorClass.dic [textCs.color];
+				item.Colors = tmpColor;
+
 				base.UpdateObj(item);
 				return;
 			}

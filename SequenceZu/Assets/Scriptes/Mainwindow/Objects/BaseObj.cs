@@ -30,8 +30,9 @@ public class ObjectsData
 	public float scaling;
 	public float posX;
 	public float posY;
-	public string[] text;
-	public int[] color;
+	public string[] texts;
+	public int[] colors;
+	public int[] Colors { get { return (colors == null)? new int[1] : colors; } set { colors = value; } }
 }
 
 public class BaseObj : AutoAddEventTrigger
@@ -88,6 +89,7 @@ public class BaseObj : AutoAddEventTrigger
 		InitializeSetParam ();
 		
 		this.id = data.id;
+		this.type = (ObjType)data.type;
 		this.lineNum = data.lineNum;
 		Vector3 position = new Vector3 (data.posX, data.posY, 1);
 		this.gameObject.transform.localPosition = position;
@@ -122,17 +124,18 @@ public class BaseObj : AutoAddEventTrigger
 	private void AddNewObj()
 	{
 		var data = new ObjectsData ();
-		AddNewObjBrunch (data);
 
 		InitializeSetParam ();
-		
+		AddNewObjBrunch (ref data);
+
 		data.id = GetCurId;
 
 		DataAccess (data);
 		
 		GeneralController.SetNewObject (data, this);
+		Debug.Log ("いがあああ" + data.type);
 	}
-	virtual protected void AddNewObjBrunch(ObjectsData data) {}
+	virtual protected void AddNewObjBrunch(ref ObjectsData data) {}
 
 	virtual protected void UpdateObj (ObjectsData data = null)
 	{

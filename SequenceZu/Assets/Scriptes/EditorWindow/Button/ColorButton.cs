@@ -14,6 +14,13 @@ public enum ColorType
 	Water,
 }
 
+public enum ColorDepth
+{
+	thin = 0,
+	middle,
+	dark,
+}
+
 public struct Colors
 {
 	static public Color32[] Black =  {new Color32(159, 159, 159, 255),
@@ -58,12 +65,13 @@ public static class ColorClass
 		{
 			foreach (var item in list[i])
 			{
+				//全てColorを一つずつdicのキーとして格納　>> Black[0] >> Black[1] >> Red[0] など
+				//バリューにはそれがどの色タイプかを格納、Black[0]とBlack[1]はブラックタイプということになる
 				Debug.Log ("color[" + i + "] = " + item + " = " + (Color)item);
 				dic.Add ((Color)item, (ColorType)i);
 			}
 		}
 	}
-
 }
 
 public class ColorButton : AutoAddEventTrigger

@@ -1,0 +1,7 @@
+<base href="file:///D:/Create/HTML/htmle%20files/index.html" target="_blank">
+
+target属性
+_black 違うタブで開く
+_self　同じタブで上書き
+_parent 現在のブランジングに親があれば、そこに表示
+_top 現在のブラウザ領域全体に表示

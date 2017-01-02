@@ -293,3 +293,14 @@ EditorControllOnFramesとFrameObjに
 三角のデザイン変えよう
 縦を少し長くする
 100:120つまり縦の方が20%長くする
+
+
+
+
+
+	override protected void AddNewObjBrunch (ref ObjectsData data)
+	{
+		if (data == null) 
+でdata != を　＝＝に変えたらnullが出るようになってしまった。。。。
+
+ここでinitialize通せばいいのかな

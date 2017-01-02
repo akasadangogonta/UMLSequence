@@ -77,3 +77,19 @@ background : #D4B79A; みたいなのもあるのか
 
 
 ="5" width="793" height="595" /></a>
+
+
+
+
+
+<div id="add_01">
+<!--  ad tags Size: 300x250 ZoneId:1097792-->
+<script type="text/javascript" src="http://js.medi-8.net/t/097/792/a1097792.js" width="300" height="250"></script>
+
+     <div id="add_02">
+     <!-- admax -->
+     <script src="http://adm.shinobi.jp/s/5f7ef7fecb2792581a5edbac5714e4af"></script>
+     <!-- admax -->ipt>
+     </div>
+
+</div>

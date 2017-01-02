@@ -14,7 +14,7 @@ public class EditorFrameObj : EditorBaseObj
 
 	override protected void StartMain () 
 	{
-		curEditData.editType = EditType.Button;
+		curEditData.editType = EditType.Image;
 
 		editMethods = this.gameObject.AddComponent<FrameModifyMethods> ();
 
@@ -42,10 +42,16 @@ public class EditorFrameObj : EditorBaseObj
 
 	override public void GetColorCallback(Color32[] color32)
 	{
-		switch (curEditData.editType) {
+		Debug.Log ("GetColorCallback Invoke");
+
+		switch (curEditData.editType)
+		{
 		case EditType.Text:
 		case EditType.Button:
 			ChangeColor (color32);
+			break;
+		default:
+			Debug.LogWarning ("NotFound EditType " + curEditData.editType);
 			break;
 		}
 	}
@@ -109,10 +115,14 @@ public class EditorFrameObj : EditorBaseObj
 
 	private void ChangeColor(Color32[] color32)
 	{
+		Debug.Log ("ChangeColor Invoke");
+
 		int thin = 0;
 		int middle = 1;
 		int dark = 2;
-		
+
+		//TODO 色を変えるターゲットをlineNumで指定するのはおかしい、現状idはLineNumの値がそのまま代入されている
+		//これだとTriangleとかどうするのってこと、Lineは1だけど色変える対象は２つあるよ
 		System.Func<GameObject[], Button> GetButton = (target) => { return target [curEditData.id].GetComponent<Button> (); };
 		System.Func<GameObject[], Text> GetText = (target) => { return target[curEditData.id].GetComponent<Text> (); };
 		

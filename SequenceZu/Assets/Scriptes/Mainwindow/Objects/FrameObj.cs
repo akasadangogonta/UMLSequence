@@ -69,14 +69,14 @@ public class FrameObj : BaseObj
 
 		for (int count = 0; count < data.lineNum; count++)
 		{
-			text[count].GetComponent<Text>().text = data.text[count];
-			text[count].GetComponent<Text>().color = ColorClass.list[data.color[count]][1];
+			text[count].GetComponent<Text>().text = data.texts[count];
+			text[count].GetComponent<Text>().color = ColorClass.list[data.Colors[count]][1];
 
 			ColorBlock colorBlock = button[count].GetComponent<Button>().colors;
-			colorBlock.normalColor = ColorClass.list[data.color[count]][0];
-			colorBlock.highlightedColor = ColorClass.list[data.color[count]][0];
-			colorBlock.disabledColor = ColorClass.list[data.color[count]][0];
-			colorBlock.pressedColor = ColorClass.list[data.color[count]][1];
+			colorBlock.normalColor = ColorClass.list[data.Colors[count]][0];
+			colorBlock.highlightedColor = ColorClass.list[data.Colors[count]][0];
+			colorBlock.disabledColor = ColorClass.list[data.Colors[count]][0];
+			colorBlock.pressedColor = ColorClass.list[data.Colors[count]][1];
 			button[count].GetComponent<Button>().colors = colorBlock;
 		}
 	}
@@ -128,25 +128,25 @@ public class FrameObj : BaseObj
 	}
 
 
-	override protected void AddNewObjBrunch (ObjectsData data = null)
+	override protected void AddNewObjBrunch (ref ObjectsData data)
 	{
-		if (data != null) 
+		if (data == null) 
 		{
-			Debug.Log ("Exception argument in AddObj branch class");
+			Debug.Log ("data is null");
 			return;
 		}
 
 		data.type = (int)thisObjType;
 		lineNum = text.Length;
 		data.lineNum = lineNum;
-		data.text = new string[lineNum];
-		data.color = new int[lineNum];
+		data.texts = new string[lineNum];
+		data.Colors = new int[lineNum];
 
 
 		for (int count = 0; count < lineNum; count++)
 		{
-			data.text [count] = text [count].GetComponent<Text>().text;
-			data.color [count] = (int)ColorClass.dic 
+			data.texts [count] = text [count].GetComponent<Text>().text;
+			data.Colors [count] = (int)ColorClass.dic 
 				                 [text [count].GetComponent<Text>().color];
 		}
 	}
@@ -169,7 +169,7 @@ public class FrameObj : BaseObj
 				{
 					tmp[count] = text[count].GetComponent<Text>().text;
 				}
-				item.text = tmp;
+				item.texts = tmp;
 
 				int[] tmpColor = new int[text.Length];
 				for(int count = 0; count < text.Length; count++)
@@ -177,7 +177,7 @@ public class FrameObj : BaseObj
 					tmpColor[count] = (int)ColorClass.dic
 						              [ text[count].GetComponent<Text>().color ];
 				}
-				item.color = tmpColor;
+				item.Colors = tmpColor;
 
 				item.lineNum = tmp.Length;
 

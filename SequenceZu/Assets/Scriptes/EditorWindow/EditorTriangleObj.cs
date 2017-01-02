@@ -18,60 +18,55 @@ public class EditorTriangleObj : EditorBaseObj
 		
 		editTransform = this.gameObject.GetComponent<RectTransform> ();
 		baseTransform = baseObj.gameObject.GetComponent<RectTransform> ();
-		
-		editButton = editMethods.GetButtonObj (this.gameObject);
-		
+
+		editImage = editMethods.GetImageObj(this.gameObject);
+
 		SetAddListener ();
-		
-		lineNum = editButton.Length;
 		
 		ChangeColorAllowPos ();
 	}
 	
 	public void SetAddListener()
 	{
-		base.SetAddListener (editButton, EditType.Button);;
+		base.SetAddListener (editImage, EditType.Image);
 	}
 	
 	override public void GetColorCallback(Color32[] color32)
 	{
+		Debug.Log ("GetColorCallback Invoke");
+
 		switch (curEditData.editType)
 		{
-		case EditType.Button:
+		case EditType.Image:
 			ChangeColor (color32);
+			break;
+		default:
+			Debug.LogWarning ("NotFound EditType " + curEditData.editType);
 			break;
 		}
 	}
 	
 	private void ChangeColor(Color32[] color32)
 	{
+		Debug.Log ("ChangeColor Invoke");
+
 		int thin = 0;
 		int middle = 1;
 		int dark = 2;
-		
-		System.Func<GameObject[], Button> GetButton = (target) => { 
-			return target [curEditData.id].GetComponent<Button> (); 
-		};
-		
-		
-		ColorBlock colorBlock = GetButton(editButton).colors;
-		colorBlock.normalColor = color32[thin];
-		colorBlock.highlightedColor = color32[thin];
-		colorBlock.disabledColor = color32[thin];
-		colorBlock.pressedColor = color32[middle];
-		
-		GetButton(editButton).colors = colorBlock;
-		
-		GetButton(baseTriangleObj.button).colors = colorBlock;
+
+
+		System.Func<GameObject[], Image> GetImage = (target) => { return target [curEditData.id].GetComponent<Image> (); };
+
+		GetImage(editImage).color = color32[thin];
+		GetImage(baseTriangleObj.image).color = color32[thin];
 	}
-	
 	
 	override protected void  ChangeColorAllowPos()
 	{
 		while (curEditData.id > lineNum - 1)
 		{
 			curEditData.id--;
-			curEditData.editType = EditType.Button;
+			//curEditData.editType = EditType.Button;
 			if (curEditData.id < 0) 
 			{
 				Debug.LogWarning("curEditData.id is minus");
