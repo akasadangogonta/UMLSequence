@@ -1,0 +1,18 @@
+C://Windows/System32/java と　javawを削除(あったら）
+
+環境変数JAVA_HOMEの設定
+そのご
+
+
+
+
+
+環境変数GRADLE_HOMEに
+C:\Users\cyclone-staff\Desktop\Utility\gradle-3.2.1\bin
+環境変数pathに%GRADLE_HOME%\binを設定。
+
+
+環境変数JAVA_HOMEに
+C:\Program Files\java\jdk1.7.0_098
+環境変数pathに%JAVA_HOME%\binを設定。
+812 

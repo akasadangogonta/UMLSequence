@@ -1,0 +1,191 @@
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        applicationId "jp.co.cyclone.localnotify"
+        minSdkVersion 10
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile files('libs/classes.jar')
+
+    
+}
+
+
+
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        minSdkVersion 10
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+android.libraryVariants.all { variant ->
+    variant.outputs.each { output ->
+        output.packageLibrary.exclude('libs/classes.jar')
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile files('libs/classes.jar')
+}
+
+task clearFile(type: Delete) {
+    delete 'jarFile/' + 'Notification.jar'
+    delete 'jarFile/' + '_Notification.jar'
+    delete 'jarFile/' + '_Notification.zip'
+    delete 'jarFile/' + 'NotificationDebug.jar'
+    delete 'jarFile/' + '_NotificationDebug.jar'
+    delete 'jarFile/' + '_NotificationDebug.zip'
+}
+
+task makeZip(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('jarFile/')
+    include('classes.jar')
+    rename('classes.jar', '_Notification.zip')
+}
+task makeBackup(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('jarFile/')
+    include('classes.jar')
+    rename('classes.jar', '_Notification.jar')
+}
+
+task makeZipDebug(type: Copy) {
+    from('build/intermediates/bundles/debug/')
+    into('jarFile/')
+    include('classes.jar')
+    rename('classes.jar', '_NotificationDebug.zip')
+}
+task makeBackupDebug(type: Copy) {
+    from('build/intermediates/bundles/debug/')
+    into('jarFile/')
+    include('classes.jar')
+    rename('classes.jar', '_NotificationDebug.jar')
+}
+task makeJarDebug(type: Copy) {
+    from('build/intermediates/bundles/debug/')
+    into('jarFile/')
+    include('classes.jar')
+    rename('classes.jar', 'NotificationDebug.jar')
+}
+
+task MakeJar(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('jarFile/')
+    include('classes.jar')
+    rename('classes.jar', 'Notification.jar')
+}
+
+MakeJar.dependsOn(clearFile, build, makeZip, makeBackup, makeZipDebug, makeBackupDebug, makeJarDebug)
+
+
+task deleteApk(type: Delete) {
+    delete 'C:/Users/cyclone-staff/AppData/Local/Android/sdk/tools/' + 'Untitled.apk'
+}
+
+task renameApk(type: Copy) {
+    from('C:/Users/cyclone-staff/AppData/Local/Android/sdk/tools/')
+    into('C:/Users/cyclone-staff/AppData/Local/Android/sdk/tools/')
+    include('puzzlederby*.apk')
+    rename{ fileName -> 'Untitled.apk'}
+}
+
+task ExchangeNameApk << {
+    ant.delete (includeEmptyDirs: 'true') {
+        fileset(dir: file('C:/Users/cyclone-staff/AppData/Local/Android/sdk/tools/'), includes: 'puzzlederby*')
+    }
+}
+
+
+task UpdateApk(type: Exec) {
+    commandLine 'adb', 'install', '-r', 'C:/Users/cyclone-staff/AppData/Local/Android/sdk/tools/Untitled.apk'
+}
+
+ExchangeNameApk.dependsOn(deleteApk, renameApk)
+UpdateApk.dependsOn(ExchangeNameApk)
+
+
+暗黙的に呼び出す側は <action>、<data> の指定は必須になりますが、
+<category> は絞り込み条件として任意指定となります。
+
+
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+// インテントを生成する
+Intent intent = new Intent();
+ 
+// アクションを指定する
+intent.setAction("inujirushi");
+ 
+// カテゴリを追加する（指定しなくてもＯＫ）
+intent.addCategory(Intent.CATEGORY_BROWSABLE);
+intent.addCategory("hoge");
+ 
+// Uriを設定する（scheme値 + ":" は必須、以降は自由）
+intent.setData(Uri.parse("http://www.google.co.jp/"));
+ 
+// intent-filter に関係なく値を渡す
+intent.putExtra("KEY", "value");
+ 
+// アプリを起動する
+startActivity(intent);
+
+
+<data android:scheme="http" />
+
+// Uriを設定する（scheme値 + ":" は必須、以降は自由）
+intent.setData(Uri.parse("http://www.google.co.jp/"));

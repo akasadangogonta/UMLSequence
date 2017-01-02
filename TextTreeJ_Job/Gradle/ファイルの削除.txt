@@ -1,0 +1,17 @@
+ワイルドカードを使ったファイルの削除
+task ExchangeNameApk << {
+    ant.delete (includeEmptyDirs: 'true') {
+        fileset(dir: file('C:/Users/cyclone-staff/AppData/Local/Android/sdk/tools/'), includes: 'puzzlederby*')
+    }
+}
+こういうのもある、（なんだこの左右のドルは
+task deletePuzzleApk << {
+    ant.delete(includeEmptyDirs: 'true') {
+        fileset(dir: file('../../client/'), includes: $/puzzlederby*.apk/$)
+    }
+}
+
+task実行時にﾌｧｲﾙをdeleteしたいときは
+project.deleteを使う
+このさいdelte{　}で囲む必要はない
+

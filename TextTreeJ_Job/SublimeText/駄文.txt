@@ -1,0 +1,17 @@
+
+
+{
+    "folders":
+    [
+        {
+            "follow_symlinks": true,
+            "path": "Assets",
+            "name": "Assets",
+            "file_include_patterns":
+            [
+                "*.cs"
+            ]
+        }
+    ],
+	"solution_file" : "./client.sln"
+}

@@ -1,0 +1,76 @@
+最後改行あるとだめだーよ
+
+//Install.dependsOn(InstallLatestAPK)
+
+//InstallLatestAPK.dependsOn(cloneApk )
+//task('cloneApk').dependsOn InstallLatestApk
+//cloneApk.dependsOn(InstallLatestAPK)
+
+//UpdateApk.dependsOn(deleteOriginApk, renameOriginApk, bringUpApk)
+
+
+
+public class SimpleThread {
+    public static void main(String[] args) {
+        System.out.println("メインスレッドだよ")
+        for (int i = 0; i < 10000; i++) {
+            Runnable runnable = new MyRunnable();
+            new Thread(runnable).start();
+        }
+    }
+}
+
+
+public class SimpleThread {
+    public static void main(String[] args) {
+        System.out.println("メインスレッドだよ")
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("別のスレッドだよ")
+            }
+        }).start();
+    }
+}
+
+
+class Producer extends Thread {
+  private Queue queue;
+  public Producer(Queue queue) {
+    this.queue = queue;
+  }
+  public void run() {
+    for (int i = 0; i < 100; i++) {
+      try {
+        Thread.sleep((long)(Math.random()*1000));
+      } catch (InterruptedException e) {}
+      queue.put(new Integer(i));
+    }
+  }
+}
+
+
+    // 非同期タスクを開始する
+    public void startAsyncTask()
+    {
+        int limit = 50;
+        // 新スレッド上で実行。startで開始したら，そのまま放置。
+        Thread t = new Thread(){
+            public void run()
+            {
+                  while ()
+                  {
+	                //execOnNewThread();
+	                Thread.sleep(1F);
+		   limit--;
+	                if(limit < 0)
+		   {
+			break;
+		   }
+	     }
+                  return;
+
+            }
+        };
+        t.start();
+    }

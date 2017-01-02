@@ -1,0 +1,9 @@
+StartUpの登録の仕方
+＞%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+
+StartMenu
+C:\%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs
+
+
+PuzzleDerby_Documents_DebugFunction.txt
+PuzzleDerby_Documents_TransferToAppSceneHowTo.txt

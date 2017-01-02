@@ -1,0 +1,5 @@
+Preferenceセット
+SDK
+C:/Users/cyclone-staff/AppData/Local/Android/android-sdk
+JDK
+C:\Program Files\Java\jdk1.7.0_09\

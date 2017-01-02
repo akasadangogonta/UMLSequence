@@ -1,0 +1,14 @@
+* Ctrl＋Shift＋左／右矢印：
+　選択開始位置から、その行末or行頭までのテキストを選択
+（「Mac：Ctrl ＋Alt／Option」と元記事にありましたが、Windowsと同じキーでもOKの場合も）
+* Shift＋上／下矢印：
+　一行毎にテキストを選択
+* Shift＋Page Up／Page Down：
+　テキストをカーソルの位置から上下に選択
+
+* Shift＋Home／End（Mac：Cmd＋Shift＋左／右矢印）：
+　カーソルの位置からテキストを行の左／右端まで一気に選択
+* Ctrl＋Shift＋Home／End （Mac：Cmd＋Shift＋上／下矢印）：
+　カーソルの位置からテキストをドキュメントの上／下の端まで一気に選択
+* Ctrl＋A（Mac：Cmd＋A）: 
+　ドキュメント全体のテキストを選択

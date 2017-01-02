@@ -1,0 +1,1071 @@
+makeJar.dependsOn(clearJar, build)
+
+
+はいはいMenuManageBaseね
+66
+
+44
+262ｘ82
+131ｘ41
+
+sendNotification
+sendNotification
+
+net.raharu.localnotifyplugin.localNotification
+
+
+/*
+//#if UNITY_EDITOR
+//#elif UNITY_ANDROID
+AndroidJavaObject m_plugin = new AndroidJavaObject("net.raharu.localnotifyplugin.localNotification");
+//if(m_plugin != null)
+{
+    Debug.Log("Unity access to JavaPlugin Notification");
+　　m_plugin.Call("sendNotification", "パズダビ", "出走ポイントが満タンになりました！");
+}
+//#endif
+*/
+
+public enum HorseElement
+{
+  None  = 0,
+  Fire,
+  Water,
+  Wind,
+  Light,
+  Earth,
+}
+
+同じところを通っているので、コードを見る限り副属性も見ているとは思うのですが、
+抜けがあるかもしれません。
+詳細ありがとうございました、引き続きよろしくお願いします。
+
+>>元橋さん
+おつかれさまです。No2931のオリフェーヴルを（主風/副水）と
+レース条件の水属性指定のパターンを色々試したのですが
+バグレポートの内容の再現が上手くできませんでした。
+
+仕様した馬やレース条件のcategory,type,valueの詳細などは分かりますでしょうか？
+お手数ですがよろしくお願いします。
+
+
+ふううう朝礼のあれやらんとなあ
+
+
+んんんｎ
+ContentTitle と
+ＣｏｎｔｅｎｔＴｅｘって表示されとるな
+
+        // ステータスバーに表示されるテキスト
+        builder.setTicker("Ticker");　　　これなんだ？こんなの表示されてなかったぞ
+        // アイコン
+        builder.setSmallIcon(appIconResId);
+        // Notificationを開いたときに表示されるタイトル
+        builder.setContentTitle("ContentTitle");
+        // Notificationを開いたときに表示されるサブタイトル
+        builder.setContentText("ContentText");
+        // Notificationを開いたときに表示されるアイコン
+        builder.setLargeIcon(largeIcon);
+
+
+先週はチケットレースのレースメニュー画面の実装を進めて
+JSONの受け取りとか正常なのを確認して作業を終えました。
+あとはレースリザルト画面でフレンド申請したときに、
+「フレンド申請しました」というウィンドウの表示を実装したり、
+プレゼントソートで受け取り順のソートを実装したり
+あとは水曜からローカルプッシュの通知の実装を始めて、
+Androidの方は今日中に終えて、iOSも明日あたりに
+実装を終えたいと思っています。
+
+
+メタルレース
+
+
+
+了解しました、よろしくお願いします。
+
+
+       Activity activity = UnityPlayer.currentActivity;
+        Intent unityIntent = activity.getIntent();
+ 
+
+
+
+
+
+    Intent intent = new Intent();
+
+    // Intent#setClassNameメソッドで
+    // 起動するActivityを指定する
+    String packageName = "jp.fernweh";
+    String className = "jp.fernweh.AnotherActivity";
+    intent.setClassName(packageName, className);
+
+
+
+        Intent unityIntent = new Intent("android.intent.action.VIEW", Uri.parse("derby"));
+        unityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(unityIntent);
+
+
+.ide/misc.xml
+.ide/workspace.xml
+
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\incremental\mergeAssets\androidTest\debug\merger.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\incremental\mergeAssets\debug\merger.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\incremental\mergeResourcesandroidTest\debug\merger.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\incremental\mergeResourcesdebug\merger.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\anim\abc_fade_in.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\anim\abc_fade_out.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\anim\abc_grow_fade_in_from_bottom.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\anim\abc_popup_enter.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\anim\abc_popup_exit.xml
+
+
+
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\.gradle\2.4\taskArtifacts\cache.properties.lock
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\.gradle\2.4\taskArtifacts\fileHashes.bin
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\.gradle\2.4\taskArtifacts\fileSnapshots.bin
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\.gradle\2.4\taskArtifacts\outputFileStates.bin
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\.gradle\2.4\taskArtifacts\taskArtifacts.bin
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\.idea\libraries\appcompat_v7_23_1_1.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\.idea\libraries\support_v4_23_1_1.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\.idea\workspace.xml
+
+これのうちどれかがＣ直下のよくわからん絶対パスを含んでいる
+
+
+
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\.gradle\2.4\taskArtifacts\cache.properties.lock
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\.gradle\2.4\taskArtifacts\fileHashes.bin
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\.gradle\2.4\taskArtifacts\fileSnapshots.bin
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\.gradle\2.4\taskArtifacts\outputFileStates.bin
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\.gradle\2.4\taskArtifacts\taskArtifacts.bin
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\.idea\libraries\appcompat_v7_23_1_1.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\.idea\libraries\support_v4_23_1_1.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\.idea\misc.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\.idea\workspace.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\incremental\mergeAssets\androidTest\debug\merger.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\incremental\mergeAssets\debug\merger.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\incremental\mergeResourcesandroidTest\debug\merger.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\incremental\mergeResourcesdebug\merger.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\anim\abc_fade_in.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\anim\abc_fade_out.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\anim\abc_grow_fade_in_from_bottom.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\anim\abc_popup_enter.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\anim\abc_popup_exit.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\anim\abc_shrink_fade_out_from_bottom.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\anim\abc_slide_in_bottom.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\anim\abc_slide_in_top.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\anim\abc_slide_out_bottom.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\anim\abc_slide_out_top.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\color-v11\abc_background_cache_hint_selector_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\color-v11\abc_background_cache_hint_selector_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\color-v23\abc_color_highlight_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\color\abc_background_cache_hint_selector_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\color\abc_background_cache_hint_selector_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\color\abc_primary_text_disable_only_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\color\abc_primary_text_disable_only_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\color\abc_primary_text_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\color\abc_primary_text_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\color\abc_search_url_text.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\color\abc_secondary_text_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\color\abc_secondary_text_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\color\switch_thumb_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\color\switch_thumb_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable-v21\abc_action_bar_item_background_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable-v21\abc_btn_colored_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable-v23\abc_control_background_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_btn_borderless_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_btn_check_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_btn_colored_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_btn_default_mtrl_shape.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_btn_radio_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_cab_background_internal_bg.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_cab_background_top_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_dialog_material_background_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_dialog_material_background_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_edit_text_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_item_background_holo_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_item_background_holo_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_list_selector_background_transition_holo_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_list_selector_background_transition_holo_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_list_selector_holo_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_list_selector_holo_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_ratingbar_full_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_seekbar_thumb_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_seekbar_track_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_spinner_textfield_background_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_switch_thumb_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_tab_indicator_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_text_cursor_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\drawable\abc_textfield_search_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_action_bar_title_item.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_action_bar_up_container.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_action_bar_view_list_nav_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_action_menu_item_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_action_menu_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_action_mode_bar.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_action_mode_close_item_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_activity_chooser_view.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_activity_chooser_view_list_item.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_alert_dialog_button_bar_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_alert_dialog_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_dialog_title_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_expanded_menu_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_list_menu_item_checkbox.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_list_menu_item_icon.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_list_menu_item_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_list_menu_item_radio.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_popup_menu_item_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_screen_content_include.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_screen_simple.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_screen_simple_overlay_action_mode.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_screen_toolbar.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_search_dropdown_item_icons_2line.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_search_view.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\abc_select_dialog_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\activity_main.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\notification_media_action.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\notification_media_cancel_action.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\notification_template_big_media.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\notification_template_big_media_narrow.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\notification_template_lines.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\notification_template_media.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\notification_template_part_chronometer.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\notification_template_part_time.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\select_dialog_item_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\select_dialog_multichoice_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\select_dialog_singlechoice_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\layout\support_simple_spinner_dropdown_item.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\menu\menu_main.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-af\values-af.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-am\values-am.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-ar\values-ar.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-az-rAZ\values-az-rAZ.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-bg\values-bg.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-bn-rBD\values-bn-rBD.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-ca\values-ca.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-cs\values-cs.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-da\values-da.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-de\values-de.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-el\values-el.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-en-rAU\values-en-rAU.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-en-rGB\values-en-rGB.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-en-rIN\values-en-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-es-rUS\values-es-rUS.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-es\values-es.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-et-rEE\values-et-rEE.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-eu-rES\values-eu-rES.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-fa\values-fa.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-fi\values-fi.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-fr-rCA\values-fr-rCA.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-fr\values-fr.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-gl-rES\values-gl-rES.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-gu-rIN\values-gu-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-h320dp\values-h320dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-h720dp\values-h720dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-hdpi\values-hdpi.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-hi\values-hi.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-hr\values-hr.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-hu\values-hu.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-hy-rAM\values-hy-rAM.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-in\values-in.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-is-rIS\values-is-rIS.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-it\values-it.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-iw\values-iw.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-ja\values-ja.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-ka-rGE\values-ka-rGE.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-kk-rKZ\values-kk-rKZ.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-km-rKH\values-km-rKH.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-kn-rIN\values-kn-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-ko\values-ko.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-ky-rKG\values-ky-rKG.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-land\values-land.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-large\values-large.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-ldltr-v21\values-ldltr-v21.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-ldrtl-v23\values-ldrtl-v23.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-lo-rLA\values-lo-rLA.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-lt\values-lt.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-lv\values-lv.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-mk-rMK\values-mk-rMK.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-ml-rIN\values-ml-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-mn-rMN\values-mn-rMN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-mr-rIN\values-mr-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-ms-rMY\values-ms-rMY.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-my-rMM\values-my-rMM.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-nb\values-nb.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-ne-rNP\values-ne-rNP.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-nl\values-nl.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-pa-rIN\values-pa-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-pl\values-pl.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-port\values-port.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-pt-rBR\values-pt-rBR.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-pt-rPT\values-pt-rPT.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-pt\values-pt.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-ro\values-ro.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-ru\values-ru.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-si-rLK\values-si-rLK.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-sk\values-sk.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-sl\values-sl.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-sq-rAL\values-sq-rAL.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-sr\values-sr.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-sv\values-sv.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-sw600dp\values-sw600dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-sw\values-sw.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-ta-rIN\values-ta-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-te-rIN\values-te-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-th\values-th.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-tl\values-tl.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-tr\values-tr.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-uk\values-uk.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-ur-rPK\values-ur-rPK.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-uz-rUZ\values-uz-rUZ.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-v11\values-v11.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-v12\values-v12.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-v14\values-v14.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-v17\values-v17.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-v18\values-v18.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-v21\values-v21.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-v22\values-v22.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-v23\values-v23.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-vi\values-vi.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-w360dp\values-w360dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-w480dp\values-w480dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-w500dp\values-w500dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-w600dp\values-w600dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-w720dp\values-w720dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-w820dp\values-w820dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-xlarge-land\values-xlarge-land.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-xlarge\values-xlarge.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-zh-rCN\values-zh-rCN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-zh-rHK\values-zh-rHK.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-zh-rTW\values-zh-rTW.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values-zu\values-zu.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\merged\debug\values\values.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\resources-debug-androidTest.ap_
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\intermediates\res\resources-debug.ap_
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\app\build\outputs\logs\manifest-merger-debug-report.txt
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\build\intermediates\gradle_project_sync_data.bin
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\local.properties
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\bundles\debug\classes.jar
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\bundles\debug\res\values\values.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\bundles\release\classes.jar
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\bundles\release\res\values\values.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\incremental\mergeAssets\androidTest\debug\merger.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\incremental\mergeAssets\debug\merger.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\incremental\mergeAssets\release\merger.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\incremental\mergeResourcesandroidTest\debug\merger.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\incremental\mergeResourcesdebug\merger.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\incremental\mergeResourcesrelease\merger.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\incremental\packageResourcesdebug\merger.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\incremental\packageResourcesrelease\merger.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\manifest\tmp\manifestMerger3274419976078195204.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\mockable-android-23.jar
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\anim\abc_fade_in.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\anim\abc_fade_out.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\anim\abc_grow_fade_in_from_bottom.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\anim\abc_popup_enter.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\anim\abc_popup_exit.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\anim\abc_shrink_fade_out_from_bottom.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\anim\abc_slide_in_bottom.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\anim\abc_slide_in_top.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\anim\abc_slide_out_bottom.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\anim\abc_slide_out_top.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\color-v11\abc_background_cache_hint_selector_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\color-v11\abc_background_cache_hint_selector_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\color-v23\abc_color_highlight_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\color\abc_background_cache_hint_selector_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\color\abc_background_cache_hint_selector_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\color\abc_primary_text_disable_only_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\color\abc_primary_text_disable_only_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\color\abc_primary_text_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\color\abc_primary_text_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\color\abc_search_url_text.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\color\abc_secondary_text_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\color\abc_secondary_text_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\color\switch_thumb_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\color\switch_thumb_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable-v21\abc_action_bar_item_background_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable-v21\abc_btn_colored_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable-v23\abc_control_background_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_btn_borderless_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_btn_check_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_btn_colored_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_btn_default_mtrl_shape.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_btn_radio_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_cab_background_internal_bg.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_cab_background_top_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_dialog_material_background_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_dialog_material_background_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_edit_text_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_item_background_holo_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_item_background_holo_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_list_selector_background_transition_holo_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_list_selector_background_transition_holo_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_list_selector_holo_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_list_selector_holo_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_ratingbar_full_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_seekbar_thumb_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_seekbar_track_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_spinner_textfield_background_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_switch_thumb_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_tab_indicator_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_text_cursor_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\drawable\abc_textfield_search_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_action_bar_title_item.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_action_bar_up_container.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_action_bar_view_list_nav_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_action_menu_item_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_action_menu_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_action_mode_bar.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_action_mode_close_item_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_activity_chooser_view.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_activity_chooser_view_list_item.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_alert_dialog_button_bar_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_alert_dialog_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_dialog_title_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_expanded_menu_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_list_menu_item_checkbox.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_list_menu_item_icon.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_list_menu_item_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_list_menu_item_radio.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_popup_menu_item_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_screen_content_include.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_screen_simple.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_screen_simple_overlay_action_mode.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_screen_toolbar.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_search_dropdown_item_icons_2line.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_search_view.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\abc_select_dialog_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\notification_media_action.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\notification_media_cancel_action.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\notification_template_big_media.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\notification_template_big_media_narrow.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\notification_template_lines.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\notification_template_media.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\notification_template_part_chronometer.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\notification_template_part_time.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\select_dialog_item_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\select_dialog_multichoice_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\select_dialog_singlechoice_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\layout\support_simple_spinner_dropdown_item.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-af\values-af.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-am\values-am.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-ar\values-ar.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-az-rAZ\values-az-rAZ.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-bg\values-bg.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-bn-rBD\values-bn-rBD.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-ca\values-ca.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-cs\values-cs.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-da\values-da.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-de\values-de.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-el\values-el.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-en-rAU\values-en-rAU.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-en-rGB\values-en-rGB.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-en-rIN\values-en-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-es-rUS\values-es-rUS.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-es\values-es.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-et-rEE\values-et-rEE.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-eu-rES\values-eu-rES.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-fa\values-fa.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-fi\values-fi.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-fr-rCA\values-fr-rCA.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-fr\values-fr.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-gl-rES\values-gl-rES.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-gu-rIN\values-gu-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-h320dp\values-h320dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-h720dp\values-h720dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-hdpi\values-hdpi.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-hi\values-hi.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-hr\values-hr.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-hu\values-hu.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-hy-rAM\values-hy-rAM.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-in\values-in.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-is-rIS\values-is-rIS.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-it\values-it.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-iw\values-iw.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-ja\values-ja.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-ka-rGE\values-ka-rGE.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-kk-rKZ\values-kk-rKZ.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-km-rKH\values-km-rKH.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-kn-rIN\values-kn-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-ko\values-ko.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-ky-rKG\values-ky-rKG.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-land\values-land.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-large\values-large.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-ldltr-v21\values-ldltr-v21.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-ldrtl-v23\values-ldrtl-v23.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-lo-rLA\values-lo-rLA.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-lt\values-lt.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-lv\values-lv.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-mk-rMK\values-mk-rMK.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-ml-rIN\values-ml-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-mn-rMN\values-mn-rMN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-mr-rIN\values-mr-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-ms-rMY\values-ms-rMY.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-my-rMM\values-my-rMM.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-nb\values-nb.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-ne-rNP\values-ne-rNP.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-nl\values-nl.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-pa-rIN\values-pa-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-pl\values-pl.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-port\values-port.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-pt-rBR\values-pt-rBR.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-pt-rPT\values-pt-rPT.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-pt\values-pt.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-ro\values-ro.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-ru\values-ru.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-si-rLK\values-si-rLK.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-sk\values-sk.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-sl\values-sl.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-sq-rAL\values-sq-rAL.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-sr\values-sr.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-sv\values-sv.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-sw600dp\values-sw600dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-sw\values-sw.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-ta-rIN\values-ta-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-te-rIN\values-te-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-th\values-th.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-tl\values-tl.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-tr\values-tr.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-uk\values-uk.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-ur-rPK\values-ur-rPK.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-uz-rUZ\values-uz-rUZ.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-v11\values-v11.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-v12\values-v12.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-v14\values-v14.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-v17\values-v17.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-v18\values-v18.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-v21\values-v21.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-v22\values-v22.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-v23\values-v23.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-vi\values-vi.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-w360dp\values-w360dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-w480dp\values-w480dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-w500dp\values-w500dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-w600dp\values-w600dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-w720dp\values-w720dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-xlarge-land\values-xlarge-land.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-xlarge\values-xlarge.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-zh-rCN\values-zh-rCN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-zh-rHK\values-zh-rHK.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-zh-rTW\values-zh-rTW.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values-zu\values-zu.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\androidTest\debug\values\values.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\anim\abc_fade_in.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\anim\abc_fade_out.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\anim\abc_grow_fade_in_from_bottom.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\anim\abc_popup_enter.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\anim\abc_popup_exit.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\anim\abc_shrink_fade_out_from_bottom.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\anim\abc_slide_in_bottom.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\anim\abc_slide_in_top.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\anim\abc_slide_out_bottom.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\anim\abc_slide_out_top.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\color-v11\abc_background_cache_hint_selector_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\color-v11\abc_background_cache_hint_selector_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\color-v23\abc_color_highlight_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\color\abc_background_cache_hint_selector_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\color\abc_background_cache_hint_selector_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\color\abc_primary_text_disable_only_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\color\abc_primary_text_disable_only_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\color\abc_primary_text_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\color\abc_primary_text_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\color\abc_search_url_text.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\color\abc_secondary_text_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\color\abc_secondary_text_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\color\switch_thumb_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\color\switch_thumb_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable-v21\abc_action_bar_item_background_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable-v21\abc_btn_colored_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable-v23\abc_control_background_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_btn_borderless_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_btn_check_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_btn_colored_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_btn_default_mtrl_shape.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_btn_radio_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_cab_background_internal_bg.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_cab_background_top_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_dialog_material_background_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_dialog_material_background_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_edit_text_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_item_background_holo_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_item_background_holo_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_list_selector_background_transition_holo_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_list_selector_background_transition_holo_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_list_selector_holo_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_list_selector_holo_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_ratingbar_full_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_seekbar_thumb_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_seekbar_track_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_spinner_textfield_background_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_switch_thumb_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_tab_indicator_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_text_cursor_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\drawable\abc_textfield_search_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_action_bar_title_item.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_action_bar_up_container.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_action_bar_view_list_nav_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_action_menu_item_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_action_menu_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_action_mode_bar.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_action_mode_close_item_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_activity_chooser_view.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_activity_chooser_view_list_item.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_alert_dialog_button_bar_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_alert_dialog_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_dialog_title_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_expanded_menu_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_list_menu_item_checkbox.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_list_menu_item_icon.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_list_menu_item_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_list_menu_item_radio.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_popup_menu_item_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_screen_content_include.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_screen_simple.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_screen_simple_overlay_action_mode.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_screen_toolbar.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_search_dropdown_item_icons_2line.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_search_view.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\abc_select_dialog_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\notification_media_action.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\notification_media_cancel_action.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\notification_template_big_media.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\notification_template_big_media_narrow.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\notification_template_lines.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\notification_template_media.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\notification_template_part_chronometer.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\notification_template_part_time.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\select_dialog_item_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\select_dialog_multichoice_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\select_dialog_singlechoice_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\layout\support_simple_spinner_dropdown_item.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-af\values-af.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-am\values-am.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-ar\values-ar.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-az-rAZ\values-az-rAZ.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-bg\values-bg.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-bn-rBD\values-bn-rBD.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-ca\values-ca.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-cs\values-cs.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-da\values-da.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-de\values-de.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-el\values-el.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-en-rAU\values-en-rAU.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-en-rGB\values-en-rGB.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-en-rIN\values-en-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-es-rUS\values-es-rUS.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-es\values-es.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-et-rEE\values-et-rEE.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-eu-rES\values-eu-rES.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-fa\values-fa.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-fi\values-fi.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-fr-rCA\values-fr-rCA.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-fr\values-fr.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-gl-rES\values-gl-rES.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-gu-rIN\values-gu-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-h320dp\values-h320dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-h720dp\values-h720dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-hdpi\values-hdpi.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-hi\values-hi.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-hr\values-hr.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-hu\values-hu.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-hy-rAM\values-hy-rAM.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-in\values-in.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-is-rIS\values-is-rIS.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-it\values-it.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-iw\values-iw.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-ja\values-ja.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-ka-rGE\values-ka-rGE.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-kk-rKZ\values-kk-rKZ.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-km-rKH\values-km-rKH.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-kn-rIN\values-kn-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-ko\values-ko.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-ky-rKG\values-ky-rKG.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-land\values-land.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-large\values-large.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-ldltr-v21\values-ldltr-v21.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-ldrtl-v23\values-ldrtl-v23.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-lo-rLA\values-lo-rLA.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-lt\values-lt.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-lv\values-lv.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-mk-rMK\values-mk-rMK.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-ml-rIN\values-ml-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-mn-rMN\values-mn-rMN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-mr-rIN\values-mr-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-ms-rMY\values-ms-rMY.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-my-rMM\values-my-rMM.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-nb\values-nb.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-ne-rNP\values-ne-rNP.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-nl\values-nl.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-pa-rIN\values-pa-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-pl\values-pl.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-port\values-port.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-pt-rBR\values-pt-rBR.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-pt-rPT\values-pt-rPT.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-pt\values-pt.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-ro\values-ro.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-ru\values-ru.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-si-rLK\values-si-rLK.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-sk\values-sk.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-sl\values-sl.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-sq-rAL\values-sq-rAL.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-sr\values-sr.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-sv\values-sv.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-sw600dp\values-sw600dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-sw\values-sw.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-ta-rIN\values-ta-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-te-rIN\values-te-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-th\values-th.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-tl\values-tl.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-tr\values-tr.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-uk\values-uk.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-ur-rPK\values-ur-rPK.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-uz-rUZ\values-uz-rUZ.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-v11\values-v11.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-v12\values-v12.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-v14\values-v14.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-v17\values-v17.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-v18\values-v18.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-v21\values-v21.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-v22\values-v22.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-v23\values-v23.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-vi\values-vi.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-w360dp\values-w360dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-w480dp\values-w480dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-w500dp\values-w500dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-w600dp\values-w600dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-w720dp\values-w720dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-xlarge-land\values-xlarge-land.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-xlarge\values-xlarge.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-zh-rCN\values-zh-rCN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-zh-rHK\values-zh-rHK.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-zh-rTW\values-zh-rTW.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values-zu\values-zu.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\debug\values\values.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\anim\abc_fade_in.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\anim\abc_fade_out.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\anim\abc_grow_fade_in_from_bottom.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\anim\abc_popup_enter.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\anim\abc_popup_exit.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\anim\abc_shrink_fade_out_from_bottom.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\anim\abc_slide_in_bottom.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\anim\abc_slide_in_top.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\anim\abc_slide_out_bottom.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\anim\abc_slide_out_top.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\color-v11\abc_background_cache_hint_selector_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\color-v11\abc_background_cache_hint_selector_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\color-v23\abc_color_highlight_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\color\abc_background_cache_hint_selector_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\color\abc_background_cache_hint_selector_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\color\abc_primary_text_disable_only_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\color\abc_primary_text_disable_only_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\color\abc_primary_text_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\color\abc_primary_text_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\color\abc_search_url_text.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\color\abc_secondary_text_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\color\abc_secondary_text_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\color\switch_thumb_material_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\color\switch_thumb_material_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable-v21\abc_action_bar_item_background_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable-v21\abc_btn_colored_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable-v23\abc_control_background_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_btn_borderless_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_btn_check_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_btn_colored_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_btn_default_mtrl_shape.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_btn_radio_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_cab_background_internal_bg.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_cab_background_top_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_dialog_material_background_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_dialog_material_background_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_edit_text_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_item_background_holo_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_item_background_holo_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_list_selector_background_transition_holo_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_list_selector_background_transition_holo_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_list_selector_holo_dark.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_list_selector_holo_light.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_ratingbar_full_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_seekbar_thumb_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_seekbar_track_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_spinner_textfield_background_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_switch_thumb_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_tab_indicator_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_text_cursor_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\drawable\abc_textfield_search_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_action_bar_title_item.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_action_bar_up_container.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_action_bar_view_list_nav_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_action_menu_item_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_action_menu_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_action_mode_bar.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_action_mode_close_item_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_activity_chooser_view.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_activity_chooser_view_list_item.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_alert_dialog_button_bar_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_alert_dialog_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_dialog_title_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_expanded_menu_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_list_menu_item_checkbox.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_list_menu_item_icon.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_list_menu_item_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_list_menu_item_radio.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_popup_menu_item_layout.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_screen_content_include.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_screen_simple.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_screen_simple_overlay_action_mode.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_screen_toolbar.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_search_dropdown_item_icons_2line.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_search_view.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\abc_select_dialog_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\notification_media_action.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\notification_media_cancel_action.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\notification_template_big_media.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\notification_template_big_media_narrow.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\notification_template_lines.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\notification_template_media.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\notification_template_part_chronometer.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\notification_template_part_time.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\select_dialog_item_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\select_dialog_multichoice_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\select_dialog_singlechoice_material.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\layout\support_simple_spinner_dropdown_item.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-af\values-af.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-am\values-am.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-ar\values-ar.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-az-rAZ\values-az-rAZ.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-bg\values-bg.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-bn-rBD\values-bn-rBD.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-ca\values-ca.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-cs\values-cs.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-da\values-da.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-de\values-de.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-el\values-el.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-en-rAU\values-en-rAU.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-en-rGB\values-en-rGB.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-en-rIN\values-en-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-es-rUS\values-es-rUS.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-es\values-es.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-et-rEE\values-et-rEE.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-eu-rES\values-eu-rES.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-fa\values-fa.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-fi\values-fi.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-fr-rCA\values-fr-rCA.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-fr\values-fr.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-gl-rES\values-gl-rES.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-gu-rIN\values-gu-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-h320dp\values-h320dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-h720dp\values-h720dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-hdpi\values-hdpi.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-hi\values-hi.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-hr\values-hr.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-hu\values-hu.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-hy-rAM\values-hy-rAM.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-in\values-in.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-is-rIS\values-is-rIS.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-it\values-it.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-iw\values-iw.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-ja\values-ja.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-ka-rGE\values-ka-rGE.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-kk-rKZ\values-kk-rKZ.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-km-rKH\values-km-rKH.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-kn-rIN\values-kn-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-ko\values-ko.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-ky-rKG\values-ky-rKG.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-land\values-land.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-large\values-large.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-ldltr-v21\values-ldltr-v21.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-ldrtl-v23\values-ldrtl-v23.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-lo-rLA\values-lo-rLA.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-lt\values-lt.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-lv\values-lv.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-mk-rMK\values-mk-rMK.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-ml-rIN\values-ml-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-mn-rMN\values-mn-rMN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-mr-rIN\values-mr-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-ms-rMY\values-ms-rMY.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-my-rMM\values-my-rMM.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-nb\values-nb.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-ne-rNP\values-ne-rNP.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-nl\values-nl.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-pa-rIN\values-pa-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-pl\values-pl.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-port\values-port.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-pt-rBR\values-pt-rBR.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-pt-rPT\values-pt-rPT.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-pt\values-pt.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-ro\values-ro.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-ru\values-ru.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-si-rLK\values-si-rLK.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-sk\values-sk.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-sl\values-sl.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-sq-rAL\values-sq-rAL.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-sr\values-sr.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-sv\values-sv.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-sw600dp\values-sw600dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-sw\values-sw.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-ta-rIN\values-ta-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-te-rIN\values-te-rIN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-th\values-th.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-tl\values-tl.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-tr\values-tr.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-uk\values-uk.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-ur-rPK\values-ur-rPK.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-uz-rUZ\values-uz-rUZ.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-v11\values-v11.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-v12\values-v12.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-v14\values-v14.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-v17\values-v17.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-v18\values-v18.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-v21\values-v21.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-v22\values-v22.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-v23\values-v23.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-vi\values-vi.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-w360dp\values-w360dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-w480dp\values-w480dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-w500dp\values-w500dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-w600dp\values-w600dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-w720dp\values-w720dp.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-xlarge-land\values-xlarge-land.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-xlarge\values-xlarge.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-zh-rCN\values-zh-rCN.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-zh-rHK\values-zh-rHK.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-zh-rTW\values-zh-rTW.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values-zu\values-zu.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\merged\release\values\values.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\res\resources-debug-androidTest.ap_
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\outputs\aar\localnotify-debug.aar
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\outputs\aar\localnotify-release.aar
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\outputs\lint-results.html
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\outputs\lint-results.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\reports\tests\debug\index.html
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\reports\tests\release\index.html
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\jarFile\_localNotify.jar
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\jarFile\_localNotify.zip
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\jarFile\_localNotifyDebug.jar
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\jarFile\_localNotifyDebug.zip
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\jarFile\localNotify.jar
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\jarFile\localNotifyDebug.jar
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\build\intermediates\lint-cache\typos-en.txt-2.bin
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\manifest\tmp\manifestMerger3219232963199847344.xml
+C:\Project\PuzzleDerby\program\localNotification\UnityAndroidModule\localnotify\build\intermediates\manifest\tmp\manifestMerger3265865388615593651.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":localnotify" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/.." external.system.id="GRADLE" external.system.module.group="UnityAndroidModule" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="android-gradle" name="Android-Gradle">
+      <configuration>
+        <option name="GRADLE_PROJECT_PATH" value=":localnotify" />
+      </configuration>
+    </facet>
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="SELECTED_BUILD_VARIANT" value="debug" />
+        <option name="SELECTED_TEST_ARTIFACT" value="_android_test_" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
+        <option name="ASSEMBLE_TEST_TASK_NAME" value="assembleDebugAndroidTest" />
+        <option name="COMPILE_JAVA_TEST_TASK_NAME" value="compileDebugAndroidTestSources" />
+        <afterSyncTasks>
+          <task>generateDebugAndroidTestSources</task>
+          <task>generateDebugSources</task>
+        </afterSyncTasks>
+        <option name="ALLOW_USER_CONFIGURATION" value="false" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
+        <option name="LIBRARY_PROJECT" value="true" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/build/intermediates/classes/debug" />
+    <output-test url="file://$MODULE_DIR$/build/intermediates/classes/androidTest/debug" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/debug" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/resValues/debug" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/androidTest/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/androidTest/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/androidTest/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/androidTest/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/androidTest/debug" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/resValues/androidTest/debug" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/debug/res" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/debug/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/debug/assets" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/debug/aidl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/debug/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/debug/jni" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/debug/rs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/res" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/assets" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/aidl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/jni" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/rs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/jni" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/assets" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/bundles" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/coverage-instrumented-classes" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/dependency-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/dex" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/dex-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jacoco" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javaResources" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/libs" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/lint" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/ndk" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/pre-dexed" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/proguard" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
+      <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
+      <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
+    </content>
+    <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="support-v4-23.1.1" level="project" />
+    <orderEntry type="library" exported="" name="classes" level="project" />
+    <orderEntry type="library" exported="" name="support-annotations-23.1.1" level="project" />
+    <orderEntry type="library" exported="" name="Prime31UnityActivity" level="project" />
+    <orderEntry type="library" exported="" name="appcompat-v7-23.1.1" level="project" />
+  </component>
+</module>
+
+
+C:\Users\cyclone-staff\AppData\Local\Android\sdk
+
+C:\Program Files\Java\jdk1.7.0_09
+
+svn
+C:\Users\cyclone-staff\AppData\Roaming\Subversion
+
+Can't use Subversion command line client: svn
+
+
+
+
+
+
+よしパズルダービーはとりあえず置いといて
+シェルスクリプトとかantについて勉強しよう
+外部からgradleを実行できるかも確認しなくては
+
